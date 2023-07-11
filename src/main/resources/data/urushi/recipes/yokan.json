@@ -1,0 +1,85 @@
+{
+
+
+
+  "type": "minecraft:crafting_shapeless",
+
+
+
+  "ingredients": [
+
+
+
+   
+
+
+
+    {
+
+
+
+      "item": "urushi:kanten_powder"
+
+
+
+    },
+
+
+
+    {
+
+
+
+       "item": "minecraft:sugar"
+
+
+
+    },
+
+
+
+    {
+
+
+
+      "tag": "forge:crops/redbean"
+
+
+
+    },
+
+
+
+    {
+
+
+
+      "tag": "forge:crops/redbean"
+
+
+
+    }
+
+
+
+  ],
+
+
+
+  "result": {
+
+
+
+    "item": "urushi:yokan",
+
+
+
+    "count": 1
+
+
+
+  }
+
+
+
+}

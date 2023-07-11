@@ -1,0 +1,45 @@
+{
+
+  "type": "minecraft:crafting_shaped",
+
+  "pattern": [
+
+    "jjj",
+
+    "jcj",
+
+    "jaj"
+
+  ],
+
+  "key": {
+
+  "j": {
+
+     "item": "urushi:jadeite"
+
+    },
+
+   "a": {
+
+     "item": "urushi:earth_amber"
+
+    },
+
+    "c": {
+
+     "item": "minecraft:crafting_table"
+
+    }
+
+  },
+
+  "result": {
+
+    "item": "urushi:earth_element_crafting_table_tier1",
+
+    "count": 1
+
+  }
+
+}

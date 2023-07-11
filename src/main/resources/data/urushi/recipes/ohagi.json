@@ -1,0 +1,37 @@
+{
+
+  "type": "minecraft:crafting_shapeless",
+
+  "ingredients": [
+
+   
+
+    {
+
+      "item": "urushi:rice_cake"
+
+    },
+
+    {
+
+      "tag": "forge:crops/redbean"
+
+    },
+
+    {
+
+      "tag": "forge:crops/redbean"
+
+    }
+
+  ],
+
+  "result": {
+
+    "item": "urushi:ohagi",
+
+    "count": 1
+
+  }
+
+}

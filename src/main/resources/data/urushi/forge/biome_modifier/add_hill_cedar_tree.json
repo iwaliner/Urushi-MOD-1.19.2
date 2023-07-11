@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_hill",
+  "features": "urushi:hill_japanese_cedar",
+  "step": "vegetal_decoration"
+}
