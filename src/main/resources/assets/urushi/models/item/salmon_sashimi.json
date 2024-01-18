@@ -1,6 +1,12 @@
-{
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "urushi:item/sashimi_salmon"
-    }
-}
+{
+
+    "parent": "item/generated",
+
+    "textures": {
+
+        "layer0": "urushi:item/sashimi_salmon"
+
+    }
+
+}
+

@@ -1,10 +1,12 @@
 package com.iwaliner.urushi;
 
 
+import com.iwaliner.urushi.blockentity.renderer.HokoraRenderer;
 import com.iwaliner.urushi.blockentity.renderer.SanboRenderer;
 import com.iwaliner.urushi.blockentity.renderer.ShichirinRenderer;
 import com.iwaliner.urushi.blockentity.screen.DoubledWoodenCabinetryScreen;
 import com.iwaliner.urushi.blockentity.screen.FryerScreen;
+import com.iwaliner.urushi.blockentity.screen.UrushiHopperScreen;
 import com.iwaliner.urushi.entiity.food.model.*;
 import com.iwaliner.urushi.entiity.food.renderer.*;
 import com.iwaliner.urushi.entiity.model.CushionModel;
@@ -51,6 +53,9 @@ public class ClientSetUp {
     public static final ModelLayerLocation RICE_CAKE = new ModelLayerLocation(new ResourceLocation(ModCoreUrushi.ModID, "rice_cake_food"), "rice_cake_food");
     public static final ModelLayerLocation ROASTED_RICE_CAKE = new ModelLayerLocation(new ResourceLocation(ModCoreUrushi.ModID, "roasted_rice_cake_food"), "roasted_rice_cake_food");
     public static final ModelLayerLocation CUSHION = new ModelLayerLocation(new ResourceLocation(ModCoreUrushi.ModID, "cushion"), "cushion");
+    public static final ModelLayerLocation SUSHI = new ModelLayerLocation(new ResourceLocation(ModCoreUrushi.ModID, "sushi_food"), "sushi_food");
+    public static final ModelLayerLocation SALMON_ROE_SUSHI = new ModelLayerLocation(new ResourceLocation(ModCoreUrushi.ModID, "salmon_roe_sushi_food"), "salmon_roe_sushi_food");
+    public static final ModelLayerLocation INARI = new ModelLayerLocation(new ResourceLocation(ModCoreUrushi.ModID, "inari_food"), "inari_food");
 
 
     public static final KeyMapping connectionKey = new ToggleKeyMappingPlus("Apart Block Connections (single play only)", InputConstants.KEY_C, "Urushi");
@@ -73,6 +78,12 @@ public class ClientSetUp {
         event.registerEntityRenderer(EntityRegister.MitarashiDangoFoodEntity.get(), MitarashiDangoFoodRenderer::new);
         event.registerEntityRenderer(EntityRegister.RiceCakeFoodEntity.get(), RiceCakeFoodRenderer::new);
         event.registerEntityRenderer(EntityRegister.RoastedRiceCakeFoodEntity.get(), RoastedRiceCakeFoodRenderer::new);
+        event.registerEntityRenderer(EntityRegister.TsunaSushiFoodEntity.get(), TsunaSushiFoodRenderer::new);
+        event.registerEntityRenderer(EntityRegister.SalmonSushiFoodEntity.get(), SalmonSushiFoodRenderer::new);
+        event.registerEntityRenderer(EntityRegister.SquidSushiFoodEntity.get(), SquidSushiFoodRenderer::new);
+        event.registerEntityRenderer(EntityRegister.EggSushiFoodEntity.get(), EggSushiFoodRenderer::new);
+        event.registerEntityRenderer(EntityRegister.SalmonRoeSushiFoodEntity.get(), SalmonRoeSushiFoodRenderer::new);
+        event.registerEntityRenderer(EntityRegister.InariFoodEntity.get(), InariFoodRenderer::new);
         event.registerEntityRenderer(EntityRegister.KitsunebiEntity.get(),  (p_174088_) -> {
             return new ThrownItemRenderer<>(p_174088_, 1.0F, true);
         });
@@ -92,6 +103,10 @@ public class ClientSetUp {
         event.registerLayerDefinition(RICE_CAKE, RiceCakeFoodModel::createBodyLayer);
         event.registerLayerDefinition(ROASTED_RICE_CAKE, RoastedRiceCakeFoodModel::createBodyLayer);
         event.registerLayerDefinition(CUSHION, CushionModel::createBodyLayer);
+        event.registerLayerDefinition(SUSHI, SushiFoodModel::createBodyLayer);
+        event.registerLayerDefinition(SALMON_ROE_SUSHI, SalmonRoeSushiFoodModel::createBodyLayer);
+        event.registerLayerDefinition(INARI, InariFoodModel::createBodyLayer);
+
     }
 
     /**パーティクルの見た目を指定*/
@@ -141,15 +156,17 @@ public class ClientSetUp {
        /**コンテナにGUIを登録*/
         MenuScreens.register(MenuRegister.FryerMenu.get(), FryerScreen::new);
         MenuScreens.register(MenuRegister.DoubledWoodenCabinetryMenu.get(), DoubledWoodenCabinetryScreen::new);
+        MenuScreens.register(MenuRegister.UrushiHopperMenu.get(), UrushiHopperScreen::new);
 
        /**見た目が特殊なBlockEntityの見た目を登録*/
         BlockEntityRenderers.register(BlockEntityRegister.Sanbo.get(), SanboRenderer::new);
         BlockEntityRenderers.register(BlockEntityRegister.Shichirin.get(), ShichirinRenderer::new);
+        BlockEntityRenderers.register(BlockEntityRegister.Hokora.get(), HokoraRenderer::new);
 
 
 
 
-
+       ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.senryoubako.get()));
         /**jsonファイルを自動生成するために開発環境のパスを登録*/
         if(ModCoreUrushi.isDebug) {
         FMLPaths.GAMEDIR.get();
@@ -160,12 +177,7 @@ public class ClientSetUp {
 
 
 
-            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.goldfish_bowl.get()));
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.hammer.get());
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.enhanced_jadeite.get());
-             ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.sanbo_tier2.get()));
-            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.sanbo_tier3.get()));
-            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.senryoubako.get()));
+
 
 
 
@@ -186,7 +198,7 @@ public class ClientSetUp {
             RequiredToolMaterialTagGenerator.INSTANCE.registerGoldenToolTag(ModCoreUrushi.goldenToolList);
             RequiredToolMaterialTagGenerator.INSTANCE.registerDiamondToolTag(ModCoreUrushi.diamondToolList);
             RequiredToolMaterialTagGenerator.INSTANCE.registerNetheriteToolTag(ModCoreUrushi.netheriteToolList);
-            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.oak_fushiranma.get()),"fushiranma_oak");
+          /*  NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.oak_fushiranma.get()),"fushiranma_oak");
             NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.spruce_fushiranma.get()),"fushiranma_spruce");
             NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.birch_fushiranma.get()),"fushiranma_birch");
             NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.jungle_fushiranma.get()),"fushiranma_jungle");
@@ -465,7 +477,8 @@ public class ClientSetUp {
             GeneratedItemJsonMaker.INSTANCE.registerItemModel(ItemAndBlockRegister.so.get(),"so");
             GeneratedItemJsonMaker.INSTANCE.registerItemModel(ItemAndBlockRegister.cheese_gyudon.get(),"rice_beef_cheese");
             GeneratedItemJsonMaker.INSTANCE.registerItemModel(ItemAndBlockRegister.cheese_gyudon_with_onsen_egg.get(),"rice_beef_cheese_onsen_egg");
-
+            GeneratedItemJsonMaker.INSTANCE.registerItemModel(ItemAndBlockRegister.shide.get(),"shide");
+*/
 
 
         }

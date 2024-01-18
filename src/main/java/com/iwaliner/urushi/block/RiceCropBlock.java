@@ -7,6 +7,7 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 
+import net.minecraft.world.level.block.FarmBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
 
@@ -18,7 +19,7 @@ public class RiceCropBlock extends UrushiCropBlock {
 
     @Override
     public void onPlace(BlockState state, Level world, BlockPos pos, BlockState state2, boolean boo) {
-        if(world.getBlockState(pos.below()).getBlock()== Blocks.FARMLAND){
+        if(world.getBlockState(pos.below()).getBlock() instanceof FarmBlock){
             world.setBlockAndUpdate(pos.below(), ItemAndBlockRegister.paddy_field.get().defaultBlockState());
         }
     }

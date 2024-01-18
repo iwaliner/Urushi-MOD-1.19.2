@@ -45,9 +45,9 @@ import javax.annotation.Nullable;
 import java.util.List;
 import net.minecraft.util.RandomSource;
 
-public class SanboBlock extends BaseEntityBlock implements Tiered {
+public class SanboBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    private  int tier;
+
 
     private static final VoxelShape MIDDLE = Block.box(1.5D, 9.0D, 1.5D, 14.5D, 10D, 14.5D);
     private static final VoxelShape UNDER = Block.box(4D, 0.0D, 4D, 12D, 9D, 12D);
@@ -57,9 +57,9 @@ public class SanboBlock extends BaseEntityBlock implements Tiered {
     private static final VoxelShape UPPER4 = Block.box(2D, 10.0D, 13D, 14D, 12D, 14D);
     private static final VoxelShape SHAPE = Shapes.or(UNDER, MIDDLE, UPPER1, UPPER2,UPPER3,UPPER4);
 
-    public SanboBlock(int tier,Properties p_i48440_1_) {
+    public SanboBlock(Properties p_i48440_1_) {
         super(p_i48440_1_);
-        this.tier=tier;
+
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
@@ -148,11 +148,7 @@ public class SanboBlock extends BaseEntityBlock implements Tiered {
         return createTickerHelper(p_152162_, BlockEntityRegister.Sanbo.get(), SanboBlockEntity::tick);
     }
 
-    @org.jetbrains.annotations.Nullable
-    @Override
-    public int getTier() {
-        return this.tier;
-    }
+
     public void onRemove(BlockState p_48713_, Level p_48714_, BlockPos p_48715_, BlockState p_48716_, boolean p_48717_) {
         if (!p_48713_.is(p_48716_.getBlock())) {
             BlockEntity blockentity = p_48714_.getBlockEntity(p_48715_);

@@ -16,6 +16,7 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
  
@@ -110,11 +111,7 @@ public class ElementCraftingTableBlockEntity extends AbstractReiryokuStorableBlo
            if (b1 && b2) {
 
                ElementType craftingTableElementType = elementCraftingTable.getStoredElementType();
-               int northSanboTier = ((SanboBlock) northState.getBlock()).getTier();
-               int eastSanboTier = ((SanboBlock) eastState.getBlock()).getTier();
-               int southSanboTier = ((SanboBlock) southState.getBlock()).getTier();
-               int westSanboTier = ((SanboBlock) westState.getBlock()).getTier();
-               int elementCraftingTableTier = ((ElementCraftingTableBlock) state.getBlock()).getTier();
+
                ItemStack northStack = northSanbo.getItem(0);
                ItemStack eastStack = eastSanbo.getItem(0);
                ItemStack southStack = southSanbo.getItem(0);
@@ -123,15 +120,16 @@ public class ElementCraftingTableBlockEntity extends AbstractReiryokuStorableBlo
 
                SimpleContainer container = new SimpleContainer(northStack, eastStack, southStack, westStack);
                Recipe<?> recipe = level.getRecipeManager().getRecipeFor((RecipeType<AbstractElementCraftingRecipe>) elementCraftingTable.getRecipeType(), container, level).orElse(null);
-               if (recipe != null && northSanboTier == elementCraftingTableTier && eastSanboTier == elementCraftingTableTier && southSanboTier == elementCraftingTableTier && westSanboTier == elementCraftingTableTier
-             /*  &&northState.getValue(SanboBlock.FACING)==Direction.NORTH&&eastState.getValue(SanboBlock.FACING)==Direction.EAST&&southState.getValue(SanboBlock.FACING)==Direction.SOUTH&&westState.getValue(SanboBlock.FACING)==Direction.WEST*/
-               ) {
+               if (recipe != null
+                       //&& northSanboTier == elementCraftingTableTier && eastSanboTier == elementCraftingTableTier && southSanboTier == elementCraftingTableTier && westSanboTier == elementCraftingTableTier
+              ) {
                    IElementCraftingRecipe iElementCraftingRecipe=(IElementCraftingRecipe)recipe;
                    int consumeReiryoku=iElementCraftingRecipe.getReiryoku();
                    if(elementCraftingTable.canDecreaseReiryoku(consumeReiryoku)) {
                        if (elementCraftingTable.getCoolTime() == 0) {
                            elementCraftingTable.coolTime = elementCraftingTable.getMaxCooltime();
                        } else if(elementCraftingTable.getCoolTime()==1) {
+
 
                            ItemStack resultStack = recipe.getResultItem();
                            ItemEntity itemEntity = new ItemEntity(level, pos.getX() + 0.5D, pos.getY() + 1D, pos.getZ() + 0.5D, resultStack.copy());
@@ -141,6 +139,9 @@ public class ElementCraftingTableBlockEntity extends AbstractReiryokuStorableBlo
                            southSanbo.clearContent();
                            westSanbo.clearContent();
                            elementCraftingTable.decreaseStoredReiryoku(consumeReiryoku);
+                           for(int i=0; i<20;i++) {
+                               level.addParticle(ParticleTypes.COMPOSTER, pos.getX() + 0.0625D * 4 + 0.0625D * level.getRandom().nextInt(8), pos.getY() + 1D + 0.0625D * level.getRandom().nextInt(8), pos.getZ() + 0.0625D * 4 + 0.0625D * level.getRandom().nextInt(8), 0.0D, 0.0D, 0.0D);
+                           }
                        }
                    }
                }

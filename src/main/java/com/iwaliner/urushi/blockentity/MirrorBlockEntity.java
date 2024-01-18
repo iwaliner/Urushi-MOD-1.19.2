@@ -9,17 +9,25 @@ import com.iwaliner.urushi.util.ElementUtils;
 import com.iwaliner.urushi.util.interfaces.Mirror;
 import com.iwaliner.urushi.util.interfaces.ReiryokuImportable;
 import com.iwaliner.urushi.util.interfaces.ReiryokuStorable;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.util.Mth;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+
+import java.util.List;
 
 public class MirrorBlockEntity extends AbstractReiryokuStorableBlockEntity  implements Mirror {
     public boolean canReach;
@@ -113,10 +121,22 @@ public class MirrorBlockEntity extends AbstractReiryokuStorableBlockEntity  impl
            return getDirectionFromID(direction.getID()+8);
         }else if(direction.getID()<17){
             return getDirectionFromID(direction.getID()-8);
-        }else if(direction.getID()<31){
+        }else if(direction.getID()<23){
             return getDirectionFromID(direction.getID()+20);
-        }else if(direction.getID()<45){
+        }else if(direction.getID()<29){
+            return getDirectionFromID(direction.getID()+8);
+        }else if(direction.getID()==29){
+            return getDirectionFromID(43);
+        }else if(direction.getID()==30){
+            return getDirectionFromID(44);
+        }else if(direction.getID()<37){
+            return getDirectionFromID(direction.getID()-8);
+        }else if(direction.getID()<43){
             return getDirectionFromID(direction.getID()-20);
+        }else if(direction.getID()==43){
+            return getDirectionFromID(29);
+        }else if(direction.getID()==44){
+            return getDirectionFromID(30);
         }
         return ComplexDirection.FAIL;
     }
@@ -881,6 +901,8 @@ public class MirrorBlockEntity extends AbstractReiryokuStorableBlockEntity  impl
         }else if(getVerticalClockwise45DegreesDirection(blockOpposite)==incident){
             reflect= getVerticalCounterClockwise90DegreesDirection(incident); //鏡面から縦に45度に入射
         }
+
+
         else if(getVerticalCounterClockwiseNeighborDirection(block)==incident){
             reflect= getVerticalClockwise45DegreesDirection(incident); //鏡面から縦に67.5度に入射
         }else if(getVerticalClockwiseNeighborDirection(block)==incident){
@@ -890,6 +912,8 @@ public class MirrorBlockEntity extends AbstractReiryokuStorableBlockEntity  impl
         }else if(getVerticalClockwiseNeighborDirection(blockOpposite)==incident){
             reflect= getVerticalCounterClockwise45DegreesDirection(incident); //鏡面から縦に67.5度に入射
         }
+
+
 
         return reflect;
     }
@@ -1052,16 +1076,44 @@ public class MirrorBlockEntity extends AbstractReiryokuStorableBlockEntity  impl
         int storedReiryoku= blockEntity.getStoredReiryoku();
            ComplexDirection reflectedDirection=blockEntity.reflectedDirection(mirrorDirection,incidentDirection);
         BlockPos goalPos=blockEntity.findImportableBlock(level,pos,reflectedDirection);
+
+
+
+
+      /*  List<LivingEntity> list = level.getEntitiesOfClass(LivingEntity.class, new AABB(pos).inflate(2D));
+        if (!list.isEmpty()) {
+            for (LivingEntity entity : list) {
+                if (entity instanceof Player) {
+                    Player player = (Player) entity;
+                    MutableComponent component = Component.translatable("info.test");
+                    String s1=incidentDirection==null? "null":incidentDirection.name();
+                    String s2=mirrorDirection==null? "null":mirrorDirection.name();
+                    String s3=reflectedDirection==null? "null":reflectedDirection.name();
+                    String s4=blockEntity.getOppositeDirection(mirrorDirection)==null? "null":blockEntity.getOppositeDirection(mirrorDirection).name();
+
+                    player.displayClientMessage(component.append(", incident: "+s1).append(", mirror: "+s2).append(", reflect: "+s3).append(", opposide: "+s4).withStyle(ChatFormatting.YELLOW).withStyle(ChatFormatting.UNDERLINE), true);
+
+                }
+            }
+        }*/
+
+
+
+
         if(reflectedDirection==null){
             blockEntity.setCanReach(true);
         }else if(reflectedDirection==ComplexDirection.FAIL||goalPos==pos){
-                blockEntity.setCanReach(false);
+
+            blockEntity.setCanReach(false);
             }else {
-                blockEntity.setCanReach(true);
+
+            blockEntity.setCanReach(true);
             }
         if(storedReiryoku>0){
             if(canReach){
-                 if(goalPos!=pos){
+
+                if(goalPos!=pos){
+
                     blockEntity.send(level,pos,goalPos,reflectedDirection);
                 }
             }
@@ -1076,6 +1128,7 @@ public class MirrorBlockEntity extends AbstractReiryokuStorableBlockEntity  impl
 
             int t1=0;
             if(getDirectionFromComplexDirection(incidentDirection)!=null) {
+
                 for (int i1 = 1; i1 < range; i1++) {
                     BlockPos pos = getDirectionFromComplexDirection(incidentDirection)[1] == null ? mirrorPos.relative(getDirectionFromComplexDirection(incidentDirection)[0], i1) : mirrorPos.relative(getDirectionFromComplexDirection(incidentDirection)[0], i1).relative(getDirectionFromComplexDirection(incidentDirection)[1], i1);
                     BlockEntity blockEntity = level.getBlockEntity(pos);

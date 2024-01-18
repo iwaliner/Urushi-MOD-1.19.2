@@ -56,7 +56,7 @@ public abstract class FoodEntity extends Entity {
 
     @Override
     public InteractionResult interact(Player player, InteractionHand hand) {
-        this.discard();  //このエンティティを抹消
+        this.discard();
         this.markHurt();
         this.playSound(SoundEvents.ITEM_PICKUP, 1.0F, 1.0F);
         ItemStack itemStack=new ItemStack(itemContains);
@@ -66,7 +66,7 @@ public abstract class FoodEntity extends Entity {
     @Override
     public void tick() {
         this.setDeltaMovement(this.getDeltaMovement().add(0.0D, -0.04D, 0.0D));
-        this.move(MoverType.SELF, this.getDeltaMovement()); //移動(落下)
+        this.move(MoverType.SELF, this.getDeltaMovement()); //自由落下
 
     }
     @Override

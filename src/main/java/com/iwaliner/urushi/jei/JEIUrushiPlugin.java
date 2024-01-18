@@ -35,6 +35,11 @@ public class JEIUrushiPlugin implements IModPlugin {
     public static final RecipeType<EarthElementTier1CraftingRecipe> JEI_EARTH_ELEMENT_TIER1_CRAFTING =RecipeType.create(ModCoreUrushi.ModID, "earth_element_tier1_crafting", EarthElementTier1CraftingRecipe.class);
     public static final RecipeType<MetalElementTier1CraftingRecipe> JEI_METAL_ELEMENT_TIER1_CRAFTING =RecipeType.create(ModCoreUrushi.ModID, "metal_element_tier1_crafting", MetalElementTier1CraftingRecipe.class);
     public static final RecipeType<WaterElementTier1CraftingRecipe> JEI_WATER_ELEMENT_TIER1_CRAFTING =RecipeType.create(ModCoreUrushi.ModID, "water_element_tier1_crafting", WaterElementTier1CraftingRecipe.class);
+    public static final RecipeType<WoodElementTier2CraftingRecipe> JEI_WOOD_ELEMENT_TIER2_CRAFTING =RecipeType.create(ModCoreUrushi.ModID, "wood_element_tier2_crafting", WoodElementTier2CraftingRecipe.class);
+    public static final RecipeType<FireElementTier2CraftingRecipe> JEI_FIRE_ELEMENT_TIER2_CRAFTING =RecipeType.create(ModCoreUrushi.ModID, "fire_element_tier2_crafting", FireElementTier2CraftingRecipe.class);
+    public static final RecipeType<EarthElementTier2CraftingRecipe> JEI_EARTH_ELEMENT_TIER2_CRAFTING =RecipeType.create(ModCoreUrushi.ModID, "earth_element_tier2_crafting", EarthElementTier2CraftingRecipe.class);
+    public static final RecipeType<MetalElementTier2CraftingRecipe> JEI_METAL_ELEMENT_TIER2_CRAFTING =RecipeType.create(ModCoreUrushi.ModID, "metal_element_tier2_crafting", MetalElementTier2CraftingRecipe.class);
+    public static final RecipeType<WaterElementTier2CraftingRecipe> JEI_WATER_ELEMENT_TIER2_CRAFTING =RecipeType.create(ModCoreUrushi.ModID, "water_element_tier2_crafting", WaterElementTier2CraftingRecipe.class);
     public static final RecipeType<FoxEatingRecipe> JEI_FOX_EATING =RecipeType.create(ModCoreUrushi.ModID, "fox_eating", FoxEatingRecipe.class);
 
 
@@ -62,6 +67,11 @@ public class JEIUrushiPlugin implements IModPlugin {
         registration.addRecipeCategories(new EarthElementTier1CraftingRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new MetalElementTier1CraftingRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new WaterElementTier1CraftingRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new WoodElementTier2CraftingRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new FireElementTier2CraftingRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new EarthElementTier2CraftingRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new MetalElementTier2CraftingRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new WaterElementTier2CraftingRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
@@ -97,6 +107,17 @@ public class JEIUrushiPlugin implements IModPlugin {
         registration.addRecipes(new RecipeType<>(MetalElementTier1CraftingRecipeCategory.location,MetalElementTier1CraftingRecipe.class),MetalElementTier1CraftingRecipes);
         List<WaterElementTier1CraftingRecipe> WaterElementTier1CraftingRecipes=recipeManager.getAllRecipesFor(RecipeTypeRegister.WaterElementTier1CraftingRecipe);
         registration.addRecipes(new RecipeType<>(WaterElementTier1CraftingRecipeCategory.location,WaterElementTier1CraftingRecipe.class),WaterElementTier1CraftingRecipes);
+
+        List<WoodElementTier2CraftingRecipe> WoodElementTier2CraftingRecipes=recipeManager.getAllRecipesFor(RecipeTypeRegister.WoodElementTier2CraftingRecipe);
+        registration.addRecipes(new RecipeType<>(WoodElementTier2CraftingRecipeCategory.location,WoodElementTier2CraftingRecipe.class),WoodElementTier2CraftingRecipes);
+        List<FireElementTier2CraftingRecipe> FireElementTier2CraftingRecipes=recipeManager.getAllRecipesFor(RecipeTypeRegister.FireElementTier2CraftingRecipe);
+        registration.addRecipes(new RecipeType<>(FireElementTier2CraftingRecipeCategory.location,FireElementTier2CraftingRecipe.class),FireElementTier2CraftingRecipes);
+        List<EarthElementTier2CraftingRecipe> EarthElementTier2CraftingRecipes=recipeManager.getAllRecipesFor(RecipeTypeRegister.EarthElementTier2CraftingRecipe);
+        registration.addRecipes(new RecipeType<>(EarthElementTier2CraftingRecipeCategory.location,EarthElementTier2CraftingRecipe.class),EarthElementTier2CraftingRecipes);
+        List<MetalElementTier2CraftingRecipe> MetalElementTier2CraftingRecipes=recipeManager.getAllRecipesFor(RecipeTypeRegister.MetalElementTier2CraftingRecipe);
+        registration.addRecipes(new RecipeType<>(MetalElementTier2CraftingRecipeCategory.location,MetalElementTier2CraftingRecipe.class),MetalElementTier2CraftingRecipes);
+        List<WaterElementTier2CraftingRecipe> WaterElementTier2CraftingRecipes=recipeManager.getAllRecipesFor(RecipeTypeRegister.WaterElementTier2CraftingRecipe);
+        registration.addRecipes(new RecipeType<>(WaterElementTier2CraftingRecipeCategory.location,WaterElementTier2CraftingRecipe.class),WaterElementTier2CraftingRecipes);
     }
 
     @Override
@@ -114,6 +135,11 @@ public class JEIUrushiPlugin implements IModPlugin {
         registration.addRecipeCatalyst(new ItemStack(ItemAndBlockRegister.earth_element_crafting_table_tier1.get()), JEI_EARTH_ELEMENT_TIER1_CRAFTING);
         registration.addRecipeCatalyst(new ItemStack(ItemAndBlockRegister.metal_element_crafting_table_tier1.get()), JEI_METAL_ELEMENT_TIER1_CRAFTING);
         registration.addRecipeCatalyst(new ItemStack(ItemAndBlockRegister.water_element_crafting_table_tier1.get()), JEI_WATER_ELEMENT_TIER1_CRAFTING);
+        registration.addRecipeCatalyst(new ItemStack(ItemAndBlockRegister.wood_element_crafting_table_tier2.get()), JEI_WOOD_ELEMENT_TIER2_CRAFTING);
+        registration.addRecipeCatalyst(new ItemStack(ItemAndBlockRegister.fire_element_crafting_table_tier2.get()), JEI_FIRE_ELEMENT_TIER2_CRAFTING);
+        registration.addRecipeCatalyst(new ItemStack(ItemAndBlockRegister.earth_element_crafting_table_tier2.get()), JEI_EARTH_ELEMENT_TIER2_CRAFTING);
+        registration.addRecipeCatalyst(new ItemStack(ItemAndBlockRegister.metal_element_crafting_table_tier2.get()), JEI_METAL_ELEMENT_TIER2_CRAFTING);
+        registration.addRecipeCatalyst(new ItemStack(ItemAndBlockRegister.water_element_crafting_table_tier2.get()), JEI_WATER_ELEMENT_TIER2_CRAFTING);
 
     }
 }

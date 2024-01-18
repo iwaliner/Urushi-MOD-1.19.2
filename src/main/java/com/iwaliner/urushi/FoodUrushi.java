@@ -11,7 +11,9 @@ public class FoodUrushi {
     public static final FoodProperties KitsuneUdon = (new FoodProperties.Builder()).nutrition(9).saturationMod(1.2F).build();
     public static final FoodProperties Karaage = (new FoodProperties.Builder()).nutrition(7).saturationMod(0.8F).build();
     public static final FoodProperties Tofu = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.4F).build();
+    public static final FoodProperties Hiyayakko = (new FoodProperties.Builder()).nutrition(5).saturationMod(0.4F).build();
     public static final FoodProperties Aburaage = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.2F).build();
+    public static final FoodProperties PickledJapaneseApricot = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.2F).build();
     public static final FoodProperties Dango = (new FoodProperties.Builder()).nutrition(7).saturationMod(0.8F).build();
     public static final FoodProperties RiceCake = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.6F).build();
     public static final FoodProperties RoastedRiceCake = (new FoodProperties.Builder()).nutrition(7).saturationMod(0.8F).build();
@@ -24,6 +26,7 @@ public class FoodUrushi {
     public static final FoodProperties SakuraYokan = (new FoodProperties.Builder()).nutrition(7).saturationMod(0.8F).build();
     public static final FoodProperties RawFish = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.4F).build();
     public static final FoodProperties CookedFish = (new FoodProperties.Builder()).nutrition(5).saturationMod(0.6F).build();
+    public static final FoodProperties Sushi = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.7F).build();
     public static final FoodProperties RawFishWithSalt = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.5F).build();
     public static final FoodProperties CookedFishWithSalt = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.7F).build();
     public static final FoodProperties Shiitake = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.3F).build();

@@ -10,6 +10,7 @@ import com.iwaliner.urushi.block.HotIronIngotBlock;
 import com.iwaliner.urushi.block.IronIngotBlock;
 import com.iwaliner.urushi.recipe.FryingRecipe;
 import com.iwaliner.urushi.recipe.HammeringRecipe;
+import com.iwaliner.urushi.util.UrushiUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -39,6 +40,7 @@ import org.checkerframework.checker.units.qual.C;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 public class HammerItem extends Item {
@@ -146,6 +148,10 @@ public class HammerItem extends Item {
         }else{
             return InteractionResult.SUCCESS;
         }
+    }
+    @Override
+    public void appendHoverText(ItemStack p_41421_, @Nullable Level p_41422_, List<Component> list, TooltipFlag p_41424_) {
+        UrushiUtils.setInfo(list,"hammer");
     }
 
 }

@@ -4,9 +4,9 @@ plugins {
     id 'net.minecraftforge.gradle' version '5.1.+'
 }
 
-version = '1.19.2-5.0.2'
-group = 'com.iwaliner.urushi' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'Urushi'
+version = '1.19.2-5.1.0'
+group = 'com.yourname.modid' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = 'urushi'
 
 // Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
@@ -49,7 +49,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
-            property 'forge.enabledGameTestNamespaces', 'examplemod'
+            property 'forge.enabledGameTestNamespaces', 'urushi'
 
             mods {
                 urushi {
@@ -101,7 +101,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
-            args '--mod', 'examplemod', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            args '--mod', 'urushi', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
             mods {
                 urushi {
@@ -122,7 +122,7 @@ repositories {
             includeGroup "curse.maven"
         }
     }
-    maven {
+   /* maven {
         // location of the maven that hosts JEI files before January 2023
         name = "Progwml6's maven"
         url = "https://dvs1.progwml6.com/files/maven/"
@@ -136,7 +136,7 @@ repositories {
         // location of a maven mirror for JEI files, as a fallback
         name = "ModMaven"
         url = "https://modmaven.dev"
-    }
+    }*/
 }
 
 dependencies {
@@ -148,20 +148,23 @@ dependencies {
 //文字列Aは、CurseForgeの各MODページのURL内に入っている、mod名に限りなく近い文字列。
 //数値Bは、CurseForgeの各MODページの右側に表示されている「About Project」内の「Project ID」で記されている数値。
 //数値Cは、CurseForgeにて使いたいMODの「Files」タブを開き、使いたい特定のバージョンの下線付き文字部分をクリックしてそのバージョンが詳しく書かれているページに飛び、そこのページのURLの末尾に書かれている数値
-    runtimeOnly(  fg.deobf("curse.maven:mekanism-268560:4385637"))
+   // runtimeOnly(  fg.deobf("curse.maven:mekanism-268560:4385637"))
 
+    runtimeOnly(  fg.deobf("curse.maven:jei-238222:4712866"))
 
+    compileOnly(  fg.deobf("curse.maven:jei-238222:4712866"))
 
 
     // implementation  fg.deobf("curse.maven:tofucraftreload-317469:4522598")
 
     //compileOnly fg.deobf("mezz.jei:jei-1.18.2:11.6.0.1015:api")
-   // runtimeOnly fg.deobf("mezz.jei:jei-1.18.2:11.6.0.1015")
+   //  runtimeOnly( fg.deobf("curse.maven:create-328085:4625534"))
+    //compileOnly( fg.deobf("curse.maven:create-328085:4625534"))
     // compile against the JEI API but do not include it at runtime
-    compileOnly(fg.deobf("mezz.jei:jei-1.19.2-common-api:11.6.0.1015"))
-    compileOnly(fg.deobf("mezz.jei:jei-1.19.2-forge-api:11.6.0.1015"))
+    //compileOnly(fg.deobf("mezz.jei:jei-1.19.2-common-api:11.6.0.1015"))
+    //compileOnly(fg.deobf("mezz.jei:jei-1.19.2-forge-api:11.6.0.1015"))
     // at runtime, use the full JEI jar for Forge
-    runtimeOnly(fg.deobf("mezz.jei:jei-1.19.2-forge:11.6.0.1015"))
+    //runtimeOnly(fg.deobf("mezz.jei:jei-1.19.2-forge:11.6.0.1015"))
 }
 
 // Example for how to get properties into the manifest for reading at runtime.
@@ -169,11 +172,11 @@ jar {
     manifest {
         attributes([
                 "Specification-Title"     : "urushi",
-                "Specification-Vendor"    : "urushi-sareus",
+                "Specification-Vendor"    : "urushisareus",
                 "Specification-Version"   : "1", // We are version 1 of ourselves
                 "Implementation-Title"    : project.name,
                 "Implementation-Version"  : project.jar.archiveVersion,
-                "Implementation-Vendor"   : "urushi-sareus",
+                "Implementation-Vendor"   : "urushisareus",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }

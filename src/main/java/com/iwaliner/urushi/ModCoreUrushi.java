@@ -23,12 +23,10 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.MoverType;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.Fox;
+import net.minecraft.world.entity.animal.Squid;
 import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
@@ -57,9 +55,7 @@ import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.entity.EntityEvent;
-import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
-import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -98,7 +94,7 @@ public class ModCoreUrushi {
     public static List<String> netheriteToolList=new ArrayList<>();
     public static List<Item> underDevelopmentList=new ArrayList<>();
 
-    public static boolean isDebug=FMLPaths.GAMEDIR.get().toString().contains("イワライナー(メインドライブ)")&&FMLPaths.GAMEDIR.get().toString().contains("run");
+    public static boolean isDebug=FMLPaths.GAMEDIR.get().toString().contains("イワライナー")&&FMLPaths.GAMEDIR.get().toString().contains("run");
     public static Logger logger = LogManager.getLogger("urushi");
     public static final CreativeModeTab UrushiTab = new CreativeModeTab("urushi") {
         @Override
@@ -106,7 +102,12 @@ public class ModCoreUrushi {
             return new ItemStack(ItemAndBlockRegister.kasuga_lantern.get());
         }
     };
-
+    public static final CreativeModeTab UrushiPlasterTab = new CreativeModeTab("urushi_plaster") {
+        @Override
+        public ItemStack makeIcon() {
+            return new ItemStack(ItemAndBlockRegister.red_framed_plaster.get());
+        }
+    };
     public static final CreativeModeTab UrushiWoodTab = new CreativeModeTab("urushi_wood") {
         @Override
         public ItemStack makeIcon() {
@@ -125,6 +126,7 @@ public class ModCoreUrushi {
             return new ItemStack(ItemAndBlockRegister.earth_element_magatama.get());
         }
     };
+
     public ModCoreUrushi() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         /**コンフィグを登録*/
@@ -437,6 +439,8 @@ public class ModCoreUrushi {
             event.setBurnTime(200);
         }else if(event.getItemStack().getItem()==ItemAndBlockRegister.cypress_bark.get()) {
             event.setBurnTime(200);
+        }else if(event.getItemStack().getItem()==ItemAndBlockRegister.wood_chip.get()) {
+            event.setBurnTime(200);
         }else if(event.getItemStack().getItem()== Item.byBlock(ItemAndBlockRegister.bamboo_charcoal_block.get())) {
             event.setBurnTime(16000);
         }
@@ -473,6 +477,9 @@ public class ModCoreUrushi {
                 event.getLevel().addFreshEntity(entity);
             } else if (( event.getLevel()).getRandom().nextFloat() < 0.075F) {
                 ItemEntity entity = new ItemEntity((Level) event.getLevel(), (double) event.getPos().getX(), (double) event.getPos().getY(), (double) event.getPos().getZ(), new ItemStack(ItemAndBlockRegister.azuki_crop.get()));
+                event.getLevel().addFreshEntity(entity);
+            }else if (( event.getLevel()).getRandom().nextFloat() < 0.075F) {
+                ItemEntity entity = new ItemEntity((Level) event.getLevel(), (double) event.getPos().getX(), (double) event.getPos().getY(), (double) event.getPos().getZ(), new ItemStack(ItemAndBlockRegister.green_onion_crop.get()));
                 event.getLevel().addFreshEntity(entity);
             }
         }
@@ -695,6 +702,13 @@ public class ModCoreUrushi {
         if(underDevelopmentList.contains(stack.getItem())){
             UrushiUtils.setInfoWithColor(event.getToolTip(),"under_development",ChatFormatting.YELLOW);
         }
+        if(stack.getItem()==Item.byBlock(ItemAndBlockRegister.cypress_sapling.get())){
+            UrushiUtils.setInfo(event.getToolTip(),"cypress_sapling");
+        }else if(stack.getItem()==Item.byBlock(ItemAndBlockRegister.japanese_cedar_sapling.get())){
+            UrushiUtils.setInfo(event.getToolTip(),"japanese_cedar_sapling");
+        }else if(stack.getItem()==Item.byBlock(ItemAndBlockRegister.lacquer_sapling.get())){
+            UrushiUtils.setInfo(event.getToolTip(),"lacquer_sapling");
+        }
         if(Block.byItem(item) instanceof AbstractFramedBlock||Block.byItem(item) instanceof FramedPaneBlock){
             event.getToolTip().add((Component.translatable("info.urushi.framed_block1" )).withStyle(ChatFormatting.GRAY));
             String keyString=  ClientSetUp.connectionKey.getKey().getName();
@@ -762,9 +776,16 @@ public class ModCoreUrushi {
     @SubscribeEvent
     public void LoottableEvent(LootTableLoadEvent event) {
         if(event.getName().equals(BuiltInLootTables.FISHING_FISH)){
-            event.getTable().addPool(LootPool.lootPool().add(LootItem.lootTableItem(ItemAndBlockRegister.sweetfish.get()).setWeight(25)).add(LootItem.lootTableItem(ItemAndBlockRegister.carp.get()).setWeight(25)).add(LootItem.lootTableItem(ItemAndBlockRegister.goldfish.get()).setWeight(25)).build());
+            event.getTable().addPool(LootPool.lootPool().add(LootItem.lootTableItem(ItemAndBlockRegister.sweetfish.get()).setWeight(25)).add(LootItem.lootTableItem(ItemAndBlockRegister.tsuna.get()).setWeight(25)).build());
         }else if(event.getName().equals(BuiltInLootTables.SIMPLE_DUNGEON)||event.getName().equals(BuiltInLootTables.SPAWN_BONUS_CHEST)||event.getName().equals(BuiltInLootTables.VILLAGE_PLAINS_HOUSE)){
             event.getTable().addPool(LootPool.lootPool().add(LootItem.lootTableItem(ItemAndBlockRegister.lacquer_sapling.get()).setWeight(30)).build());
+        }
+    }
+    /**バニラのルートテーブルに内容を追加*/
+    @SubscribeEvent
+    public void EntityDropItemEvent(LivingDropsEvent event) {
+        if(event.getEntity() instanceof Squid){
+       event.getDrops().add(new ItemEntity(event.getEntity().level,event.getEntity().getX(),event.getEntity().getY(),event.getEntity().getZ(), new ItemStack(ItemAndBlockRegister.squid_sashimi.get())));
         }
     }
 
@@ -773,8 +794,8 @@ public class ModCoreUrushi {
 
         if (event.getEntity() != null) {
             Block block=event.getLevel().getBlockState(event.getPos()).getBlock();
-            if(!event.getEntity().isSuppressingBounce()&&block!=ItemAndBlockRegister.sanbo_tier1.get()&&block!=ItemAndBlockRegister.sanbo_tier2.get()&&block!=ItemAndBlockRegister.sanbo_tier3.get()) {
-                if (((LivingEntity) event.getEntity()).getItemInHand(event.getHand()).getItem() == Items.PAPER) {
+            if(!event.getEntity().isSuppressingBounce()&&block!=ItemAndBlockRegister.sanbo_tier1.get()) {
+                if (((LivingEntity) event.getEntity()).getItemInHand(event.getHand()).getItem() == ItemAndBlockRegister.shide.get()) {
                     if (ElementUtils.isWoodElement(event.getLevel().getBlockState(event.getPos()))) {
                         ((LivingEntity) event.getEntity()).setItemInHand(event.getHand(), new ItemStack(ItemAndBlockRegister.wood_element_paper.get(), ((LivingEntity) event.getEntity()).getItemInHand(event.getHand()).getCount()));
                         event.getLevel().playSound((Player) null, event.getPos(), SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundSource.BLOCKS, 1F, 1F);

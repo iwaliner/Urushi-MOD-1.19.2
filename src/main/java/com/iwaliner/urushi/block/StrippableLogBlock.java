@@ -51,7 +51,7 @@ public class StrippableLogBlock extends RotatedPillarBlock {
             world.setBlock(pos,block.defaultBlockState().setValue(AXIS,state.getValue(AXIS)),4);
             world.playSound(player, pos, SoundEvents.AXE_STRIP, SoundSource.BLOCKS, 1.0F, 1.0F);
             //if(!world.isClientSide){
-            ItemEntity itemEntity=new ItemEntity(world,pos.getX(),pos.getY(),pos.getZ(),new ItemStack(item,8));
+            ItemEntity itemEntity=new ItemEntity(world,pos.relative(player.getDirection().getOpposite()).getX()+0.5D,pos.relative(player.getDirection().getOpposite()).getY()+0.5D,pos.relative(player.getDirection().getOpposite()).getZ()+0.5D,new ItemStack(item,8));
             world.addFreshEntity(itemEntity);
             // }
             return InteractionResult.SUCCESS;
