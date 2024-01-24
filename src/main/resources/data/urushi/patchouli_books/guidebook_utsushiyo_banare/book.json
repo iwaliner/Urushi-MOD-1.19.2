@@ -1,0 +1,8 @@
+{
+  "name": "patchouli.urushi.book.name",
+  "landing_text": "patchouli.urushi.book.landing_text",
+  "version": 1,
+  "creative_tab": "urushi:urushi",
+  "use_resource_pack": true,
+  "i18n": true
+}

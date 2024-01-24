@@ -2269,10 +2269,8 @@
     "info.urushi.water_hokora": "Required Item : Soy Beans",
 	"info.urushi.cypress_sapling": "Generated on hills",
 	"info.urushi.japanese_cedar_sapling": "Generated on hills and in the Kakuriyo Dimension",
-	"info.urushi.lacquer_sapling": "Generated in forests, spawner chests and chests in villages in plains."
+	"info.urushi.lacquer_sapling": "Generated in forests, spawner chests and chests in villages in plains.",
 
-    
-
-    
-
+   "patchouli.urushi.book.name": "A trip to the Underroot",
+   "patchouli.urushi.book.landing_text": "The guide that helps you travel through the world of Urushi - written by luoxueyasha"
 }
