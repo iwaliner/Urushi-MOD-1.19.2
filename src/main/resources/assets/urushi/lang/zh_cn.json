@@ -368,33 +368,33 @@
 
   "block.urushi.blank_fusuma": "素色纸拉门",
 
-  "block.urushi.blue_seigaiha_fusuma": "天蓝色青海波纸拉门",
+  "block.urushi.blue_seigaiha_fusuma": "浅蓝色青海波纸拉门",
 
-  "block.urushi.blue_sayagata_fusuma": "天蓝色丝绫纹纸拉门",
+  "block.urushi.blue_sayagata_fusuma": "浅蓝色丝绫纹纸拉门",
 
   "block.urushi.sliding_glass_door": "玻璃拉门",
 
-  "block.urushi.oak_shoji_pane": "橡木亮窗障子",
+  "block.urushi.oak_shoji_pane": "橡木障子门上窗",
 
-  "block.urushi.spruce_shoji_pane": "云杉木亮窗障子",
+  "block.urushi.spruce_shoji_pane": "云杉木障子门上窗",
 
-  "block.urushi.birch_shoji_pane": "白桦木亮窗障子",
+  "block.urushi.birch_shoji_pane": "白桦木障子门上窗",
 
-  "block.urushi.jungle_shoji_pane": "丛林木亮窗障子",
+  "block.urushi.jungle_shoji_pane": "丛林木障子门上窗",
 
-  "block.urushi.acacia_shoji_pane": "金合欢木亮窗障子",
+  "block.urushi.acacia_shoji_pane": "金合欢木障子门上窗",
 
-  "block.urushi.dark_oak_shoji_pane": "深色橡木亮窗障子",
+  "block.urushi.dark_oak_shoji_pane": "深色橡木障子门上窗",
 
-  "block.urushi.japanese_apricot_shoji_pane": "梅木亮窗障子",
+  "block.urushi.japanese_apricot_shoji_pane": "梅木障子门上窗",
 
-  "block.urushi.sakura_shoji_pane": "樱花木亮窗障子",
+  "block.urushi.sakura_shoji_pane": "樱花木障子门上窗",
 
-  "block.urushi.cypress_shoji_pane": "扁柏木亮窗障子",
+  "block.urushi.cypress_shoji_pane": "扁柏木障子门上窗",
 
-  "block.urushi.red_urushi_shoji_pane": "朱漆木亮窗障子",
+  "block.urushi.red_urushi_shoji_pane": "朱漆木障子门上窗",
 
-  "block.urushi.black_urushi_shoji_pane": "黑漆木亮窗障子",
+  "block.urushi.black_urushi_shoji_pane": "黑漆木障子门上窗",
 
   "block.urushi.oak_shoji": "橡木障子门",
 
@@ -884,9 +884,9 @@
 
   "item.urushi.tiny_black_dye": "小份黑色染料",
 
-  "block.urushi.senbakoki": "脱粒机",
+  "block.urushi.senbakoki": "千齿脱粒机",
 
-  "info.urushi.rawrice": "对脱粒机使用稻穗以获得2个糙米",
+  "info.urushi.rawrice": "对千齿脱粒机使用稻穗以获得2个糙米",
 
   "info.urushi.rawurushi": "对割开的漆木原木使用碗以获得",
 
@@ -920,27 +920,27 @@
 
   "entity.urushi.karaage_food": "炸鸡",
 
-  "block.urushi.oak_fushiranma": "橡木叉型亮窗",
+  "block.urushi.oak_fushiranma": "橡木叉型门上窗",
 
-  "block.urushi.spruce_fushiranma": "云杉木叉型亮窗",
+  "block.urushi.spruce_fushiranma": "云杉木叉型门上窗",
 
-  "block.urushi.birch_fushiranma": "白桦木叉型亮窗",
+  "block.urushi.birch_fushiranma": "白桦木叉型门上窗",
 
-  "block.urushi.jungle_fushiranma": "丛林木叉型亮窗",
+  "block.urushi.jungle_fushiranma": "丛林木叉型门上窗",
 
-  "block.urushi.acacia_fushiranma": "金合欢木叉型亮窗",
+  "block.urushi.acacia_fushiranma": "金合欢木叉型门上窗",
 
-  "block.urushi.dark_oak_fushiranma": "深色橡木叉型亮窗",
+  "block.urushi.dark_oak_fushiranma": "深色橡木叉型门上窗",
 
-  "block.urushi.japanese_apricot_fushiranma": "梅木叉型亮窗",
+  "block.urushi.japanese_apricot_fushiranma": "梅木叉型门上窗",
 
-  "block.urushi.sakura_fushiranma": "樱花木叉型亮窗",
+  "block.urushi.sakura_fushiranma": "樱花木叉型门上窗",
 
-  "block.urushi.cypress_fushiranma": "扁柏木叉型亮窗",
+  "block.urushi.cypress_fushiranma": "扁柏木叉型门上窗",
 
-  "block.urushi.red_urushi_fushiranma": "朱漆木叉型亮窗",
+  "block.urushi.red_urushi_fushiranma": "朱漆木叉型门上窗",
 
-  "block.urushi.black_urushi_fushiranma": "黑漆木叉型亮窗",
+  "block.urushi.black_urushi_fushiranma": "黑漆木叉型门上窗",
 
   "fluid.urushi.hot_spring_water": "温泉水",
 
@@ -1000,7 +1000,7 @@
 
   "block.urushi.japanese_cedar_parapet": "柳杉木栏杆",
 
-  "block.urushi.japanese_cedar_shoji_pane": "柳杉木亮窗障子",
+  "block.urushi.japanese_cedar_shoji_pane": "柳杉木障子门上窗",
 
   "block.urushi.japanese_cedar_shoji": "柳杉木障子门",
 
@@ -1120,7 +1120,7 @@
 
   "block.urushi.grass_block_with_fallen_sakura_leaves": "被樱花树落叶覆盖的草方块",
 
-  "item.urushi.yomotsuhegui_fruit": "黄泉灶食之果",
+  "item.urushi.yomotsuhegui_fruit": "黄泉户契之果",
 
   "item.urushi.lantern_plant_fruit": "鬼灯球",
 
@@ -1132,7 +1132,7 @@
 
   "info.urushi.ghost_block2": "被红石激活时拟态成正常方块",
 
-  "block.urushi.japanese_cedar_fushiranma": "柳杉木叉型亮窗",
+  "block.urushi.japanese_cedar_fushiranma": "柳杉木叉型门上窗",
 
   "info.urushi.wood_element_block": "元素：木气",
 
@@ -1408,871 +1408,872 @@
 
   "itemGroup.urushi_magic":"漆MOD丨法术",
 
-    "block.urushi.sanbo_tier1": "白桦木三宝供盘",
+  "block.urushi.sanbo_tier1": "白桦木三宝供盘",
 
-    "block.urushi.wood_element_sacred_rock": "木气磐座",
+  "block.urushi.wood_element_sacred_rock": "木气磐座",
 
-    "block.urushi.fire_element_sacred_rock": "火气磐座",
+  "block.urushi.fire_element_sacred_rock": "火气磐座",
 
-    "block.urushi.earth_element_sacred_rock": "土气磐座",
+  "block.urushi.earth_element_sacred_rock": "土气磐座",
 
-    "block.urushi.metal_element_sacred_rock": "金气磐座",
+  "block.urushi.metal_element_sacred_rock": "金气磐座",
 
-    "block.urushi.water_element_sacred_rock": "水气磐座",
+  "block.urushi.water_element_sacred_rock": "水气磐座",
 
-    "block.urushi.wood_element_emitter_tier1": "白桦木木气喷口",
+  "block.urushi.wood_element_emitter_tier1": "白桦木木气喷口",
 
-    "block.urushi.fire_element_emitter_tier1": "白桦木火气喷口",
+  "block.urushi.fire_element_emitter_tier1": "白桦木火气喷口",
 
-    "block.urushi.earth_element_emitter_tier1": "白桦木土气喷口",
+  "block.urushi.earth_element_emitter_tier1": "白桦木土气喷口",
 
-    "block.urushi.metal_element_emitter_tier1": "白桦木金气喷口",
+  "block.urushi.metal_element_emitter_tier1": "白桦木金气喷口",
 
-    "block.urushi.water_element_emitter_tier1": "白桦木水气喷口",
+  "block.urushi.water_element_emitter_tier1": "白桦木水气喷口",
 
-    "block.urushi.wood_element_tank_tier1": "白桦木木气大币",
+  "block.urushi.wood_element_tank_tier1": "白桦木木气大币",
 
-    "block.urushi.fire_element_tank_tier1": "白桦木火气大币",
+  "block.urushi.fire_element_tank_tier1": "白桦木火气大币",
 
-    "block.urushi.earth_element_tank_tier1": "白桦木土气大币",
+  "block.urushi.earth_element_tank_tier1": "白桦木土气大币",
 
-    "block.urushi.metal_element_tank_tier1": "白桦木金气大币",
+  "block.urushi.metal_element_tank_tier1": "白桦木金气大币",
 
-    "block.urushi.water_element_tank_tier1": "白桦木水气大币",
+  "block.urushi.water_element_tank_tier1": "白桦木水气大币",
 
-    "block.urushi.wood_element_crafting_table_tier1": "白桦木木气仪式台",
+  "block.urushi.wood_element_crafting_table_tier1": "白桦木木气仪式台",
 
-    "block.urushi.fire_element_crafting_table_tier1": "白桦木火气仪式台",
+  "block.urushi.fire_element_crafting_table_tier1": "白桦木火气仪式台",
 
-    "block.urushi.earth_element_crafting_table_tier1": "白桦木土气仪式台",
+  "block.urushi.earth_element_crafting_table_tier1": "白桦木土气仪式台",
 
-    "block.urushi.metal_element_crafting_table_tier1": "白桦木金气仪式台",
+  "block.urushi.metal_element_crafting_table_tier1": "白桦木金气仪式台",
 
-    "block.urushi.water_element_crafting_table_tier1": "白桦木水气仪式台",
+  "block.urushi.water_element_crafting_table_tier1": "白桦木水气仪式台",
 
-    "block.urushi.mirror_tier1": "白桦木反射镜",
+  "block.urushi.mirror_tier1": "白桦木反射镜",
 
-    "item.urushi.amber_igniter": "打火琥珀",
+  "item.urushi.amber_igniter": "打火琥珀",
 
-    "info.urushi.stored_reiryoku_amount": "已存灵力：",
+  "info.urushi.stored_reiryoku_amount": "已存灵力：",
 
-    "info.urushi.wood_element_item": "需要木气勾玉",
+  "info.urushi.wood_element_item": "需要木气勾玉",
 
-    "info.urushi.fire_element_item": "需要火气勾玉",
+  "info.urushi.fire_element_item": "需要火气勾玉",
 
-    "info.urushi.earth_element_item": "需要土气勾玉",
+  "info.urushi.earth_element_item": "需要土气勾玉",
 
-    "info.urushi.metal_element_item": "需要金气勾玉",
+  "info.urushi.metal_element_item": "需要金气勾玉",
 
-    "info.urushi.water_element_item": "需要水气勾玉",
+  "info.urushi.water_element_item": "需要水气勾玉",
 
-    "info.urushi.magatama1": "右击大币以将灵力传输至勾玉内",
+  "info.urushi.magatama1": "右击大币以将灵力传输至勾玉内",
 
-    "info.urushi.magatama2": "置于物品栏中可激活多种道具",
+  "info.urushi.magatama2": "置于物品栏中可激活多种道具",
 
-    "info.urushi.sanbo": "与白桦木仪式台组合放置可进行合成物品之仪",
+  "info.urushi.sanbo": "与白桦木仪式台组合放置可进行合成物品之仪",
 
-    "info.urushi.sacred_rock1": "自然生成于幽世内",
+  "info.urushi.sacred_rock1": "自然生成于幽世内",
 
-    "info.urushi.sacred_rock2": "其正面存在元素一致的方块时，会吸收方块并生产灵力",
+  "info.urushi.sacred_rock2": "其正面存在元素一致的方块时，会吸收方块并生产灵力",
 
-    "info.urushi.sacred_rock3": "正面为纸条最长的一侧",
+  "info.urushi.sacred_rock3": "正面为纸垂最长的一侧",
 
-    "info.urushi.emitter1": "可从方块输出灵力",
+  "info.urushi.emitter1": "可从方块输出灵力",
 
-    "info.urushi.emitter2": "被红石信号激活时停止工作",
+  "info.urushi.emitter2": "被红石信号激活时停止工作",
 
-    "info.urushi.emitter3": "可使用反射镜改变灵力路径的方向",
+  "info.urushi.emitter3": "可使用反射镜改变灵力路径的方向",
 
-    "info.urushi.emitter4": "可将大币置于灵力路径的合流处令其合流",
+  "info.urushi.emitter4": "可将大币置于灵力路径的合流处令其合流",
 
-    "info.urushi.tank1": "可储存灵力",
+  "info.urushi.tank1": "可储存灵力",
 
-    "info.urushi.tank2": "亦可用于灵力路径的合流与分流",
+  "info.urushi.tank2": "亦可用于灵力路径的合流与分流",
 
-    "info.urushi.mirror1": "可用于改变灵力路径的方向",
+  "info.urushi.mirror1": "可用于改变灵力路径的方向",
 
-    "info.urushi.mirror2": "亦可斜向反射",
+  "info.urushi.mirror2": "亦可斜向反射",
 
-    "info.urushi.mirror3": "右击以改变水平反射角度",
+  "info.urushi.mirror3": "右击以改变水平反射角度",
 
-    "info.urushi.mirror4": "潜行右击以改变垂直反射角度",
+  "info.urushi.mirror4": "潜行右击以改变垂直反射角度",
 
-    "info.urushi.element_crafting_table1": "将白桦木三宝供盘置于四面以进行合成物品之仪",
+  "info.urushi.element_crafting_table1": "将白桦木三宝供盘置于四面以进行合成物品之仪",
 
-    "info.urushi.element_crafting_table2": "需要向内注入元素一致的灵力",
+  "info.urushi.element_crafting_table2": "需要向内注入元素一致的灵力",
 
-    "info.urushi.amber_igniter1": "消耗10点火灵力以点燃七厘烤炉",
+  "info.urushi.amber_igniter1": "消耗10点火灵力以点燃七厘烤炉",
 
-    "info.urushi.uchiwa2": "消耗1点木灵力以调整七厘烤炉的火力",
+  "info.urushi.uchiwa2": "消耗1点木灵力以调整七厘烤炉的火力",
 
-    "info.urushi.uchiwa3": "吹飞杂草时每个方块需要消耗1点木灵力",
+  "info.urushi.uchiwa3": "吹飞杂草时每个方块需要消耗1点木灵力",
 
-    "info.urushi.kitsunebi3": "消耗10点火灵力以放置或投掷",
+  "info.urushi.kitsunebi3": "消耗10点火灵力以放置或投掷",
 
-    "info.urushi.wagasa2": "消耗木灵力以使用",
+  "info.urushi.wagasa2": "消耗木灵力以使用",
 
-    "info.urushi.wood_amber": "破坏含木气琥珀的硅化原木以掉落",
+  "info.urushi.wood_amber": "破坏含木气琥珀的硅化原木以掉落",
 
-    "info.urushi.fire_amber": "破坏含火气琥珀的硅化原木以掉落",
+  "info.urushi.fire_amber": "破坏含火气琥珀的硅化原木以掉落",
 
-    "info.urushi.earth_amber": "破坏含土气琥珀的硅化原木以掉落",
+  "info.urushi.earth_amber": "破坏含土气琥珀的硅化原木以掉落",
 
-    "info.urushi.metal_amber": "破坏含金气琥珀的硅化原木以掉落",
+  "info.urushi.metal_amber": "破坏含金气琥珀的硅化原木以掉落",
 
-    "info.urushi.water_amber": "破坏含水气琥珀的硅化原木以掉落",
+  "info.urushi.water_amber": "破坏含水气琥珀的硅化原木以掉落",
 
-    "info.urushi.petrified_log_with_wood_amber": "在鸡附近，于黄泉石或其圆石下放置割开的漆木原木以获得",
+  "info.urushi.petrified_log_with_wood_amber": "在鸡附近，于黄泉石或其圆石下放置割开的漆木原木以获得",
 
-    "info.urushi.petrified_log_with_fire_amber": "在绵羊附近，于黄泉石或其圆石下放置割开的漆木原木以获得",
+  "info.urushi.petrified_log_with_fire_amber": "在绵羊附近，于黄泉石或其圆石下放置割开的漆木原木以获得",
 
-    "info.urushi.petrified_log_with_earth_amber": "在牛附近，于黄泉石或其圆石下放置割开的漆木原木以获得",
+  "info.urushi.petrified_log_with_earth_amber": "在牛附近，于黄泉石或其圆石下放置割开的漆木原木以获得",
 
-    "info.urushi.petrified_log_with_metal_amber": "在马附近，于黄泉石或其圆石下放置割开的漆木原木以获得",
+  "info.urushi.petrified_log_with_metal_amber": "在马附近，于黄泉石或其圆石下放置割开的漆木原木以获得",
 
-    "info.urushi.petrified_log_with_water_amber": "在猪附近，于黄泉石或其圆石下放置割开的漆木原木以获得",
+  "info.urushi.petrified_log_with_water_amber": "在猪附近，于黄泉石或其圆石下放置割开的漆木原木以获得",
 
-    "info.urushi.small_flower": "使用骨粉以复制",
+  "info.urushi.small_flower": "使用骨粉以复制",
 
-    "info.urushi.stored_wood_reiryoku.message": "已存木灵力：",
+  "info.urushi.stored_wood_reiryoku.message": "已存木灵力：",
 
-    "info.urushi.stored_fire_reiryoku.message": "已存火灵力：",
+  "info.urushi.stored_fire_reiryoku.message": "已存火灵力：",
 
-    "info.urushi.stored_earth_reiryoku.message": "已存土灵力：",
+  "info.urushi.stored_earth_reiryoku.message": "已存土灵力：",
 
-    "info.urushi.stored_metal_reiryoku.message": "已存金灵力：",
+  "info.urushi.stored_metal_reiryoku.message": "已存金灵力：",
 
-    "info.urushi.stored_water_reiryoku.message": "已存水灵力：",
+  "info.urushi.stored_water_reiryoku.message": "已存水灵力：",
 
-    "info.urushi.tier1": "等阶1",
+  "info.urushi.tier1": "等阶1",
 
-    "info.urushi.tier2": "等阶2",
+  "info.urushi.tier2": "等阶2",
 
-    "info.urushi.tier3": "等阶3",
+  "info.urushi.tier3": "等阶3",
 
-    "block.urushi.white_stained_wooden_cabinetry_slab": "白色抽屉柜台阶",
+  "block.urushi.white_stained_wooden_cabinetry_slab": "白色抽屉柜台阶",
 
-    "block.urushi.orange_stained_wooden_cabinetry_slab": "橙色抽屉柜台阶",
+  "block.urushi.orange_stained_wooden_cabinetry_slab": "橙色抽屉柜台阶",
 
-    "block.urushi.magenta_stained_wooden_cabinetry_slab": "品红色抽屉柜台阶",
+  "block.urushi.magenta_stained_wooden_cabinetry_slab": "品红色抽屉柜台阶",
 
-    "block.urushi.light_blue_stained_wooden_cabinetry_slab": "淡蓝色抽屉柜台阶",
+  "block.urushi.light_blue_stained_wooden_cabinetry_slab": "淡蓝色抽屉柜台阶",
 
-    "block.urushi.yellow_stained_wooden_cabinetry_slab": "黄色抽屉柜台阶",
+  "block.urushi.yellow_stained_wooden_cabinetry_slab": "黄色抽屉柜台阶",
 
-    "block.urushi.lime_stained_wooden_cabinetry_slab": "黄绿色抽屉柜台阶",
+  "block.urushi.lime_stained_wooden_cabinetry_slab": "黄绿色抽屉柜台阶",
 
-    "block.urushi.pink_stained_wooden_cabinetry_slab": "粉红色抽屉柜台阶",
+  "block.urushi.pink_stained_wooden_cabinetry_slab": "粉红色抽屉柜台阶",
 
-    "block.urushi.gray_stained_wooden_cabinetry_slab": "灰色抽屉柜台阶",
+  "block.urushi.gray_stained_wooden_cabinetry_slab": "灰色抽屉柜台阶",
 
-    "block.urushi.light_gray_stained_wooden_cabinetry_slab": "淡灰色抽屉柜台阶",
+  "block.urushi.light_gray_stained_wooden_cabinetry_slab": "淡灰色抽屉柜台阶",
 
-    "block.urushi.cyan_stained_wooden_cabinetry_slab": "青色抽屉柜台阶",
+  "block.urushi.cyan_stained_wooden_cabinetry_slab": "青色抽屉柜台阶",
 
-    "block.urushi.purple_stained_wooden_cabinetry_slab": "紫色抽屉柜台阶",
+  "block.urushi.purple_stained_wooden_cabinetry_slab": "紫色抽屉柜台阶",
 
-    "block.urushi.blue_stained_wooden_cabinetry_slab": "蓝色抽屉柜台阶",
+  "block.urushi.blue_stained_wooden_cabinetry_slab": "蓝色抽屉柜台阶",
 
-    "block.urushi.brown_stained_wooden_cabinetry_slab": "棕色抽屉柜台阶",
+  "block.urushi.brown_stained_wooden_cabinetry_slab": "棕色抽屉柜台阶",
 
-    "block.urushi.green_stained_wooden_cabinetry_slab": "绿色抽屉柜台阶",
+  "block.urushi.green_stained_wooden_cabinetry_slab": "绿色抽屉柜台阶",
 
-    "block.urushi.red_stained_wooden_cabinetry_slab": "红色抽屉柜台阶",
+  "block.urushi.red_stained_wooden_cabinetry_slab": "红色抽屉柜台阶",
 
-    "block.urushi.black_stained_wooden_cabinetry_slab": "黑色抽屉柜台阶",
+  "block.urushi.black_stained_wooden_cabinetry_slab": "黑色抽屉柜台阶",
 
-    "block.urushi.white_stained_wooden_cabinetry": "白色抽屉柜",
+  "block.urushi.white_stained_wooden_cabinetry": "白色抽屉柜",
 
-    "block.urushi.orange_stained_wooden_cabinetry": "橙色抽屉柜",
+  "block.urushi.orange_stained_wooden_cabinetry": "橙色抽屉柜",
 
-    "block.urushi.magenta_stained_wooden_cabinetry": "品红色抽屉柜",
+  "block.urushi.magenta_stained_wooden_cabinetry": "品红色抽屉柜",
 
-    "block.urushi.light_blue_stained_wooden_cabinetry": "淡蓝色抽屉柜",
+  "block.urushi.light_blue_stained_wooden_cabinetry": "淡蓝色抽屉柜",
 
-    "block.urushi.yellow_stained_wooden_cabinetry": "黄色抽屉柜",
+  "block.urushi.yellow_stained_wooden_cabinetry": "黄色抽屉柜",
 
-    "block.urushi.lime_stained_wooden_cabinetry": "黄绿色抽屉柜",
+  "block.urushi.lime_stained_wooden_cabinetry": "黄绿色抽屉柜",
 
-    "block.urushi.pink_stained_wooden_cabinetry": "粉红色抽屉柜",
+  "block.urushi.pink_stained_wooden_cabinetry": "粉红色抽屉柜",
 
-    "block.urushi.gray_stained_wooden_cabinetry": "灰色抽屉柜",
+  "block.urushi.gray_stained_wooden_cabinetry": "灰色抽屉柜",
 
-    "block.urushi.light_gray_stained_wooden_cabinetry": "淡灰色抽屉柜",
+  "block.urushi.light_gray_stained_wooden_cabinetry": "淡灰色抽屉柜",
 
-    "block.urushi.cyan_stained_wooden_cabinetry": "青色抽屉柜",
+  "block.urushi.cyan_stained_wooden_cabinetry": "青色抽屉柜",
 
-    "block.urushi.purple_stained_wooden_cabinetry": "紫色抽屉柜",
+  "block.urushi.purple_stained_wooden_cabinetry": "紫色抽屉柜",
 
-    "block.urushi.blue_stained_wooden_cabinetry": "蓝色抽屉柜",
+  "block.urushi.blue_stained_wooden_cabinetry": "蓝色抽屉柜",
 
-    "block.urushi.brown_stained_wooden_cabinetry": "棕色抽屉柜",
+  "block.urushi.brown_stained_wooden_cabinetry": "棕色抽屉柜",
 
-    "block.urushi.green_stained_wooden_cabinetry": "绿色抽屉柜",
+  "block.urushi.green_stained_wooden_cabinetry": "绿色抽屉柜",
 
-    "block.urushi.red_stained_wooden_cabinetry": "红色抽屉柜",
+  "block.urushi.red_stained_wooden_cabinetry": "红色抽屉柜",
 
-    "block.urushi.black_stained_wooden_cabinetry": "黑色抽屉柜",
+  "block.urushi.black_stained_wooden_cabinetry": "黑色抽屉柜",
 
-    "block.urushi.doubled_white_stained_wooden_cabinetry": "大型白色抽屉柜",
+  "block.urushi.doubled_white_stained_wooden_cabinetry": "大型白色抽屉柜",
 
-    "block.urushi.doubled_orange_stained_wooden_cabinetry": "大型橙色抽屉柜",
+  "block.urushi.doubled_orange_stained_wooden_cabinetry": "大型橙色抽屉柜",
 
-    "block.urushi.doubled_magenta_stained_wooden_cabinetry": "大型品红色抽屉柜",
+  "block.urushi.doubled_magenta_stained_wooden_cabinetry": "大型品红色抽屉柜",
 
-    "block.urushi.doubled_light_blue_stained_wooden_cabinetry": "大型淡蓝色抽屉柜",
+  "block.urushi.doubled_light_blue_stained_wooden_cabinetry": "大型淡蓝色抽屉柜",
 
-    "block.urushi.doubled_yellow_stained_wooden_cabinetry": "大型黄色抽屉柜",
+  "block.urushi.doubled_yellow_stained_wooden_cabinetry": "大型黄色抽屉柜",
 
-    "block.urushi.doubled_lime_stained_wooden_cabinetry": "大型黄绿色抽屉柜",
+  "block.urushi.doubled_lime_stained_wooden_cabinetry": "大型黄绿色抽屉柜",
 
-    "block.urushi.doubled_pink_stained_wooden_cabinetry": "大型粉红色抽屉柜",
+  "block.urushi.doubled_pink_stained_wooden_cabinetry": "大型粉红色抽屉柜",
 
-    "block.urushi.doubled_gray_stained_wooden_cabinetry": "大型灰色抽屉柜",
+  "block.urushi.doubled_gray_stained_wooden_cabinetry": "大型灰色抽屉柜",
 
-    "block.urushi.doubled_light_gray_stained_wooden_cabinetry": "大型淡灰色抽屉柜",
+  "block.urushi.doubled_light_gray_stained_wooden_cabinetry": "大型淡灰色抽屉柜",
 
-    "block.urushi.doubled_cyan_stained_wooden_cabinetry": "大型青色抽屉柜",
+  "block.urushi.doubled_cyan_stained_wooden_cabinetry": "大型青色抽屉柜",
 
-    "block.urushi.doubled_purple_stained_wooden_cabinetry": "大型紫色抽屉柜",
+  "block.urushi.doubled_purple_stained_wooden_cabinetry": "大型紫色抽屉柜",
 
-    "block.urushi.doubled_blue_stained_wooden_cabinetry": "大型蓝色抽屉柜",
+  "block.urushi.doubled_blue_stained_wooden_cabinetry": "大型蓝色抽屉柜",
 
-    "block.urushi.doubled_brown_stained_wooden_cabinetry": "大型棕色抽屉柜",
+  "block.urushi.doubled_brown_stained_wooden_cabinetry": "大型棕色抽屉柜",
 
-    "block.urushi.doubled_green_stained_wooden_cabinetry": "大型绿色抽屉柜",
+  "block.urushi.doubled_green_stained_wooden_cabinetry": "大型绿色抽屉柜",
 
-    "block.urushi.doubled_red_stained_wooden_cabinetry": "大型红色抽屉柜",
+  "block.urushi.doubled_red_stained_wooden_cabinetry": "大型红色抽屉柜",
 
-    "block.urushi.doubled_black_stained_wooden_cabinetry": "大型黑色抽屉柜",
+  "block.urushi.doubled_black_stained_wooden_cabinetry": "大型黑色抽屉柜",
 
-    "gui.jei.category.urushi.wood_element_tier1_crafting": "仪式",
+  "gui.jei.category.urushi.wood_element_tier1_crafting": "仪式",
 
-    "gui.jei.category.urushi.fire_element_tier1_crafting": "仪式",
+  "gui.jei.category.urushi.fire_element_tier1_crafting": "仪式",
 
-    "gui.jei.category.urushi.earth_element_tier1_crafting": "仪式",
+  "gui.jei.category.urushi.earth_element_tier1_crafting": "仪式",
 
-    "gui.jei.category.urushi.metal_element_tier1_crafting": "仪式",
+  "gui.jei.category.urushi.metal_element_tier1_crafting": "仪式",
 
-    "gui.jei.category.urushi.water_element_tier1_crafting": "仪式",
+  "gui.jei.category.urushi.water_element_tier1_crafting": "仪式",
 
-    "gui.jei.category.urushi.wood_element_crafting.reiryoku": "木灵力",
+  "gui.jei.category.urushi.wood_element_crafting.reiryoku": "木灵力",
 
-    "gui.jei.category.urushi.fire_element_crafting.reiryoku": "火灵力",
+  "gui.jei.category.urushi.fire_element_crafting.reiryoku": "火灵力",
 
-    "gui.jei.category.urushi.earth_element_crafting.reiryoku": "土灵力",
+  "gui.jei.category.urushi.earth_element_crafting.reiryoku": "土灵力",
 
-    "gui.jei.category.urushi.metal_element_crafting.reiryoku": "金灵力",
+  "gui.jei.category.urushi.metal_element_crafting.reiryoku": "金灵力",
 
-    "gui.jei.category.urushi.water_element_crafting.reiryoku": "水灵力",
+  "gui.jei.category.urushi.water_element_crafting.reiryoku": "水灵力",
 
-    "advancements.urushi.root.title": "漆MOD",
+  "advancements.urushi.root.title": "漆MOD",
 
-    "advancements.urushi.root.description": "日式建筑与法术MOD",
+  "advancements.urushi.root.description": "日式建筑与法术MOD",
 
-    "advancements.urushi.lacquer_sapling.title": "传承",
+  "advancements.urushi.lacquer_sapling.title": "传承",
 
-    "advancements.urushi.lacquer_sapling.description": "获得漆树树苗",
+  "advancements.urushi.lacquer_sapling.description": "获得漆树树苗",
 
-    "advancements.urushi.raw_urushi.title": "黏黏糊糊",
+  "advancements.urushi.raw_urushi.title": "黏黏糊糊",
 
-    "advancements.urushi.raw_urushi.description": "获得生漆",
+  "advancements.urushi.raw_urushi.description": "获得生漆",
 
-    "advancements.urushi.climbing_rope.title": "克服落差",
+  "advancements.urushi.climbing_rope.title": "克服落差",
 
-    "advancements.urushi.climbing_rope.description": "获得降索",
+  "advancements.urushi.climbing_rope.description": "获得降索",
 
-    "advancements.urushi.wooden_cabinetry_slab.title": "亚种箱子",
+  "advancements.urushi.wooden_cabinetry_slab.title": "亚种箱子",
 
-    "advancements.urushi.wooden_cabinetry_slab.description": "获得抽屉柜台阶",
+  "advancements.urushi.wooden_cabinetry_slab.description": "获得抽屉柜台阶",
 
-    "advancements.urushi.wooden_cabinetry.title": "加倍箱子",
+  "advancements.urushi.wooden_cabinetry.title": "加倍箱子",
 
-    "advancements.urushi.wooden_cabinetry.description": "获得抽屉柜",
+  "advancements.urushi.wooden_cabinetry.description": "获得抽屉柜",
 
-    "advancements.urushi.doubled_wooden_cabinetry.title": "超级加倍箱子",
+  "advancements.urushi.doubled_wooden_cabinetry.title": "超级加倍箱子",
 
-    "advancements.urushi.doubled_wooden_cabinetry.description": "获得大型抽屉柜",
+  "advancements.urushi.doubled_wooden_cabinetry.description": "获得大型抽屉柜",
 
-    "advancements.urushi.japanese_timber_bamboo.title": "很久以前，有位伐竹翁",
+  "advancements.urushi.japanese_timber_bamboo.title": "很久以前，有位伐竹翁",
 
-    "advancements.urushi.japanese_timber_bamboo.description": "取得桂竹",
+  "advancements.urushi.japanese_timber_bamboo.description": "取得桂竹",
 
-    "advancements.urushi.bamboo_charcoal.title": "优质燃料",
+  "advancements.urushi.bamboo_charcoal.title": "优质燃料",
 
-    "advancements.urushi.bamboo_charcoal.description": "获得竹炭",
+  "advancements.urushi.bamboo_charcoal.description": "获得竹炭",
 
-    "advancements.urushi.kakuriyo_dirt.title": "神隐",
+  "advancements.urushi.kakuriyo_dirt.title": "神隐",
 
-    "advancements.urushi.kakuriyo_dirt.description": "进入幽世，获得幽世土",
+  "advancements.urushi.kakuriyo_dirt.description": "进入幽世，获得幽世土",
 
-    "advancements.urushi.cobbled_yomi_stone.title": "摧枯拉朽",
+  "advancements.urushi.cobbled_yomi_stone.title": "摧枯拉朽",
 
-    "advancements.urushi.cobbled_yomi_stone.description": "获得黄泉石圆石",
+  "advancements.urushi.cobbled_yomi_stone.description": "获得黄泉石圆石",
 
-    "advancements.urushi.ghost_core.title": "什么鬼",
+  "advancements.urushi.ghost_core.title": "什么鬼",
 
-    "advancements.urushi.ghost_core.description": "获得鬼魂之核",
+  "advancements.urushi.ghost_core.description": "获得鬼魂之核",
 
-    "advancements.urushi.lantern_plant_fruit.title": "对逝者的思念",
+  "advancements.urushi.lantern_plant_fruit.title": "对逝者的思念",
 
-    "advancements.urushi.lantern_plant_fruit.description": "获得鬼灯球",
+  "advancements.urushi.lantern_plant_fruit.description": "获得鬼灯球",
 
-    "advancements.urushi.lantern_plant_torch.title": "冥照黄泉之光",
+  "advancements.urushi.lantern_plant_torch.title": "冥照黄泉之光",
 
-    "advancements.urushi.lantern_plant_torch.description": "获得鬼灯球火把",
+  "advancements.urushi.lantern_plant_torch.description": "获得鬼灯球火把",
 
-    "advancements.urushi.sacred_rock.title": "自然崇拜",
+  "advancements.urushi.sacred_rock.title": "自然崇拜",
 
-    "advancements.urushi.sacred_rock.description": "获得磐座",
+  "advancements.urushi.sacred_rock.description": "获得磐座",
 
-    "advancements.urushi.emitter_tier1.title": "搬运灵力",
+  "advancements.urushi.emitter_tier1.title": "搬运灵力",
 
-    "advancements.urushi.emitter_tier1.description": "获得白桦木喷口",
+  "advancements.urushi.emitter_tier1.description": "获得白桦木喷口",
 
-    "advancements.urushi.crafting_table_tier1.title": "初始之仪式",
+  "advancements.urushi.crafting_table_tier1.title": "初始之仪式",
 
-    "advancements.urushi.crafting_table_tier1.description": "获得白桦木仪式台",
+  "advancements.urushi.crafting_table_tier1.description": "获得白桦木仪式台",
 
-    "advancements.urushi.mirror_tier1.title": "光线追踪",
+  "advancements.urushi.mirror_tier1.title": "光线追踪",
 
-    "advancements.urushi.mirror_tier1.description": "获得白桦木反射镜",
+  "advancements.urushi.mirror_tier1.description": "获得白桦木反射镜",
 
-    "advancements.urushi.tank_tier1.title": "贮藏的技术",
+  "advancements.urushi.tank_tier1.title": "贮藏的技术",
 
-    "advancements.urushi.tank_tier1.description": "获得白桦木大币",
+  "advancements.urushi.tank_tier1.description": "获得白桦木大币",
 
-    "advancements.urushi.magatama.title": "古代的圣遗物",
+  "advancements.urushi.magatama.title": "古代的圣遗物",
 
-    "advancements.urushi.magatama.description": "获得勾玉",
+  "advancements.urushi.magatama.description": "获得勾玉",
 
-    "advancements.urushi.wagasa.title": "我是空降兵",
+  "advancements.urushi.wagasa.title": "我是空降兵",
 
-    "advancements.urushi.wagasa.description": "获得蛇眼油纸伞",
+  "advancements.urushi.wagasa.description": "获得蛇眼油纸伞",
 
-    "advancements.urushi.uchiwa.title": "遥远的夏日回忆",
+  "advancements.urushi.uchiwa.title": "遥远的夏日回忆",
 
-    "advancements.urushi.uchiwa.description": "获得团扇",
+  "advancements.urushi.uchiwa.description": "获得团扇",
 
-    "advancements.urushi.amber_igniter.title": "历久弥新",
+  "advancements.urushi.amber_igniter.title": "历久弥新",
 
-    "advancements.urushi.amber_igniter.description": "获得打火琥珀",
+  "advancements.urushi.amber_igniter.description": "获得打火琥珀",
 
-    "advancements.urushi.shichirin.title": "炭烧火燎！",
+  "advancements.urushi.shichirin.title": "炭烧火燎！",
 
-    "advancements.urushi.shichirin.description": "获得七厘炭炉",
+  "advancements.urushi.shichirin.description": "获得七厘炭炉",
 
-    "advancements.urushi.kitsunebi.title": "灵异现象",
+  "advancements.urushi.kitsunebi.title": "灵异现象",
 
-    "advancements.urushi.kitsunebi.description": "获得狐火",
+  "advancements.urushi.kitsunebi.description": "获得狐火",
 
-    "advancements.urushi.fox_hopper.title": "飞狐传书",
+  "advancements.urushi.fox_hopper.title": "飞狐传书",
 
-    "advancements.urushi.fox_hopper.description": "获得改良漏斗",
+  "advancements.urushi.fox_hopper.description": "获得改良漏斗",
 
-    "block.urushi.orange_plaster": "橙色灰泥",
+  "block.urushi.orange_plaster": "橙色灰泥",
 
-    "block.urushi.orange_plaster_slab": "橙色灰泥台阶",
+  "block.urushi.orange_plaster_slab": "橙色灰泥台阶",
 
-    "block.urushi.orange_plaster_stairs": "橙色灰泥楼梯",
+  "block.urushi.orange_plaster_stairs": "橙色灰泥楼梯",
 
-   "block.urushi.magenta_plaster": "品红色灰泥",
+  "block.urushi.magenta_plaster": "品红色灰泥",
 
-    "block.urushi.magenta_plaster_slab": "品红色灰泥台阶",
+  "block.urushi.magenta_plaster_slab": "品红色灰泥台阶",
 
-    "block.urushi.magenta_plaster_stairs": "品红色灰泥楼梯",
+  "block.urushi.magenta_plaster_stairs": "品红色灰泥楼梯",
 
-    "block.urushi.light_blue_plaster": "淡蓝色灰泥",
+  "block.urushi.light_blue_plaster": "淡蓝色灰泥",
 
-    "block.urushi.light_blue_plaster_slab": "淡蓝色灰泥台阶",
+  "block.urushi.light_blue_plaster_slab": "淡蓝色灰泥台阶",
 
-    "block.urushi.light_blue_plaster_stairs": "淡蓝色灰泥楼梯",
+  "block.urushi.light_blue_plaster_stairs": "淡蓝色灰泥楼梯",
 
-    "block.urushi.yellow_plaster": "黄色灰泥",
+  "block.urushi.yellow_plaster": "黄色灰泥",
 
-    "block.urushi.yellow_plaster_slab": "黄色灰泥台阶",
+  "block.urushi.yellow_plaster_slab": "黄色灰泥台阶",
 
-    "block.urushi.yellow_plaster_stairs": "黄色灰泥楼梯",
+  "block.urushi.yellow_plaster_stairs": "黄色灰泥楼梯",
 
-    "block.urushi.lime_plaster": "黄绿色灰泥",
+  "block.urushi.lime_plaster": "黄绿色灰泥",
 
-    "block.urushi.lime_plaster_slab": "黄绿色灰泥台阶",
+  "block.urushi.lime_plaster_slab": "黄绿色灰泥台阶",
 
-    "block.urushi.lime_plaster_stairs": "黄绿色灰泥楼梯",
+  "block.urushi.lime_plaster_stairs": "黄绿色灰泥楼梯",
 
-    "block.urushi.pink_plaster": "粉红色灰泥",
+  "block.urushi.pink_plaster": "粉红色灰泥",
 
-    "block.urushi.pink_plaster_slab": "粉红色灰泥台阶",
+  "block.urushi.pink_plaster_slab": "粉红色灰泥台阶",
 
-    "block.urushi.pink_plaster_stairs": "粉红色灰泥楼梯",
+  "block.urushi.pink_plaster_stairs": "粉红色灰泥楼梯",
 
-    "block.urushi.light_gray_plaster": "淡灰色灰泥",
+  "block.urushi.light_gray_plaster": "淡灰色灰泥",
 
-    "block.urushi.light_gray_plaster_slab": "淡灰色灰泥台阶",
+  "block.urushi.light_gray_plaster_slab": "淡灰色灰泥台阶",
 
-    "block.urushi.light_gray_plaster_stairs": "淡灰色灰泥楼梯",
+  "block.urushi.light_gray_plaster_stairs": "淡灰色灰泥楼梯",
 
-    "block.urushi.gray_plaster": "灰色灰泥",
+  "block.urushi.gray_plaster": "灰色灰泥",
 
-    "block.urushi.gray_plaster_slab": "灰色灰泥台阶",
+  "block.urushi.gray_plaster_slab": "灰色灰泥台阶",
 
-    "block.urushi.gray_plaster_stairs": "灰色灰泥楼梯",
+  "block.urushi.gray_plaster_stairs": "灰色灰泥楼梯",
 
-    "block.urushi.cyan_plaster": "青色灰泥",
+  "block.urushi.cyan_plaster": "青色灰泥",
 
-    "block.urushi.cyan_plaster_slab": "青色灰泥台阶",
+  "block.urushi.cyan_plaster_slab": "青色灰泥台阶",
 
-    "block.urushi.cyan_plaster_stairs": "青色灰泥楼梯",
+  "block.urushi.cyan_plaster_stairs": "青色灰泥楼梯",
 
-    "block.urushi.purple_plaster": "紫色灰泥",
+  "block.urushi.purple_plaster": "紫色灰泥",
 
-    "block.urushi.purple_plaster_slab": "紫色灰泥台阶",
+  "block.urushi.purple_plaster_slab": "紫色灰泥台阶",
 
-    "block.urushi.purple_plaster_stairs": "紫色灰泥楼梯",
+  "block.urushi.purple_plaster_stairs": "紫色灰泥楼梯",
 
-    "block.urushi.blue_plaster": "蓝色灰泥",
+  "block.urushi.blue_plaster": "蓝色灰泥",
 
-    "block.urushi.blue_plaster_slab": "蓝色灰泥台阶",
+  "block.urushi.blue_plaster_slab": "蓝色灰泥台阶",
 
-    "block.urushi.blue_plaster_stairs": "蓝色灰泥楼梯",
+  "block.urushi.blue_plaster_stairs": "蓝色灰泥楼梯",
 
-    "block.urushi.brown_plaster": "棕色灰泥",
+  "block.urushi.brown_plaster": "棕色灰泥",
 
-    "block.urushi.brown_plaster_slab": "棕色灰泥台阶",
+  "block.urushi.brown_plaster_slab": "棕色灰泥台阶",
 
-    "block.urushi.brown_plaster_stairs": "棕色灰泥楼梯",
+  "block.urushi.brown_plaster_stairs": "棕色灰泥楼梯",
 
-    "block.urushi.green_plaster": "绿色灰泥",
+  "block.urushi.green_plaster": "绿色灰泥",
 
-    "block.urushi.green_plaster_slab": "绿色灰泥台阶",
+  "block.urushi.green_plaster_slab": "绿色灰泥台阶",
 
-    "block.urushi.green_plaster_stairs": "绿色灰泥楼梯",
+  "block.urushi.green_plaster_stairs": "绿色灰泥楼梯",
 
-    "block.urushi.red_plaster": "红色灰泥",
+  "block.urushi.red_plaster": "红色灰泥",
 
-    "block.urushi.red_plaster_slab": "红色灰泥台阶",
+  "block.urushi.red_plaster_slab": "红色灰泥台阶",
 
-    "block.urushi.red_plaster_stairs": "红色灰泥楼梯",
+  "block.urushi.red_plaster_stairs": "红色灰泥楼梯",
 
-    "block.urushi.black_plaster": "黑色灰泥",
+  "block.urushi.black_plaster": "黑色灰泥",
 
-    "block.urushi.black_plaster_slab": "黑色灰泥台阶",
+  "block.urushi.black_plaster_slab": "黑色灰泥台阶",
 
-    "block.urushi.black_plaster_stairs": "黑色灰泥楼梯",
+  "block.urushi.black_plaster_stairs": "黑色灰泥楼梯",
 
-    "block.urushi.copper_giboshi": "铜宝顶",
+  "block.urushi.copper_giboshi": "铜宝顶",
 
-    "block.urushi.ghost_plaster": "魂化灰泥",
+  "block.urushi.ghost_plaster": "魂化灰泥",
 
-    "block.urushi.ghost_sand_coast":"魂化砂墙",
+  "block.urushi.ghost_sand_coast":"魂化砂墙",
 
-    "block.urushi.ghost_wattle_and_daub": "魂化土坯",
+  "block.urushi.ghost_wattle_and_daub": "魂化土坯",
 
-    "block.urushi.ghost_concrete": "魂化混凝土",
+  "block.urushi.ghost_concrete": "魂化混凝土",
 
-    "block.urushi.lantern_plant_block": "鬼灯笼",
+  "block.urushi.lantern_plant_block": "鬼灯笼",
 
-    "item.urushi.shiitake_goggles": "香菇眼镜",
+  "item.urushi.shiitake_goggles": "香菇眼镜",
 
-    "block.urushi.oak_board_window": "橡木直棂推拉窗",
+  "block.urushi.oak_board_window": "橡木直棂推拉窗",
 
-    "block.urushi.spruce_board_window": "云杉木直棂推拉窗",
+  "block.urushi.spruce_board_window": "云杉木直棂推拉窗",
 
-    "block.urushi.birch_board_window": "白桦木直棂推拉窗",
+  "block.urushi.birch_board_window": "白桦木直棂推拉窗",
 
-    "block.urushi.jungle_board_window": "丛林木直棂推拉窗",
+  "block.urushi.jungle_board_window": "丛林木直棂推拉窗",
 
-    "block.urushi.acacia_board_window": "金合欢木直棂推拉窗",
+  "block.urushi.acacia_board_window": "金合欢木直棂推拉窗",
 
-    "block.urushi.dark_oak_board_window": "深色橡木直棂推拉窗",
+  "block.urushi.dark_oak_board_window": "深色橡木直棂推拉窗",
 
-    "block.urushi.japanese_apricot_board_window": "梅木直棂推拉窗",
+  "block.urushi.japanese_apricot_board_window": "梅木直棂推拉窗",
 
-    "block.urushi.sakura_board_window": "樱花木直棂推拉窗",
+  "block.urushi.sakura_board_window": "樱花木直棂推拉窗",
 
-    "block.urushi.cypress_board_window": "扁柏木直棂推拉窗",
+  "block.urushi.cypress_board_window": "扁柏木直棂推拉窗",
 
-    "block.urushi.japanese_cedar_board_window": "柳杉木直棂推拉窗",
+  "block.urushi.japanese_cedar_board_window": "柳杉木直棂推拉窗",
 
-    "block.urushi.red_urushi_board_window": "朱漆木直棂推拉窗",
+  "block.urushi.red_urushi_board_window": "朱漆木直棂推拉窗",
 
-    "block.urushi.black_urushi_board_window": "黑漆木直棂推拉窗",
+  "block.urushi.black_urushi_board_window": "黑漆木直棂推拉窗",
 
-    "item.urushi.roasted_shiitake": "烤香菇",
+  "item.urushi.roasted_shiitake": "烤香菇",
 
-    "item.urushi.onsen_egg": "温泉蛋",
+  "item.urushi.onsen_egg": "温泉蛋",
 
-    "item.urushi.so": "生酥",
+  "item.urushi.so": "生酥",
 
-    "item.urushi.cheese_gyudon": "芝士牛肉盖浇饭",
+  "item.urushi.cheese_gyudon": "芝士牛肉盖浇饭",
 
-    "item.urushi.cheese_gyudon_with_onsen_egg": "芝士牛肉温泉蛋盖浇饭",
+  "item.urushi.cheese_gyudon_with_onsen_egg": "芝士牛肉温泉蛋盖浇饭",
 
-    "info.urushi.shiitake_goggles": "穿戴时不会激怒末影人",
+  "info.urushi.shiitake_goggles": "穿戴时不会激怒末影人",
 
-    "info.urushi.onsen_egg": "把鸡蛋投入温泉水里以获得",
+  "info.urushi.onsen_egg": "把鸡蛋投入温泉水里以获得",
 
-    "block.urushi.ajisai": "绣球花",
+  "block.urushi.ajisai": "绣球花",
 
-    "block.urushi.ishigaki_block": "石垣块",
+  "block.urushi.ishigaki_block": "石垣块",
 
-    "block.urushi.ishigaki_slab": "石垣台阶",
+  "block.urushi.ishigaki_slab": "石垣台阶",
 
-    "block.urushi.ishigaki_stairs": "石垣楼梯",
+  "block.urushi.ishigaki_stairs": "石垣楼梯",
 
-    "block.urushi.ishigaki_wall": "石垣墙",
+  "block.urushi.ishigaki_wall": "石垣墙",
 
-    "block.urushi.pendant_light": "吊灯",
+  "block.urushi.pendant_light": "吊灯",
 
-    "block.urushi.concrete_wall": "混凝土墙",
+  "block.urushi.concrete_wall": "混凝土墙",
 
-    "block.urushi.hot_ironsand": "热砂铁",
+  "block.urushi.hot_ironsand": "热砂铁",
 
-    "block.urushi.hot_iron_plate": "热钢板",
+  "block.urushi.hot_iron_plate": "热钢板",
 
-    "block.urushi.quenched_iron_plate": "经淬火的钢板",
+  "block.urushi.quenched_iron_plate": "经淬火的钢板",
 
-    "block.urushi.crushed_iron": "经粉碎的钢板",
+  "block.urushi.crushed_iron": "经粉碎的钢板",
 
-    "block.urushi.stacked_iron": "经叠放的钢板",
+  "block.urushi.stacked_iron": "经叠放的钢板",
 
-    "block.urushi.hot_iron_ingot_1": "热钢锭",
+  "block.urushi.hot_iron_ingot_1": "热钢锭",
 
-    "block.urushi.hot_iron_ingot_2": "热钢锭",
+  "block.urushi.hot_iron_ingot_2": "热钢锭",
 
-    "block.urushi.hot_iron_ingot_3": "热钢锭",
+  "block.urushi.hot_iron_ingot_3": "热钢锭",
 
-    "block.urushi.hot_iron_ingot_4": "热钢锭",
+  "block.urushi.hot_iron_ingot_4": "热钢锭",
 
-    "block.urushi.hot_iron_ingot_5": "热钢锭",
+  "block.urushi.hot_iron_ingot_5": "热钢锭",
 
-    "block.urushi.hot_iron_blade_1": "冶炼钢锭",
+  "block.urushi.hot_iron_blade_1": "冶炼钢锭",
 
-    "block.urushi.hot_iron_blade_2": "经塑型的热刀身",
+  "block.urushi.hot_iron_blade_2": "经塑型的热刀身",
 
-    "block.urushi.quenched_iron_blade": "打刀刀身",
+  "block.urushi.quenched_iron_blade": "打刀刀身",
 
-    "item.urushi.iron_katana": "打刀",
+  "item.urushi.iron_katana": "打刀",
 
-    "item.urushi.wood_element_paper": "木气符纸",
+  "item.urushi.wood_element_paper": "木气纸垂",
 
-    "item.urushi.fire_element_paper": "火气符纸",
+  "item.urushi.fire_element_paper": "火气纸垂",
 
-    "item.urushi.earth_element_paper": "土气符纸",
+  "item.urushi.earth_element_paper": "土气纸垂",
 
-    "item.urushi.metal_element_paper": "金气符纸",
+  "item.urushi.metal_element_paper": "金气纸垂",
 
-    "item.urushi.water_element_paper": "水气符纸",
+  "item.urushi.water_element_paper": "水气纸垂",
 
-    "block.urushi.rock": "石块",
+  "block.urushi.rock": "石块",
 
-    "block.urushi.sazare_ishi": "蚀刻石块",
+  "block.urushi.sazare_ishi": "蚀刻石块",
 
-    "block.urushi.oak_yukimi_shoji": "橡木雪见障子门",
+  "block.urushi.oak_yukimi_shoji": "橡木雪见障子门",
 
-    "block.urushi.spruce_yukimi_shoji": "云杉木雪见障子门",
+  "block.urushi.spruce_yukimi_shoji": "云杉木雪见障子门",
 
-    "block.urushi.birch_yukimi_shoji": "白桦木雪见障子门",
+  "block.urushi.birch_yukimi_shoji": "白桦木雪见障子门",
 
-    "block.urushi.jungle_yukimi_shoji": "丛林木雪见障子门",
+  "block.urushi.jungle_yukimi_shoji": "丛林木雪见障子门",
 
-    "block.urushi.acacia_yukimi_shoji": "金合欢木雪见障子门",
+  "block.urushi.acacia_yukimi_shoji": "金合欢木雪见障子门",
 
-    "block.urushi.dark_oak_yukimi_shoji": "深色橡木雪见障子门",
+  "block.urushi.dark_oak_yukimi_shoji": "深色橡木雪见障子门",
 
-    "block.urushi.japanese_apricot_yukimi_shoji": "梅木雪见障子门",
+  "block.urushi.japanese_apricot_yukimi_shoji": "梅木雪见障子门",
 
-    "block.urushi.sakura_yukimi_shoji": "樱花木雪见障子门",
+  "block.urushi.sakura_yukimi_shoji": "樱花木雪见障子门",
 
-    "block.urushi.cypress_yukimi_shoji": "扁柏木雪见障子门",
+  "block.urushi.cypress_yukimi_shoji": "扁柏木雪见障子门",
 
-    "block.urushi.japanese_cedar_yukimi_shoji": "柳杉木雪见障子门",
+  "block.urushi.japanese_cedar_yukimi_shoji": "柳杉木雪见障子门",
 
-    "block.urushi.red_urushi_yukimi_shoji": "朱漆木雪见障子门",
+  "block.urushi.red_urushi_yukimi_shoji": "朱漆木雪见障子门",
 
-    "block.urushi.black_urushi_yukimi_shoji": "黑漆木雪见障子门",
+  "block.urushi.black_urushi_yukimi_shoji": "黑漆木雪见障子门",
 
-    "info.urushi.removed": "此物品已被移除。",
+  "info.urushi.removed": "此物品已被移除。",
 
-    "info.urushi.rock": "放置于滴水石锥下方后会变成蚀刻石块",
+  "info.urushi.rock": "放置于滴水石锥下方后会变成蚀刻石块",
 
-    "info.urushi.sazare_ishi": "在石块上方放置滴水石坠以获得",
+  "info.urushi.sazare_ishi": "在石块上方放置滴水石坠以获得",
 
-    "info.urushi.slot_rice_cauldron": "输入：上面；输出：其他面",
+  "info.urushi.slot_rice_cauldron": "输入：上面；输出：其他面",
 
-    "info.urushi.slot_fryer": "输入：上面；燃料输入：侧面；输出：下面",
+  "info.urushi.slot_fryer": "输入：上面；燃料输入：侧面；输出：下面",
 
-    "info.urushi.slot_oil_extractor": "输入：上面；输出：下面",
+  "info.urushi.slot_oil_extractor": "输入：上面；输出：下面",
 
-    "info.urushi.slot_shichirin": "输入：上面；燃料输入：侧面；输出：下面",
+  "info.urushi.slot_shichirin": "输入：上面；燃料输入：侧面；输出：下面",
 
-    "info.urushi.slot_sanbo": "输入：上面；输出：其他面",
+  "info.urushi.slot_sanbo": "输入：上面；输出：其他面",
 
-    "info.urushi.katana": "右击可突进并对周围的生物造成伤害",
+  "info.urushi.katana": "右击可突进并对周围的生物造成伤害",
 
-    "info.urushi.wood_element_paper": "用纸右击木气方块以获得",
+  "info.urushi.wood_element_paper": "用纸垂右击木气方块以获得",
 
-    "info.urushi.fire_element_paper": "用纸右击火气方块以获得",
+  "info.urushi.fire_element_paper": "用纸垂右击火气方块以获得",
 
-    "info.urushi.earth_element_paper": "用纸右击土气方块以获得",
+  "info.urushi.earth_element_paper": "用纸垂右击土气方块以获得",
 
-    "info.urushi.metal_element_paper": "用纸右击金气方块以获得",
+  "info.urushi.metal_element_paper": "用纸垂右击金气方块以获得",
 
-    "info.urushi.water_element_paper": "用纸右击水气方块以获得",
-    "block.urushi.oak_framed_orange_plaster": "橡木框橙色灰泥",
-    "block.urushi.oak_framed_magenta_plaster": "橡木框品红色灰泥",
-    "block.urushi.oak_framed_light_blue_plaster": "橡木框淡蓝色灰泥",
-    "block.urushi.oak_framed_yellow_plaster": "橡木框黄色灰泥",
-    "block.urushi.oak_framed_lime_plaster": "橡木框黄绿色灰泥",
-    "block.urushi.oak_framed_pink_plaster": "橡木框粉红色灰泥",
-    "block.urushi.oak_framed_gray_plaster": "橡木框灰色灰泥",
-    "block.urushi.oak_framed_light_gray_plaster": "橡木框淡灰色灰泥",
-    "block.urushi.oak_framed_cyan_plaster": "橡木框青色灰泥",
-    "block.urushi.oak_framed_purple_plaster": "橡木框紫色灰泥",
-    "block.urushi.oak_framed_blue_plaster": "橡木框蓝色灰泥",
-    "block.urushi.oak_framed_brown_plaster": "橡木框棕色灰泥",
-    "block.urushi.oak_framed_green_plaster": "橡木框绿色灰泥",
-    "block.urushi.oak_framed_red_plaster": "橡木框红色灰泥",
-    "block.urushi.oak_framed_black_plaster": "橡木框黑色灰泥",
-    "block.urushi.spruce_framed_orange_plaster": "云杉木框橙色灰泥",
-    "block.urushi.spruce_framed_magenta_plaster": "云杉木框品红色灰泥",
-    "block.urushi.spruce_framed_light_blue_plaster": "云杉木框淡蓝色灰泥",
-    "block.urushi.spruce_framed_yellow_plaster": "云杉木框黄色灰泥",
-    "block.urushi.spruce_framed_lime_plaster": "云杉木框黄绿色灰泥",
-    "block.urushi.spruce_framed_pink_plaster": "云杉木框粉红色灰泥",
-    "block.urushi.spruce_framed_gray_plaster": "云杉木框灰色灰泥",
-    "block.urushi.spruce_framed_light_gray_plaster": "云杉木框淡灰色灰泥",
-    "block.urushi.spruce_framed_cyan_plaster": "云杉木框青色灰泥",
-    "block.urushi.spruce_framed_purple_plaster": "云杉木框紫色灰泥",
-    "block.urushi.spruce_framed_blue_plaster": "云杉木框蓝色灰泥",
-    "block.urushi.spruce_framed_brown_plaster": "云杉木框棕色灰泥",
-    "block.urushi.spruce_framed_green_plaster": "云杉木框绿色灰泥",
-    "block.urushi.spruce_framed_red_plaster": "云杉木框红色灰泥",
-    "block.urushi.spruce_framed_black_plaster": "云杉木框黑色灰泥",
-    "block.urushi.birch_framed_orange_plaster": "白桦木框橙色灰泥",
-    "block.urushi.birch_framed_magenta_plaster": "白桦木框品红色灰泥",
-    "block.urushi.birch_framed_light_blue_plaster": "白桦木框淡蓝色灰泥",
-    "block.urushi.birch_framed_yellow_plaster": "白桦木框黄色灰泥",
-    "block.urushi.birch_framed_lime_plaster": "白桦木框黄绿色灰泥",
-    "block.urushi.birch_framed_pink_plaster": "白桦木框粉红色灰泥",
-    "block.urushi.birch_framed_gray_plaster": "白桦木框灰色灰泥",
-    "block.urushi.birch_framed_light_gray_plaster": "白桦木框淡灰色灰泥",
-    "block.urushi.birch_framed_cyan_plaster": "白桦木框青色灰泥",
-    "block.urushi.birch_framed_purple_plaster": "白桦木框紫色灰泥",
-    "block.urushi.birch_framed_blue_plaster": "白桦木框蓝色灰泥",
-    "block.urushi.birch_framed_brown_plaster": "白桦木框棕色灰泥",
-    "block.urushi.birch_framed_green_plaster": "白桦木框绿色灰泥",
-    "block.urushi.birch_framed_red_plaster": "白桦木框红色灰泥",
-    "block.urushi.birch_framed_black_plaster": "白桦木框黑色灰泥",
-    "block.urushi.jungle_framed_orange_plaster": "丛林木框橙色灰泥",
-    "block.urushi.jungle_framed_magenta_plaster": "丛林木框品红色灰泥",
-    "block.urushi.jungle_framed_light_blue_plaster": "丛林木框淡蓝色灰泥",
-    "block.urushi.jungle_framed_yellow_plaster": "丛林木框黄色灰泥",
-    "block.urushi.jungle_framed_lime_plaster": "丛林木框黄绿色灰泥",
-    "block.urushi.jungle_framed_pink_plaster": "丛林木框粉红色灰泥",
-    "block.urushi.jungle_framed_gray_plaster": "丛林木框灰色灰泥",
-    "block.urushi.jungle_framed_light_gray_plaster": "丛林木框淡灰色灰泥",
-    "block.urushi.jungle_framed_cyan_plaster": "丛林木框青色灰泥",
-    "block.urushi.jungle_framed_purple_plaster": "丛林木框紫色灰泥",
-    "block.urushi.jungle_framed_blue_plaster": "丛林木框蓝色灰泥",
-    "block.urushi.jungle_framed_brown_plaster": "丛林木框棕色灰泥",
-    "block.urushi.jungle_framed_green_plaster": "丛林木框绿色灰泥",
-    "block.urushi.jungle_framed_red_plaster": "丛林木框红色灰泥",
-    "block.urushi.jungle_framed_black_plaster": "丛林木框黑色灰泥",
-    "block.urushi.acacia_framed_orange_plaster": "金合欢木框橙色灰泥",
-    "block.urushi.acacia_framed_magenta_plaster": "金合欢木框品红色灰泥",
-    "block.urushi.acacia_framed_light_blue_plaster": "金合欢木框淡蓝色灰泥",
-    "block.urushi.acacia_framed_yellow_plaster": "金合欢木框黄色灰泥",
-    "block.urushi.acacia_framed_lime_plaster": "金合欢木框黄绿色灰泥",
-    "block.urushi.acacia_framed_pink_plaster": "金合欢木框粉红色灰泥",
-    "block.urushi.acacia_framed_gray_plaster": "金合欢木框灰色灰泥",
-    "block.urushi.acacia_framed_light_gray_plaster": "金合欢木框淡灰色灰泥",
-    "block.urushi.acacia_framed_cyan_plaster": "金合欢木框青色灰泥",
-    "block.urushi.acacia_framed_purple_plaster": "金合欢木框紫色灰泥",
-    "block.urushi.acacia_framed_blue_plaster": "金合欢木框蓝色灰泥",
-    "block.urushi.acacia_framed_brown_plaster": "金合欢木框棕色灰泥",
-    "block.urushi.acacia_framed_green_plaster": "金合欢木框绿色灰泥",
-    "block.urushi.acacia_framed_red_plaster": "金合欢木框红色灰泥",
-    "block.urushi.acacia_framed_black_plaster": "金合欢木框黑色灰泥",
-    "block.urushi.dark_oak_framed_orange_plaster": "深色橡木框橙色灰泥",
-    "block.urushi.dark_oak_framed_magenta_plaster": "深色橡木框品红色灰泥",
-    "block.urushi.dark_oak_framed_light_blue_plaster": "深色橡木框淡蓝色灰泥",
-    "block.urushi.dark_oak_framed_yellow_plaster": "深色橡木框黄色灰泥",
-    "block.urushi.dark_oak_framed_lime_plaster": "深色橡木框黄绿色灰泥",
-    "block.urushi.dark_oak_framed_pink_plaster": "深色橡木框粉红色灰泥",
-    "block.urushi.dark_oak_framed_gray_plaster": "深色橡木框灰色灰泥",
-    "block.urushi.dark_oak_framed_light_gray_plaster": "深色橡木框淡灰色灰泥",
-    "block.urushi.dark_oak_framed_cyan_plaster": "深色橡木框青色灰泥",
-    "block.urushi.dark_oak_framed_purple_plaster": "深色橡木框紫色灰泥",
-    "block.urushi.dark_oak_framed_blue_plaster": "深色橡木框蓝色灰泥",
-    "block.urushi.dark_oak_framed_brown_plaster": "深色橡木框棕色灰泥",
-    "block.urushi.dark_oak_framed_green_plaster": "深色橡木框绿色灰泥",
-    "block.urushi.dark_oak_framed_red_plaster": "深色橡木框红色灰泥",
-    "block.urushi.dark_oak_framed_black_plaster": "深色橡木框黑色灰泥",
-    "block.urushi.japanese_apricot_framed_orange_plaster": "梅木框橙色灰泥",
-    "block.urushi.japanese_apricot_framed_magenta_plaster": "梅木框品红色灰泥",
-    "block.urushi.japanese_apricot_framed_light_blue_plaster": "梅木框淡蓝色灰泥",
-    "block.urushi.japanese_apricot_framed_yellow_plaster": "梅木框黄色灰泥",
-    "block.urushi.japanese_apricot_framed_lime_plaster": "梅木框黄绿色灰泥",
-    "block.urushi.japanese_apricot_framed_pink_plaster": "梅木框粉红色灰泥",
-    "block.urushi.japanese_apricot_framed_gray_plaster": "梅木框灰色灰泥",
-    "block.urushi.japanese_apricot_framed_light_gray_plaster": "梅木框淡灰色灰泥",
-    "block.urushi.japanese_apricot_framed_cyan_plaster": "梅木框青色灰泥",
-    "block.urushi.japanese_apricot_framed_purple_plaster": "梅木框紫色灰泥",
-    "block.urushi.japanese_apricot_framed_blue_plaster": "梅木框蓝色灰泥",
-    "block.urushi.japanese_apricot_framed_brown_plaster": "梅木框棕色灰泥",
-    "block.urushi.japanese_apricot_framed_green_plaster": "梅木框绿色灰泥",
-    "block.urushi.japanese_apricot_framed_red_plaster": "梅木框红色灰泥",
-    "block.urushi.japanese_apricot_framed_black_plaster": "梅木框黑色灰泥",
-    "block.urushi.sakura_framed_orange_plaster": "樱花木框橙色灰泥",
-    "block.urushi.sakura_framed_magenta_plaster": "樱花木框品红色灰泥",
-    "block.urushi.sakura_framed_light_blue_plaster": "樱花木框淡蓝色灰泥",
-    "block.urushi.sakura_framed_yellow_plaster": "樱花木框黄色灰泥",
-    "block.urushi.sakura_framed_lime_plaster": "樱花木框黄绿色灰泥",
-    "block.urushi.sakura_framed_pink_plaster": "樱花木框粉红色灰泥",
-    "block.urushi.sakura_framed_gray_plaster": "樱花木框灰色灰泥",
-    "block.urushi.sakura_framed_light_gray_plaster": "樱花木框淡灰色灰泥",
-    "block.urushi.sakura_framed_cyan_plaster": "樱花木框青色灰泥",
-    "block.urushi.sakura_framed_purple_plaster": "樱花木框紫色灰泥",
-    "block.urushi.sakura_framed_blue_plaster": "樱花木框蓝色灰泥",
-    "block.urushi.sakura_framed_brown_plaster": "樱花木框棕色灰泥",
-    "block.urushi.sakura_framed_green_plaster": "樱花木框绿色灰泥",
-    "block.urushi.sakura_framed_red_plaster": "樱花木框红色灰泥",
-    "block.urushi.sakura_framed_black_plaster": "樱花木框黑色灰泥",
-    "block.urushi.cypress_framed_orange_plaster": "扁柏木框橙色灰泥",
-    "block.urushi.cypress_framed_magenta_plaster": "扁柏木框品红色灰泥",
-    "block.urushi.cypress_framed_light_blue_plaster": "扁柏木框淡蓝色灰泥",
-    "block.urushi.cypress_framed_yellow_plaster": "扁柏木框黄色灰泥",
-    "block.urushi.cypress_framed_lime_plaster": "扁柏木框黄绿色灰泥",
-    "block.urushi.cypress_framed_pink_plaster": "扁柏木框粉红色灰泥",
-    "block.urushi.cypress_framed_gray_plaster": "扁柏木框灰色灰泥",
-    "block.urushi.cypress_framed_light_gray_plaster": "扁柏木框淡灰色灰泥",
-    "block.urushi.cypress_framed_cyan_plaster": "扁柏木框青色灰泥",
-    "block.urushi.cypress_framed_purple_plaster": "扁柏木框紫色灰泥",
-    "block.urushi.cypress_framed_blue_plaster": "扁柏木框蓝色灰泥",
-    "block.urushi.cypress_framed_brown_plaster": "扁柏木框棕色灰泥",
-    "block.urushi.cypress_framed_green_plaster": "扁柏木框绿色灰泥",
-    "block.urushi.cypress_framed_red_plaster": "扁柏木框红色灰泥",
-    "block.urushi.cypress_framed_black_plaster": "扁柏木框黑色灰泥",
-    "block.urushi.japanese_cedar_framed_orange_plaster": "柳杉木框橙色灰泥",
-    "block.urushi.japanese_cedar_framed_magenta_plaster": "柳杉木框品红色灰泥",
-    "block.urushi.japanese_cedar_framed_light_blue_plaster": "柳杉木框淡蓝色灰泥",
-    "block.urushi.japanese_cedar_framed_yellow_plaster": "柳杉木框黄色灰泥",
-    "block.urushi.japanese_cedar_framed_lime_plaster": "柳杉木框黄绿色灰泥",
-    "block.urushi.japanese_cedar_framed_pink_plaster": "柳杉木框粉红色灰泥",
-    "block.urushi.japanese_cedar_framed_gray_plaster": "柳杉木框灰色灰泥",
-    "block.urushi.japanese_cedar_framed_light_gray_plaster": "柳杉木框淡灰色灰泥",
-    "block.urushi.japanese_cedar_framed_cyan_plaster": "柳杉木框青色灰泥",
-    "block.urushi.japanese_cedar_framed_purple_plaster": "柳杉木框紫色灰泥",
-    "block.urushi.japanese_cedar_framed_blue_plaster": "柳杉木框蓝色灰泥",
-    "block.urushi.japanese_cedar_framed_brown_plaster": "柳杉木框棕色灰泥",
-    "block.urushi.japanese_cedar_framed_green_plaster": "柳杉木框绿色灰泥",
-    "block.urushi.japanese_cedar_framed_red_plaster": "柳杉木框红色灰泥",
-    "block.urushi.japanese_cedar_framed_black_plaster": "柳杉木框黑色灰泥",
-    "block.urushi.red_framed_orange_plaster": "朱漆木框橙色灰泥",
-    "block.urushi.red_framed_magenta_plaster": "朱漆木框品红色灰泥",
-    "block.urushi.red_framed_light_blue_plaster": "朱漆木框淡蓝色灰泥",
-    "block.urushi.red_framed_yellow_plaster": "朱漆木框黄色灰泥",
-    "block.urushi.red_framed_lime_plaster": "朱漆木框黄绿色灰泥",
-    "block.urushi.red_framed_pink_plaster": "朱漆木框粉红色灰泥",
-    "block.urushi.red_framed_gray_plaster": "朱漆木框灰色灰泥",
-    "block.urushi.red_framed_light_gray_plaster": "朱漆木框淡灰色灰泥",
-    "block.urushi.red_framed_cyan_plaster": "朱漆木框青色灰泥",
-    "block.urushi.red_framed_purple_plaster": "朱漆木框紫色灰泥",
-    "block.urushi.red_framed_blue_plaster": "朱漆木框蓝色灰泥",
-    "block.urushi.red_framed_brown_plaster": "朱漆木框棕色灰泥",
-    "block.urushi.red_framed_green_plaster": "朱漆木框绿色灰泥",
-    "block.urushi.red_framed_red_plaster": "朱漆木框红色灰泥",
-    "block.urushi.red_framed_black_plaster": "朱漆木框黑色灰泥",
-     "block.urushi.black_framed_orange_plaster": "黑漆木框橙色灰泥",
-    "block.urushi.black_framed_magenta_plaster": "黑漆木框品红色灰泥",
-    "block.urushi.black_framed_light_blue_plaster": "黑漆木框淡蓝色灰泥",
-    "block.urushi.black_framed_yellow_plaster": "黑漆木框黄色灰泥",
-    "block.urushi.black_framed_lime_plaster": "黑漆木框黄绿色灰泥",
-    "block.urushi.black_framed_pink_plaster": "黑漆木框粉红色灰泥",
-    "block.urushi.black_framed_gray_plaster": "黑漆木框灰色灰泥",
-    "block.urushi.black_framed_light_gray_plaster": "黑漆木框淡灰色灰泥",
-    "block.urushi.black_framed_cyan_plaster": "黑漆木框青色灰泥",
-    "block.urushi.black_framed_purple_plaster": "黑漆木框紫色灰泥",
-    "block.urushi.black_framed_blue_plaster": "黑漆木框蓝色灰泥",
-    "block.urushi.black_framed_brown_plaster": "黑漆木框棕色灰泥",
-    "block.urushi.black_framed_green_plaster": "黑漆木框绿色灰泥",
-    "block.urushi.black_framed_red_plaster": "黑漆木框红色灰泥",
-    "block.urushi.black_framed_black_plaster": "黑漆木框黑色灰泥",
-    "itemGroup.urushi_plaster": "漆MOD丨灰泥",
-    "item.urushi.baked_mochocho": "",
-    "info.urushi.obanyaki": "Oban-yaki",
-    "info.urushi.kaitenyaki": "Kaiten-yaki",
-    "info.urushi.imagawayaki": "Imagawa-yaki",
-    "info.urushi.oyaki": "Oyaki",
-    "info.urushi.gozasourou": "Gozasoro",
-    "info.urushi.hammer": "Right-Click to blocks to change the texture conection.",
-    "item.urushi.shide": "Shide",
-    "item.urushi.tsuna": "Tsuna",
-    "item.urushi.tsuna_sashimi": "Tsuna Sashimi",
-    "item.urushi.salmon_sashimi": "Salmon Sashimi",
-    "item.urushi.squid_sashimi": "Squid Sashimi",
-    "item.urushi.salmon_roe": "Salmon Roe",
-    "item.urushi.tsuna_sushi": "Tsuna Sushi",
-    "item.urushi.salmon_sushi": "Salmon Sushi",
-    "item.urushi.squid_sushi": "Squid Sushi",
-    "item.urushi.egg_sushi": "Egg Sushi",
-    "item.urushi.salmon_roe_sushi": "Salmon Roe Sushi",
-    "item.urushi.inari": "Inari",
-    "item.urushi.syari": "Syari",
-    "block.urushi.sushi_conveyor": "Conveyor for Sushi",
-    "entity.urushi.tsuna_sushi_food": "Tsuna Sushi",
-    "entity.urushi.salmon_sushi_food": "Salmon Sushi",
-    "entity.urushi.squid_sushi_food": "Squid Sushi",
-    "entity.urushi.egg_sushi_food": "Egg Sushi",
-    "entity.urushi.salmon_roe_sushi_food": "Salmon Roe Sushi",
-    "entity.urushi.inari_food": "Inari",
-    "block.urushi.urushi_hopper": "Urushi Hopper",
-	"container.urushihopper": "Urushi Hopper",
-	"info.urushi.urushi_hopper": "A low cost hopper",
-	"item.urushi.yakitori": "ねぎま",
-	"item.urushi.hiyayakko": "冷奴",
-	"item.urushi.matured_japanese_apricot_fruit": "Matured Japanese Apricot Fruit",
-	"item.urushi.pickled_japanese_apricot": "Pickled Japanese Apricot",
-    "block.urushi.green_onion_crop": "Green Onion",
-    "item.urushi.wood_enhanced_jadeite": "Wood Enhanced Jadeite",
-    "item.urushi.fire_enhanced_jadeite": "Fire Enhanced Jadeite",
-    "item.urushi.earth_enhanced_jadeite": "Earth Enhanced Jadeite",
-    "item.urushi.metal_enhanced_jadeite": "Metal Enhanced Jadeite",
-    "item.urushi.water_enhanced_jadeite": "Water Enhanced Jadeite",
-    "block.urushi.wood_enhanced_jadeite_brick": "Wood Enhanced Jadeite Brick",
-    "block.urushi.fire_enhanced_jadeite_brick": "Fire Enhanced Jadeite Brick",
-    "block.urushi.earth_enhanced_jadeite_brick": "Earth Enhanced Jadeite Brick",
-    "block.urushi.metal_enhanced_jadeite_brick": "Metal Enhanced Jadeite Brick",
-    "block.urushi.water_enhanced_jadeite_brick": "Water Enhanced Jadeite Brick",
-    "block.urushi.wood_element_hokora": "Wood Element Hokora",
-    "block.urushi.fire_element_hokora": "Fire Element Hokora",
-    "block.urushi.earth_element_hokora": "Earth Element Hokora",
-    "block.urushi.metal_element_hokora": "Metal Element Hokora",
-    "block.urushi.water_element_hokora": "Water Element Hokora",
-    "block.urushi.wood_element_crafting_table_tier2": "Jadeite Wood Element Altar",
-    "block.urushi.fire_element_crafting_table_tier2": "Jadeite Fire Element Altar",
-    "block.urushi.earth_element_crafting_table_tier2": "Jadeite Earth Element Altar",
-    "block.urushi.metal_element_crafting_table_tier2": "Jadeite Metal Element Altar",
-    "block.urushi.water_element_crafting_table_tier2": "Jadeite Water Element Altar",
-    "gui.jei.category.urushi.wood_element_tier2_crafting": "Ritual",
-    "gui.jei.category.urushi.fire_element_tier2_crafting": "Ritual",
-    "gui.jei.category.urushi.earth_element_tier2_crafting": "Ritual",
-    "gui.jei.category.urushi.metal_element_tier2_crafting": "Ritual",
-    "gui.jei.category.urushi.water_element_tier2_crafting": "Ritual",
-    "info.urushi.hokora": "Right-click or use a Hopper to insert the required item. This generates 5 Reiryoku.",
-    "info.urushi.wood_hokora": "Required Item : Matured Japanese Apricot Fruit",
-    "info.urushi.fire_hokora": "Required Item : Wheat",
-    "info.urushi.earth_hokora": "Required Item : Rice Ear",
-    "info.urushi.metal_hokora": "Required Item : Green Onion",
-    "info.urushi.water_hokora": "Required Item : Soy Beans",
-	"info.urushi.cypress_sapling": "Generated on hills",
-	"info.urushi.japanese_cedar_sapling": "Generated on hills and in the Kakuriyo Dimension",
-	"info.urushi.lacquer_sapling": "Generated in forests, spawner chests and chests in villages in plains."
+  "info.urushi.water_element_paper": "用纸垂右击水气方块以获得",
+  "block.urushi.oak_framed_orange_plaster": "橡木框橙色灰泥",
+  "block.urushi.oak_framed_magenta_plaster": "橡木框品红色灰泥",
+  "block.urushi.oak_framed_light_blue_plaster": "橡木框淡蓝色灰泥",
+  "block.urushi.oak_framed_yellow_plaster": "橡木框黄色灰泥",
+  "block.urushi.oak_framed_lime_plaster": "橡木框黄绿色灰泥",
+  "block.urushi.oak_framed_pink_plaster": "橡木框粉红色灰泥",
+  "block.urushi.oak_framed_gray_plaster": "橡木框灰色灰泥",
+  "block.urushi.oak_framed_light_gray_plaster": "橡木框淡灰色灰泥",
+  "block.urushi.oak_framed_cyan_plaster": "橡木框青色灰泥",
+  "block.urushi.oak_framed_purple_plaster": "橡木框紫色灰泥",
+  "block.urushi.oak_framed_blue_plaster": "橡木框蓝色灰泥",
+  "block.urushi.oak_framed_brown_plaster": "橡木框棕色灰泥",
+  "block.urushi.oak_framed_green_plaster": "橡木框绿色灰泥",
+  "block.urushi.oak_framed_red_plaster": "橡木框红色灰泥",
+  "block.urushi.oak_framed_black_plaster": "橡木框黑色灰泥",
+  "block.urushi.spruce_framed_orange_plaster": "云杉木框橙色灰泥",
+  "block.urushi.spruce_framed_magenta_plaster": "云杉木框品红色灰泥",
+  "block.urushi.spruce_framed_light_blue_plaster": "云杉木框淡蓝色灰泥",
+  "block.urushi.spruce_framed_yellow_plaster": "云杉木框黄色灰泥",
+  "block.urushi.spruce_framed_lime_plaster": "云杉木框黄绿色灰泥",
+  "block.urushi.spruce_framed_pink_plaster": "云杉木框粉红色灰泥",
+  "block.urushi.spruce_framed_gray_plaster": "云杉木框灰色灰泥",
+  "block.urushi.spruce_framed_light_gray_plaster": "云杉木框淡灰色灰泥",
+  "block.urushi.spruce_framed_cyan_plaster": "云杉木框青色灰泥",
+  "block.urushi.spruce_framed_purple_plaster": "云杉木框紫色灰泥",
+  "block.urushi.spruce_framed_blue_plaster": "云杉木框蓝色灰泥",
+  "block.urushi.spruce_framed_brown_plaster": "云杉木框棕色灰泥",
+  "block.urushi.spruce_framed_green_plaster": "云杉木框绿色灰泥",
+  "block.urushi.spruce_framed_red_plaster": "云杉木框红色灰泥",
+  "block.urushi.spruce_framed_black_plaster": "云杉木框黑色灰泥",
+  "block.urushi.birch_framed_orange_plaster": "白桦木框橙色灰泥",
+  "block.urushi.birch_framed_magenta_plaster": "白桦木框品红色灰泥",
+  "block.urushi.birch_framed_light_blue_plaster": "白桦木框淡蓝色灰泥",
+  "block.urushi.birch_framed_yellow_plaster": "白桦木框黄色灰泥",
+  "block.urushi.birch_framed_lime_plaster": "白桦木框黄绿色灰泥",
+  "block.urushi.birch_framed_pink_plaster": "白桦木框粉红色灰泥",
+  "block.urushi.birch_framed_gray_plaster": "白桦木框灰色灰泥",
+  "block.urushi.birch_framed_light_gray_plaster": "白桦木框淡灰色灰泥",
+  "block.urushi.birch_framed_cyan_plaster": "白桦木框青色灰泥",
+  "block.urushi.birch_framed_purple_plaster": "白桦木框紫色灰泥",
+  "block.urushi.birch_framed_blue_plaster": "白桦木框蓝色灰泥",
+  "block.urushi.birch_framed_brown_plaster": "白桦木框棕色灰泥",
+  "block.urushi.birch_framed_green_plaster": "白桦木框绿色灰泥",
+  "block.urushi.birch_framed_red_plaster": "白桦木框红色灰泥",
+  "block.urushi.birch_framed_black_plaster": "白桦木框黑色灰泥",
+  "block.urushi.jungle_framed_orange_plaster": "丛林木框橙色灰泥",
+  "block.urushi.jungle_framed_magenta_plaster": "丛林木框品红色灰泥",
+  "block.urushi.jungle_framed_light_blue_plaster": "丛林木框淡蓝色灰泥",
+  "block.urushi.jungle_framed_yellow_plaster": "丛林木框黄色灰泥",
+  "block.urushi.jungle_framed_lime_plaster": "丛林木框黄绿色灰泥",
+  "block.urushi.jungle_framed_pink_plaster": "丛林木框粉红色灰泥",
+  "block.urushi.jungle_framed_gray_plaster": "丛林木框灰色灰泥",
+  "block.urushi.jungle_framed_light_gray_plaster": "丛林木框淡灰色灰泥",
+  "block.urushi.jungle_framed_cyan_plaster": "丛林木框青色灰泥",
+  "block.urushi.jungle_framed_purple_plaster": "丛林木框紫色灰泥",
+  "block.urushi.jungle_framed_blue_plaster": "丛林木框蓝色灰泥",
+  "block.urushi.jungle_framed_brown_plaster": "丛林木框棕色灰泥",
+  "block.urushi.jungle_framed_green_plaster": "丛林木框绿色灰泥",
+  "block.urushi.jungle_framed_red_plaster": "丛林木框红色灰泥",
+  "block.urushi.jungle_framed_black_plaster": "丛林木框黑色灰泥",
+  "block.urushi.acacia_framed_orange_plaster": "金合欢木框橙色灰泥",
+  "block.urushi.acacia_framed_magenta_plaster": "金合欢木框品红色灰泥",
+  "block.urushi.acacia_framed_light_blue_plaster": "金合欢木框淡蓝色灰泥",
+  "block.urushi.acacia_framed_yellow_plaster": "金合欢木框黄色灰泥",
+  "block.urushi.acacia_framed_lime_plaster": "金合欢木框黄绿色灰泥",
+  "block.urushi.acacia_framed_pink_plaster": "金合欢木框粉红色灰泥",
+  "block.urushi.acacia_framed_gray_plaster": "金合欢木框灰色灰泥",
+  "block.urushi.acacia_framed_light_gray_plaster": "金合欢木框淡灰色灰泥",
+  "block.urushi.acacia_framed_cyan_plaster": "金合欢木框青色灰泥",
+  "block.urushi.acacia_framed_purple_plaster": "金合欢木框紫色灰泥",
+  "block.urushi.acacia_framed_blue_plaster": "金合欢木框蓝色灰泥",
+  "block.urushi.acacia_framed_brown_plaster": "金合欢木框棕色灰泥",
+  "block.urushi.acacia_framed_green_plaster": "金合欢木框绿色灰泥",
+  "block.urushi.acacia_framed_red_plaster": "金合欢木框红色灰泥",
+  "block.urushi.acacia_framed_black_plaster": "金合欢木框黑色灰泥",
+  "block.urushi.dark_oak_framed_orange_plaster": "深色橡木框橙色灰泥",
+  "block.urushi.dark_oak_framed_magenta_plaster": "深色橡木框品红色灰泥",
+  "block.urushi.dark_oak_framed_light_blue_plaster": "深色橡木框淡蓝色灰泥",
+  "block.urushi.dark_oak_framed_yellow_plaster": "深色橡木框黄色灰泥",
+  "block.urushi.dark_oak_framed_lime_plaster": "深色橡木框黄绿色灰泥",
+  "block.urushi.dark_oak_framed_pink_plaster": "深色橡木框粉红色灰泥",
+  "block.urushi.dark_oak_framed_gray_plaster": "深色橡木框灰色灰泥",
+  "block.urushi.dark_oak_framed_light_gray_plaster": "深色橡木框淡灰色灰泥",
+  "block.urushi.dark_oak_framed_cyan_plaster": "深色橡木框青色灰泥",
+  "block.urushi.dark_oak_framed_purple_plaster": "深色橡木框紫色灰泥",
+  "block.urushi.dark_oak_framed_blue_plaster": "深色橡木框蓝色灰泥",
+  "block.urushi.dark_oak_framed_brown_plaster": "深色橡木框棕色灰泥",
+  "block.urushi.dark_oak_framed_green_plaster": "深色橡木框绿色灰泥",
+  "block.urushi.dark_oak_framed_red_plaster": "深色橡木框红色灰泥",
+  "block.urushi.dark_oak_framed_black_plaster": "深色橡木框黑色灰泥",
+  "block.urushi.japanese_apricot_framed_orange_plaster": "梅木框橙色灰泥",
+  "block.urushi.japanese_apricot_framed_magenta_plaster": "梅木框品红色灰泥",
+  "block.urushi.japanese_apricot_framed_light_blue_plaster": "梅木框淡蓝色灰泥",
+  "block.urushi.japanese_apricot_framed_yellow_plaster": "梅木框黄色灰泥",
+  "block.urushi.japanese_apricot_framed_lime_plaster": "梅木框黄绿色灰泥",
+  "block.urushi.japanese_apricot_framed_pink_plaster": "梅木框粉红色灰泥",
+  "block.urushi.japanese_apricot_framed_gray_plaster": "梅木框灰色灰泥",
+  "block.urushi.japanese_apricot_framed_light_gray_plaster": "梅木框淡灰色灰泥",
+  "block.urushi.japanese_apricot_framed_cyan_plaster": "梅木框青色灰泥",
+  "block.urushi.japanese_apricot_framed_purple_plaster": "梅木框紫色灰泥",
+  "block.urushi.japanese_apricot_framed_blue_plaster": "梅木框蓝色灰泥",
+  "block.urushi.japanese_apricot_framed_brown_plaster": "梅木框棕色灰泥",
+  "block.urushi.japanese_apricot_framed_green_plaster": "梅木框绿色灰泥",
+  "block.urushi.japanese_apricot_framed_red_plaster": "梅木框红色灰泥",
+  "block.urushi.japanese_apricot_framed_black_plaster": "梅木框黑色灰泥",
+  "block.urushi.sakura_framed_orange_plaster": "樱花木框橙色灰泥",
+  "block.urushi.sakura_framed_magenta_plaster": "樱花木框品红色灰泥",
+  "block.urushi.sakura_framed_light_blue_plaster": "樱花木框淡蓝色灰泥",
+  "block.urushi.sakura_framed_yellow_plaster": "樱花木框黄色灰泥",
+  "block.urushi.sakura_framed_lime_plaster": "樱花木框黄绿色灰泥",
+  "block.urushi.sakura_framed_pink_plaster": "樱花木框粉红色灰泥",
+  "block.urushi.sakura_framed_gray_plaster": "樱花木框灰色灰泥",
+  "block.urushi.sakura_framed_light_gray_plaster": "樱花木框淡灰色灰泥",
+  "block.urushi.sakura_framed_cyan_plaster": "樱花木框青色灰泥",
+  "block.urushi.sakura_framed_purple_plaster": "樱花木框紫色灰泥",
+  "block.urushi.sakura_framed_blue_plaster": "樱花木框蓝色灰泥",
+  "block.urushi.sakura_framed_brown_plaster": "樱花木框棕色灰泥",
+  "block.urushi.sakura_framed_green_plaster": "樱花木框绿色灰泥",
+  "block.urushi.sakura_framed_red_plaster": "樱花木框红色灰泥",
+  "block.urushi.sakura_framed_black_plaster": "樱花木框黑色灰泥",
+  "block.urushi.cypress_framed_orange_plaster": "扁柏木框橙色灰泥",
+  "block.urushi.cypress_framed_magenta_plaster": "扁柏木框品红色灰泥",
+  "block.urushi.cypress_framed_light_blue_plaster": "扁柏木框淡蓝色灰泥",
+  "block.urushi.cypress_framed_yellow_plaster": "扁柏木框黄色灰泥",
+  "block.urushi.cypress_framed_lime_plaster": "扁柏木框黄绿色灰泥",
+  "block.urushi.cypress_framed_pink_plaster": "扁柏木框粉红色灰泥",
+  "block.urushi.cypress_framed_gray_plaster": "扁柏木框灰色灰泥",
+  "block.urushi.cypress_framed_light_gray_plaster": "扁柏木框淡灰色灰泥",
+  "block.urushi.cypress_framed_cyan_plaster": "扁柏木框青色灰泥",
+  "block.urushi.cypress_framed_purple_plaster": "扁柏木框紫色灰泥",
+  "block.urushi.cypress_framed_blue_plaster": "扁柏木框蓝色灰泥",
+  "block.urushi.cypress_framed_brown_plaster": "扁柏木框棕色灰泥",
+  "block.urushi.cypress_framed_green_plaster": "扁柏木框绿色灰泥",
+  "block.urushi.cypress_framed_red_plaster": "扁柏木框红色灰泥",
+  "block.urushi.cypress_framed_black_plaster": "扁柏木框黑色灰泥",
+  "block.urushi.japanese_cedar_framed_orange_plaster": "柳杉木框橙色灰泥",
+  "block.urushi.japanese_cedar_framed_magenta_plaster": "柳杉木框品红色灰泥",
+  "block.urushi.japanese_cedar_framed_light_blue_plaster": "柳杉木框淡蓝色灰泥",
+  "block.urushi.japanese_cedar_framed_yellow_plaster": "柳杉木框黄色灰泥",
+  "block.urushi.japanese_cedar_framed_lime_plaster": "柳杉木框黄绿色灰泥",
+  "block.urushi.japanese_cedar_framed_pink_plaster": "柳杉木框粉红色灰泥",
+  "block.urushi.japanese_cedar_framed_gray_plaster": "柳杉木框灰色灰泥",
+  "block.urushi.japanese_cedar_framed_light_gray_plaster": "柳杉木框淡灰色灰泥",
+  "block.urushi.japanese_cedar_framed_cyan_plaster": "柳杉木框青色灰泥",
+  "block.urushi.japanese_cedar_framed_purple_plaster": "柳杉木框紫色灰泥",
+  "block.urushi.japanese_cedar_framed_blue_plaster": "柳杉木框蓝色灰泥",
+  "block.urushi.japanese_cedar_framed_brown_plaster": "柳杉木框棕色灰泥",
+  "block.urushi.japanese_cedar_framed_green_plaster": "柳杉木框绿色灰泥",
+  "block.urushi.japanese_cedar_framed_red_plaster": "柳杉木框红色灰泥",
+  "block.urushi.japanese_cedar_framed_black_plaster": "柳杉木框黑色灰泥",
+  "block.urushi.red_framed_orange_plaster": "朱漆木框橙色灰泥",
+  "block.urushi.red_framed_magenta_plaster": "朱漆木框品红色灰泥",
+  "block.urushi.red_framed_light_blue_plaster": "朱漆木框淡蓝色灰泥",
+  "block.urushi.red_framed_yellow_plaster": "朱漆木框黄色灰泥",
+  "block.urushi.red_framed_lime_plaster": "朱漆木框黄绿色灰泥",
+  "block.urushi.red_framed_pink_plaster": "朱漆木框粉红色灰泥",
+  "block.urushi.red_framed_gray_plaster": "朱漆木框灰色灰泥",
+  "block.urushi.red_framed_light_gray_plaster": "朱漆木框淡灰色灰泥",
+  "block.urushi.red_framed_cyan_plaster": "朱漆木框青色灰泥",
+  "block.urushi.red_framed_purple_plaster": "朱漆木框紫色灰泥",
+  "block.urushi.red_framed_blue_plaster": "朱漆木框蓝色灰泥",
+  "block.urushi.red_framed_brown_plaster": "朱漆木框棕色灰泥",
+  "block.urushi.red_framed_green_plaster": "朱漆木框绿色灰泥",
+  "block.urushi.red_framed_red_plaster": "朱漆木框红色灰泥",
+  "block.urushi.red_framed_black_plaster": "朱漆木框黑色灰泥",
+  "block.urushi.black_framed_orange_plaster": "黑漆木框橙色灰泥",
+  "block.urushi.black_framed_magenta_plaster": "黑漆木框品红色灰泥",
+  "block.urushi.black_framed_light_blue_plaster": "黑漆木框淡蓝色灰泥",
+  "block.urushi.black_framed_yellow_plaster": "黑漆木框黄色灰泥",
+  "block.urushi.black_framed_lime_plaster": "黑漆木框黄绿色灰泥",
+  "block.urushi.black_framed_pink_plaster": "黑漆木框粉红色灰泥",
+  "block.urushi.black_framed_gray_plaster": "黑漆木框灰色灰泥",
+  "block.urushi.black_framed_light_gray_plaster": "黑漆木框淡灰色灰泥",
+  "block.urushi.black_framed_cyan_plaster": "黑漆木框青色灰泥",
+  "block.urushi.black_framed_purple_plaster": "黑漆木框紫色灰泥",
+  "block.urushi.black_framed_blue_plaster": "黑漆木框蓝色灰泥",
+  "block.urushi.black_framed_brown_plaster": "黑漆木框棕色灰泥",
+  "block.urushi.black_framed_green_plaster": "黑漆木框绿色灰泥",
+  "block.urushi.black_framed_red_plaster": "黑漆木框红色灰泥",
+  "block.urushi.black_framed_black_plaster": "黑漆木框黑色灰泥",
+  "itemGroup.urushi_plaster": "漆MOD丨灰泥",
+  "item.urushi.baked_mochocho": "红豆车轮饼",
+  "info.urushi.obanyaki": "大判烧",
+  "info.urushi.kaitenyaki": "回转烧",
+  "info.urushi.imagawayaki": "今川烧",
+  "info.urushi.oyaki": "烧饼",
+  "info.urushi.gozasourou": "御座候",
+  "info.urushi.hammer": "右击方块以改变方块间的连接材质",
+  "item.urushi.shide": "纸垂",
+  "item.urushi.tsuna": "生金枪鱼",
+  "item.urushi.tsuna_sashimi": "金枪鱼刺身",
+  "item.urushi.salmon_sashimi": "鲑鱼刺身",
+  "item.urushi.squid_sashimi": "鱿鱼刺身",
+  "item.urushi.salmon_roe": "鲑鱼子",
+  "item.urushi.tsuna_sushi": "金枪鱼寿司",
+  "item.urushi.salmon_sushi": "鲑鱼寿司",
+  "item.urushi.squid_sushi": "鱿鱼寿司",
+  "item.urushi.egg_sushi": "玉子寿司",
+  "item.urushi.salmon_roe_sushi": "鲑鱼子寿司",
+  "item.urushi.inari": "稻荷寿司",
+  "item.urushi.syari": "舍利饭",
+  "block.urushi.sushi_conveyor": "寿司传送带",
+  "entity.urushi.tsuna_sushi_food": "金枪鱼寿司",
+  "entity.urushi.salmon_sushi_food": "鲑鱼寿司",
+  "entity.urushi.squid_sushi_food": "鱿鱼寿司",
+  "entity.urushi.egg_sushi_food": "玉子寿司",
+  "entity.urushi.salmon_roe_sushi_food": "鲑鱼子寿司",
+  "entity.urushi.inari_food": "稻荷寿司",
+  "block.urushi.urushi_hopper": "漆木漏斗",
+  "container.urushihopper": "漆木漏斗",
+  "info.urushi.urushi_hopper": "一种低成本漏斗",
+  "item.urushi.yakitori": "鸡葱串",
+  "item.urushi.hiyayakko": "凉拌豆腐",
+  "item.urushi.matured_japanese_apricot_fruit": "熟梅子",
+  "item.urushi.pickled_japanese_apricot": "梅干",
+  "block.urushi.green_onion_crop": "葱",
+  "item.urushi.wood_enhanced_jadeite": "木气加持的翡翠",
+  "item.urushi.fire_enhanced_jadeite": "火气加持的翡翠",
+  "item.urushi.earth_enhanced_jadeite": "土气加持的翡翠",
+  "item.urushi.metal_enhanced_jadeite": "金气加持的翡翠",
+  "item.urushi.water_enhanced_jadeite": "水气加持的翡翠",
+  "block.urushi.wood_enhanced_jadeite_brick": "木气加持的翡翠砖",
+  "block.urushi.fire_enhanced_jadeite_brick": "火气加持的翡翠砖",
+  "block.urushi.earth_enhanced_jadeite_brick": "土气加持的翡翠砖",
+  "block.urushi.metal_enhanced_jadeite_brick": "金气加持的翡翠砖",
+  "block.urushi.water_enhanced_jadeite_brick": "水气加持的翡翠砖",
+  "block.urushi.wood_element_hokora": "木气神龛",
+  "block.urushi.fire_element_hokora": "火气神龛",
+  "block.urushi.earth_element_hokora": "土气神龛",
+  "block.urushi.metal_element_hokora": "金气神龛",
+  "block.urushi.water_element_hokora": "水气神龛",
+  "block.urushi.wood_element_crafting_table_tier2": "翡翠木气仪式台",
+  "block.urushi.fire_element_crafting_table_tier2": "翡翠火气仪式台",
+  "block.urushi.earth_element_crafting_table_tier2": "翡翠土气仪式台",
+  "block.urushi.metal_element_crafting_table_tier2": "翡翠金气仪式台",
+  "block.urushi.water_element_crafting_table_tier2": "翡翠水气仪式台",
+  "gui.jei.category.urushi.wood_element_tier2_crafting": "仪式",
+  "gui.jei.category.urushi.fire_element_tier2_crafting": "仪式",
+  "gui.jei.category.urushi.earth_element_tier2_crafting": "仪式",
+  "gui.jei.category.urushi.metal_element_tier2_crafting": "仪式",
+  "gui.jei.category.urushi.water_element_tier2_crafting": "仪式",
+  "info.urushi.hokora": "右击或使用漏斗以放入指定物品，每个物品可产生5点对应灵力",
+  "info.urushi.wood_hokora": "需要：熟梅子",
+  "info.urushi.fire_hokora": "需要：小麦",
+  "info.urushi.earth_hokora": "需要：稻穗",
+  "info.urushi.metal_hokora": "需要：葱",
+  "info.urushi.water_hokora": "需要：大豆",
+  "info.urushi.cypress_sapling": "在主世界的山地类群系中生成",
+  "info.urushi.japanese_cedar_sapling": "在主世界的山地类群系或幽世维度中生成",
+  "info.urushi.lacquer_sapling": "在主世界的森林群系中，或地牢与平原村庄中的箱子中生成",
 
-    
+  "patchouli.urushi.book.name": "现世离",
+  "patchouli.urushi.book.landing_text": "带你走近漆（Urushi）的玄妙世界——由落雪鸦杀撰写"
 
-    
+
 
 
 
