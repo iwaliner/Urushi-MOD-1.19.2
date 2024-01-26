@@ -1,12 +1,27 @@
+buildscript {
+    repositories {
+
+    }
+    dependencies {
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+        // add MixinGradle plugin
+        classpath 'org.spongepowered:mixingradle:0.7.+'
+    }
+}
+
 plugins {
     id 'eclipse'
     id 'maven-publish'
     id 'net.minecraftforge.gradle' version '5.1.+'
+    id 'org.spongepowered.mixin' version '0.7.+'
 }
+
+apply plugin: 'org.spongepowered.mixin'
+//apply plugin: 'com.diffplug.eclipse.apt' // if you are using Eclipse, add this line
 
 version = '1.19.2-5.1.0'
 group = 'com.yourname.modid' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'urushi'
+archivesBaseName = mod_id
 
 // Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
@@ -49,10 +64,10 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
-            property 'forge.enabledGameTestNamespaces', 'urushi'
+            property 'forge.enabledGameTestNamespaces', mod_id
 
             mods {
-                urushi {
+                "${mod_id}" {
                     source sourceSets.main
                 }
             }
@@ -65,10 +80,10 @@ minecraft {
 
             property 'forge.logging.console.level', 'debug'
 
-            property 'forge.enabledGameTestNamespaces', 'urushi'
+            property 'forge.enabledGameTestNamespaces', mod_id
 
             mods {
-                urushi {
+                "${mod_id}" {
                     source sourceSets.main
                 }
             }
@@ -84,10 +99,10 @@ minecraft {
 
             property 'forge.logging.console.level', 'debug'
 
-            property 'forge.enabledGameTestNamespaces', 'urushi'
+            property 'forge.enabledGameTestNamespaces', mod_id
 
             mods {
-                urushi {
+                "${mod_id}" {
                     source sourceSets.main
                 }
             }
@@ -101,10 +116,10 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
-            args '--mod', 'urushi', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
             mods {
-                urushi {
+                "${mod_id}" {
                     source sourceSets.main
                 }
             }
@@ -146,6 +161,9 @@ dependencies {
     //この下の一行はもともと記述されている。
     minecraft 'net.minecraftforge:forge:1.19.2-43.2.0'
 
+    // Apply Mixin AP
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+
     //導入する外部MODを指定。
 //「curse.maven:」+「文字列A」+「-」「数値B」+「:」+「数値C」で構成される。
 //文字列Aは、CurseForgeの各MODページのURL内に入っている、mod名に限りなく近い文字列。
@@ -169,17 +187,26 @@ dependencies {
     // at runtime, use the full JEI jar for Forge
     //runtimeOnly(fg.deobf("mezz.jei:jei-1.19.2-forge:11.6.0.1015"))
 
-    compileOnly( fg.deobf("vazkii.patchouli:Patchouli:1.19.2-77:api"))
-// https://mvnrepository.com/artifact/vazkii.patchouli/Patchouli
-    //runtimeOnly( fg.deobf('vazkii.patchouli:Patchouli:1.19.2-77'))
+    // https://mvnrepository.com/artifact/vazkii.patchouli/Patchouli
+    compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.19.2-76:api")
+    runtimeOnly fg.deobf('vazkii.patchouli:Patchouli:1.19.2-76')
 
+}
+
+mixin {
+    //MixinGradle Settings
+    add sourceSets.main, "${mod_id}.refmap.json"
+    config "${mod_id}.mixins.json"
+
+    debug.verbose = true
+    debug.export = true
 }
 
 // Example for how to get properties into the manifest for reading at runtime.
 jar {
     manifest {
         attributes([
-                "Specification-Title"     : "urushi",
+                "Specification-Title"     : mod_id,
                 "Specification-Vendor"    : "urushisareus",
                 "Specification-Version"   : "1", // We are version 1 of ourselves
                 "Implementation-Title"    : project.name,
