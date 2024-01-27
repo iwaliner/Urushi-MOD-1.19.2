@@ -2271,7 +2271,9 @@
   "info.urushi.lacquer_sapling": "在主世界的森林群系中，或地牢与平原村庄中的箱子中生成",
 
   "patchouli.urushi.book.name": "现世离",
-  "patchouli.urushi.book.landing_text": "带你走近漆（Urushi）的玄妙世界——由落雪鸦杀撰写"
+  "comment":"leave the book subtitle empty in ja_jp and zh_cn, we can understand Kanji",
+  "patchouli.urushi.book.subtitle": "",
+  "patchouli.urushi.book.landing_text": "带你穿梭于漆（Urushi）的玄妙世界间的指南书。准备好奔赴$(#cc3345)往生$(#000)了吗？"
 
 
 
