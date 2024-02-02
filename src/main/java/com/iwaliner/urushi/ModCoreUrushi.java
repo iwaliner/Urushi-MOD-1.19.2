@@ -2,24 +2,21 @@ package com.iwaliner.urushi;
 
 import com.iwaliner.urushi.block.*;
 import com.iwaliner.urushi.blockentity.ShichirinBlockEntity;
+import com.iwaliner.urushi.mixin.VillagerMixin;
 import com.iwaliner.urushi.util.ElementType;
 import com.iwaliner.urushi.util.ElementUtils;
 import com.iwaliner.urushi.util.UrushiUtils;
 import com.iwaliner.urushi.util.interfaces.ElementItem;
 import com.iwaliner.urushi.util.interfaces.Tiered;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.core.*;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.OptionalDispenseItemBehavior;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BiomeTags;
-import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -27,31 +24,21 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.Fox;
 import net.minecraft.world.entity.animal.Squid;
-import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.biome.BiomeGenerationSettings;
-import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.DispenserBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraft.world.level.levelgen.GenerationStep;
-import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.client.event.InputEvent;
-import net.minecraftforge.client.event.RenderHighlightEvent;
-import net.minecraftforge.client.event.ScreenEvent;
-import net.minecraftforge.client.event.TextureStitchEvent;
-import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.entity.EntityEvent;
@@ -173,106 +160,7 @@ public class ModCoreUrushi {
         MinecraftForge.EVENT_BUS.register(this);
 
     }
-    /**構造物を自然生成*/
-   /** @SubscribeEvent
-    public void FeatureGenEvent(BiomeLoadingEvent event) {
-        ResourceKey<Biome> biome=ResourceKey.create(Registry.BIOME_REGISTRY,event.getName());
-        Set<BiomeDictionary.Type> type=BiomeDictionary.getTypes(biome);
-        List<Holder<PlacedFeature>> oreGenBase=event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES);
 
-        if(biome.equals(Biomes.FOREST)){
-            List<Holder<PlacedFeature>> base=event.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION);
-            base.add(PlacementFeatures.APRICOT_PLACE);
-        }
-        if(biome.equals(Biomes.FOREST)){
-
-            List<Holder<PlacedFeature>> base=event.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION);
-            base.add(PlacementFeatures.SAKURA_PLACE);
-        }
-      //  if(type.contains(BiomeDictionary.Type.FOREST)){
-        if(biome==Biomes.FOREST||biome==Biomes.BIRCH_FOREST||biome==Biomes.TAIGA||biome==Biomes.FLOWER_FOREST||biome==Biomes.JUNGLE){
-
-            List<Holder<PlacedFeature>> base=event.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION);
-            base.add(PlacementFeatures.LACQUER_PLACE);
-
-            List<Holder<PlacedFeature>> topBase=event.getGeneration().getFeatures(GenerationStep.Decoration.TOP_LAYER_MODIFICATION);
-            topBase.add(PlacementFeatures.KAKURIYO_PORTAL);
-        }
-        if(biome.equals(Biomes.FOREST)){
-
-            List<Holder<PlacedFeature>> base=event.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION);
-            base.add(PlacementFeatures.BAMBOO_PLACE);
-        }
-        if(biome==Biomes.TAIGA){
-
-            List<Holder<PlacedFeature>> base=event.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION);
-            base.add(PlacementFeatures.CYPRESS_PLACE);
-            base.add(PlacementFeatures.CEDAR_PLACE);
-        }
-
-        //if(type.contains(BiomeDictionary.Type.MOUNTAIN)&&biome!=Biomes.MEADOW&&biome!=Biomes.GROVE){
-        if(biome==Biomes.JAGGED_PEAKS||biome==Biomes.FROZEN_PEAKS||biome==Biomes.ICE_SPIKES||biome==Biomes.STONY_PEAKS||biome==Biomes.WINDSWEPT_HILLS){
-
-                List<Holder<PlacedFeature>> lakeBase = event.getGeneration().getFeatures(GenerationStep.Decoration.LAKES);
-            lakeBase.add(PlacementFeatures.HOT_SPRING_PLACE);
-            List<Holder<PlacedFeature>> topBase=event.getGeneration().getFeatures(GenerationStep.Decoration.TOP_LAYER_MODIFICATION);
-            topBase.add(PlacementFeatures.KAKURIYO_PORTAL);
-        }
-
-        if(type.contains(BiomeDictionary.Type.SANDY)||type.contains(BiomeDictionary.Type.MESA)){
-
-        }else{
-            oreGenBase.add(PlacementFeatures.ORE_IRONSAND_PLACE);
-        }
-        if(BiomeRegister.KakuriyoList.contains(biome)){
-            oreGenBase.add(PlacementFeatures.ORE_JADEITE_PLACE);
-            oreGenBase.add(PlacementFeatures.ORE_IRON_PLACE);
-            oreGenBase.add(PlacementFeatures.ORE_COPPER_PLACE);
-            oreGenBase.add(PlacementFeatures.ORE_GOLD_PLACE);
-            List<Holder<PlacedFeature>> undergroundBase=event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_DECORATION);
-            undergroundBase.add(PlacementFeatures.LANTERN_PLANT);
-            undergroundBase.add(PlacementFeatures.QUARTZ_CLUSTER);
-            undergroundBase.add(PlacementFeatures.YOMI_VINE_PLACE);
-            List<Holder<PlacedFeature>> surfaceBase=event.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION);
-            surfaceBase.add(PlacementFeatures.WOOD_ELEMENT_SACRED_ROCK);
-            surfaceBase.add(PlacementFeatures.FIRE_ELEMENT_SACRED_ROCK);
-            surfaceBase.add(PlacementFeatures.EARTH_ELEMENT_SACRED_ROCK);
-            surfaceBase.add(PlacementFeatures.METAL_ELEMENT_SACRED_ROCK);
-            surfaceBase.add(PlacementFeatures.WATER_ELEMENT_SACRED_ROCK);
-
-        }
-        if(biome.equals(BiomeRegister.SakuraForest)){
-            List<Holder<PlacedFeature>> base=event.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION);
-            base.add(PlacementFeatures.LYCORIS_FLOWERS);
-            base.add(PlacementFeatures.SAKURA_FOREST_SAKURA_PLACE);
-            base.add(PlacementFeatures.FALLEN_SAKURA_LEAVES);
-        }
-        if(biome.equals(BiomeRegister.CedarForest)){
-            List<Holder<PlacedFeature>> base=event.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION);
-            base.add(PlacementFeatures.LYCORIS_FLOWERS);
-            base.add(PlacementFeatures.KAKURIYO_CEDAR_FOREST_CEDAR_PLACE);
-        }
-        if(biome.equals(BiomeRegister.AutumnForest)){
-            List<Holder<PlacedFeature>> base=event.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION);
-            base.add(PlacementFeatures.AUTUMN_HILLS_RED_PLACE);
-            base.add(PlacementFeatures.AUTUMN_HILLS_ORANGE_PLACE);
-            base.add(PlacementFeatures.AUTUMN_HILLS_YELLOW_PLACE);
-            base.add(PlacementFeatures.SHIITKE);
-            base.add(PlacementFeatures.WALL_SHIITKE_N);
-            base.add(PlacementFeatures.WALL_SHIITKE_S);
-            base.add(PlacementFeatures.WALL_SHIITKE_E);
-            base.add(PlacementFeatures.WALL_SHIITKE_W);
-            base.add(PlacementFeatures.FALLEN_RED_LEAVES);
-            base.add(PlacementFeatures.FALLEN_ORANGE_LEAVES);
-            base.add(PlacementFeatures.FALLEN_YELLOW_LEAVES);
-
-        }
-        if(biome.equals(BiomeRegister.EulaliaPlains)){
-            List<Holder<PlacedFeature>> base=event.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION);
-            base.add(PlacementFeatures.EULALIA);
-            base.add(PlacementFeatures.TALL_EULALIA);
-        }
-    }*/
 
     /**燃料を登録*/
     @SubscribeEvent
@@ -408,7 +296,38 @@ public class ModCoreUrushi {
         TagUrushi.fileMap.put( ItemAndBlockRegister.jadeite_slab.get().defaultBlockState(),ItemAndBlockRegister.smooth_jadeite_slab.get().defaultBlockState());
         TagUrushi.fileMap.put( ItemAndBlockRegister.jadeite_stairs.get().defaultBlockState(),ItemAndBlockRegister.smooth_jadeite_stairs.get().defaultBlockState());
         TagUrushi.fileMap.put( ItemAndBlockRegister.cobbled_yomi_stone_wall.get().defaultBlockState(),ItemAndBlockRegister.polished_yomi_stone_wall.get().defaultBlockState());
+        TagUrushi.fileMap.put( Blocks.OAK_LOG.defaultBlockState(),Blocks.STRIPPED_OAK_LOG.defaultBlockState());
+        TagUrushi.fileMap.put( Blocks.BIRCH_LOG.defaultBlockState(),Blocks.STRIPPED_BIRCH_LOG.defaultBlockState());
+        TagUrushi.fileMap.put( Blocks.SPRUCE_LOG.defaultBlockState(),Blocks.STRIPPED_SPRUCE_LOG.defaultBlockState());
+        TagUrushi.fileMap.put( Blocks.JUNGLE_LOG.defaultBlockState(),Blocks.STRIPPED_JUNGLE_LOG.defaultBlockState());
+        TagUrushi.fileMap.put( Blocks.ACACIA_LOG.defaultBlockState(),Blocks.STRIPPED_ACACIA_LOG.defaultBlockState());
+        TagUrushi.fileMap.put( Blocks.DARK_OAK_LOG.defaultBlockState(),Blocks.STRIPPED_DARK_OAK_LOG.defaultBlockState());
+        TagUrushi.fileMap.put( Blocks.MANGROVE_LOG.defaultBlockState(),Blocks.STRIPPED_MANGROVE_LOG.defaultBlockState());
+        TagUrushi.fileMap.put( Blocks.CRIMSON_STEM.defaultBlockState(),Blocks.STRIPPED_CRIMSON_STEM.defaultBlockState());
+        TagUrushi.fileMap.put( Blocks.WARPED_STEM.defaultBlockState(),Blocks.STRIPPED_WARPED_STEM.defaultBlockState());
+        TagUrushi.fileMap.put( ItemAndBlockRegister.sakura_log.get().defaultBlockState(),ItemAndBlockRegister.stripped_sakura_log.get().defaultBlockState());
+        TagUrushi.fileMap.put( ItemAndBlockRegister.japanese_apricot_log.get().defaultBlockState(),ItemAndBlockRegister.stripped_japanese_apricot_log.get().defaultBlockState());
+        TagUrushi.fileMap.put( ItemAndBlockRegister.cypress_log.get().defaultBlockState(),ItemAndBlockRegister.stripped_cypress_log.get().defaultBlockState());
+        TagUrushi.fileMap.put( ItemAndBlockRegister.japanese_cedar_log.get().defaultBlockState(),ItemAndBlockRegister.stripped_japanese_cedar_log.get().defaultBlockState());
+        TagUrushi.fileMap.put( Blocks.OAK_WOOD.defaultBlockState(),Blocks.STRIPPED_OAK_WOOD.defaultBlockState());
+        TagUrushi.fileMap.put( Blocks.BIRCH_WOOD.defaultBlockState(),Blocks.STRIPPED_BIRCH_WOOD.defaultBlockState());
+        TagUrushi.fileMap.put( Blocks.SPRUCE_WOOD.defaultBlockState(),Blocks.STRIPPED_SPRUCE_WOOD.defaultBlockState());
+        TagUrushi.fileMap.put( Blocks.JUNGLE_WOOD.defaultBlockState(),Blocks.STRIPPED_JUNGLE_WOOD.defaultBlockState());
+        TagUrushi.fileMap.put( Blocks.ACACIA_WOOD.defaultBlockState(),Blocks.STRIPPED_ACACIA_WOOD.defaultBlockState());
+        TagUrushi.fileMap.put( Blocks.DARK_OAK_WOOD.defaultBlockState(),Blocks.STRIPPED_DARK_OAK_WOOD.defaultBlockState());
+        TagUrushi.fileMap.put( Blocks.MANGROVE_WOOD.defaultBlockState(),Blocks.STRIPPED_MANGROVE_WOOD.defaultBlockState());
+        TagUrushi.fileMap.put( Blocks.CRIMSON_HYPHAE.defaultBlockState(),Blocks.STRIPPED_CRIMSON_HYPHAE.defaultBlockState());
+        TagUrushi.fileMap.put( Blocks.WARPED_HYPHAE.defaultBlockState(),Blocks.STRIPPED_WARPED_HYPHAE.defaultBlockState());
+        TagUrushi.fileMap.put( ItemAndBlockRegister.sakura_wood.get().defaultBlockState(),ItemAndBlockRegister.stripped_sakura_wood.get().defaultBlockState());
+        TagUrushi.fileMap.put( ItemAndBlockRegister.japanese_apricot_wood.get().defaultBlockState(),ItemAndBlockRegister.stripped_japanese_apricot_wood.get().defaultBlockState());
+        TagUrushi.fileMap.put( ItemAndBlockRegister.cypress_wood.get().defaultBlockState(),ItemAndBlockRegister.stripped_cypress_wood.get().defaultBlockState());
+        TagUrushi.fileMap.put( ItemAndBlockRegister.japanese_cedar_wood.get().defaultBlockState(),ItemAndBlockRegister.stripped_japanese_cedar_wood.get().defaultBlockState());
 
+
+      /*  Villager.FOOD_POINTS.put(ItemAndBlockRegister.rice.get(), 3);
+        Villager.FOOD_POINTS.put(ItemAndBlockRegister.rice_cake.get(), 4);
+        Villager.FOOD_POINTS.put(ItemAndBlockRegister.roasted_rice_cake.get(), 4);
+        Villager.FOOD_POINTS.put(ItemAndBlockRegister.tofu.get(), 2);*/
 
 
 
@@ -784,6 +703,7 @@ public class ModCoreUrushi {
     /**バニラのルートテーブルに内容を追加*/
     @SubscribeEvent
     public void EntityDropItemEvent(LivingDropsEvent event) {
+
         if(event.getEntity() instanceof Squid){
        event.getDrops().add(new ItemEntity(event.getEntity().level,event.getEntity().getX(),event.getEntity().getY(),event.getEntity().getZ(), new ItemStack(ItemAndBlockRegister.squid_sashimi.get())));
         }
