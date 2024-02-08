@@ -27,6 +27,7 @@ import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
+import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
@@ -89,7 +90,6 @@ public class ClientSetUp {
         });
         event.registerEntityRenderer(EntityRegister.Ghost.get(), GhostRenderer::new);
         event.registerEntityRenderer(EntityRegister.Cushion.get(), CushionRenderer::new);
-
     }
 
     /**エンティティのレイヤーを指定*/
@@ -106,6 +106,8 @@ public class ClientSetUp {
         event.registerLayerDefinition(SUSHI, SushiFoodModel::createBodyLayer);
         event.registerLayerDefinition(SALMON_ROE_SUSHI, SalmonRoeSushiFoodModel::createBodyLayer);
         event.registerLayerDefinition(INARI, InariFoodModel::createBodyLayer);
+
+
 
     }
 

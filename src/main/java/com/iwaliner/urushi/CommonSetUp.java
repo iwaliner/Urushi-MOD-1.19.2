@@ -1,9 +1,11 @@
 package com.iwaliner.urushi;
 
 import com.iwaliner.urushi.entiity.GhostEntity;
+import com.iwaliner.urushi.mixin.VillagerMixin;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.Zombie;
+import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.api.distmarker.Dist;
