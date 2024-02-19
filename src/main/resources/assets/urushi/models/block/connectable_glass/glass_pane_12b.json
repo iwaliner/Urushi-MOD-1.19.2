@@ -1,5 +1,5 @@
 {
-	"parent": "urushi:block/connectable_glass_pane_base2",
+	"parent": "urushi:block/connectable_glass_pane_base2","render_type": "minecraft:cutout",
 	"textures": {
 		"front": "urushi:block/framed_glass_12",
 		"north": "urushi:block/framed_glass_15",

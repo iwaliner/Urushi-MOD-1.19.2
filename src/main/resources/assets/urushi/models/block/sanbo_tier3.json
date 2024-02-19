@@ -1,6 +1,5 @@
 {
-	"parent": "block/block",
-	"render_type": "minecraft:cutout",
+	"parent": "block/block","render_type": "minecraft:cutout",
 	"textures": {
 		"0": "minecraft:block/gold_block",
 		"1": "urushi:block/sanbo_gold_side",

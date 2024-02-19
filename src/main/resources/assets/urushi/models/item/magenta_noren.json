@@ -1,6 +1,6 @@
-{
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "urushi:block/noren_b"
-    }
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "urushi:block/noren_b"
+    }
 }

@@ -2,7 +2,7 @@
     "parent": "block/cube",
     "textures": {
         "particle": "urushi:block/plaster_brown",
-        "down": "urushi:block/smooth_planks_black_urushi_stained",
+        "down": "urushi:block/planks_smooth_black_urushi",
         "up": "urushi:block/plaster_brown",
         "north": "urushi:block/connectable/framed_plaster_brown/plaster_black_2",
         "east": "urushi:block/connectable/framed_plaster_brown/plaster_black_2",

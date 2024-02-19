@@ -1,6 +1,6 @@
-{
-  "parent": "minecraft:block/button_pressed",
-  "textures": {
-    "texture": "urushi:block/cypress_planks"
-  }
+{
+  "parent": "minecraft:block/button_pressed",
+  "textures": {
+    "texture": "urushi:block/cypress_planks"
+  }
 }

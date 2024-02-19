@@ -69,17 +69,6 @@ public class ChiseledLacquerLogBlock extends HorizonalRotateBlock{
        if(random.nextInt(5)==0&&state.getBlock() instanceof ChiseledLacquerLogBlock&& state.getValue(FILLED)){
            ElementType element=null;
            if(isPressured(level,pos)){
-            /*  AABB axisalignedbb =new AABB(pos).inflate(4D,4D,4D);
-               List<LivingEntity> list = level.getEntitiesOfClass(LivingEntity.class, axisalignedbb);
-               if (!list.isEmpty()) {
-                   for (LivingEntity entity : list) {
-                       if (ElementUtils.isElementMob(entity)) {
-                           absorbMob(level, pos, entity);
-                           level.scheduleTick(pos, this, 40, TickPriority.VERY_HIGH);
-                           break;
-                       }
-                   }
-               }*/
                AABB aabb =new AABB(pos).inflate(1.4D,1.4D,1.4D);
                List<LivingEntity> list2 = level.getEntitiesOfClass(LivingEntity.class, aabb);
                if(!list2.isEmpty()) {

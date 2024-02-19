@@ -2,7 +2,7 @@
     "parent": "builtin/entity",
     "gui_light": "front",
     "textures": {
-        "particle": "urushi:block/planks_red_urushi_stained"
+        "particle": "urushi:block/red_urushi_planks"
     },
     "display": {
         "thirdperson_righthand": {

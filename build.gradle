@@ -179,18 +179,9 @@ dependencies {
     runtimeOnly(  fg.deobf("curse.maven:jei-238222:4712866"))
 
     compileOnly(  fg.deobf("curse.maven:jei-238222:4712866"))
+    runtimeOnly(  fg.deobf("curse.maven:tofucraftreload-317469:4612122"))
 
 
-    // implementation  fg.deobf("curse.maven:tofucraftreload-317469:4522598")
-
-    //compileOnly fg.deobf("mezz.jei:jei-1.18.2:11.6.0.1015:api")
-   //  runtimeOnly( fg.deobf("curse.maven:create-328085:4625534"))
-    //compileOnly( fg.deobf("curse.maven:create-328085:4625534"))
-    // compile against the JEI API but do not include it at runtime
-    //compileOnly(fg.deobf("mezz.jei:jei-1.19.2-common-api:11.6.0.1015"))
-    //compileOnly(fg.deobf("mezz.jei:jei-1.19.2-forge-api:11.6.0.1015"))
-    // at runtime, use the full JEI jar for Forge
-    //runtimeOnly(fg.deobf("mezz.jei:jei-1.19.2-forge:11.6.0.1015"))
 
     // https://mvnrepository.com/artifact/vazkii.patchouli/Patchouli
     compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.19.2-76:api")

@@ -1,6 +1,6 @@
-{
-  "parent": "urushi:item/handheld_katana",
-  "textures": {
-    "layer0": "urushi:item/katana_blade_3"
-  }
+{
+  "parent": "urushi:item/handheld_katana",
+  "textures": {
+    "layer0": "urushi:item/katana_blade_3"
+  }
 }

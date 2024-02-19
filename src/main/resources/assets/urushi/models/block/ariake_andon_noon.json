@@ -1,13 +1,12 @@
 {
 	"parent": "block/block",
-	"render_type": "minecraft:translucent",
 	"textures": {
 		"0": "urushi:block/andon_ariake_4",
 		"1": "urushi:block/andon_ariake_5",
 		"2": "urushi:block/andon_ariake_6",
 		"3": "urushi:block/andon_ariake_7",
-		"4": "urushi:block/smooth_planks_black_urushi_stained",
-		"5": "urushi:block/smooth_planks_red_urushi_stained",
+		"4": "urushi:block/planks_smooth_black_urushi",
+		"5": "urushi:block/planks_smooth_red_urushi",
 		"6": "urushi:block/andon_ariake_8",
 		"7": "urushi:block/andon_ariake_9",
 		"particle": "urushi:block/andon_ariake_4"

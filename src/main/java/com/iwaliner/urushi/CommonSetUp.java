@@ -1,7 +1,5 @@
 package com.iwaliner.urushi;
 
-import com.iwaliner.urushi.entiity.GhostEntity;
-import com.iwaliner.urushi.mixin.VillagerMixin;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.Zombie;

@@ -1,7 +1,6 @@
 {
-	"credit": "Made with Blockbench",
+	"credit": "Made with Blockbench","render_type": "minecraft:cutout",
 	"parent": "block/block",
-	"render_type": "minecraft:cutout",
 	"textures": {
 		"0": "urushi:block/concrete",
 		"2": "urushi:block/groove_side",

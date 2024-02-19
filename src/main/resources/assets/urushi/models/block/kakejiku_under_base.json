@@ -1,6 +1,5 @@
 {
-	"parent": "block/block",
-	"render_type": "minecraft:cutout",
+	"parent": "block/block","render_type": "minecraft:cutout",
 	"textures": {
 		"backunder": "urushi:block/kakejiku_back_under",
 		"particle": "urushi:block/kakejiku_back_under"

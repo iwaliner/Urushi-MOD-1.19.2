@@ -1,6 +1,6 @@
-{
-    "parent": "block/cube_all",
-    "textures": {
-        "all": "urushi:block/planks_smooth_ume"
-    }
-}
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "urushi:block/planks_smooth_ume"
+    }
+}

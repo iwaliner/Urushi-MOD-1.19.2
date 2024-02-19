@@ -1,7 +1,6 @@
-{
-  "parent": "minecraft:block/cross",
-  "render_type": "minecraft:cutout",
-  "textures": {
-    "cross": "urushi:block/ajisai_bottom"
-  }
+{
+  "parent": "minecraft:block/cross","render_type": "minecraft:cutout",
+  "textures": {
+    "cross": "urushi:block/ajisai_bottom"
+  }
 }
