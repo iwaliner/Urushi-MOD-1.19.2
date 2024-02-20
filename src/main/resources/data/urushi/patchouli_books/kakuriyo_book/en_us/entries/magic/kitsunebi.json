@@ -1,5 +1,5 @@
 {
-  "name": "狐火",
+  "name": "KItsunebi",
   "category": "urushi:magic",
   "icon": "urushi:kitsunebi",
   "priority": true,
@@ -14,11 +14,11 @@
         "item": "urushi:kitsunebi",
         "count": 1
       },
-      "text": "狐火は不可視の光源です。ブロックに対して使用すれば通常設置、空中で使用すれば狐火を飛ばして着弾地点に設置です。$(br2)キツネに油揚げを食べさせることで狐火になるので、ほかのアイテムをキツネにあげて狐火を口から離してもらいましょう。$(br2)なお、使用するためには火気の勾玉をインベントリにいれておく必要があります。"
+      "text": "Kitsunebi is an invisible light. Use it against a block for normal placement, or use it in the air to toss Kitsunebi and place it where it lands. $(br2) Feed the fox Aburaage to generate Kitunebi, so you can give other items to the fox to get the Kitsunebi away from its mouth.$(br2)In order to use it, you need to have a Fire Element Magatama with 10 or more stored Reiryoku in your inventory."
     },
      {
       "type": "patchouli:image",
-      "text": "狐火を手に持っているときのみ、近くの狐火の位置に炎のパーティクルが現れるので狐火の設置位置を確認できます。",
+      "text": "Only when the Kitsunebi is held in the hand, flame particles appear at the locations of the nearby Kitsunebi to confirm the positions of the Kitsunebi.",
       "images": [
         "urushi:textures/gui/patchouli/kitsunebi.png"
       ]

@@ -1,5 +1,5 @@
 {
-  "name": "tier1の進め方",
+  "name": "How to proceed with tier 1",
   "category": "urushi:magic",
   "icon": "urushi:wood_element_sacred_rock",
   "priority": true,
@@ -10,7 +10,7 @@
   "pages": [
    {
       "type": "patchouli:text",
-      "text": "漆MODのでは五行思想に則り、木気、火気、土気、金気、水気の5つの元素の霊力で魔術が扱えます。"
+      "text": "Based on wuxing, you can handle witchcraft with 5 types of Reiryoku energy. Wood, fire, earth, metal, and water element."
     },
      {
       "type": "patchouli:spotlight",
@@ -18,7 +18,7 @@
         "item": "urushi:rock",
         "count": 1
       },
-      "text": "まずは石切り台で丸石から小石の塊を作成しましょう。"
+      "text": "Craft a Rock from a Cobblestone on Stonecutter."
     },
      {
       "type": "patchouli:spotlight",
@@ -26,7 +26,7 @@
         "item": "urushi:sazare_ishi",
         "count": 1
       },
-      "text": "小石の塊の上に鍾乳石を置いて放置すると、小石の塊がさざれ石へと変化します。"
+      "text": "When you place a Pointed Dripstone above the Rock and wait a little, the Rock will turn to Weatherd Rock."
     },
     {
       "type": "patchouli:image",
@@ -39,7 +39,7 @@
       "type": "patchouli:crafting",
       "title": "",
       "recipe": "urushi:shide",
-      "text": "紙から紙垂を作成しましょう。$(br2)「紙垂」は「しで」と読みます。"
+      "text": "Craft a Shide from Papers."
     },
     {
       "type": "patchouli:spotlight",
@@ -47,11 +47,11 @@
         "item": "urushi:wood_element_paper",
         "count": 1
       },
-      "text": "元素が木気のブロックに対して紙垂で右クリックすると、紙垂が木気の紙垂になります。$(br2)ほかの元素も同様です。"
+      "text": "Use a Shide to a wood element block to get a Wood Element Shide.$(br2) The same applies to other elements."
     },
      {
       "type": "patchouli:text",
-      "text": "しめ縄が巻かれた木気の岩を作成しましょう。$(br2)2枚の紙垂が描かれた面の正面に何かしらの木気のブロックを置いて放置すると、そのブロックが消滅して木気の霊力が1だけ生産されます。$(br2)右クリックして現在の霊力貯蔵量を確認できます。"
+      "text": "Craft a Wood Element Sacred Rock. $(br2)1 Reiryoku will be generated when you place a wood element block on the side two sheets of paper are drawn.$(br2)Right-click to see the amount of stored Reiryoku."
     },
      {
       "type": "patchouli:crafting",
@@ -60,16 +60,16 @@
       "text": ""
     },
     {
-      "type": "patchouli:spotlight",
+      "type": "patchouli:spotlight",disappear
       "item": {
         "item": "urushi:petrified_log_with_wood_amber",
         "count": 1
       },
-      "text": "切り込みが入った漆の原木のすぐ近くに特定の動物がいる状態で、切り込みが入った漆の原木の上に黄泉石または黄泉石の丸石を置いて放置します。$(br2)すると動物が吸い込まれ、切り込みが入った漆の原木は各元素の琥珀が含まれた珪化木へと変化します。$(br2)特定の動物とは、木気はニワトリ、火気はヒツジ、土気はウシ、金気はウマが該当します。"
+      "text": "Place a Yomi Stone or a Cobbled Yomi Stone on top of a Chiseled Lacquer Log and wait a little when a required animal is nearby.$(br2)Then the animal disappears and the Chiseled Lacquer Log turns into a Petrified Log with specific element Amber.$(br2)The required animals are Chicken for wood element, Sheep for fire element, Cow for earth element, Horse for metal element, and Pig for water element. "
     },
     {
       "type": "patchouli:image",
-      "text": "座布団で拘束すると楽",
+      "text": "Restraints with a Zabuton make it easier.",
       "images": [
         "urushi:textures/gui/patchouli/petrified_log_with_amber.png"
       ]
@@ -80,7 +80,7 @@
         "item": "urushi:wood_amber",
         "count": 1
       },
-      "text": "木気の琥珀が含まれた珪化木からは木気の琥珀がドロップします。ほかの元素も同様です。$(br2)ちなみに「珪化木」は「けいかぼく」と読み、簡単に説明すると木が地中で長い年月をかけて石に変化したもののことです。$(br)「琥珀」は「こはく」と読み、樹液が地中で長い年月をかけて鉱物に変化したものです。"
+      "text": "Wood Element Amber is dropped from Petrified Log with Wood Element Amber. The same applies to other elements."
     },
      {
       "type": "patchouli:spotlight",
@@ -88,11 +88,11 @@
         "item": "urushi:petrified_log",
         "count": 1
       },
-      "text": "近くに動物がいない状態で切り込みが入った漆の原木の上に黄泉石または黄泉石の丸石を置いて放置すると、珪化木になります。$(br2)珪化木からは珪化木の板材が作成できます。$(br2)珪化木も珪化木の板材も適正ツールはツルハシで、火で消失することがありません。"
+      "text": "If a Yomi Stone or a Cobbled Yomi Stone is placed on a Chiseled Lacquer Log without any animals nearby and left to stand, it will become a Petrified Log.$(br2)You can craft Petrified Planks from Petrified Log.$(br2)Both of this do not disappear in fire. The appropriate tool is Pickaxe. "
     },
     {
       "type": "patchouli:text",
-      "text": "シラカバの木気の伝達口を作成しましょう。$(br2)霊力を出力できるブロックの側面にシフト右クリックで伝達口を設置すると、送信先のブロックまでのルートが開通している場合にパーティクルとともに霊力を1ずつ輸送します。$(br2)レッドストーン入力を与えると霊力輸送を停止できます。$(br2)右クリックして現在の霊力貯蔵量を確認できます。"
+      "text": "Craft a Birch Wood Element Emitter and place on the side of a block which can export Reiryoku.$(br2)It transport 1 Reiryoku per perticle if a transportation route is established.$(br2)The transportation will be stopped when it recieve a redstone signal.$(br2)Right-click to see the amount of stored Reiryoku."
     },
      {
       "type": "patchouli:crafting",
@@ -102,7 +102,7 @@
     },
      {
       "type": "patchouli:text",
-      "text": "シラカバの三方を作成しましょう。$(br2)右クリックすると手に持っているアイテムを三方の上に置くことができます。"
+      "text": "Craft a Birch Sanbo.$(br2)Right-click to place a item."
     },
      {
       "type": "patchouli:crafting",
@@ -112,7 +112,7 @@
     },
      {
       "type": "patchouli:text",
-      "text": "シラカバの木気の儀式台を作成しましょう。$(br2)儀式台を東西南北から囲むようにシラカバの三方を4つ設置し、三方にレシピ通りの順序で素材を置いて儀式台に霊力を供給すると霊力を用いたアイテム作成ができます。$(br2)しかし作成にはまだ準備が必要です。"
+      "text": "Craft a Birch Wood Element Alter.$(br2)Place 4 Birch Sanbos on each side of the alter, put ingredients on the sanbos, and provite Reiryoku energy to the alter to craft items. $(br2)But preparation still needs to be done."
     },
      {
       "type": "patchouli:crafting",
@@ -122,7 +122,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "シラカバの反射鏡を作成しましょう。$(br2)反射鏡を用いると、霊力の輸送経路を曲げることができます。上下と東西南北の6方向だけでなく、北北東などの細かな方角にも曲げられます。$(br2)入射角と等しい反射角の方角に経路が曲がります。"
+      "text": "Craft a Birch Mirror.$(br2)By using this mirror, you can bend a transportation route of Reiryoku. $(br2)The path bends in the direction of the angle of reflection equal to the angle of incidence."
     },
      {
       "type": "patchouli:crafting",
@@ -132,28 +132,28 @@
     },
      {
       "type": "patchouli:image",
-      "text": "例1",
+      "text": "Example 1",
       "images": [
         "urushi:textures/gui/patchouli/mirror_1.png"
       ]
     },
     {
       "type": "patchouli:image",
-      "text": "例2",
+      "text": "Example 2",
       "images": [
         "urushi:textures/gui/patchouli/mirror_2.png"
       ]
     },
     {
       "type": "patchouli:image",
-      "text": "例3",
+      "text": "Example 3",
       "images": [
         "urushi:textures/gui/patchouli/mirror_3.png"
       ]
     },
     {
       "type": "patchouli:image",
-      "text": "三方が邪魔で側面からは霊力供給ができないので、斜め方向、上または下から行う。これで儀式台が扱える。",
+      "text": "It is not possible to supply Reiryoku power to the altar from sides. Supply at an angle or from above or below.",
       "images": [
         "urushi:textures/gui/patchouli/element_crafting.png"
       ]
@@ -164,7 +164,7 @@
         "item": "urushi:wood_element_tank_tier1",
         "count": 1
       },
-      "text": "シラカバの木気の大幣を作成しましょう。$(br2)大幣は霊力の入力も出力もできるので霊力の貯蔵に適しています。$(br2)大幣を中継地点とすることで霊力輸送の経路を分岐させたり合流させたりできます。"
+      "text": "Craft a Birch Wood Element Onusa.$(br2)Onusa is suitable for storing Reiryoku energy, as it can both import and export Reiryoku.$(br2)The paths of Reiryoku transport can be branched and merged by using this as a relay point."
     },
      {
       "type": "patchouli:image",
@@ -179,7 +179,7 @@
         "item": "urushi:wood_element_magatama",
         "count": 1
       },
-      "text": "木気の勾玉を作成しましょう。$(br2)大幣に対して右クリックすると大幣に貯蔵されている霊力を勾玉へ移すことができます。$(br2)霊力を消費するアイテムを使用する場合、プレイヤーのインベントリ内に勾玉を入れておく必要があります。"
+      "text": "Craft a Wood Element Magatama.$(br2)Right-clicking on a Wood Element Onusa allows the spiritual power stored in the Onusa to be transferred to a Magatama.$(br2)When using items that consume Reiryoku power, the player must have a Magatama in his or her inventory."
     }
   ]
 }

@@ -2297,18 +2297,18 @@
    "info.urushi.fermentation_barrel2": "発酵させるアイテム8個で発酵用の樽を右クリックしても作成できる",
    "info.urushi.rice_malt": "発酵用の樽にご飯8個を入れて放置で入手",
    "info.urushi.miso": "発酵用の樽に仕込み味噌8個を入れて放置で入手",
-   "block.urushi.oak_wall_for_framed_block": "オークの壁",
-   "block.urushi.spruce_wall_for_framed_block": "トウヒの壁",
-   "block.urushi.birch_wall_for_framed_block": "シラカバの壁",
-   "block.urushi.jungle_wall_for_framed_block": "ジャングルの壁",
-   "block.urushi.acacia_wall_for_framed_block": "アカシアの壁",
-   "block.urushi.dark_oak_wall_for_framed_block": "ダークオークの壁",
-   "block.urushi.japanese_apricot_wall_for_framed_block": "梅の壁",
-   "block.urushi.sakura_wall_for_framed_block": "桜の壁",
-   "block.urushi.cypress_wall_for_framed_block": "檜の壁",
-   "block.urushi.japanese_cedar_wall_for_framed_block": "杉の壁",
-   "block.urushi.red_urushi_wall_for_framed_block": "朱漆の壁",
-   "block.urushi.black_urushi_wall_for_framed_block": "黒漆の壁"
+   "block.urushi.oak_wall_for_framed_blocks": "オークの壁",
+   "block.urushi.spruce_wall_for_framed_blocks": "トウヒの壁",
+   "block.urushi.birch_wall_for_framed_blocks": "シラカバの壁",
+   "block.urushi.jungle_wall_for_framed_blocks": "ジャングルの壁",
+   "block.urushi.acacia_wall_for_framed_blocks": "アカシアの壁",
+   "block.urushi.dark_oak_wall_for_framed_blocks": "ダークオークの壁",
+   "block.urushi.japanese_apricot_wall_for_framed_blocks": "梅の壁",
+   "block.urushi.sakura_wall_for_framed_blocks": "桜の壁",
+   "block.urushi.cypress_wall_for_framed_blocks": "檜の壁",
+   "block.urushi.japanese_cedar_wall_for_framed_blocks": "杉の壁",
+   "block.urushi.red_urushi_wall_for_framed_blocks": "朱漆の壁",
+   "block.urushi.black_urushi_wall_for_framed_blocks": "黒漆の壁"
    
     
 
