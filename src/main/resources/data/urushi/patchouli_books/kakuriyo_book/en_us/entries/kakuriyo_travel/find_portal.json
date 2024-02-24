@@ -1,5 +1,5 @@
 {
-  "name": "幽世への行き方",
+  "name": "Way to the Kakuriyo",
   "category": "urushi:kakuriyo_travel",
   "icon": "urushi:ghost_kakuriyo_portal_core",
   "priority": true,
@@ -11,11 +11,11 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "「幽世」は「かくりよ」と読み、人ならざるものが住む世界です。$(br2)幽世へ続く門はオーバーワールドの地上に生成されます。"
+      "text": "Kakuriyo, or \"The Otherworld\", is a dimension where non-human beings inhabit. $(br2)The Kakuriyo Portal generates on the ground in the Overworld."
     },
     {
       "type": "patchouli:image",
-      "text": "これが幽世へ続く門だ！",
+      "text": "It's the Kakuriyo Portal!",
       "images": [
         "urushi:textures/gui/patchouli/ghost_kakuriyo_portal.png"
       ]

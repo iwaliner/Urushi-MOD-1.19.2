@@ -1,5 +1,5 @@
 {
-  "name": "ホオズキ",
+  "name": "Lantern Plants",
   "category": "urushi:kakuriyo_travel",
   "icon": "urushi:lantern_plant_fruit",
   "priority": true,
@@ -15,11 +15,11 @@
         "item": "urushi:lantern_plant_fruit",
         "count": 1
       },
-      "text": "ホオズキは幽世ディメンションの地上や地下に自然生成される植物で、高さ2ブロックまで成長します。$(br2)ホオズキの実がなっている状態で右クリックすると、明るさ15の光源になります。$(br2)ホオズキは食べることもできます。"
+      "text": "Lantern Plants are a special plant in the Kakuriyo Dimension. They grow on and off the ground and can grow to 2 blocks.$(br2)Right-click to lit the plant as a 15 level light source when it is mature.$(br2)Also, its fruit is edible."
     },
     {
       "type": "patchouli:image",
-      "text": "中央のホオズキは右クリック済みなので光っている",
+      "text": "The plant in the middle has been lit by right-click",
       "images": [
         "urushi:textures/gui/patchouli/lantern_plant.png"
       ]

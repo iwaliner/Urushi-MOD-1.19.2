@@ -944,6 +944,8 @@
 
    "fluid.urushi.hot_spring_water": "Hot Spring Water",
 
+   "block.urushi.hot_spring_water": "Hot Spring Water",
+
    "item.urushi.hot_spring_water_bucket": "Hot Spring Water Bucket",
 
    "gui.jei.category.urushi.fox_eating": "Fox Eating",
@@ -1502,9 +1504,9 @@
 
     "info.urushi.element_crafting_table2": "You need to send specific type of Reiryoku to start crafting.",
 
-    "info.urushi.amber_igniter1": "Consumes 10 FIRE element Reiryoku to ignite a Shichirin.",
+    "info.urushi.amber_igniter1": "Consumes 10 FIRE element Reiryoku to ignite a Shichirin Stove.",
 
-    "info.urushi.uchiwa2": "Consumes 1 WOOD element Reiryoku to manipulate the fire of Shichirin.",
+    "info.urushi.uchiwa2": "Consumes 1 WOOD element Reiryoku to manipulate the fire of Shichirin Stove.",
 
     "info.urushi.uchiwa3": "Consumes 1 WOOD element Reiryoku per one block.",
 
@@ -1668,7 +1670,7 @@
 
     "advancements.urushi.root.title": "Urushi",
 
-    "advancements.urushi.root.description": "A Japanese-style architecture and magic mod",
+    "advancements.urushi.root.description": "A Japanese style architecture and magic mod",
 
     "advancements.urushi.lacquer_sapling.title": "Traditional",
 
@@ -1760,7 +1762,7 @@
 
     "advancements.urushi.shichirin.title": "Burn",
 
-    "advancements.urushi.shichirin.description": "Fire a Shichirin",
+    "advancements.urushi.shichirin.description": "Fire a Shichirin Stove",
 
     "advancements.urushi.kitsunebi.title": "Ghost Light",
 

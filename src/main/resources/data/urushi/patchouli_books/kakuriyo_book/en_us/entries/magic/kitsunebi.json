@@ -1,5 +1,5 @@
 {
-  "name": "KItsunebi",
+  "name": "Kitsunebi",
   "category": "urushi:magic",
   "icon": "urushi:kitsunebi",
   "priority": true,
@@ -14,7 +14,7 @@
         "item": "urushi:kitsunebi",
         "count": 1
       },
-      "text": "Kitsunebi is an invisible light. Use it against a block for normal placement, or use it in the air to toss Kitsunebi and place it where it lands. $(br2) Feed the fox Aburaage to generate Kitunebi, so you can give other items to the fox to get the Kitsunebi away from its mouth.$(br2)In order to use it, you need to have a Fire Element Magatama with 10 or more stored Reiryoku in your inventory."
+      "text": "Kitsunebi (Fox Fire) is an invisible light. Use it against a block for normal placement, or use it in the air to toss Kitsunebi and place it where it lands. $(br2) Feed the fox Aburaage to generate Kitunebi, and give other items to the fox to get the Kitsunebi from its mouth.$(br2)In order to use it, you need to have a Fire Element Magatama with 10 or more stored Reiryoku in your inventory."
     },
      {
       "type": "patchouli:image",

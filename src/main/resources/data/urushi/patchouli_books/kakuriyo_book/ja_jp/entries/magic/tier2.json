@@ -25,7 +25,7 @@
      {
       "type": "patchouli:spotlight",
       "item": {
-        "item": "urushi:wood_element_hokora",
+        "item": "urushi:wood_element_crafting_table_tier2",
         "count": 1
       },
       "text": "翡翠の木気の儀式台を作成しましょう。使い方はシラカバの木気の儀式台と同じです。$(br2)tier1のレシピはすべてこのtier2の儀式台でも作れます。tier1よりもtier2の方が作成できるレシピが多いです。"

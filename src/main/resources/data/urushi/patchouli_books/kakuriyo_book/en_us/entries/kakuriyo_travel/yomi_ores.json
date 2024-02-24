@@ -1,5 +1,5 @@
 {
-  "name": "黄泉石の鉱石に関して",
+  "name": "The Yomi Ores",
   "category": "urushi:kakuriyo_travel",
   "icon": "urushi:yomi_gold_ore",
   "priority": true,
@@ -10,11 +10,11 @@
   "pages": [
     {
       "type": "text",
-      "text": "黄泉石の銅鉱石、黄泉石の鉄鉱石、黄泉石の金鉱石は幸運のついていないツルハシで掘っても複数の原石をドロップします。$(br2)そのためバニラの鉱石よりも効率よくインゴットを集められます。なお、翡翠鉱石は幸運のついていないツルハシで掘った場合1つしか翡翠をドロップしません。"
+      "text": "The Yomi Ores drop multiple metal ores even when using a pickaxe without Fortune enchantment.$(br2)Collecting bronze, iron and gold will be more efficient. Notice that Jade Ores will only drop 1 Jade when mining without Fortune."
     },
     {
       "type": "patchouli:image",
-      "text": "金属採掘は黄泉の世界で！",
+      "text": "Mining Straight Down!",
       "images": [
         "urushi:textures/gui/patchouli/yomi_ore.png"
       ]
