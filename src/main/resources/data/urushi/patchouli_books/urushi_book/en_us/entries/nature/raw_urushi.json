@@ -45,11 +45,11 @@
         "item": "urushi:red_urushi_ball",
         "count": 1
       },
-      "text": "Tiny Red Dye or Tiny Black Dye can be crafted from Red or Black Dye.$(br2)Crat them with Raw Urushi for Red Urushi or Black Urushi.$(br2)朱漆や黒漆は板材などに色をつけることができます。"
+      "text": "Tiny Red Dye or Tiny Black Dye can be crafted from Red or Black Dye.$(br2)Crat them with Raw Urushi for Red Urushi or Black Urushi.$(br2)Colored Urushi can color Planks and other wooden blocks."
     },
     {
       "type": "patchouli:crafting",
-      "title": "朱漆の板材",
+      "title": "Red Urushi Planks",
       "recipe": "urushi:red_urushi_planks",
       "text": ""
     }

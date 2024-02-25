@@ -1,5 +1,5 @@
 {
-  "name": "金槌",
+  "name": "Hammer",
   "category": "urushi:useful_items",
   "icon": "urushi:hammer",
   "priority": true,
@@ -15,7 +15,11 @@
         "item": "urushi:hammer",
         "count": 1
       },
-      "text": "ハンマーは刀鍛冶の工程で要求されますが、それ以外にも機能があります。枠付きブロックのテクスチャ接続の変更機能です。$(br2)つながるガラス、つながるガラス板、金属枠付きガラス、金属枠付きガラス板と、すべての木枠付き土壁・砂壁・漆喰は枠のテクスチャがつながりますが、シングルプレイではCキーでトグル操作、マルチプレイではスニークしながらの設置で枠をつなげないようにできます。$(br2)ハンマーで右クリックすることで、設置後でもこの二つの状態を切り替えることができます。"
+      "text": "Hammer is useful for knife blacksmithing, and other purposes.$(br2)They change how textures of certain blocks connect, such as Connectable Glass, Framed blocks, and other blocks have connecting textures."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "In singleplayer, toggle their frame connection mode on place by using the 'C' key; and on Multiplayer, prevent their connections by sneaking while placing. Right-click with the hammer to change these connection modes."
     },
       {
       "type": "patchouli:image",
