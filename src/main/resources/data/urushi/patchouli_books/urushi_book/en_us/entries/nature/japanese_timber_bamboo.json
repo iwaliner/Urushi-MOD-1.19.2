@@ -1,5 +1,5 @@
 {
-  "name": "マダケはどこ？",
+  "name": "Japanese Timber Bamboo",
   "category": "urushi:nature",
   "icon": "urushi:japanese_timber_bamboo",
   "priority": true,
@@ -11,11 +11,11 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "マダケは森林バイオームに自然生成されます。$(br2)バニラの竹の単体クラフトでも入手できます。"
+      "text": "Japanese Timber Bamboo generate in Forest biomes.$(br2)These bamboos can alse be crafted from vanilla bamboos."
     },
     {
       "type": "patchouli:image",
-      "text": "これがマダケ",
+      "text": "Japanese Timber Bamboo",
       "images": [
         "urushi:textures/gui/patchouli/japanese_timber_bamboo.png"
       ]

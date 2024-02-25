@@ -1,6 +1,6 @@
 {
-  "name": "自然",
-  "description": "各種自然生成物の入手場所や漆の製作法を記します。幽世ディメンションにのみ自然生成されるものは別冊に記します。",
+  "name": "Nature",
+  "description": "This part describes how to obtain various natural generated items, including how to get urushi. Some items generated in Kakuriyo Dimension will be described not here, but in another handbook.",
   "icon": "urushi:big_sakura_sapling",
   "sortnum": 10
 }

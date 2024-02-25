@@ -15,7 +15,7 @@
     },
     {
       "type": "patchouli:image",
-      "text": "It's the Kakuriyo Portal!",
+      "text": "The Kakuriyo Portal!",
       "images": [
         "urushi:textures/gui/patchouli/ghost_kakuriyo_portal.png"
       ]

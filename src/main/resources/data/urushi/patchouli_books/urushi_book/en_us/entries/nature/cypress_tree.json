@@ -1,5 +1,5 @@
 {
-  "name": "檜はどこ？",
+  "name": "Cypress Tree",
   "category": "urushi:nature",
   "icon": "urushi:cypress_sapling",
   "priority": true,
@@ -11,11 +11,11 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "檜の樹木はタイガ系統のバイオームに自然生成されます。$(br2)苗木を4つ並べることで巨大な杉の木を生やすことができます。$(br2)樹皮からは檜皮ブロックがクラフトできます。"
+      "text": "Cypress Trees generate in Taiga biomes.$(br2)To grow a giant Cypress Tree, place its saplings into a 2x2 square.$(br2)Cypress Bark blocks can be crafted from its bark."
     },
     {
       "type": "patchouli:image",
-      "text": "これが檜の樹木",
+      "text": "Cypress Tree",
       "images": [
         "urushi:textures/gui/patchouli/cypress_tree.png"
       ]
