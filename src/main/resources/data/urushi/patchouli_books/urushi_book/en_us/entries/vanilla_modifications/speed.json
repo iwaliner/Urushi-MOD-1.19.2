@@ -1,5 +1,5 @@
 {
-  "name": "移動速度を上昇",
+  "name": "Speed Up!",
   "category": "urushi:vanilla_modifications",
   "icon": "minecraft:rabbit_foot",
   "priority": true,
@@ -11,7 +11,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "バニラのプレイヤーの移動速度では、歩きながらブロックを連続で設置しようとすると設置ミスが必ず発生します。$(br2)そこでプレイヤーの移動速度を16%アップすることにより、歩く速度をブロックの設置速度と同じにする変更を行っています。$(br2)これによりブロックの置きミスはほとんどなくなるでしょう。"
+      "text": "The vanilla player moving speed is uncomforatble for placing blocks while walking.$(br2)Now player has a 16% speed-up, which is the same as block-placing speed.$(br2)Therefore there will be less misses on building!"
     }
     
   ]

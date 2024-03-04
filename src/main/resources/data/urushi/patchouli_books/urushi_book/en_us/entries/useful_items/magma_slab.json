@@ -1,5 +1,5 @@
 {
-  "name": "マグマのハーフブロック",
+  "name": "Magma Slab",
   "category": "urushi:useful_items",
   "icon": "urushi:magma_slab",
   "priority": true,
@@ -11,7 +11,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "モブトラップとしてよく利用されるマグマブロックは一辺1mの立方体のため、真下にホッパーを置いてもマグマブロック上のアイテムを回収できません。$(br2)マグマのハーフブロックを使えばこの問題が解消されます。$(br2)マグマの階段もあります。"
+      "text": "Troble collecting items when Magma Blocks in your mob trap? Magma Slab is on your way!$(br2)Place hoppers under Magma Slabs to gather dropped items.$(br2)Plus, Magma Stairs are avaliable too!"
     },
      {
       "type": "patchouli:crafting",

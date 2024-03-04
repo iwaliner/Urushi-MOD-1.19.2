@@ -1,5 +1,5 @@
 {
-  "name": "箪笥",
+  "name": "Wooden Cabinetry",
   "category": "urushi:useful_items",
   "icon": "urushi:wooden_cabinetry",
   "priority": true,
@@ -11,25 +11,25 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "箪笥のハーフブロックは8つの板材のハーフブロックから作成でき、チェストと同等の内容量をもつブロックです。$(br)箪笥のハーフブロック2つで箪笥、箪笥2つで大容量の箪笥が作成できます。$(br)大容量の箪笥はラージチェスト2つ分の内容量です。$(br)これらは染色が可能です。$(br2)説明は次のページに続きます。"
+      "text": "Wooden Cabinetry Slab costs 8 wooden slabs but has the same capacity as a Chest.$(br)Also you can double or quadurple its capacity by 2 or 4 of them.$(br)Cabinaries are also dyeable.$(br2)Continues on the next page."
     },
      {
       "type": "patchouli:crafting",
-      "title": "箪笥のハーフブロック",
+      "title": "Wooden Cabinetry Slab",
       "recipe": "urushi:wooden_cabinetry_slab",
-      "text": "チェストと同じ内容量"
+      "text": "Same capacity as Chest"
     },
      {
       "type": "patchouli:crafting",
-      "title": "箪笥",
+      "title": "Wooden Cabinary",
       "recipe": "urushi:wooden_cabinetry",
-      "text": "ラージチェストと同じ内容量"
+      "text": "Same capacity as Large Chest"
     },
      {
       "type": "patchouli:crafting",
-      "title": "大容量の箪笥",
+      "title": "Doubled Wooden Cabinetry",
       "recipe": "urushi:doubled_wooden_cabinetry",
-      "text": "ラージチェスト2つと同じ内容量"
+      "text": "Double capacity of a Large Chest"
     }
     
   ]
