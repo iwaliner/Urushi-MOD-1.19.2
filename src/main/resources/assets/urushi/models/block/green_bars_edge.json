@@ -1,7 +1,7 @@
-{
-    "parent": "urushi:block/bars_edge_base",
-    "textures": {
-       "0": "urushi:block/green_bars",
-		"particle": "urushi:block/green_bars"
-    }
-}
+{
+    "parent": "urushi:block/bars_edge_base",
+    "textures": {
+       "0": "urushi:block/green_bars",
+		"particle": "urushi:block/green_bars"
+    }
+}

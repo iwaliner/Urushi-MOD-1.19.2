@@ -4,13 +4,13 @@
 
     "textures": {
 
-        "particle": "urushi:block/planks_red_urushi_stained",
+        "particle": "urushi:block/red_urushi_planks",
 
         "top": "urushi:block/urushi_hopper_top",
 
-        "side": "urushi:block/planks_red_urushi_stained",
+        "side": "urushi:block/red_urushi_planks",
 
-        "inside": "urushi:block/smooth_planks_red_urushi_stained"
+        "inside": "urushi:block/planks_smooth_red_urushi"
 
     },
 

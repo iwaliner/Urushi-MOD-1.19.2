@@ -1,7 +1,6 @@
 {
 	"parent": "block/block",
-	"render_type": "minecraft:cutout",
-	"ambientocclusion": false,
+	"ambientocclusion": false,"render_type": "minecraft:cutout",
 	"textures": {
 		"particle": "urushi:block/bamboo",
 		"texture": "urushi:block/bamboo",

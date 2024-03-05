@@ -1,5 +1,4 @@
-{   "parent": "block/block",
-"render_type": "minecraft:cutout_mipped",
+{   "parent": "block/block","render_type": "minecraft:cutout_mipped",
     "textures": {
         "particle": "urushi:block/kakuriyo_dirt",
         "bottom": "urushi:block/kakuriyo_dirt",

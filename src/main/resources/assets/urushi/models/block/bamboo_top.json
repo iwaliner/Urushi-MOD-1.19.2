@@ -1,6 +1,5 @@
 {
-	"parent": "block/block",
-	"render_type": "minecraft:cutout",
+	"parent": "block/block","render_type": "minecraft:cutout",
 	"ambientocclusion": false,
 	"textures": {
 		"3": "urushi:block/bamboo_top_green",

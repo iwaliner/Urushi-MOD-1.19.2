@@ -1,0 +1,185 @@
+{
+  "name": "How to proceed with tier 1",
+  "category": "urushi:magic",
+  "icon": "urushi:wood_element_sacred_rock",
+  "priority": true,
+  "advancement": "urushi:obtain_urushi_book",
+  "turnin": "urushi:obtain_urushi_book",
+  "sortnum": 5,
+
+  "pages": [
+   {
+      "type": "patchouli:text",
+      "text": "Based on wuxing, you can handle witchcraft with 5 types of Reiryoku energy. Wood, fire, earth, metal, and water element."
+    },
+     {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "urushi:rock",
+        "count": 1
+      },
+      "text": "Craft a Rock from a Cobblestone on Stonecutter."
+    },
+     {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "urushi:sazare_ishi",
+        "count": 1
+      },
+      "text": "When you place a Pointed Dripstone above the Rock and wait a little, the Rock will turn to Weatherd Rock."
+    },
+    {
+      "type": "patchouli:image",
+      "text": "",
+      "images": [
+        "urushi:textures/gui/patchouli/sazare_ishi.png"
+      ]
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "",
+      "recipe": "urushi:shide",
+      "text": "Craft a Shide from Papers."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "urushi:wood_element_paper",
+        "count": 1
+      },
+      "text": "Use a Shide to a wood element block to get a Wood Element Shide.$(br2) The same applies to other elements."
+    },
+     {
+      "type": "patchouli:text",
+      "text": "Craft a Wood Element Sacred Rock. $(br2)1 Reiryoku will be generated when you place a wood element block on the side two sheets of paper are drawn.$(br2)Right-click to see the amount of stored Reiryoku."
+    },
+     {
+      "type": "patchouli:crafting",
+      "title": "",
+      "recipe": "urushi:wood_element_sacred_rock",
+      "text": ""
+    },
+    {
+      "type": "patchouli:spotlight",disappear
+      "item": {
+        "item": "urushi:petrified_log_with_wood_amber",
+        "count": 1
+      },
+      "text": "Place a Yomi Stone or a Cobbled Yomi Stone on top of a Chiseled Lacquer Log and wait a little when a required animal is nearby.$(br2)Then the animal disappears and the Chiseled Lacquer Log turns into a Petrified Log with specific element Amber.$(br2)The required animals are Chicken for wood element, Sheep for fire element, Cow for earth element, Horse for metal element, and Pig for water element. "
+    },
+    {
+      "type": "patchouli:image",
+      "text": "Restraints with a Zabuton make it easier.",
+      "images": [
+        "urushi:textures/gui/patchouli/petrified_log_with_amber.png"
+      ]
+    },
+     {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "urushi:wood_amber",
+        "count": 1
+      },
+      "text": "Wood Element Amber is dropped from Petrified Log with Wood Element Amber. The same applies to other elements."
+    },
+     {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "urushi:petrified_log",
+        "count": 1
+      },
+      "text": "If a Yomi Stone or a Cobbled Yomi Stone is placed on a Chiseled Lacquer Log without any animals nearby and left to stand, it will become a Petrified Log.$(br2)You can craft Petrified Planks from Petrified Log.$(br2)Both of this do not disappear in fire. The appropriate tool is Pickaxe. "
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Craft a Birch Wood Element Emitter and place on the side of a block which can export Reiryoku.$(br2)It transport 1 Reiryoku per perticle if a transportation route is established.$(br2)The transportation will be stopped when it recieve a redstone signal.$(br2)Right-click to see the amount of stored Reiryoku."
+    },
+     {
+      "type": "patchouli:crafting",
+      "title": "",
+      "recipe": "urushi:wood_element_emitter_tier1",
+      "text": ""
+    },
+     {
+      "type": "patchouli:text",
+      "text": "Craft a Birch Sanbo.$(br2)Right-click to place a item."
+    },
+     {
+      "type": "patchouli:crafting",
+      "title": "",
+      "recipe": "urushi:sanbo_tier1",
+      "text": ""
+    },
+     {
+      "type": "patchouli:text",
+      "text": "Craft a Birch Wood Element Alter.$(br2)Place 4 Birch Sanbos on each side of the alter, put ingredients on the sanbos, and provite Reiryoku energy to the alter to craft items. $(br2)But preparation still needs to be done."
+    },
+     {
+      "type": "patchouli:crafting",
+      "title": "",
+      "recipe": "urushi:wood_element_crafting_table_tier1",
+      "text": ""
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Craft a Birch Mirror.$(br2)By using this mirror, you can bend a transportation route of Reiryoku. $(br2)The path bends in the direction of the angle of reflection equal to the angle of incidence."
+    },
+     {
+      "type": "patchouli:crafting",
+      "title": "",
+      "recipe": "urushi:mirror_tier1",
+      "text": ""
+    },
+     {
+      "type": "patchouli:image",
+      "text": "Example 1",
+      "images": [
+        "urushi:textures/gui/patchouli/mirror_1.png"
+      ]
+    },
+    {
+      "type": "patchouli:image",
+      "text": "Example 2",
+      "images": [
+        "urushi:textures/gui/patchouli/mirror_2.png"
+      ]
+    },
+    {
+      "type": "patchouli:image",
+      "text": "Example 3",
+      "images": [
+        "urushi:textures/gui/patchouli/mirror_3.png"
+      ]
+    },
+    {
+      "type": "patchouli:image",
+      "text": "It is not possible to supply Reiryoku power to the altar from sides. Supply at an angle or from above or below.",
+      "images": [
+        "urushi:textures/gui/patchouli/element_crafting.png"
+      ]
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "urushi:wood_element_tank_tier1",
+        "count": 1
+      },
+      "text": "Craft a Birch Wood Element Onusa.$(br2)Onusa is suitable for storing Reiryoku energy, as it can both import and export Reiryoku.$(br2)The paths of Reiryoku transport can be branched and merged by using this as a relay point."
+    },
+     {
+      "type": "patchouli:image",
+      "text": "",
+      "images": [
+        "urushi:textures/gui/patchouli/tank.png"
+      ]
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "urushi:wood_element_magatama",
+        "count": 1
+      },
+      "text": "Craft a Wood Element Magatama.$(br2)Right-clicking on a Wood Element Onusa allows the spiritual power stored in the Onusa to be transferred to a Magatama.$(br2)When using items that consume Reiryoku power, the player must have a Magatama in his or her inventory."
+    }
+  ]
+}

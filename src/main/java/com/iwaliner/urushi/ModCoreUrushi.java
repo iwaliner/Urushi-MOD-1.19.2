@@ -2,7 +2,6 @@ package com.iwaliner.urushi;
 
 import com.iwaliner.urushi.block.*;
 import com.iwaliner.urushi.blockentity.ShichirinBlockEntity;
-import com.iwaliner.urushi.mixin.VillagerMixin;
 import com.iwaliner.urushi.util.ElementType;
 import com.iwaliner.urushi.util.ElementUtils;
 import com.iwaliner.urushi.util.UrushiUtils;
@@ -25,6 +24,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.Fox;
 import net.minecraft.world.entity.animal.Squid;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
@@ -324,12 +324,6 @@ public class ModCoreUrushi {
         TagUrushi.fileMap.put( ItemAndBlockRegister.japanese_cedar_wood.get().defaultBlockState(),ItemAndBlockRegister.stripped_japanese_cedar_wood.get().defaultBlockState());
 
 
-      /*  Villager.FOOD_POINTS.put(ItemAndBlockRegister.rice.get(), 3);
-        Villager.FOOD_POINTS.put(ItemAndBlockRegister.rice_cake.get(), 4);
-        Villager.FOOD_POINTS.put(ItemAndBlockRegister.roasted_rice_cake.get(), 4);
-        Villager.FOOD_POINTS.put(ItemAndBlockRegister.tofu.get(), 2);*/
-
-
 
         TagUrushi.earthMiningSpeedChangeItemMap.put( ItemAndBlockRegister.wood_element_magatama.get(),50);
         TagUrushi.fireMiningSpeedChangeItemMap.put( ItemAndBlockRegister.wood_element_magatama.get(),-30);
@@ -346,8 +340,6 @@ public class ModCoreUrushi {
         TagUrushi.fireMiningSpeedChangeItemMap.put( ItemAndBlockRegister.water_element_magatama.get(),50);
         TagUrushi.woodMiningSpeedChangeItemMap.put( ItemAndBlockRegister.water_element_magatama.get(),-30);
         TagUrushi.waterMiningSpeedChangeItemMap.put( ItemAndBlockRegister.water_element_magatama.get(),-40);
-
-
 
 
         if (event.getItemStack().getItem()==ItemAndBlockRegister.bamboo_charcoal.get()) {
@@ -713,8 +705,9 @@ public class ModCoreUrushi {
     public void ElementPaperCraftEvent(PlayerInteractEvent.RightClickBlock event) {
 
         if (event.getEntity() != null) {
-            Block block=event.getLevel().getBlockState(event.getPos()).getBlock();
-            if(!event.getEntity().isSuppressingBounce()&&block!=ItemAndBlockRegister.sanbo_tier1.get()) {
+            BlockState state=event.getLevel().getBlockState(event.getPos());
+            Block block=state.getBlock();
+            if(!event.getEntity().isSuppressingBounce()&&block!=ItemAndBlockRegister.sanbo_tier1.get()&&!state.hasBlockEntity()&&block!=Blocks.CRAFTING_TABLE) {
                 if (((LivingEntity) event.getEntity()).getItemInHand(event.getHand()).getItem() == ItemAndBlockRegister.shide.get()) {
                     if (ElementUtils.isWoodElement(event.getLevel().getBlockState(event.getPos()))) {
                         ((LivingEntity) event.getEntity()).setItemInHand(event.getHand(), new ItemStack(ItemAndBlockRegister.wood_element_paper.get(), ((LivingEntity) event.getEntity()).getItemInHand(event.getHand()).getCount()));

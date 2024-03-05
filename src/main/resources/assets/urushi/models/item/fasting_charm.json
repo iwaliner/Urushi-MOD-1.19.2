@@ -1,6 +1,6 @@
-{
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "urushi:item/jufu_always_full_of_hunger"
-    }
-}
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "urushi:item/jufu_always_full_of_hunger"
+    }
+}

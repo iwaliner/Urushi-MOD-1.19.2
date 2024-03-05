@@ -3,7 +3,7 @@
     "textures": {
         "particle": "urushi:block/plaster_red",
         "down": "urushi:block/plaster_red",
-        "up": "urushi:block/smooth_planks_black_urushi_stained",
+        "up": "urushi:block/planks_smooth_black_urushi",
         "north": "urushi:block/connectable/framed_plaster_red/plaster_black_1",
         "east": "urushi:block/connectable/framed_plaster_red/plaster_black_1",
         "south": "urushi:block/connectable/framed_plaster_red/plaster_black_1",

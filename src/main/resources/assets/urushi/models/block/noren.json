@@ -1,7 +1,6 @@
 {
 	"credit": "Made with Blockbench",
-	"parent": "block/block",
-	"render_type": "minecraft:cutout",
+	"parent": "block/block", "render_type": "minecraft:cutout",
 	"elements": [
 		{
 			"from": [0, 0, 15],

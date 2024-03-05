@@ -1,8 +1,8 @@
-{
-    "parent": "block/slab",
-    "textures": {
-        "bottom": "urushi:block/hiwada",
-        "top": "urushi:block/hiwada",
-        "side": "urushi:block/hiwada"
-    }
-}
+{
+    "parent": "block/slab",
+    "textures": {
+        "bottom": "urushi:block/hiwada",
+        "top": "urushi:block/hiwada",
+        "side": "urushi:block/hiwada"
+    }
+}

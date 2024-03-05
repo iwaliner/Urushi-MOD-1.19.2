@@ -1,6 +1,6 @@
-{
-    "parent": "block/fence_side",
-    "textures": {
-        "texture": "urushi:block/sakura_planks"
-    }
-}
+{
+    "parent": "block/fence_side",
+    "textures": {
+        "texture": "urushi:block/sakura_planks"
+    }
+}

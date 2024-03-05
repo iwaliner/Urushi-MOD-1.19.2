@@ -1,10 +1,10 @@
 {
 	"parent": "block/block",
 	"textures": {
-		"0": "urushi:block/smooth_planks_red_urushi_stained",
-		"2": "urushi:block/planks_black_urushi_stained",
+		"0": "urushi:block/planks_smooth_red_urushi",
+		"2": "urushi:block/black_urushi_planks",
 		"3": "urushi:block/kasuga_tourou",
-		"particle": "urushi:block/smooth_planks_red_urushi_stained"
+		"particle": "urushi:block/planks_smooth_red_urushi"
 	},
 	"elements": [
 		{
