@@ -1,5 +1,5 @@
 {
-  "name": "温泉",
+  "name": "Hot Springs",
   "category": "urushi:kakuriyo_travel",
   "icon": "urushi:hot_spring_water_bucket",
   "priority": true,
@@ -15,11 +15,11 @@
         "item": "urushi:hot_spring_water_bucket",
         "count": 1
       },
-      "text": "幽世ディメンション内には凝灰岩とともに温泉が生成されます。温泉に浸かったモブには再生効果が付与されます。$(br2)温泉水はバケツですくうことができ、水と同様に無限に増やせます。また、温泉水に卵を入れることで卵が温泉卵に変化します。"
+      "text": "Hot springs are generated along with tuff in the Kakuriyo Dimension. It applies Generation when soaking in it.$(br2)Its water can be scooped up with a bucket, to make an infinite spring water source. Also, Eggs placed inside hot spring water turn into Hot Spring Eggs."
     },
     {
       "type": "patchouli:image",
-      "text": "立派な温泉施設を建設しよう",
+      "text": "Build a great hot spring facility!",
       "images": [
         "urushi:textures/gui/patchouli/onsen.png"
       ]

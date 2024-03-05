@@ -944,6 +944,8 @@
 
    "fluid.urushi.hot_spring_water": "Hot Spring Water",
 
+   "block.urushi.hot_spring_water": "Hot Spring Water",
+
    "item.urushi.hot_spring_water_bucket": "Hot Spring Water Bucket",
 
    "gui.jei.category.urushi.fox_eating": "Fox Eating",
@@ -1502,9 +1504,9 @@
 
     "info.urushi.element_crafting_table2": "You need to send specific type of Reiryoku to start crafting.",
 
-    "info.urushi.amber_igniter1": "Consumes 10 FIRE element Reiryoku to ignite a Shichirin.",
+    "info.urushi.amber_igniter1": "Consumes 10 FIRE element Reiryoku to ignite a Shichirin Stove.",
 
-    "info.urushi.uchiwa2": "Consumes 1 WOOD element Reiryoku to manipulate the fire of Shichirin.",
+    "info.urushi.uchiwa2": "Consumes 1 WOOD element Reiryoku to manipulate the fire of Shichirin Stove.",
 
     "info.urushi.uchiwa3": "Consumes 1 WOOD element Reiryoku per one block.",
 
@@ -1668,7 +1670,7 @@
 
     "advancements.urushi.root.title": "Urushi",
 
-    "advancements.urushi.root.description": "A Japanese-style architecture and magic mod",
+    "advancements.urushi.root.description": "A Japanese style architecture and magic mod",
 
     "advancements.urushi.lacquer_sapling.title": "Traditional",
 
@@ -1710,7 +1712,7 @@
 
     "advancements.urushi.cobbled_yomi_stone.description": "Obtain Cobbled Yomi Stone",
 
-    "advancements.urushi.ghost_core.title": "Where're the Lazy Bones?",
+    "advancements.urushi.ghost_core.title": "Where are the Lazy Bones?",
 
     "advancements.urushi.ghost_core.description": "Obtain Ghost Core",
 
@@ -1760,7 +1762,7 @@
 
     "advancements.urushi.shichirin.title": "Burn",
 
-    "advancements.urushi.shichirin.description": "Fire a Shichirin",
+    "advancements.urushi.shichirin.description": "Fire a Shichirin Stove",
 
     "advancements.urushi.kitsunebi.title": "Ghost Light",
 
@@ -2234,7 +2236,7 @@
     "info.urushi.urushi_hopper": "A cheaper but slower hopper",
     "item.urushi.yakitori": "Yakitori",
     "item.urushi.hiyayakko": "Hiyayakko Tofu",
-    "item.urushi.matured_japanese_apricot_fruit": "Matured Plum",
+    "item.urushi.matured_japanese_apricot_fruit": "Ripe Plum",
     "item.urushi.pickled_japanese_apricot": "Pickled Plum",
     "block.urushi.green_onion_crop": "Green Onion",
     "item.urushi.wood_enhanced_jadeite": "Wood Enhanced Jadeite",
@@ -2263,7 +2265,7 @@
     "gui.jei.category.urushi.metal_element_tier2_crafting": "Ritual",
     "gui.jei.category.urushi.water_element_tier2_crafting": "Ritual",
     "info.urushi.hokora": "Right-click or use a Hopper to insert the required item to generate 5 Reiryoku.",
-    "info.urushi.wood_hokora": "Required Item : Matured Plum",
+    "info.urushi.wood_hokora": "Required Item : Ripe Plum",
     "info.urushi.fire_hokora": "Required Item : Wheat",
     "info.urushi.earth_hokora": "Required Item : Rice Ear",
     "info.urushi.metal_hokora": "Required Item : Green Onion",

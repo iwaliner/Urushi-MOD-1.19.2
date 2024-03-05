@@ -1,5 +1,5 @@
 {
-  "name": "ハーフブロックの側面テクスチャ",
+  "name": "Side Textures of Slabs",
   "category": "urushi:vanilla_modifications",
   "icon": "minecraft:polished_granite_slab",
   "priority": true,
@@ -11,7 +11,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "磨かれた花崗岩、磨かれた閃緑岩、磨かれた安山岩、磨かれたブラックストーンの各種ハーフブロックの側面のテクスチャは、バニラでは上面と同じテクスチャになっています。$(br2)しかしこれでは不格好なため、漆MODを導入すると側面が滑らかな石のハーフブロックのような見た目になるようにしています。"
+      "text": "The textures on the sides of Polished Stones' Slabs are the same as their upper side textures.$(br2)Now with Urushi Mod, you can have resembled versions which ther sides are polished too."
     },
     {
       "type": "patchouli:image",

@@ -1,5 +1,5 @@
 {
-  "name": "蛇の目傘",
+  "name": "Paper Umbrella",
   "category": "urushi:magic",
   "icon": "urushi:open_wagasa",
   "priority": true,
@@ -14,7 +14,7 @@
         "item": "urushi:open_wagasa",
         "count": 1
       },
-      "text": "右クリックで開いたり閉じたりできます。$(br2)開いた状態だと落下速度が遅くなり、落下ダメージを無効化します。$(br2)インベントリ内に配置した木気の勾玉の霊力を消費して機能します。"
+      "text": "Right click to open and close the umbrella.$(br2)When open, it slows down the fall and negates all falling damage.$(br2)It consumes Wood Reiyoku, so a Wood Element Magatama with enough Reiyoku is needed."
     }
   ]
 }

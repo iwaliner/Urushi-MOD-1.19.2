@@ -1,5 +1,5 @@
 {
-  "name": "やすりブロック",
+  "name": "Sandpapaer Block",
   "category": "urushi:useful_items",
   "icon": "urushi:sandpaper_block",
   "priority": true,
@@ -11,7 +11,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "やすりブロックは粘着ピストンと組み合わせて使います。$(br2)粘着ピストンの正面にやすりブロックを設置して粘着ピストンを動かすと、やすりに隣接したブロックが磨かれます。原木の樹皮を剥ぐこともできます。"
+      "text": "Use the Sandpaper Block along with Sticky Piston.$(br2)When you place the grindstone block in front of a sticky piston and activate the piston, the blocks adjacent to the grindstone will be polished. It can also strip bark from logs."
     },
      {
       "type": "patchouli:crafting",

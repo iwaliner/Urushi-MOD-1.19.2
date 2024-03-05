@@ -1,5 +1,5 @@
 {
-  "name": "玉鋼の刀",
+  "name": "Iron Katana",
   "category": "urushi:useful_items",
   "icon": "urushi:iron_katana",
   "priority": true,
@@ -11,7 +11,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "左クリックで抜刀し攻撃ができます。左クリックの攻撃では範囲ダメージは発生しません。$(br2)右クリックすると抜刀した上で前方に突進します。この際、攻撃力の半分のダメージを周囲のすべてのモブに与えます。"
+      "text": "Left-click to unsheath and attack. The left-click attack does not deal area damage.$(br2)Right-click to unsheath and sprint foward, to deal half the damage with all surrounding mobs."
     },
      {
       "type": "patchouli:crafting",

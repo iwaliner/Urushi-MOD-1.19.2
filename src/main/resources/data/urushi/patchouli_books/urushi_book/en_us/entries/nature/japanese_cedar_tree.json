@@ -1,5 +1,5 @@
 {
-  "name": "杉はどこ？",
+  "name": "Japanese Cedar Tree",
   "category": "urushi:nature",
   "icon": "urushi:japanese_cedar_sapling",
   "priority": true,
@@ -11,11 +11,11 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "杉の樹木はタイガ系統のバイオーム、そして幽世ディメンション内に自然生成されます。$(br2)苗木を4つ並べることで巨大な杉の木を生やすことができます。$(br2)杉から作れるブロックのテクスチャは落ち着いた色合いで使いやすいのでオススメです。"
+      "text": "Cedar Trees generate in Taiga biomes and Kakuriyo Dimensions.$(br2)To grow a giant Cedar Tree, place its saplings into a 2x2 square.$(br2)Cedar blocks have a fine texture with calm colors, and it's easy to use."
     },
     {
       "type": "patchouli:image",
-      "text": "これが杉の樹木",
+      "text": "Japanese Cedar Tree",
       "images": [
         "urushi:textures/gui/patchouli/japanese_cedar_tree.png"
       ]

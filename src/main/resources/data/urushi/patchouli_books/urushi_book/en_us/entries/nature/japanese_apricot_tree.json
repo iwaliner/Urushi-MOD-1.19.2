@@ -1,5 +1,5 @@
 {
-  "name": "梅はどこ？",
+  "name": "Japanese Apricot Tree",
   "category": "urushi:nature",
   "icon": "urushi:japanese_apricot_sapling",
   "priority": true,
@@ -11,11 +11,11 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "梅の樹木は森林バイオームに自然生成されます。$(br2)葉は苗木のほかに完熟した梅の実をドロップします。$(br2)グロウストーンと苗木をクラフトしてできた苗木は、成長すると葉が明るさ15で発光する樹木になります。"
+      "text": "Japanese Apricot Trees generate in Forest biomes.$(br2)Their leaves drop Ripe Plums along its saplings.$(br2)Craft its sapling with glowstone for a Glowing Sapling, which leaves have a light level of 15."
     },
     {
       "type": "patchouli:image",
-      "text": "これが梅の樹木",
+      "text": "Japanese Apricot Tree",
       "images": [
         "urushi:textures/gui/patchouli/japanese_apricot_tree.png"
       ]

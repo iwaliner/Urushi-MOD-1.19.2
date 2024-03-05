@@ -1,5 +1,5 @@
 {
-  "name": "アジサイはどこ？",
+  "name": "Hydrangea",
   "category": "urushi:nature",
   "icon": "urushi:ajisai",
   "priority": true,
@@ -11,11 +11,11 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "アジサイは湿地バイオームに自然生成されます。$(br2)アジサイからは紫色の染料がクラフトできます。"
+      "text": "Hydrangea flowers generate in Swamp Biomes.$(br2)These flowers can be crafted into purple dye."
     },
     {
       "type": "patchouli:image",
-      "text": "これがアジサイ",
+      "text": "Hydrangea",
       "images": [
         "urushi:textures/gui/patchouli/ajisai.png"
       ]

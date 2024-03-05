@@ -1,5 +1,5 @@
 {
-  "name": "座布団",
+  "name": "Zabuton",
   "category": "urushi:useful_items",
   "icon": "urushi:red_cushion",
   "priority": true,
@@ -11,7 +11,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "設置した座布団に対して右クリックすると座ることができます。スニークで座り状態の解除ができます。$(br2)モブを近づけるとモブが座布団に座ります。モブは自力で座布団から抜け出すことができません。$(br2)座布団は16色あります。"
+      "text": "Right-click to set a Zabuton on the ground. Right-lick to sit on it, and sneak to stand up.$(br2)Nearby Mobs will sit on Zabuton and cannot stand up by themselves.$(br2)There are 16 colors of Zabuton to choose from."
     },
      {
       "type": "patchouli:crafting",

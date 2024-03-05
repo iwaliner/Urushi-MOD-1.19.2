@@ -1,6 +1,6 @@
 {
-  "name": "便利なアイテム",
-  "description": "漆MODの便利アイテムのうち、霊力を使わないものを紹介します。紹介するほとんどのアイテムは序盤でも簡単に作れるよ。",
+  "name": "Useful Items",
+  "description": "This part introduces various useful items which does not consume Reiyoku energy. Most of these can be easily crafted on early game stages.",
   "icon": "urushi:urushi_hopper",
   "sortnum": 5
 }

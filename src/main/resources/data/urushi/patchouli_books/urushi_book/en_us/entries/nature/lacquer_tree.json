@@ -1,5 +1,5 @@
 {
-  "name": "漆はどこ？",
+  "name": "Lacquer Tree",
   "category": "urushi:nature",
   "icon": "urushi:lacquer_sapling",
   "priority": true,
@@ -11,11 +11,11 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "漆の樹木は森林バイオームに自然生成されますが、見逃しやすいです。$(br2)漆の葉からドロップする漆の苗木はボーナスチェストやスポナー部屋のチェスト、平原バイオームの村のチェストなどからでも入手できます。"
+      "text": "Lacquer Trees spawn in Forest biomes, but are easy to miss due to their texture.$(br2)Their saplings can also be found from the Bonus Chest, Dungeon chests, chests in Plain Villages, or drop from their leaves."
     },
     {
       "type": "patchouli:image",
-      "text": "これが漆の樹木",
+      "text": "Lacquer Tree",
       "images": [
         "urushi:textures/gui/patchouli/lacquer_tree.png"
       ]
