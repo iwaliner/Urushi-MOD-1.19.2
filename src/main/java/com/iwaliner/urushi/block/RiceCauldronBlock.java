@@ -40,7 +40,7 @@ import net.minecraft.util.RandomSource;
 public class RiceCauldronBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
-    public static final IntegerProperty VARIANT = IntegerProperty.create("variant",0,15);
+    public static final IntegerProperty VARIANT = IntegerProperty.create("variant",0,4);
 
     private static final VoxelShape BOX = Block.box(2D, 0.0D, 2D, 14D, 5D, 14D);
 

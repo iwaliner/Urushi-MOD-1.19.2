@@ -12,6 +12,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
 
 public abstract class FoodEntity extends Entity {
@@ -66,6 +67,7 @@ public abstract class FoodEntity extends Entity {
     @Override
     public void tick() {
         this.setDeltaMovement(this.getDeltaMovement().add(0.0D, -0.04D, 0.0D));
+        this.setDeltaMovement(new Vec3(this.getDeltaMovement().x*0.99D,this.getDeltaMovement().y-0.04D,this.getDeltaMovement().z*0.99D));
         this.move(MoverType.SELF, this.getDeltaMovement()); //自由落下
 
     }

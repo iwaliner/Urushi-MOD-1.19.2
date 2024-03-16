@@ -29,7 +29,7 @@ import org.jetbrains.annotations.Nullable;
 import net.minecraft.util.RandomSource;
 
 public class JapaneseTimberBambooBlock extends Block implements net.minecraftforge.common.IPlantable{
-    public static final IntegerProperty AGE = BlockStateProperties.AGE_5;
+    public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
     protected static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
 
 
