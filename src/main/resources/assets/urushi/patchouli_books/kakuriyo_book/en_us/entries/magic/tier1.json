@@ -51,7 +51,7 @@
     },
      {
       "type": "patchouli:text",
-      "text": "Craft a Wood Element Sacred Rock. $(br2)When a Wood element block is placed on the side where two sheets of paper are drawn, the rock transforms the block into 1 Reiyoku energy.$(br2)Right-click the Rock to see the amount of stored Reiryoku."
+      "text": "Craft a Wood Element Sacred Rock. $(br2)When a Wood element block is placed on the two-sheet-paper size, the rock transforms the block into 1 Reiyoku energy.$(br2)Right-click the Rock to see the amount of stored Reiryoku."
     },
      {
       "type": "patchouli:crafting",
