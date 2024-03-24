@@ -88,4 +88,6 @@ public class DirtFurnaceBlock extends HorizonalRotateBlock {
         UrushiUtils.setInfo(list,"dirtfurnace");
          }
 
+
+
 }

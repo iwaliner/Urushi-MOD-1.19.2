@@ -28,7 +28,7 @@ public class GhostKakuriyoPortalCoreBlock extends KakuriyoPortalCoreBlock implem
     public static final BooleanProperty POWERED = BooleanProperty.create("powered");
     public GhostKakuriyoPortalCoreBlock(Properties p_49795_) {
         super(p_49795_);
-        this.registerDefaultState(this.defaultBlockState().setValue(POWERED, Boolean.valueOf(false)));
+        this.registerDefaultState(this.defaultBlockState().setValue(POWERED, Boolean.valueOf(false)).setValue(FACING, Direction.NORTH));
 
     }
     @Override
@@ -52,8 +52,8 @@ public class GhostKakuriyoPortalCoreBlock extends KakuriyoPortalCoreBlock implem
         return state2.getBlock() instanceof IGhostBlock ? true : super.skipRendering(p_60532_, state2, p_60534_);
     }
     @Nullable
-    public BlockState getStateForPlacement(BlockPlaceContext p_55659_) {
-        return this.defaultBlockState().setValue(POWERED, Boolean.valueOf(p_55659_.getLevel().hasNeighborSignal(p_55659_.getClickedPos())));
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        return this.defaultBlockState().setValue(FACING,context.getHorizontalDirection()).setValue(POWERED, Boolean.valueOf(context.getLevel().hasNeighborSignal(context.getClickedPos())));
     }
     public void neighborChanged(BlockState p_55666_, Level p_55667_, BlockPos p_55668_, Block p_55669_, BlockPos p_55670_, boolean p_55671_) {
         if (!p_55667_.isClientSide) {
@@ -68,7 +68,7 @@ public class GhostKakuriyoPortalCoreBlock extends KakuriyoPortalCoreBlock implem
         }
     }
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_55673_) {
-        p_55673_.add(POWERED);
+        p_55673_.add(POWERED,FACING);
     }
 
     @Override

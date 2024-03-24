@@ -152,6 +152,8 @@ public class ClientSetUp {
             ItemProperties.register(ItemAndBlockRegister.water_element_magatama.get(), new ResourceLocation(ModCoreUrushi.ModID, "stored_amount"), (itemStack, clientWorld, livingEntity,i) -> (int)Mth.floor((float) ElementUtils.getStoredReiryokuAmount(itemStack)/400) );
 
             ItemProperties.register(Item.byBlock(ItemAndBlockRegister.japanese_timber_bamboo.get()), new ResourceLocation(ModCoreUrushi.ModID, "event"), (itemStack, clientWorld, livingEntity,i) -> UrushiUtils.isShogatsu()? 1 : 0);
+            ItemProperties.register(ItemAndBlockRegister.raw_rice.get(), new ResourceLocation(ModCoreUrushi.ModID, "is_april_fools"), (itemStack, clientWorld, livingEntity,i) -> UrushiUtils.isAprilFoolsDay()? 1 : 0);
+            ItemProperties.register(ItemAndBlockRegister.rice.get(), new ResourceLocation(ModCoreUrushi.ModID, "is_april_fools"), (itemStack, clientWorld, livingEntity,i) -> UrushiUtils.isAprilFoolsDay()? 1 : 0);
 
         });
 

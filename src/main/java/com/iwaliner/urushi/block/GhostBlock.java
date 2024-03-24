@@ -11,6 +11,7 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -56,27 +57,35 @@ public class GhostBlock extends Block implements IGhostBlock {
     public BlockState getStateForPlacement(BlockPlaceContext p_55659_) {
         return this.defaultBlockState().setValue(POWERED, Boolean.valueOf(p_55659_.getLevel().hasNeighborSignal(p_55659_.getClickedPos())));
     }
-    public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos p_55670_, boolean p_55671_) {
+    public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos pos2, boolean p_55671_) {
         if (!level.isClientSide) {
             boolean flag = state.getValue(POWERED);
-        /*    boolean northFlag=level.getBlockState(pos.north()).getValue(POWERED);
-            boolean eastFlag=level.getBlockState(pos.east()).getValue(POWERED);
-            boolean southFlag=level.getBlockState(pos.south()).getValue(POWERED);
-            boolean westFlag=level.getBlockState(pos.west()).getValue(POWERED);
-            boolean aboveFlag=level.getBlockState(pos.above()).getValue(POWERED);
-            boolean belowFlag=level.getBlockState(pos.below()).getValue(POWERED);
-*/
-            if (flag != level.hasNeighborSignal(pos)) {
-             //   if (flag) {
-             //       p_55667_.scheduleTick(p_55668_, this, 4);
-             //   } else {
-                    level.setBlock(pos, state.cycle(POWERED), 2);
-               // }
-            }
 
-            /*if(level.getBlockState(pos.north()).getBlock()==state.getBlock()&&flag!=level.getBlockState(pos.north()).getValue(POWERED)){
-                level.setBlock(pos.north(), level.getBlockState(pos.north()).setValue(POWERED,flag), 2);
-            }*/
+            if (flag != level.hasNeighborSignal(pos)) {
+                // level.setBlockAndUpdate(pos, state.cycle(POWERED));
+            }
+            boolean flagX=false;
+            for(int i=-1;i<2;i++){
+                for(int j=-1;j<2;j++) {
+                    for (int k = -1; k < 2; k++) {
+                        if(level.getBlockState(pos.offset(i,j,k)).getBlock() instanceof GhostBlock&&level.hasNeighborSignal(pos.offset(i,j,k))){
+                            flagX=true;
+                            break;
+                        }
+                    }
+                }
+            }
+               // level.setBlockAndUpdate(pos, state.cycle(POWERED));
+                    for(int i=-1;i<2;i++){
+                        for(int j=-1;j<2;j++){
+                            for(int k=-1;k<2;k++){
+                                BlockState stateX=level.getBlockState(pos.offset(i,j,k));
+                                if(stateX.getBlock() instanceof GhostBlock){
+                                    level.setBlock(pos.offset(i,j,k), stateX.setValue(POWERED,flagX),2);
+                                }
+                            }
+                        }
+            }
         }
     }
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_55673_) {

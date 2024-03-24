@@ -2,5 +2,13 @@
     "parent": "item/generated",
     "textures": {
         "layer0": "urushi:item/rice_cup"
-    }
+    },
+    "overrides": [
+        {
+            "predicate": {
+                "urushi:is_april_fools": 1
+            },
+            "model": "urushi:item/rice_cup_rainbow"
+        }
+    ]
 }

@@ -2,6 +2,7 @@ package com.iwaliner.urushi.entiity;
 
 import com.iwaliner.urushi.EntityRegister;
 import com.iwaliner.urushi.ItemAndBlockRegister;
+import com.iwaliner.urushi.util.UrushiUtils;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -173,7 +174,13 @@ public class CushionEntity extends Entity {
                 }
             }
         }
-
+        if(UrushiUtils.isAprilFoolsDay()) {
+            long gametime = level.getGameTime() % 10;
+            if (gametime == 0) {
+                this.move(MoverType.SELF, this.getDeltaMovement().add(0.0D, 0.4D, 0.0D));
+                this.move(MoverType.SELF, this.getDeltaMovement());
+            }
+        }
     }
 
     /**このメソッドがないとエンティティの見た目どころかF3+B時の当たり判定すら反映されない*/

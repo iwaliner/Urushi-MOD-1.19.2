@@ -2,15 +2,12 @@ package com.iwaliner.urushi;
 
 import com.iwaliner.urushi.block.LanternPlantBlock;
 import com.iwaliner.urushi.block.WallShiitakeBlock;
-import com.iwaliner.urushi.world.feature.JapaneseTimberBambooFeature;
-import com.iwaliner.urushi.world.feature.KakuriyoPortalFeature;
-import com.iwaliner.urushi.world.feature.KakuriyoTreeConfigration;
+import com.iwaliner.urushi.world.feature.*;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.Registry;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
-import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.ConstantInt;
@@ -34,11 +31,11 @@ import net.minecraft.world.level.levelgen.feature.foliageplacers.MegaPineFoliage
 import net.minecraft.world.level.levelgen.feature.foliageplacers.SpruceFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.RandomizedIntStateProvider;
+import net.minecraft.world.level.levelgen.feature.stateproviders.RuleBasedBlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.FancyTrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.GiantTrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
-import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -60,8 +57,24 @@ public class ConfiguredFeatureRegister {
  private static RandomPatchConfiguration grassPatch(BlockStateProvider p_195203_, int p_195204_) {
         return FeatureUtils.simpleRandomPatchConfiguration(p_195204_, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(p_195203_)));
     }
+    public static final RegistryObject<ConfiguredFeature<?, ?>> KAKURIYO_MOSS_BLOCK =
+            ConfiguredFeatures.register("kakuriyo_moss_block", () ->
+                    new ConfiguredFeature<>(FeatureRegister.BLOCK_REPLACE.get(),
+                            new BlockReplaceFeature.Configuration(BlockStateProvider.simple(ItemAndBlockRegister.kakuriyo_grass_block.get().defaultBlockState()),BlockStateProvider.simple(Blocks.MOSS_BLOCK.defaultBlockState()))));
+    public static final RegistryObject<ConfiguredFeature<?, ?>> KAKURIYO_DISK_MUD =
+            ConfiguredFeatures.register("kakuriyo_disk_mud", () ->
+                    new ConfiguredFeature<>(Feature.DISK,
+                            new DiskConfiguration(RuleBasedBlockStateProvider.simple(Blocks.PACKED_MUD), BlockPredicate.matchesBlocks(List.of(Blocks.DIRT, Blocks.PACKED_MUD,ItemAndBlockRegister.kakuriyo_dirt.get(),ItemAndBlockRegister.kakuriyo_grass_block.get())), UniformInt.of(2, 6), 2)));
+    public static final RegistryObject<ConfiguredFeature<?, ?>> KAKURIYO_SAND =
+            ConfiguredFeatures.register("kakuriyo_sand", () ->
+                    new ConfiguredFeature<>(FeatureRegister.BLOCK_REPLACE_NEAR_WATER.get(),
+                            new BlockNearWaterReplaceFeature.Configuration(BlockStateProvider.simple(ItemAndBlockRegister.kakuriyo_dirt.get().defaultBlockState()),BlockStateProvider.simple(ItemAndBlockRegister.kakuriyo_grass_block.get().defaultBlockState()),BlockStateProvider.simple(Blocks.SAND.defaultBlockState()))));
+    public static final RegistryObject<ConfiguredFeature<?, ?>> KAKURIYO_DISK_SAND =
+            ConfiguredFeatures.register("kakuriyo_disk_sand", () ->
+                    new ConfiguredFeature<>(Feature.DISK,
+                            new DiskConfiguration(RuleBasedBlockStateProvider.simple(Blocks.SAND), BlockPredicate.matchesBlocks(List.of(Blocks.DIRT, Blocks.SAND,ItemAndBlockRegister.kakuriyo_dirt.get(),ItemAndBlockRegister.kakuriyo_grass_block.get())), UniformInt.of(2, 6), 2)));
 
-   public static final RegistryObject<ConfiguredFeature<?, ?>> HOT_SPRING =
+    public static final RegistryObject<ConfiguredFeature<?, ?>> HOT_SPRING =
            ConfiguredFeatures.register("hot_spring", () ->
                    new ConfiguredFeature<>(Feature.LAKE,
                            new LakeFeature.Configuration(BlockStateProvider.simple(ItemAndBlockRegister.HotSpringBlock.get()),
@@ -326,8 +339,26 @@ public class ConfiguredFeatureRegister {
                             grassPatch(BlockStateProvider.simple(ItemAndBlockRegister.fallen_yellow_leaves.get()), 20)));
 
 
-
-
+    public static final RegistryObject<ConfiguredFeature<?, ?>> KAKURIYO_MOSS_BLOCK_SPAWN =
+            ConfiguredFeatures.register("kakuriyo_moss_block_spawn", () -> new ConfiguredFeature<>(Feature.RANDOM_SELECTOR,
+                    new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(
+                            PlacedFeatureRegister.KAKURIYO_MOSS_BLOCK_CHECKED.getHolder().get(),
+                            0.5F)), PlacedFeatureRegister.KAKURIYO_MOSS_BLOCK_CHECKED.getHolder().get())));
+    public static final RegistryObject<ConfiguredFeature<?, ?>> KAKURIYO_DISK_MUD_SPAWN =
+            ConfiguredFeatures.register("kakuriyo_disk_mud_spawn", () -> new ConfiguredFeature<>(Feature.RANDOM_SELECTOR,
+                    new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(
+                            PlacedFeatureRegister.KAKURIYO_DISK_MUD_CHECKED.getHolder().get(),
+                            0.5F)), PlacedFeatureRegister.KAKURIYO_DISK_MUD_CHECKED.getHolder().get())));
+    public static final RegistryObject<ConfiguredFeature<?, ?>> KAKURIYO_SAND_SPAWN =
+            ConfiguredFeatures.register("kakuriyo_sand_spawn", () -> new ConfiguredFeature<>(Feature.RANDOM_SELECTOR,
+                    new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(
+                            PlacedFeatureRegister.KAKURIYO_SAND_CHECKED.getHolder().get(),
+                            0.5F)), PlacedFeatureRegister.KAKURIYO_SAND_CHECKED.getHolder().get())));
+    public static final RegistryObject<ConfiguredFeature<?, ?>> KAKURIYO_DISK_SAND_SPAWN =
+            ConfiguredFeatures.register("kakuriyo_disk_sand_spawn", () -> new ConfiguredFeature<>(Feature.RANDOM_SELECTOR,
+                    new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(
+                            PlacedFeatureRegister.KAKURIYO_DISK_SAND_CHECKED.getHolder().get(),
+                            0.5F)), PlacedFeatureRegister.KAKURIYO_DISK_SAND_CHECKED.getHolder().get())));
  public static final RegistryObject<ConfiguredFeature<?, ?>> HOT_SPRING_SPAWN =
          ConfiguredFeatures.register("hot_spring_spawn", () -> new ConfiguredFeature<>(Feature.RANDOM_SELECTOR,
                  new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(

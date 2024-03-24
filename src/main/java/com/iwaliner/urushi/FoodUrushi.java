@@ -18,6 +18,7 @@ public class FoodUrushi {
     public static final FoodProperties PickledJapaneseApricot = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.2F).build();
     public static final FoodProperties Dango = (new FoodProperties.Builder()).nutrition(7).saturationMod(0.8F).build();
     public static final FoodProperties RiceCake = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.6F).build();
+    public static final FoodProperties RiceBall = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.6F).build();
     public static final FoodProperties RoastedRiceCake = (new FoodProperties.Builder()).nutrition(7).saturationMod(0.8F).build();
     public static final FoodProperties YomitsuheguiFruit = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.4F).build();
     public static final FoodProperties LanternPlant = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.4F).build();

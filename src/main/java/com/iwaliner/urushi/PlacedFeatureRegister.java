@@ -3,10 +3,15 @@ package com.iwaliner.urushi;
 import com.google.common.collect.ImmutableList;
 import com.iwaliner.urushi.world.feature.JapaneseTimberBambooFeature;
 import com.iwaliner.urushi.world.feature.KakuriyoPortalFeature;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
+import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.placement.*;
@@ -28,7 +33,18 @@ public class PlacedFeatureRegister {
     private static List<PlacementModifier> commonOrePlacement(int p_195344_, PlacementModifier p_195345_) {
         return orePlacement(CountPlacement.of(p_195344_), p_195345_);
     }
-
+    public static final RegistryObject<PlacedFeature> KAKURIYO_MOSS_BLOCK_CHECKED = PlacedFeatures.register("kakuriyo_moss_block_checked",
+            () -> new PlacedFeature(ConfiguredFeatureRegister.KAKURIYO_MOSS_BLOCK.getHolder().get(),
+                    List.of(PlacementUtils.filteredByBlockSurvival(Blocks.MOSS_BLOCK))));
+    public static final RegistryObject<PlacedFeature> KAKURIYO_DISK_MUD_CHECKED = PlacedFeatures.register("kakuriyo_disk_mud_checked",
+            () -> new PlacedFeature(ConfiguredFeatureRegister.KAKURIYO_DISK_MUD.getHolder().get(),
+                    List.of(PlacementUtils.filteredByBlockSurvival(Blocks.PACKED_MUD))));
+    public static final RegistryObject<PlacedFeature> KAKURIYO_SAND_CHECKED = PlacedFeatures.register("kakuriyo_sand_checked",
+            () -> new PlacedFeature(ConfiguredFeatureRegister.KAKURIYO_SAND.getHolder().get(),
+                    List.of(PlacementUtils.filteredByBlockSurvival(Blocks.SAND))));
+    public static final RegistryObject<PlacedFeature> KAKURIYO_DISK_SAND_CHECKED = PlacedFeatures.register("kakuriyo_disk_sand_checked",
+            () -> new PlacedFeature(ConfiguredFeatureRegister.KAKURIYO_DISK_SAND.getHolder().get(),
+                    List.of(PlacementUtils.filteredByBlockSurvival(Blocks.SAND))));
     public static final RegistryObject<PlacedFeature> HOT_SPRING_CHECKED = PlacedFeatures.register("hot_spring_checked",
             () -> new PlacedFeature(ConfiguredFeatureRegister.HOT_SPRING.getHolder().get(),
                     List.of(PlacementUtils.filteredByBlockSurvival(ItemAndBlockRegister.HotSpringBlock.get()))));
@@ -239,7 +255,18 @@ public class PlacedFeatureRegister {
     public static final RegistryObject<PlacedFeature> KAKURIYO_HOT_SPRING = PlacedFeatures.register("kakuriyo_hot_spring",
             () -> new PlacedFeature(ConfiguredFeatureRegister.HOT_SPRING_SPAWN.getHolder().get(),
                     fullRangePlacement(PlacementUtils.countExtra(0, 0.1f, 1))));
-
+    public static final RegistryObject<PlacedFeature> KAKURIYO_DISK_MUD = PlacedFeatures.register("kakuriyo_disk_mud",
+            () -> new PlacedFeature(ConfiguredFeatureRegister.KAKURIYO_DISK_MUD_SPAWN.getHolder().get(),
+                    fullRangePlacement(PlacementUtils.countExtra(0, 0.1f, 2))));
+    public static final RegistryObject<PlacedFeature> KAKURIYO_MOSS_BLOCK = PlacedFeatures.register("kakuriyo_moss_block",
+            () -> new PlacedFeature(ConfiguredFeatureRegister.KAKURIYO_MOSS_BLOCK_SPAWN.getHolder().get(),
+                    VegetationPlacements.worldSurfaceSquaredWithCount(40)));
+    public static final RegistryObject<PlacedFeature> KAKURIYO_SAND = PlacedFeatures.register("kakuriyo_sand",
+            () -> new PlacedFeature(ConfiguredFeatureRegister.KAKURIYO_SAND_SPAWN.getHolder().get(),
+                    seagrassPlacement(200)));
+    public static final RegistryObject<PlacedFeature> KAKURIYO_DISK_SAND = PlacedFeatures.register("kakuriyo_disk_sand",
+            () -> new PlacedFeature(ConfiguredFeatureRegister.KAKURIYO_DISK_SAND_SPAWN.getHolder().get(),
+                    List.of( CarvingMaskPlacement.forStep(GenerationStep.Carving.LIQUID), RarityFilter.onAverageOnceEvery(10), BlockPredicateFilter.forPredicate(BlockPredicate.allOf(BlockPredicate.matchesBlocks(Direction.DOWN.getNormal(), ItemAndBlockRegister.kakuriyo_dirt.get()), BlockPredicate.matchesBlocks(BlockPos.ZERO, Blocks.WATER), BlockPredicate.matchesBlocks(Direction.UP.getNormal(), Blocks.WATER))), BiomeFilter.biome())));
     private static ImmutableList.Builder<PlacementModifier> fullRangePlacementBase(PlacementModifier p_195485_) {
         return ImmutableList.<PlacementModifier>builder().add(p_195485_).add(InSquarePlacement.spread()).add(VegetationPlacements.TREE_THRESHOLD).add(PlacementUtils.HEIGHTMAP).add(BiomeFilter.biome());
     }
@@ -248,6 +275,9 @@ public class PlacedFeatureRegister {
     }
     public static List<PlacementModifier> fullRangeSquaredWithCount(int p_195475_) {
         return List.of(CountPlacement.of(p_195475_), InSquarePlacement.spread(), PlacementUtils.FULL_RANGE, BiomeFilter.biome());
+    }
+    public static List<PlacementModifier> seagrassPlacement(int p_195234_) {
+        return List.of(InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, CountPlacement.of(p_195234_), BiomeFilter.biome());
     }
     public static void register(IEventBus eventBus) {
         PlacedFeatures.register(eventBus);

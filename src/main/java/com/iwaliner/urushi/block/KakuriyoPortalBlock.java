@@ -7,6 +7,7 @@ import com.iwaliner.urushi.TagUrushi;
 import com.iwaliner.urushi.world.dimension.KakuriyoTeleporter;
 import com.mojang.math.Vector3f;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.particles.DustColorTransitionOptions;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
@@ -34,23 +35,23 @@ import net.minecraftforge.common.util.ITeleporter;
 
 import net.minecraft.util.RandomSource;
 
-public class KakuriyoPortalBlock extends Block implements SimpleWaterloggedBlock {
+public class KakuriyoPortalBlock extends HorizonalRotateBlock implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     protected static final int AABB_OFFSET = 2;
-    protected static final VoxelShape X_AXIS_AABB = Block.box(0.0D, 0.0D, 6.0D, 16.0D, 16.0D, 10.0D);
-    protected static final VoxelShape Z_AXIS_AABB = Block.box(6.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D);
+    protected static final VoxelShape Z_AXIS_AABB = Block.box(0.0D, 0.0D, 6.0D, 16.0D, 16.0D, 10.0D);
+    protected static final VoxelShape X_AXIS_AABB = Block.box(6.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D);
 
     public KakuriyoPortalBlock(BlockBehaviour.Properties p_54909_) {
         super(p_54909_);
-        this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, Boolean.valueOf(false)));
+        this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, Boolean.valueOf(false)).setValue(FACING, Direction.NORTH));
 
     }
 
-    public VoxelShape getShape(BlockState p_54942_, BlockGetter p_54943_, BlockPos p_54944_, CollisionContext p_54945_) {
+    public VoxelShape getShape(BlockState state, BlockGetter p_54943_, BlockPos p_54944_, CollisionContext p_54945_) {
 
 
-                return X_AXIS_AABB;
+                return state.getValue(FACING).getAxis()== Direction.Axis.Z? Z_AXIS_AABB: X_AXIS_AABB;
 
     }
 
@@ -62,28 +63,38 @@ public class KakuriyoPortalBlock extends Block implements SimpleWaterloggedBlock
             BlockPos center=null;
 
             outer:for(int i=-5;i<5;i++){
-                for(int j=-1;j<5;j++){
-                    for(int k=-3;k<4;k++) {
-                        if (level.getBlockState(pos.offset(i, j, k)) == ItemAndBlockRegister.kakuriyo_portal_core.get().defaultBlockState()||level.getBlockState(pos.offset(i, j, k)) == ItemAndBlockRegister.ghost_kakuriyo_portal_core.get().defaultBlockState()) {
+                for(int j=-1;j<7;j++){
+                    for(int k=-5;k<5;k++) {
+                        if (level.getBlockState(pos.offset(i, j, k)).getBlock() == ItemAndBlockRegister.kakuriyo_portal_core.get()||level.getBlockState(pos.offset(i, j, k)).getBlock() == ItemAndBlockRegister.ghost_kakuriyo_portal_core.get()) {
                             center = pos.offset(i, j-4, k);
+                            ModCoreUrushi.logger.warn("Error 4");
                             break outer;
                         }
                     }
                 }
             }
             if(center==null){
-               // ModCoreUrushi.logger.warn("Center position of the gate is null value!!!");
+                ModCoreUrushi.logger.warn("Error 1");
                 return;
             }else {
                 entity.setDeltaMovement(Vec3.ZERO);
-                entity.teleportTo(center.getX() + 0.5D, center.getY() + 0.5D, center.getZ() - 0.5D);
+                if (state.getValue(FACING).getAxis() == Direction.Axis.Z) {
+                    ModCoreUrushi.logger.warn("Error 2");
+                    entity.teleportTo(center.getX() + 0.5D, center.getY() + 0.5D, center.getZ() - 0.5D);
+                }else{
+                    ModCoreUrushi.logger.warn("Error 3");
+                    entity.teleportTo(center.getX() - 0.5D, center.getY() + 0.5D, center.getZ() + 0.5D);
+
+                }
             }
             if(level instanceof ServerLevel) {
 
                 ResourceKey<Level> resourcekey = level.dimension() == Level.OVERWORLD ? DimensionRegister.KakuriyoKey : Level.OVERWORLD;
                 ServerLevel serverlevel = ((ServerLevel)level).getServer().getLevel(resourcekey);
                 if (serverlevel == null) {
+                    ModCoreUrushi.logger.warn("Error 5");
                     return;
+
                 }
                 BlockPos currentPos=entity.blockPosition();
                 BlockPos upArrayPos=new BlockPos(currentPos.getX(),300,currentPos.getZ());
@@ -92,22 +103,43 @@ public class KakuriyoPortalBlock extends Block implements SimpleWaterloggedBlock
                     for(int i=0;i<300;i++){
                         if(serverlevel.getBlockState(upArrayPos.below(i)).is(TagUrushi.YOMI_STONE)||serverlevel.getBlockState(upArrayPos.below(i)).is(BlockTags.DIRT)){
                             surfaceY=upArrayPos.below(i).getY();
+                            ModCoreUrushi.logger.warn("Error 6");
                             break;
                         }
                     }
                     entity.teleportTo(entity.getX(), surfaceY+5, entity.getZ());
+                    ModCoreUrushi.logger.warn("Error 9");
                 }else{
-                    int portalY=10;
+                    int portalY=4000;
                     for(int i=0;i<300;i++){
                         if(serverlevel.getBlockState(upArrayPos.below(i)).getBlock() instanceof KakuriyoPortalCoreBlock||serverlevel.getBlockState(upArrayPos.below(i)).getBlock() instanceof GhostKakuriyoPortalCoreBlock){
                             portalY=upArrayPos.below(i).getY()-5;
+                            ModCoreUrushi.logger.warn("Error 8");
                             break;
                         }
                     }
+                    if(portalY==4000){
+                        for(int i=320;i>-64;i--){
+                            BlockPos pos1=new BlockPos(pos.getX(),i,pos.getZ());
+                            BlockState state1=level.getBlockState(pos1);
+                            if(state1.isCollisionShapeFullBlock(level,pos)){
+                                portalY=i-5;
+                                ModCoreUrushi.logger.warn("Error 10");
+                                break;
+                            }
+                        }
+                    }
+                    ModCoreUrushi.logger.warn("Error 11");
                     entity.teleportTo(entity.getX(), portalY, entity.getZ());
                 }
+               // if(state.getValue(FACING).getAxis()== Direction.Axis.Z) {
                     ITeleporter teleporter = new KakuriyoTeleporter();
                     entity.changeDimension(serverlevel, teleporter);
+               // }else{
+                //    ITeleporter teleporter = new KakuriyoTeleporterAxisX();
+                //    entity.changeDimension(serverlevel, teleporter);
+               // }
+
 
             }
         }
@@ -147,7 +179,7 @@ public class KakuriyoPortalBlock extends Block implements SimpleWaterloggedBlock
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_56051_) {
-        p_56051_.add( WATERLOGGED);
+        p_56051_.add( WATERLOGGED,FACING);
     }
     public boolean propagatesSkylightDown(BlockState p_52348_, BlockGetter p_52349_, BlockPos p_52350_) {
         return !p_52348_.getValue(WATERLOGGED);

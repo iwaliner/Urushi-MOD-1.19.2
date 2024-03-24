@@ -14,15 +14,16 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Mirror;
-import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -31,6 +32,7 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.network.PacketDistributor;
+import org.jetbrains.annotations.Nullable;
 
 
 import java.util.List;
@@ -128,7 +130,45 @@ public class AbstractFramedBlock extends Block {
 
     @Override
     public BlockState updateShape(BlockState state1, Direction facing, BlockState state2, LevelAccessor world, BlockPos pos1, BlockPos pos2) {
-        return state1.setValue(PROPERTY_BY_DIRECTION.get(facing), Boolean.valueOf(this.connectsToByFacing(state1,facing,world,pos1))) ;
+        return state1.setValue(NORTH, Boolean.valueOf(this.connectsToByFacing(state1,Direction.NORTH,world,pos1)))
+                .setValue(EAST, Boolean.valueOf(this.connectsToByFacing(state1,Direction.EAST,world,pos1)))
+                .setValue(SOUTH, Boolean.valueOf(this.connectsToByFacing(state1,Direction.SOUTH,world,pos1)))
+                .setValue(WEST, Boolean.valueOf(this.connectsToByFacing(state1,Direction.WEST,world,pos1)))
+                .setValue(UP, Boolean.valueOf(this.connectsToByFacing(state1,Direction.UP,world,pos1)))
+                .setValue(DOWN, Boolean.valueOf(this.connectsToByFacing(state1,Direction.DOWN,world,pos1)));
+    }
+
+    @Override
+    public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos pos2, boolean b) {
+        this.updateShape(state,Direction.NORTH,level.getBlockState(pos2),level,pos,pos2);
+        super.neighborChanged(state, level, pos, block, pos2, b);
+    }
+
+    @Override
+    public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity livingEntity, ItemStack stack) {
+        BlockState thisState=level.getBlockState(pos);
+        BlockPos blockpos1 = pos.north();
+        BlockPos blockpos2 = pos.east();
+        BlockPos blockpos3 = pos.south();
+        BlockPos blockpos4 = pos.west();
+        BlockPos blockpos5 = pos.above();
+        BlockPos blockpos6 = pos.below();
+        BlockState nState = level.getBlockState(blockpos1);
+        BlockState eState = level.getBlockState(blockpos2);
+        BlockState sState = level.getBlockState(blockpos3);
+        BlockState wState = level.getBlockState(blockpos4);
+        BlockState aState = level.getBlockState(blockpos5);
+        BlockState bState = level.getBlockState(blockpos6);
+        BlockState newState=this.defaultBlockState().setValue(NORTH, Boolean.valueOf(this.connectsTo(thisState, nState)))
+                .setValue(SOUTH, Boolean.valueOf(this.connectsTo(thisState, sState)))
+                .setValue(WEST, Boolean.valueOf(this.connectsTo(thisState, wState)))
+                .setValue(EAST, Boolean.valueOf(this.connectsTo(thisState, eState)))
+                .setValue(UP, Boolean.valueOf(this.connectsTo(thisState, aState)))
+                .setValue(DOWN, Boolean.valueOf(this.connectsTo(thisState, bState)))
+                .setValue(VARIANT,state.getValue(VARIANT) )
+                ;
+        level.setBlock(pos,newState,2);
+       // level.blockUpdated(pos,state.getBlock());
     }
 
     @Override
@@ -184,5 +224,9 @@ try {
 
     }
 
+    @Override
+    public void onPlace(BlockState state, Level level, BlockPos pos, BlockState state2, boolean b) {
+        this.updateShape(state,Direction.NORTH,state2,level,pos,pos);
 
+    }
 }

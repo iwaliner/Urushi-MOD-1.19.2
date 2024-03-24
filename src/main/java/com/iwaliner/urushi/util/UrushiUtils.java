@@ -99,6 +99,12 @@ public class UrushiUtils {
         int j = localdate.get(ChronoField.MONTH_OF_YEAR);
         return j == 1 && i <=7;
     }
+    public static boolean isAprilFoolsDay() {
+        LocalDate localdate = LocalDate.now();
+        int i = localdate.get(ChronoField.DAY_OF_MONTH);
+        int j = localdate.get(ChronoField.MONTH_OF_YEAR);
+        return j == 4 && i ==1;
+    }
     public static VoxelShape rotateSimpleBoxShapeHorizontally(VoxelShape baseShape, int angle){
         double x_min=baseShape.min(Direction.Axis.X)*16D;
         double x_max=baseShape.max(Direction.Axis.X)*16D;

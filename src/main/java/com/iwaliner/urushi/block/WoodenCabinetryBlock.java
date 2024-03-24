@@ -31,7 +31,7 @@ import org.jetbrains.annotations.Nullable;
 import net.minecraft.util.RandomSource;
 
 public class WoodenCabinetryBlock extends BaseEntityBlock {
-    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
 
     public WoodenCabinetryBlock(Properties p_i49996_1_) {
@@ -112,6 +112,7 @@ public class WoodenCabinetryBlock extends BaseEntityBlock {
     public BlockState mirror(BlockState state, Mirror mirror) {
         return state.rotate(mirror.getRotation(state.getValue(FACING)));
     }
+
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_206840_1_) {
         p_206840_1_.add(FACING, OPEN);
