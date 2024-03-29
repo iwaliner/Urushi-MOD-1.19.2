@@ -110,42 +110,46 @@ public class EmitterBlockEntity extends AbstractReiryokuStorableBlockEntity impl
     }
 
     /**送信先のブロックが何ブロック離れているか*/
-    private int sendDistance(Level level,BlockPos emitterPos){
-      BlockState emitterState=level.getBlockState(emitterPos);
-      Direction direction=emitterState.getValue(EmitterBlock.FACING);
-      EmitterBlockEntity emitterBlockEntity= (EmitterBlockEntity) level.getBlockEntity(emitterPos);
-      int j=0;
-      int range=Mth.floor(this.particleSpeed*80-0.25D);
-      for(int i=1;i<range;i++){
-          BlockEntity blockEntity=level.getBlockEntity(emitterPos.relative(direction,i));
-          BlockState state=level.getBlockState(emitterPos.relative(direction,i));
-          VoxelShape shape= state.getCollisionShape(level,emitterPos.relative(direction,i)).optimize();
-          double corner=6D;
-          VoxelShape particleShape= Block.box(corner,corner,corner,16D-corner,16D-corner,16D-corner);
+    private int sendDistance(Level level,BlockPos emitterPos) {
+        BlockState emitterState = level.getBlockState(emitterPos);
+        int j = 0;
+        if (emitterState.getBlock() instanceof EmitterBlock) {
+            Direction direction = emitterState.getValue(EmitterBlock.FACING);
+            EmitterBlockEntity emitterBlockEntity = (EmitterBlockEntity) level.getBlockEntity(emitterPos);
+            int range = Mth.floor(this.particleSpeed * 80 - 0.25D);
+            for (int i = 1; i < range; i++) {
+                BlockEntity blockEntity = level.getBlockEntity(emitterPos.relative(direction, i));
+                BlockState state = level.getBlockState(emitterPos.relative(direction, i));
+                VoxelShape shape = state.getCollisionShape(level, emitterPos.relative(direction, i)).optimize();
+                double corner = 6D;
+                VoxelShape particleShape = Block.box(corner, corner, corner, 16D - corner, 16D - corner, 16D - corner);
 
-          if(blockEntity!=null&&emitterBlockEntity!=null){
-              if(blockEntity instanceof ReiryokuImportable||blockEntity instanceof MirrorBlockEntity){
-                  if(blockEntity instanceof EmitterBlockEntity){
-                      break;
-                  }else {
-                      ReiryokuStorable reiryokuStorable = (ReiryokuStorable) blockEntity;
-                      if (reiryokuStorable.canAddReiryoku(emitterBlockEntity.getSendAmount())) {
-                          if(blockEntity instanceof Mirror||reiryokuStorable.getStoredElementType()==emitterBlockEntity.getStoredElementType()) {
-                              j = i;
-                              break;
-                          }
-                      }
-                      break;
-                  }
-              }
+                if (blockEntity != null && emitterBlockEntity != null) {
+                    if (blockEntity instanceof ReiryokuImportable || blockEntity instanceof MirrorBlockEntity) {
+                        if (blockEntity instanceof EmitterBlockEntity) {
+                            break;
+                        } else {
+                            ReiryokuStorable reiryokuStorable = (ReiryokuStorable) blockEntity;
+                            if (reiryokuStorable.canAddReiryoku(emitterBlockEntity.getSendAmount())) {
+                                if (blockEntity instanceof Mirror || reiryokuStorable.getStoredElementType() == emitterBlockEntity.getStoredElementType()) {
+                                    j = i;
+                                    break;
+                                }
+                            }
+                            break;
+                        }
+                    }
 
-          } else if(Shapes.joinIsNotEmpty(shape,particleShape, BooleanOp.AND)){
-              break;
-          }
+                } else if (Shapes.joinIsNotEmpty(shape, particleShape, BooleanOp.AND)) {
+                    break;
+                }
 
-      }
-      return j;
-    }
+            }
+        }
+
+            return j;
+        }
+
 
     /**霊力を輸送*/
     private void send(Level level,BlockPos emitterPos, double dX, double dY, double dZ,double vX,double vY,double vZ){

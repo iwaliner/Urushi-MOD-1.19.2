@@ -23,6 +23,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
+import net.minecraft.client.renderer.entity.FallingBlockRenderer;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
@@ -90,6 +91,10 @@ public class ClientSetUp {
         });
         event.registerEntityRenderer(EntityRegister.Ghost.get(), GhostRenderer::new);
         event.registerEntityRenderer(EntityRegister.Cushion.get(), CushionRenderer::new);
+        event.registerEntityRenderer(EntityRegister.Jufu.get(),  (p_174088_) -> {
+            return new ThrownItemRenderer<>(p_174088_, 1.0F, true);
+        });
+        event.registerEntityRenderer(EntityRegister.JufuEffectDisplay.get(), FallingBlockRenderer::new);
     }
 
     /**エンティティのレイヤーを指定*/
@@ -128,6 +133,7 @@ public class ClientSetUp {
         Minecraft.getInstance().particleEngine.register(ParticleRegister.EarthElementMedium.get(), MediumParticle.Provider::new);
         Minecraft.getInstance().particleEngine.register(ParticleRegister.MetalElementMedium.get(), MediumParticle.Provider::new);
         Minecraft.getInstance().particleEngine.register(ParticleRegister.WaterElementMedium.get(), MediumParticle.Provider::new);
+
     }
 
 

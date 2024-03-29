@@ -30,7 +30,7 @@ import java.util.function.ToIntFunction;
 public class ItemAndBlockRegister {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, ModCoreUrushi.ModID);
     public static final DeferredRegister<Block> BLOCKS= DeferredRegister.create(ForgeRegistries.BLOCKS, ModCoreUrushi.ModID);
-    public static final RegistryObject<Block> null_block =BLOCKS.register("null_block",() -> {return new NullBlock(BlockBehaviour.Properties.of(Material.AIR).noOcclusion().isValidSpawn(ItemAndBlockRegister::never).isRedstoneConductor(ItemAndBlockRegister::never).isSuffocating(ItemAndBlockRegister::never).isViewBlocking(ItemAndBlockRegister::never));});
+    public static final RegistryObject<Block> null_block =BLOCKS.register("null_block",() -> {return new NullBlock(BlockBehaviour.Properties.of(Material.AIR).noOcclusion().isValidSpawn(ItemAndBlockRegister::never).isRedstoneConductor(ItemAndBlockRegister::never).isSuffocating(ItemAndBlockRegister::never).isViewBlocking(ItemAndBlockRegister::never).noLootTable());});
     public static final RegistryObject<Item> null_blockitem =ITEMS.register("null_block",() -> {return new BlockItem( Objects.requireNonNull(null_block.get()), (new Item.Properties()));});
     public static final RegistryObject<Block> sikkui =BP("plaster","p",0,() -> {return new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.SNOW).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> sikkui_slab =BP("plaster_slab","p",0,() -> {return new SlabBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.SNOW).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(1.0F, 10.0F));});
@@ -1030,6 +1030,11 @@ public class ItemAndBlockRegister {
     public static final RegistryObject<Block> water_element_hokora =BM("water_element_hokora","p",-1,() -> {return new HokoraBlock(ElementType.WaterElement,"water_hokora",BlockBehaviour.Properties.of(Material.STONE, MaterialColor.EMERALD).sound(SoundType.STONE).strength(1.0F, 10.0F));});
 
     public static final RegistryObject<Item> amber_igniter =ITEMS.register("amber_igniter", () -> {return new AmberIgniterItem((new Item.Properties()).tab(ModCoreUrushi.UrushiMagicTab).durability(512));});
+    public static final RegistryObject<Item> freezing_jufu =ITEMS.register("freezing_jufu", () -> {return new JufuItem(ElementType.WaterElement,50,"freezing_jufu",(new Item.Properties()).tab(ModCoreUrushi.UrushiMagicTab));});
+    public static final RegistryObject<Item> knockback_jufu =ITEMS.register("knockback_jufu", () -> {return new JufuItem(ElementType.WoodElement,50,"knockback_jufu",(new Item.Properties()).tab(ModCoreUrushi.UrushiMagicTab));});
+    public static final RegistryObject<Item> jump_jufu =ITEMS.register("jump_jufu", () -> {return new JufuItem(ElementType.WoodElement,50,"jump_jufu",(new Item.Properties()).tab(ModCoreUrushi.UrushiMagicTab));});
+    public static final RegistryObject<Item> liana_jufu =ITEMS.register("liana_jufu", () -> {return new JufuItem(ElementType.WoodElement,50,"liana_jufu",(new Item.Properties()).tab(ModCoreUrushi.UrushiMagicTab));});
+    public static final RegistryObject<Block> freezing_display =BLOCKS.register("freezing_display",() -> {return new Block(BlockBehaviour.Properties.of(Material.ICE).noOcclusion().isValidSpawn(ItemAndBlockRegister::never).isRedstoneConductor(ItemAndBlockRegister::never).isSuffocating(ItemAndBlockRegister::never).isViewBlocking(ItemAndBlockRegister::never).noLootTable());});
 
 
 
