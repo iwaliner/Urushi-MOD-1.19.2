@@ -56,7 +56,6 @@ public class ElementUtils {
     public  static boolean isMiningSpeedChanger(Item item){
         return TagUrushi.woodMiningSpeedChangeItemMap.containsKey(item)
                 ||TagUrushi.fireMiningSpeedChangeItemMap.containsKey(item)
-                ||TagUrushi.woodMiningSpeedChangeItemMap.containsKey(item)
                 ||TagUrushi.earthMiningSpeedChangeItemMap.containsKey(item)
                 ||TagUrushi.metalMiningSpeedChangeItemMap.containsKey(item)
                 ||TagUrushi.waterMiningSpeedChangeItemMap.containsKey(item);
@@ -77,27 +76,51 @@ public class ElementUtils {
         return TagUrushi.waterMiningSpeedChangeItemMap.containsKey(item);
     }
     public  static int getExtraMiningPercent(Item item,ElementType elementType){
-        if(elementType==ElementType.WoodElement){
-            if(ElementUtils.isWoodMiningSpeedChanger(item)){
-               return TagUrushi.woodMiningSpeedChangeItemMap.get(item);
-            }
-        }else if(elementType==ElementType.FireElement){
-            if(ElementUtils.isFireMiningSpeedChanger(item)){
-                return TagUrushi.fireMiningSpeedChangeItemMap.get(item);
-            }
-        }else if(elementType==ElementType.EarthElement){
-            if(ElementUtils.isEarthMiningSpeedChanger(item)){
-                return TagUrushi.earthMiningSpeedChangeItemMap.get(item);
-            }
-        }else if(elementType==ElementType.MetalElement){
-            if(ElementUtils.isMetalMiningSpeedChanger(item)){
-                return TagUrushi.metalMiningSpeedChangeItemMap.get(item);
-            }
-        }else{
-            if(ElementUtils.isWaterMiningSpeedChanger(item)){
-                return TagUrushi.waterMiningSpeedChangeItemMap.get(item);
-            }
+        int ret = 0;
+        boolean isElementChanger;
+
+        // switch-case is faster than if-else when possible, because switch-case compares only once, but if-else compares many times
+        // usually, when if-else is longer than 4 conditions, switch-case is much faster
+        // @debug: https://www.gregorygaines.com/blog/how-to-use-function-pointers-in-java/
+        switch(elementType){
+            case WoodElement:
+                isElementChanger = ElementUtils.isWoodMiningSpeedChanger(item);
+                if(isElementChanger){
+                    ret = TagUrushi.woodMiningSpeedChangeItemMap.get(item);
+                }
+                break;
+            case FireElement:
+                isElementChanger = ElementUtils.isFireMiningSpeedChanger(item);
+                if(isElementChanger){
+                    ret = TagUrushi.fireMiningSpeedChangeItemMap.get(item);
+                }
+                break;
+            case EarthElement:
+                isElementChanger = ElementUtils.isEarthMiningSpeedChanger(item);
+                if(isElementChanger){
+                    ret = TagUrushi.earthMiningSpeedChangeItemMap.get(item);
+                }
+                break;
+            case MetalElement:
+                isElementChanger = ElementUtils.isMetalMiningSpeedChanger(item);
+                if(isElementChanger){
+                    ret = TagUrushi.metalMiningSpeedChangeItemMap.get(item);
+                }
+                break;
+            case WaterElement:
+                isElementChanger = ElementUtils.isWaterMiningSpeedChanger(item);
+                if(isElementChanger){
+                    ret = TagUrushi.waterMiningSpeedChangeItemMap.get(item);
+                }
+                break;
+            default:
+                return 0;
         }
+
+        if(isElementChanger){
+            return ret;
+        }
+
         return 0;
     }
     public  static boolean isWoodElement(BlockState state){
@@ -209,23 +232,31 @@ public class ElementUtils {
         return false;
     }
     public  static boolean isSpecificElement(ElementType type,BlockState state){
-        if(type==ElementType.WoodElement){
-            return ElementUtils.isWoodElement(state);
-        }else if(type==ElementType.FireElement){
-            return ElementUtils.isFireElement(state);
-        }else if(type==ElementType.EarthElement){
-            return ElementUtils.isEarthElement(state);
-        }else if(type==ElementType.MetalElement){
-            return ElementUtils.isMetalElement(state);
-        }else if(type==ElementType.WaterElement){
-            return ElementUtils.isWaterElement(state);
-        }else{
-            return false;
+        boolean ret;
+        switch(type){
+            case WoodElement:
+                ret = ElementUtils.isWoodElement(state);
+                break;
+            case FireElement:
+                ret = ElementUtils.isFireElement(state);
+                break;
+            case EarthElement:
+                ret = ElementUtils.isEarthElement(state);
+                break;
+            case MetalElement:
+                ret = ElementUtils.isMetalElement(state);
+                break;
+            case WaterElement:
+                ret = ElementUtils.isWaterElement(state);
+                break;
+            default:
+                return false;
         }
+        return ret;
+
     }
 
-    public static float countMiningPercentByInventory(Player player, ElementType type)
-    {
+    public static float countMiningPercentByInventory(Player player, ElementType type) {
         float extra=100;
         for (int i = 0; i < player.getInventory().getContainerSize(); ++i)
         {
@@ -240,27 +271,36 @@ public class ElementUtils {
     public static void setBreakSpeedInfo(List<Component> list, int i,ElementType type) {
         String s = null;
         ChatFormatting chatFormatting = ChatFormatting.GRAY;
-        if (type == ElementType.WoodElement) {
-            s = "info.urushi.wood_element_of_block";
-            chatFormatting = ChatFormatting.DARK_GREEN;
-        } else if (type == ElementType.FireElement) {
-            s = "info.urushi.fire_element_of_block";
-            chatFormatting = ChatFormatting.DARK_RED;
-        } else if (type == ElementType.EarthElement) {
-            s = "info.urushi.earth_element_of_block";
-            chatFormatting = ChatFormatting.GOLD;
-        } else if (type == ElementType.MetalElement) {
-            s = "info.urushi.metal_element_of_block";
-            chatFormatting = ChatFormatting.GRAY;
-        } else if (type == ElementType.WaterElement) {
-            s = "info.urushi.water_element_of_block";
-            chatFormatting = ChatFormatting.DARK_PURPLE;
+        switch(type){
+            case WoodElement:
+                s = "info.urushi.wood_element_of_block";
+                chatFormatting = ChatFormatting.DARK_GREEN;
+                break;
+            case FireElement:
+                s = "info.urushi.fire_element_of_block";
+                chatFormatting = ChatFormatting.DARK_RED;
+                break;
+            case EarthElement:
+                s = "info.urushi.earth_element_of_block";
+                chatFormatting = ChatFormatting.GOLD;
+                break;
+            case MetalElement:
+                s = "info.urushi.metal_element_of_block";
+                chatFormatting = ChatFormatting.GRAY;
+                break;
+            case WaterElement:
+                s = "info.urushi.water_element_of_block";
+                chatFormatting = ChatFormatting.DARK_PURPLE;
+                break;
+            default:
+                //break;
+                // throw exception?
+                return; // as no element matches, just return
         }
         if (i < 0) {
             list.add((Component.translatable("info.urushi.blank").append(i + "% ").append(Component.translatable(s))).withStyle(chatFormatting));
         }else{
             list.add((Component.translatable("info.urushi.blank").append("+"+i + "% ").append(Component.translatable(s))).withStyle(chatFormatting));
-
         }
     }
     public static boolean isWoodElementMob(LivingEntity entity){
@@ -391,17 +431,11 @@ public class ElementUtils {
         for (int i = 0; i < player.getInventory().getContainerSize(); ++i)
         {
             ItemStack itemstack = player.getInventory().getItem(i);
-            if (itemstack.getItem() instanceof AbstractMagatamaItem)
-            {
-                AbstractMagatamaItem magatamaItem= (AbstractMagatamaItem) itemstack.getItem();
+            if (itemstack.getItem() instanceof AbstractMagatamaItem magatamaItem) {
                 if(magatamaItem.getElementType()==elementType){
                     result= itemstack;
                     break;
-                }else{
-                    continue;
                 }
-            }else{
-                continue;
             }
         }
         return result;

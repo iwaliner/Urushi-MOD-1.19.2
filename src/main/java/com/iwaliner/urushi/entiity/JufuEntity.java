@@ -123,7 +123,12 @@ public class JufuEntity extends ThrowableItemProjectile  {
         super.onHit(result);
 
         ParticleOptions particleoption = new ItemParticleOption(ParticleTypes.ITEM, this.getItemRaw());
-        for(int i = 0; i < 8; ++i) {
+
+        // same function with for(int i = 0; i < 8; ++i) {
+        // when i is not used inside the loop, using decrement loop will be faster than ++i
+        // speed: i--(--i) faster than ++i faster than i++, this relates to binary code compile process
+        // https://stackoverflow.com/questions/16476125/why-does-decrement-loop-runs-faster-than-increment-loop
+        for(int i = 8; i > 0; --i) {
             this.level.addParticle(particleoption, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D);
         }
 

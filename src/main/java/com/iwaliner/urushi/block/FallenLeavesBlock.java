@@ -33,7 +33,8 @@ public class FallenLeavesBlock extends CarpetBlock {
                     break;
                 }
             }
-            return depth>4? false: !level.isEmptyBlock(pos.below());
+            // same result with depth>4? false: !level.isEmptyBlock(pos.below());
+            return depth <= 4 && !level.isEmptyBlock(pos.below());
 
         }else {
             return level.getBlockState(pos.below()).isSolidRender(level, pos);
