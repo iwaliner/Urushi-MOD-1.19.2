@@ -181,7 +181,7 @@ public class ModCoreUrushi {
                         this.setSuccess(true);
                         stack.shrink(1);
                         level.setBlockAndUpdate(blockpos, ItemAndBlockRegister.chiseled_lacquer_log.get().defaultBlockState().setValue(ChiseledLacquerLogBlock.FILLED, Boolean.valueOf(false)).setValue(ChiseledLacquerLogBlock.FACING, blockstate.getValue(ChiseledLacquerLogBlock.FACING)));
-                        level.gameEvent((Entity) null, GameEvent.BLOCK_PLACE, blockpos);
+                        level.gameEvent(null, GameEvent.BLOCK_PLACE, blockpos);
                         if (stack.isEmpty()) {
                             return new ItemStack(ItemAndBlockRegister.raw_urushi_ball.get());
                         } else {
@@ -382,20 +382,24 @@ public class ModCoreUrushi {
     @SubscribeEvent
     public void GrassDropEvent(BlockEvent.BreakEvent event) {
         if (!event.getPlayer().isCreative() && (event.getLevel().getBlockState(event.getPos()).getBlock()==Blocks.FERN || event.getLevel().getBlockState(event.getPos()).getBlock()==Blocks.TALL_GRASS || event.getLevel().getBlockState(event.getPos()).getBlock()==Blocks.GRASS) ) {
-            if (( event.getLevel()).getRandom().nextFloat() < 0.075F) {
-                ItemEntity entity = new ItemEntity((Level) event.getLevel(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), new ItemStack(ItemAndBlockRegister.rice_crop.get()));
-                event.getLevel().addFreshEntity(entity);
+            float rand =( event.getLevel()).getRandom().nextFloat();
+            if(rand >= 0.3F){
+                return;
             }
-            else if (( event.getLevel()).getRandom().nextFloat() < 0.075F) {
-                ItemEntity entity = new ItemEntity((Level) event.getLevel(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), new ItemStack(ItemAndBlockRegister.soy_crop.get()));
-                event.getLevel().addFreshEntity(entity);
-            } else if (( event.getLevel()).getRandom().nextFloat() < 0.075F) {
-                ItemEntity entity = new ItemEntity((Level) event.getLevel(), (double) event.getPos().getX(), (double) event.getPos().getY(), (double) event.getPos().getZ(), new ItemStack(ItemAndBlockRegister.azuki_crop.get()));
-                event.getLevel().addFreshEntity(entity);
-            }else if (( event.getLevel()).getRandom().nextFloat() < 0.075F) {
-                ItemEntity entity = new ItemEntity((Level) event.getLevel(), (double) event.getPos().getX(), (double) event.getPos().getY(), (double) event.getPos().getZ(), new ItemStack(ItemAndBlockRegister.green_onion_crop.get()));
-                event.getLevel().addFreshEntity(entity);
+            Block given_item = null;
+            if(rand < 0.075F){
+                given_item = ItemAndBlockRegister.rice_crop.get();
+            } else if(rand < 0.15F){
+                given_item = ItemAndBlockRegister.soy_crop.get();
+            } else if(rand < 0.225F){
+                given_item = ItemAndBlockRegister.azuki_crop.get();
+            } else if(rand < 0.3F){
+                given_item = ItemAndBlockRegister.green_onion_crop.get();
             }
+
+            ItemEntity entity = new ItemEntity((Level) event.getLevel(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), new ItemStack(given_item));
+            event.getLevel().addFreshEntity(entity);
+
         }
     }
 
@@ -491,7 +495,7 @@ public class ModCoreUrushi {
                     level.setBlock(pos.relative(UrushiUtils.getDirectionFromInt(i)),Blocks.AIR.defaultBlockState(), 2);
                     level.setBlock(pos.relative(UrushiUtils.getDirectionFromInt(i)).above(200),ElementUtils.getRandomElementBlock(level), 2);
 
-                    event.getLevel().playSound((Player) null, event.getPos().relative(UrushiUtils.getDirectionFromInt(i)), SoundEvents.SAND_BREAK, SoundSource.BLOCKS, 1.0F, 1F);
+                    event.getLevel().playSound(null, event.getPos().relative(UrushiUtils.getDirectionFromInt(i)), SoundEvents.SAND_BREAK, SoundSource.BLOCKS, 1.0F, 1F);
                 }
             }
         }
@@ -511,31 +515,41 @@ public class ModCoreUrushi {
 
         ItemStack stack = event.getItemStack();
         Item item = event.getItemStack().getItem();
-        if (item instanceof ElementItem) {
-            ElementItem elementItem = (ElementItem) item;
+        if (item instanceof ElementItem elementItem) {
             ElementType elementType = elementItem.getElementType();
-            if (elementType == ElementType.WoodElement) {
-                event.getToolTip().add((Component.translatable("info.urushi.wood_element_item")).withStyle(ChatFormatting.DARK_GREEN));
-            } else if (elementType == ElementType.FireElement) {
-                event.getToolTip().add((Component.translatable("info.urushi.fire_element_item")).withStyle(ChatFormatting.DARK_RED));
-            } else if (elementType == ElementType.EarthElement) {
-                event.getToolTip().add((Component.translatable("info.urushi.earth_element_item")).withStyle(ChatFormatting.GOLD));
-            } else if (elementType == ElementType.MetalElement) {
-                event.getToolTip().add((Component.translatable("info.urushi.metal_element_item")).withStyle(ChatFormatting.GRAY));
-            } else if (elementType == ElementType.WaterElement) {
-                event.getToolTip().add((Component.translatable("info.urushi.water_element_item")).withStyle(ChatFormatting.DARK_PURPLE));
+            String item_id;
+            ChatFormatting chatformat_id;
+            switch (elementType){
+                case WoodElement -> {
+                    item_id = "info.urushi.wood_element_item";
+                    chatformat_id = ChatFormatting.DARK_GREEN;
+                }
+                case FireElement -> {
+                    item_id = "info.urushi.fire_element_item";
+                    chatformat_id = ChatFormatting.DARK_RED;
+                }
+                case EarthElement -> {
+                    item_id = "info.urushi.earth_element_item";
+                    chatformat_id = ChatFormatting.GOLD;
+                }
+                case MetalElement -> {
+                    item_id = "info.urushi.metal_element_item";
+                    chatformat_id = ChatFormatting.GRAY;
+                }
+                case WaterElement -> {
+                    item_id = "info.urushi.water_element_item";
+                    chatformat_id = ChatFormatting.DARK_PURPLE;
+                }
+                default -> {
+                    return;
+                }
             }
+
         }
-        if (Block.byItem(event.getItemStack().getItem()) instanceof Tiered) {
-            Tiered tiered = (Tiered) Block.byItem(event.getItemStack().getItem());
+        if (Block.byItem(event.getItemStack().getItem()) instanceof Tiered tiered) {
             int tier = tiered.getTier();
-            if (tier == 1) {
-                event.getToolTip().add((Component.translatable("info.urushi.tier1")).withStyle(ChatFormatting.GRAY));
-            } else if (tier == 2) {
-                event.getToolTip().add((Component.translatable("info.urushi.tier2")).withStyle(ChatFormatting.GRAY));
-            } else if (tier == 3) {
-                event.getToolTip().add((Component.translatable("info.urushi.tier3")).withStyle(ChatFormatting.GRAY));
-            }
+            String tier_id = "info.urushi.tier" + tier;
+            event.getToolTip().add((Component.translatable(tier_id)).withStyle(ChatFormatting.GRAY));
         }
         if(!ConfigUrushi.disableBlockElementDisplaying.get()){
         if (Block.byItem(event.getItemStack().getItem()) != Blocks.AIR) {
@@ -581,26 +595,10 @@ public class ModCoreUrushi {
                 int i=tag.getInt("cookingEnum");
                 int level=ShichirinBlockEntity.getCookingLevel(i);
                 ChatFormatting color=ChatFormatting.WHITE;
-                if(i==0){
+                if(i<5){
                     color= ChatFormatting.AQUA;
-                }else if(i<3){
-                    color= ChatFormatting.AQUA;
-                }else if(i<5){
-                    color= ChatFormatting.AQUA;
-                }else if(i<7){
-                    color= ChatFormatting.YELLOW;
-                }else if(i<9){
-                    color= ChatFormatting.YELLOW;
-                }else if(i==9){
-                    color= ChatFormatting.YELLOW;
-                }else if(i<12){
-                    color= ChatFormatting.YELLOW;
                 }else if(i<14){
                     color= ChatFormatting.YELLOW;
-                }else if(i<16){
-                    color= ChatFormatting.RED;
-                }else if(i<18){
-                    color= ChatFormatting.RED;
                 }else{
                     color= ChatFormatting.RED;
                 }

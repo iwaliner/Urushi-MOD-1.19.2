@@ -75,46 +75,38 @@ public class ChiseledLacquerLogBlock extends HorizonalRotateBlock{
                    for (LivingEntity entity : list2) {
                        if(ElementUtils.isWoodElementMob(entity)) {
                            element=ElementType.WoodElement;
-                           level.playSound((Player) null,pos,SoundEvents.STONE_PLACE,SoundSource.BLOCKS,1F,1F);
-                           entity.discard();
                            break;
                        }else if(ElementUtils.isFireElementMob(entity)) {
                            element=ElementType.FireElement;
-                           level.playSound((Player) null,pos,SoundEvents.STONE_PLACE,SoundSource.BLOCKS,1F,1F);
-                           entity.discard();
                            break;
                        }else if(ElementUtils.isEarthElementMob(entity)) {
                            element=ElementType.EarthElement;
-                           level.playSound((Player) null,pos,SoundEvents.STONE_PLACE,SoundSource.BLOCKS,1F,1F);
-                           entity.discard();
                            break;
                        }else if(ElementUtils.isMetalElementMob(entity)) {
                            element=ElementType.MetalElement;
-                           level.playSound((Player) null,pos,SoundEvents.STONE_PLACE,SoundSource.BLOCKS,1F,1F);
-                           entity.discard();
                            break;
                        }else if(ElementUtils.isWaterElementMob(entity)) {
                            element=ElementType.WaterElement;
-                           level.playSound((Player) null,pos,SoundEvents.STONE_PLACE,SoundSource.BLOCKS,1F,1F);
-                           entity.discard();
                            break;
                        }
+                       level.playSound((Player) null,pos,SoundEvents.STONE_PLACE,SoundSource.BLOCKS,1F,1F);
+                       entity.discard();
                    }
                }
 
 
                if(element!=null){
-                       if(element==ElementType.WoodElement){
-                           level.setBlockAndUpdate(pos,ItemAndBlockRegister.petrified_log_with_wood_amber.get().defaultBlockState().setValue(FACING,state.getValue(FACING)));
-                       }else if(element==ElementType.FireElement){
-                           level.setBlockAndUpdate(pos,ItemAndBlockRegister.petrified_log_with_fire_amber.get().defaultBlockState().setValue(FACING,state.getValue(FACING)));
-                       }else if(element==ElementType.EarthElement){
-                           level.setBlockAndUpdate(pos,ItemAndBlockRegister.petrified_log_with_earth_amber.get().defaultBlockState().setValue(FACING,state.getValue(FACING)));
-                       }else if(element==ElementType.MetalElement){
-                           level.setBlockAndUpdate(pos,ItemAndBlockRegister.petrified_log_with_metal_amber.get().defaultBlockState().setValue(FACING,state.getValue(FACING)));
-                       }else {
-                           level.setBlockAndUpdate(pos,ItemAndBlockRegister.petrified_log_with_water_amber.get().defaultBlockState().setValue(FACING,state.getValue(FACING)));
-                       }
+                   if(element==ElementType.WoodElement){
+                       level.setBlockAndUpdate(pos,ItemAndBlockRegister.petrified_log_with_wood_amber.get().defaultBlockState().setValue(FACING,state.getValue(FACING)));
+                   }else if(element==ElementType.FireElement){
+                       level.setBlockAndUpdate(pos,ItemAndBlockRegister.petrified_log_with_fire_amber.get().defaultBlockState().setValue(FACING,state.getValue(FACING)));
+                   }else if(element==ElementType.EarthElement){
+                       level.setBlockAndUpdate(pos,ItemAndBlockRegister.petrified_log_with_earth_amber.get().defaultBlockState().setValue(FACING,state.getValue(FACING)));
+                   }else if(element==ElementType.MetalElement){
+                       level.setBlockAndUpdate(pos,ItemAndBlockRegister.petrified_log_with_metal_amber.get().defaultBlockState().setValue(FACING,state.getValue(FACING)));
+                   }else {
+                       level.setBlockAndUpdate(pos,ItemAndBlockRegister.petrified_log_with_water_amber.get().defaultBlockState().setValue(FACING,state.getValue(FACING)));
+                   }
                }else{
                    level.setBlockAndUpdate(pos,ItemAndBlockRegister.petrified_log.get().defaultBlockState());
                }
@@ -163,14 +155,14 @@ public class ChiseledLacquerLogBlock extends HorizonalRotateBlock{
         if(random.nextInt(10)==0) {
             if (state.getValue(FILLED) == true) {
                 BlockPos offsetPos = pos;
-                if (state.getValue(FACING) == Direction.NORTH) {
-                    offsetPos = pos.north();
-                } else if (state.getValue(FACING) == Direction.SOUTH) {
-                    offsetPos = pos.south();
-                } else if (state.getValue(FACING) == Direction.WEST) {
-                    offsetPos = pos.west();
-                } else if (state.getValue(FACING) == Direction.EAST) {
-                    offsetPos = pos.east();
+                switch (state.getValue(FACING)){
+                    case NORTH -> offsetPos = pos.north();
+                    case SOUTH -> offsetPos = pos.south();
+                    case WEST ->  offsetPos = pos.west();
+                    case EAST ->  offsetPos = pos.east();
+                    default -> {
+                        return;
+                    }
                 }
                 double d0 = (double) offsetPos.getX() + random.nextInt(10) * 0.1D;
                 double d1 = (double) offsetPos.getY() + random.nextInt(8) * 0.1D;

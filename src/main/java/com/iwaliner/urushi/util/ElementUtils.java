@@ -126,18 +126,23 @@ public class ElementUtils {
     public  static boolean isWoodElement(BlockState state){
         if(state.getBlock().defaultDestroyTime()<0){
             return false;
-        }else if(state.is(TagUrushi.DISABLE_WOOD_ELEMENT)){
+        }
+        if(state.is(TagUrushi.DISABLE_WOOD_ELEMENT)){
             return false;
-        }else if(state.is(TagUrushi.REGISTER_WOOD_ELEMENT)){
+        }
+        if(state.is(TagUrushi.REGISTER_WOOD_ELEMENT)){
             return true;
-        }else if(state.getBlock() instanceof CampfireBlock||state.getBlock() instanceof TorchBlock||state.getBlock() instanceof DiodeBlock){
+        }
+        if(state.getBlock() instanceof CampfireBlock||state.getBlock() instanceof TorchBlock||state.getBlock() instanceof DiodeBlock){
             return false;
-        }else if(state.getSoundType()== SoundType.WOOD|| state.getSoundType()== SoundType.LADDER|| state.getSoundType()== SoundType.BAMBOO|| state.getSoundType()== SoundType.BAMBOO_SAPLING||
+        }
+        if(state.getSoundType()== SoundType.WOOD|| state.getSoundType()== SoundType.LADDER|| state.getSoundType()== SoundType.BAMBOO|| state.getSoundType()== SoundType.BAMBOO_SAPLING||
                  state.getSoundType()== SoundType.SCAFFOLDING||state.getSoundType()== SoundType.AZALEA_LEAVES||state.getSoundType()== SoundType.AZALEA||state.getSoundType()== SoundType.FLOWERING_AZALEA||
                 state.getSoundType()== SoundType.STEM
             ){
             return true;
-        }else if(state.getBlock() instanceof PistonHeadBlock||state.getBlock() instanceof LeavesBlock||state.getBlock() instanceof SaplingBlock){
+        }
+        if(state.getBlock() instanceof PistonHeadBlock||state.getBlock() instanceof LeavesBlock||state.getBlock() instanceof SaplingBlock){
             return true;
         }
 
@@ -146,15 +151,19 @@ public class ElementUtils {
     public  static boolean isFireElement(BlockState state){
         if(state.getBlock().defaultDestroyTime()<0){
             return false;
-        }else if(state.is(TagUrushi.DISABLE_FIRE_ELEMENT)){
+        }
+        if(state.is(TagUrushi.DISABLE_FIRE_ELEMENT)){
             return false;
-        }else if(state.is(TagUrushi.REGISTER_FIRE_ELEMENT)){
+        }
+        if(state.is(TagUrushi.REGISTER_FIRE_ELEMENT)){
             return true;
-        }else if(state.getSoundType()== SoundType.NYLIUM|| state.getSoundType()== SoundType.FUNGUS|| state.getSoundType()== SoundType.SHROOMLIGHT|| state.getSoundType()== SoundType.WART_BLOCK||state.getSoundType()== SoundType.NETHERRACK||state.getSoundType()== SoundType.NETHER_BRICKS||
+        }
+        if(state.getSoundType()== SoundType.NYLIUM|| state.getSoundType()== SoundType.FUNGUS|| state.getSoundType()== SoundType.SHROOMLIGHT|| state.getSoundType()== SoundType.WART_BLOCK||state.getSoundType()== SoundType.NETHERRACK||state.getSoundType()== SoundType.NETHER_BRICKS||
                 state.getSoundType()== SoundType.CANDLE||state.getSoundType()== SoundType.NETHER_WART||state.getSoundType()== SoundType.WOOL
         ){
             return true;
-        }else if(state.getBlock() instanceof TntBlock||state.getBlock() instanceof AbstractFurnaceBlock||state.getBlock() instanceof CampfireBlock||state.getBlock() instanceof TorchBlock){
+        }
+        if(state.getBlock() instanceof TntBlock||state.getBlock() instanceof AbstractFurnaceBlock||state.getBlock() instanceof CampfireBlock||state.getBlock() instanceof TorchBlock){
             return true;
         }
 
@@ -163,20 +172,25 @@ public class ElementUtils {
     public  static boolean isEarthElement(BlockState state){
         if(state.getBlock().defaultDestroyTime()<0){
             return false;
-        }else if(state.is(TagUrushi.DISABLE_EARTH_ELEMENT)){
-            return false;
-        }else if(state.is(TagUrushi.REGISTER_EARTH_ELEMENT)){
-            return true;
-        }else if(state.getMaterial()== Material.AIR){
+        }
+        if(state.is(TagUrushi.DISABLE_EARTH_ELEMENT)){
             return false;
         }
-        else if(state.is(Tags.Blocks.NEEDS_GOLD_TOOL)||state.is(Tags.Blocks.NEEDS_NETHERITE_TOOL)||state.is(BlockTags.NEEDS_DIAMOND_TOOL)||state.is(BlockTags.NEEDS_IRON_TOOL)||state.is(BlockTags.NEEDS_STONE_TOOL)){
+        if(state.is(TagUrushi.REGISTER_EARTH_ELEMENT)){
+            return true;
+        }
+        if(state.getMaterial()== Material.AIR){
             return false;
-        }else if(state.getBlock() instanceof LeavesBlock||state.getBlock() instanceof SaplingBlock||state.getBlock() instanceof DispenserBlock||state.getBlock() instanceof PistonBaseBlock
+        }
+        if(state.is(Tags.Blocks.NEEDS_GOLD_TOOL)||state.is(Tags.Blocks.NEEDS_NETHERITE_TOOL)||state.is(BlockTags.NEEDS_DIAMOND_TOOL)||state.is(BlockTags.NEEDS_IRON_TOOL)||state.is(BlockTags.NEEDS_STONE_TOOL)){
+            return false;
+        }
+        if(state.getBlock() instanceof LeavesBlock||state.getBlock() instanceof SaplingBlock||state.getBlock() instanceof DispenserBlock||state.getBlock() instanceof PistonBaseBlock
                 ||state.getBlock() instanceof TntBlock||state.getBlock() instanceof AbstractFurnaceBlock||state.getBlock() instanceof CauldronBlock||state.getBlock() instanceof ShulkerBoxBlock
                 ||state.getBlock() instanceof SpongeBlock||state.getBlock() instanceof WetSpongeBlock||state.getBlock() instanceof JukeboxBlock||state.getBlock() instanceof ObserverBlock){
             return false;
-        }else if(state.getSoundType()== SoundType.GRAVEL|| state.getSoundType()== SoundType.GRASS|| state.getSoundType()== SoundType.STONE|| state.getSoundType()== SoundType.SAND||
+        }
+        if(state.getSoundType()== SoundType.GRAVEL|| state.getSoundType()== SoundType.GRASS|| state.getSoundType()== SoundType.STONE|| state.getSoundType()== SoundType.SAND||
                 state.getSoundType()== SoundType.SWEET_BERRY_BUSH||state.getSoundType()== SoundType.CROP||state.getSoundType()== SoundType.HARD_CROP||state.getSoundType()== SoundType.VINE||
                 state.getSoundType()== SoundType.ROOTS||state.getSoundType()== SoundType.CALCITE||state.getSoundType()== SoundType.DRIPSTONE_BLOCK||state.getSoundType()== SoundType.POINTED_DRIPSTONE||
                 state.getSoundType()== SoundType.CAVE_VINES||state.getSoundType()== SoundType.SPORE_BLOSSOM||state.getSoundType()== SoundType.MOSS||state.getSoundType()== SoundType.MOSS_CARPET||
@@ -195,19 +209,24 @@ public class ElementUtils {
     public  static boolean isMetalElement(BlockState state){
         if(state.getBlock().defaultDestroyTime()<0){
             return false;
-        }else if(state.is(TagUrushi.DISABLE_METAL_ELEMENT)){
+        }
+        if(state.is(TagUrushi.DISABLE_METAL_ELEMENT)){
             return false;
-        }else if(state.is(TagUrushi.REGISTER_METAL_ELEMENT)){
+        }
+        if(state.is(TagUrushi.REGISTER_METAL_ELEMENT)){
             return true;
-        }else if(state.is(Tags.Blocks.NEEDS_GOLD_TOOL)||state.is(Tags.Blocks.NEEDS_NETHERITE_TOOL)||state.is(BlockTags.NEEDS_DIAMOND_TOOL)||state.is(BlockTags.NEEDS_IRON_TOOL)||state.is(BlockTags.NEEDS_STONE_TOOL)){
+        }
+        if(state.is(Tags.Blocks.NEEDS_GOLD_TOOL)||state.is(Tags.Blocks.NEEDS_NETHERITE_TOOL)||state.is(BlockTags.NEEDS_DIAMOND_TOOL)||state.is(BlockTags.NEEDS_IRON_TOOL)||state.is(BlockTags.NEEDS_STONE_TOOL)){
             return true;
-        }else if(state.getSoundType()== SoundType.METAL|| state.getSoundType()== SoundType.ANVIL|| state.getSoundType()== SoundType.LANTERN|| state.getSoundType()== SoundType.NETHER_ORE||
+        }
+        if(state.getSoundType()== SoundType.METAL|| state.getSoundType()== SoundType.ANVIL|| state.getSoundType()== SoundType.LANTERN|| state.getSoundType()== SoundType.NETHER_ORE||
                 state.getSoundType()== SoundType.NETHER_GOLD_ORE||state.getSoundType()== SoundType.CHAIN||state.getSoundType()== SoundType.AMETHYST||state.getSoundType()== SoundType.AMETHYST_CLUSTER||
                 state.getSoundType()== SoundType.LARGE_AMETHYST_BUD||state.getSoundType()== SoundType.MEDIUM_AMETHYST_BUD||state.getSoundType()== SoundType.SMALL_AMETHYST_BUD||
                 state.getSoundType()== SoundType.COPPER||state.getSoundType()== SoundType.BONE_BLOCK||state.getSoundType()== SoundType.GILDED_BLACKSTONE
         ){
             return true;
-        }else if(state.getBlock() instanceof DispenserBlock||state.getBlock() instanceof PistonBaseBlock||state.getBlock() instanceof CauldronBlock||state.getBlock() instanceof ShulkerBoxBlock
+        }
+        if(state.getBlock() instanceof DispenserBlock||state.getBlock() instanceof PistonBaseBlock||state.getBlock() instanceof CauldronBlock||state.getBlock() instanceof ShulkerBoxBlock
                 ||state.getBlock() instanceof JukeboxBlock||state.getBlock() instanceof ObserverBlock||state.getBlock() instanceof DiodeBlock){
             return true;
         }
@@ -217,15 +236,19 @@ public class ElementUtils {
     public  static boolean isWaterElement(BlockState state){
         if(state.getBlock().defaultDestroyTime()<0){
             return false;
-        }else if(state.is(TagUrushi.DISABLE_WATER_ELEMENT)){
+        }
+        if(state.is(TagUrushi.DISABLE_WATER_ELEMENT)){
             return false;
-        }else if(state.is(TagUrushi.REGISTER_WATER_ELEMENT)){
+        }
+        if(state.is(TagUrushi.REGISTER_WATER_ELEMENT)){
             return true;
-        }else if(state.getSoundType()== SoundType.LILY_PAD|| state.getSoundType()== SoundType.SNOW|| state.getSoundType()== SoundType.POWDER_SNOW|| state.getSoundType()== SoundType.SLIME_BLOCK||
+        }
+        if(state.getSoundType()== SoundType.LILY_PAD|| state.getSoundType()== SoundType.SNOW|| state.getSoundType()== SoundType.POWDER_SNOW|| state.getSoundType()== SoundType.SLIME_BLOCK||
                 state.getSoundType()== SoundType.HONEY_BLOCK||state.getSoundType()== SoundType.WET_GRASS||state.getSoundType()== SoundType.GLASS||state.getSoundType()== SoundType.CORAL_BLOCK
         ){
             return true;
-        }else if(state.getBlock() instanceof SpongeBlock||state.getBlock() instanceof WetSpongeBlock){
+        }
+        if(state.getBlock() instanceof SpongeBlock||state.getBlock() instanceof WetSpongeBlock){
             return true;
         }
 
@@ -304,34 +327,19 @@ public class ElementUtils {
         }
     }
     public static boolean isWoodElementMob(LivingEntity entity){
-        if(entity instanceof Chicken){
-            return true;
-        }
-        return false;
+        return entity instanceof Chicken;
     }
     public static boolean isFireElementMob(LivingEntity entity){
-        if(entity instanceof Sheep){
-            return true;
-        }
-        return false;
+        return entity instanceof Sheep;
     }
     public static boolean isEarthElementMob(LivingEntity entity){
-        if(entity instanceof Cow){
-            return true;
-        }
-        return false;
+        return entity instanceof Cow;
     }
     public static boolean isMetalElementMob(LivingEntity entity){
-        if(entity instanceof Horse){
-            return true;
-        }
-        return false;
+        return entity instanceof Horse;
     }
     public static boolean isWaterElementMob(LivingEntity entity){
-        if(entity instanceof Pig){
-            return true;
-        }
-        return false;
+        return entity instanceof Pig;
     }
     public static boolean isElementMob(LivingEntity entity){
         return isWoodElementMob(entity)||isFireElementMob(entity)||isEarthElementMob(entity)||isMetalElementMob(entity)||isWaterElementMob(entity);
@@ -348,17 +356,16 @@ public class ElementUtils {
 
     /**現在の霊力貯蔵量を返す**/
     public static int getStoredReiryokuAmount(ItemStack stack) {
-        if(getReiryokuCapacity(stack)>0) {
-            CompoundTag compoundtag = stack.getTag();
-            if(compoundtag==null) {
-                stack.setTag(new CompoundTag());
-                return 0;
-            }
-                return compoundtag.getInt(REIRYOKU_AMOUNT);
-
-        }else{
+        if(getReiryokuCapacity(stack)<=0){
             return 0;
         }
+        CompoundTag compoundtag = stack.getTag();
+        if(compoundtag==null) {
+            stack.setTag(new CompoundTag());
+            return 0;
+        }
+        return compoundtag.getInt(REIRYOKU_AMOUNT);
+
     }
 
     /**霊力貯蔵量を特定の量に変更する**/

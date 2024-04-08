@@ -32,10 +32,10 @@ public class DoubledWoodenCabinetryMenu extends AbstractContainerMenu {
                 this.addSlot(new Slot(container, k + j * SLOTS_PER_ROW, 8 + (k-0) * 18, 18 + j * 18));
             }
         }
-        this.addSlot(new Slot(container, 104, 8 + (12 * 18), 18 + 126+18));
-        this.addSlot(new Slot(container, 105, 8 + (12 * 18), 18 + 126+18*2));
-        this.addSlot(new Slot(container, 106, 8 + (12 * 18), 18 + 126+18*3));
-        this.addSlot(new Slot(container, 107, 8 + (12 * 18), 18 + 126+18*4));
+        for(int j = 4; j > 0; --j){
+            this.addSlot(new Slot(container, 103+j, 8 + (12 * 18), 18 + 126+18*j));
+        }
+
         for(int l = 0; l < 3; ++l) {
             for(int j1 = 0; j1 < 9; ++j1) {
                 this.addSlot(new Slot(inventory, j1 + l * 9 + 9, 8 + j1 * 18+2*18, 103 + l * 18 + i+1));
