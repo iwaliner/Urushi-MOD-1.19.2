@@ -27,26 +27,26 @@ import java.util.Map;
 
 public class UrushiUtils {
     public  static Direction getDirectionFromInt(int i){
-        switch (i){
-            case 0 :return  Direction.DOWN;
-            case 1 :return  Direction.UP;
-            case 2 :return  Direction.NORTH;
-            case 3 :return  Direction.SOUTH;
-            case 4 :return  Direction.WEST;
-            case 5 :return  Direction.EAST;
-            default: return Direction.NORTH;
-        }
+        return switch (i) {
+            case 0 -> Direction.DOWN;
+            case 1 -> Direction.UP;
+            case 2 -> Direction.NORTH;
+            case 3 -> Direction.SOUTH;
+            case 4 -> Direction.WEST;
+            case 5 -> Direction.EAST;
+            default -> Direction.NORTH;
+        };
     }
     public  static int getIntFromDirection(Direction direction){
-        switch (direction){
-            case DOWN:  return  0;
-            case UP:    return 1;
-            case NORTH :return  2;
-            case SOUTH :return  3;
-            case WEST : return  4;
-            case EAST : return 5;
-            default:    return 6;
-        }
+        return switch (direction) {
+            case DOWN -> 0;
+            case UP -> 1;
+            case NORTH -> 2;
+            case SOUTH -> 3;
+            case WEST -> 4;
+            case EAST -> 5;
+            default -> 6;
+        };
     }
     public static void setInfo(List<Component> list,String string){
         list.add((Component.translatable("info.urushi."+string )).withStyle(ChatFormatting.GRAY));
@@ -132,5 +132,26 @@ public class UrushiUtils {
         }else{
             return baseShape;
         }
+    }
+
+    /*
+    * isInstanceOfAny() searches a block through a list of classes, to see if block
+    * is an instance of one of the classes.
+    * Returns true if exists, and false if not.
+    *
+    * @Parameter    block: Accepts a block object.
+    * @Parameter    classes: Accepts a list of classes to be searched through.
+    *
+    * @Usage        See ElementUtils.isWoodElement()
+    * luoxueyasha, 2024.4.11
+     */
+
+    public static boolean isInstanceOfAny(Block block, List<Class<?>> classes) {
+        for (Class<?> clazz : classes) {
+            if (clazz.isInstance(block)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

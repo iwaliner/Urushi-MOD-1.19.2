@@ -21,6 +21,7 @@ import net.minecraft.world.entity.animal.horse.Horse;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.piston.PistonBaseBlock;
@@ -29,7 +30,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.common.Tags;
 
-import java.util.List;
+import java.util.*;
+
+import static com.iwaliner.urushi.util.UrushiUtils.isInstanceOfAny;
 
 public class ElementUtils {
 
@@ -51,9 +54,6 @@ public class ElementUtils {
     public  static boolean isWaterElementItem(ItemStack stack){
         return stack.is(TagUrushi.WATER_ELEMENT_ITEM);
     }
-
-    public static Block[] m_soukokuBlockArray = {Blocks.CYAN_CONCRETE_POWDER, Blocks.YELLOW_CONCRETE_POWDER, Blocks.PURPLE_CONCRETE_POWDER,
-            Blocks.RED_CONCRETE_POWDER, Blocks.WHITE_CONCRETE_POWDER};
     public  static boolean isMiningSpeedChanger(Item item){
         return TagUrushi.woodMiningSpeedChangeItemMap.containsKey(item)
                 ||TagUrushi.fireMiningSpeedChangeItemMap.containsKey(item)
@@ -124,8 +124,10 @@ public class ElementUtils {
 
         return 0;
     }
-    public  static boolean isWoodElement(BlockState state){
-        if(state.getBlock().defaultDestroyTime()<0){
+        public  static boolean isWoodElement(BlockState state){
+        Block block = state.getBlock();
+
+        if(block.defaultDestroyTime()<0){
             return false;
         }
         if(state.is(TagUrushi.DISABLE_WOOD_ELEMENT)){
@@ -134,127 +136,137 @@ public class ElementUtils {
         if(state.is(TagUrushi.REGISTER_WOOD_ELEMENT)){
             return true;
         }
-        if(state.getBlock() instanceof CampfireBlock||state.getBlock() instanceof TorchBlock||state.getBlock() instanceof DiodeBlock){
+
+        List<Class<?>> woodBlockDisableClassList = Arrays.asList(
+            CampfireBlock.class, TorchBlock.class, DiodeBlock.class
+        );
+        if (isInstanceOfAny(block, woodBlockDisableClassList)) {
             return false;
         }
-        if(state.getSoundType()== SoundType.WOOD|| state.getSoundType()== SoundType.LADDER|| state.getSoundType()== SoundType.BAMBOO|| state.getSoundType()== SoundType.BAMBOO_SAPLING||
-                 state.getSoundType()== SoundType.SCAFFOLDING||state.getSoundType()== SoundType.AZALEA_LEAVES||state.getSoundType()== SoundType.AZALEA||state.getSoundType()== SoundType.FLOWERING_AZALEA||
-                state.getSoundType()== SoundType.STEM
-            ){
-            return true;
-        }
-        if(state.getBlock() instanceof PistonHeadBlock||state.getBlock() instanceof LeavesBlock||state.getBlock() instanceof SaplingBlock){
+
+        List<Class<?>> woodBlockEnableClassList = Arrays.asList(
+                PistonHeadBlock.class, LeavesBlock.class, SaplingBlock.class
+        );
+        if (isInstanceOfAny(block, woodBlockEnableClassList)) {
             return true;
         }
 
-        return false;
+        List<SoundType> woodSoundTypes = Arrays.asList(
+                SoundType.WOOD, SoundType.LADDER, SoundType.BAMBOO,
+                SoundType.BAMBOO_SAPLING, SoundType.SCAFFOLDING,
+                SoundType.AZALEA_LEAVES, SoundType.AZALEA,
+                SoundType.FLOWERING_AZALEA, SoundType.STEM
+        );
+        SoundType soundType = state.getSoundType();
+        return woodSoundTypes.contains(soundType);
     }
-    public  static boolean isFireElement(BlockState state){
-        if(state.getBlock().defaultDestroyTime()<0){
+    public static boolean isFireElement(BlockState state) {
+        Block block = state.getBlock();
+
+        if (block.defaultDestroyTime() < 0) {
             return false;
         }
-        if(state.is(TagUrushi.DISABLE_FIRE_ELEMENT)){
+        if (state.is(TagUrushi.DISABLE_FIRE_ELEMENT)) {
             return false;
         }
-        if(state.is(TagUrushi.REGISTER_FIRE_ELEMENT)){
-            return true;
-        }
-        if(state.getSoundType()== SoundType.NYLIUM|| state.getSoundType()== SoundType.FUNGUS|| state.getSoundType()== SoundType.SHROOMLIGHT|| state.getSoundType()== SoundType.WART_BLOCK||state.getSoundType()== SoundType.NETHERRACK||state.getSoundType()== SoundType.NETHER_BRICKS||
-                state.getSoundType()== SoundType.CANDLE||state.getSoundType()== SoundType.NETHER_WART||state.getSoundType()== SoundType.WOOL
-        ){
-            return true;
-        }
-        if(state.getBlock() instanceof TntBlock||state.getBlock() instanceof AbstractFurnaceBlock||state.getBlock() instanceof CampfireBlock||state.getBlock() instanceof TorchBlock){
+        if (state.is(TagUrushi.REGISTER_FIRE_ELEMENT)) {
             return true;
         }
 
-        return false;
+        if (block instanceof TntBlock || block instanceof AbstractFurnaceBlock ||
+                block instanceof CampfireBlock || block instanceof TorchBlock) {
+            return true;
+        }
+
+        List<SoundType> fireSoundTypes = Arrays.asList(
+                SoundType.NYLIUM, SoundType.FUNGUS, SoundType.SHROOMLIGHT,
+                SoundType.WART_BLOCK, SoundType.NETHERRACK, SoundType.NETHER_BRICKS,
+                SoundType.CANDLE, SoundType.NETHER_WART, SoundType.WOOL
+        );
+        return fireSoundTypes.contains(state.getSoundType());
     }
-    public  static boolean isEarthElement(BlockState state){
-        if(state.getBlock().defaultDestroyTime()<0){
+
+    public static boolean isEarthElement(BlockState state) {
+        Block block = state.getBlock();
+
+        if (block.defaultDestroyTime() < 0) {
             return false;
         }
-        if(state.is(TagUrushi.DISABLE_EARTH_ELEMENT)){
+        if (state.is(TagUrushi.DISABLE_EARTH_ELEMENT)) {
             return false;
         }
-        if(state.is(TagUrushi.REGISTER_EARTH_ELEMENT)){
+        if (state.is(TagUrushi.REGISTER_EARTH_ELEMENT)) {
             return true;
         }
-        if(state.getMaterial()== Material.AIR){
+        if (state.getMaterial() == Material.AIR) {
             return false;
-        }
-        if(state.is(Tags.Blocks.NEEDS_GOLD_TOOL)||state.is(Tags.Blocks.NEEDS_NETHERITE_TOOL)||state.is(BlockTags.NEEDS_DIAMOND_TOOL)||state.is(BlockTags.NEEDS_IRON_TOOL)||state.is(BlockTags.NEEDS_STONE_TOOL)){
-            return false;
-        }
-        if(state.getBlock() instanceof LeavesBlock||state.getBlock() instanceof SaplingBlock||state.getBlock() instanceof DispenserBlock||state.getBlock() instanceof PistonBaseBlock
-                ||state.getBlock() instanceof TntBlock||state.getBlock() instanceof AbstractFurnaceBlock||state.getBlock() instanceof CauldronBlock||state.getBlock() instanceof ShulkerBoxBlock
-                ||state.getBlock() instanceof SpongeBlock||state.getBlock() instanceof WetSpongeBlock||state.getBlock() instanceof JukeboxBlock||state.getBlock() instanceof ObserverBlock){
-            return false;
-        }
-        if(state.getSoundType()== SoundType.GRAVEL|| state.getSoundType()== SoundType.GRASS|| state.getSoundType()== SoundType.STONE|| state.getSoundType()== SoundType.SAND||
-                state.getSoundType()== SoundType.SWEET_BERRY_BUSH||state.getSoundType()== SoundType.CROP||state.getSoundType()== SoundType.HARD_CROP||state.getSoundType()== SoundType.VINE||
-                state.getSoundType()== SoundType.ROOTS||state.getSoundType()== SoundType.CALCITE||state.getSoundType()== SoundType.DRIPSTONE_BLOCK||state.getSoundType()== SoundType.POINTED_DRIPSTONE||
-                state.getSoundType()== SoundType.CAVE_VINES||state.getSoundType()== SoundType.SPORE_BLOSSOM||state.getSoundType()== SoundType.MOSS||state.getSoundType()== SoundType.MOSS_CARPET||
-                state.getSoundType()== SoundType.BIG_DRIPLEAF||state.getSoundType()== SoundType.SMALL_DRIPLEAF||state.getSoundType()== SoundType.ROOTED_DIRT||state.getSoundType()== SoundType.HANGING_ROOTS||
-                state.getSoundType()== SoundType.GLOW_LICHEN||state.getSoundType()== SoundType.DEEPSLATE||state.getSoundType()== SoundType.DEEPSLATE_BRICKS||state.getSoundType()== SoundType.DEEPSLATE_TILES||
-                state.getSoundType()== SoundType.POLISHED_DEEPSLATE||state.getSoundType()== SoundType.BASALT||state.getSoundType()== SoundType.SOUL_SAND||
-                state.getSoundType()== SoundType.SOUL_SOIL||state.getSoundType()== SoundType.TUFF||state.getSoundType()== SoundType.LODESTONE||state.getSoundType()== SoundType.NETHER_SPROUTS
-                ||state.getSoundType()== SoundType.WEEPING_VINES||state.getSoundType()== SoundType.TWISTING_VINES
-
-        ){
-            return true;
         }
 
-        return false;
+        List<Material> nonEarthMaterials = Arrays.asList(Material.AIR, Material.PLANT, Material.REPLACEABLE_PLANT);
+        if (nonEarthMaterials.contains(state.getMaterial())) {
+            return false;
+        }
+
+        List<SoundType> earthSoundTypes = Arrays.asList(
+                SoundType.GRAVEL, SoundType.GRASS, SoundType.STONE, SoundType.SAND,
+                SoundType.SWEET_BERRY_BUSH, SoundType.CROP, SoundType.HARD_CROP, SoundType.VINE,
+                SoundType.ROOTS, SoundType.CALCITE, SoundType.DRIPSTONE_BLOCK, SoundType.POINTED_DRIPSTONE,
+                SoundType.CAVE_VINES, SoundType.SPORE_BLOSSOM, SoundType.MOSS, SoundType.MOSS_CARPET,
+                SoundType.BIG_DRIPLEAF, SoundType.SMALL_DRIPLEAF, SoundType.ROOTED_DIRT, SoundType.HANGING_ROOTS,
+                SoundType.GLOW_LICHEN, SoundType.DEEPSLATE, SoundType.DEEPSLATE_BRICKS, SoundType.DEEPSLATE_TILES,
+                SoundType.POLISHED_DEEPSLATE, SoundType.BASALT, SoundType.SOUL_SAND, SoundType.SOUL_SOIL,
+                SoundType.TUFF, SoundType.LODESTONE, SoundType.NETHER_SPROUTS, SoundType.WEEPING_VINES,
+                SoundType.TWISTING_VINES
+        );
+        return earthSoundTypes.contains(state.getSoundType());
     }
-    public  static boolean isMetalElement(BlockState state){
-        if(state.getBlock().defaultDestroyTime()<0){
+
+    public static boolean isMetalElement(BlockState state) {
+        Block block = state.getBlock();
+
+        if (block.defaultDestroyTime() < 0) {
             return false;
         }
-        if(state.is(TagUrushi.DISABLE_METAL_ELEMENT)){
+        if (state.is(TagUrushi.DISABLE_METAL_ELEMENT)) {
             return false;
         }
-        if(state.is(TagUrushi.REGISTER_METAL_ELEMENT)){
-            return true;
-        }
-        if(state.is(Tags.Blocks.NEEDS_GOLD_TOOL)||state.is(Tags.Blocks.NEEDS_NETHERITE_TOOL)||state.is(BlockTags.NEEDS_DIAMOND_TOOL)||state.is(BlockTags.NEEDS_IRON_TOOL)||state.is(BlockTags.NEEDS_STONE_TOOL)){
-            return true;
-        }
-        if(state.getSoundType()== SoundType.METAL|| state.getSoundType()== SoundType.ANVIL|| state.getSoundType()== SoundType.LANTERN|| state.getSoundType()== SoundType.NETHER_ORE||
-                state.getSoundType()== SoundType.NETHER_GOLD_ORE||state.getSoundType()== SoundType.CHAIN||state.getSoundType()== SoundType.AMETHYST||state.getSoundType()== SoundType.AMETHYST_CLUSTER||
-                state.getSoundType()== SoundType.LARGE_AMETHYST_BUD||state.getSoundType()== SoundType.MEDIUM_AMETHYST_BUD||state.getSoundType()== SoundType.SMALL_AMETHYST_BUD||
-                state.getSoundType()== SoundType.COPPER||state.getSoundType()== SoundType.BONE_BLOCK||state.getSoundType()== SoundType.GILDED_BLACKSTONE
-        ){
-            return true;
-        }
-        if(state.getBlock() instanceof DispenserBlock||state.getBlock() instanceof PistonBaseBlock||state.getBlock() instanceof CauldronBlock||state.getBlock() instanceof ShulkerBoxBlock
-                ||state.getBlock() instanceof JukeboxBlock||state.getBlock() instanceof ObserverBlock||state.getBlock() instanceof DiodeBlock){
+        if (state.is(TagUrushi.REGISTER_METAL_ELEMENT)) {
             return true;
         }
 
-        return false;
+        List<SoundType> metalSoundTypes = Arrays.asList(
+                SoundType.METAL, SoundType.ANVIL, SoundType.LANTERN, SoundType.NETHER_ORE,
+                SoundType.NETHER_GOLD_ORE, SoundType.CHAIN, SoundType.AMETHYST, SoundType.AMETHYST_CLUSTER,
+                SoundType.LARGE_AMETHYST_BUD, SoundType.MEDIUM_AMETHYST_BUD, SoundType.SMALL_AMETHYST_BUD,
+                SoundType.COPPER, SoundType.BONE_BLOCK, SoundType.GILDED_BLACKSTONE
+        );
+        return metalSoundTypes.contains(state.getSoundType());
     }
-    public  static boolean isWaterElement(BlockState state){
-        if(state.getBlock().defaultDestroyTime()<0){
+
+    public static boolean isWaterElement(BlockState state) {
+        Block block = state.getBlock();
+
+        if (block.defaultDestroyTime() < 0) {
             return false;
         }
-        if(state.is(TagUrushi.DISABLE_WATER_ELEMENT)){
+        if (state.is(TagUrushi.DISABLE_WATER_ELEMENT)) {
             return false;
         }
-        if(state.is(TagUrushi.REGISTER_WATER_ELEMENT)){
-            return true;
-        }
-        if(state.getSoundType()== SoundType.LILY_PAD|| state.getSoundType()== SoundType.SNOW|| state.getSoundType()== SoundType.POWDER_SNOW|| state.getSoundType()== SoundType.SLIME_BLOCK||
-                state.getSoundType()== SoundType.HONEY_BLOCK||state.getSoundType()== SoundType.WET_GRASS||state.getSoundType()== SoundType.GLASS||state.getSoundType()== SoundType.CORAL_BLOCK
-        ){
-            return true;
-        }
-        if(state.getBlock() instanceof SpongeBlock||state.getBlock() instanceof WetSpongeBlock){
+        if (state.is(TagUrushi.REGISTER_WATER_ELEMENT)) {
             return true;
         }
 
-        return false;
+        if (block instanceof SpongeBlock || block instanceof WetSpongeBlock) {
+            return true;
+        }
+
+        List<SoundType> waterSoundTypes = Arrays.asList(
+                SoundType.LILY_PAD, SoundType.SNOW, SoundType.POWDER_SNOW, SoundType.SLIME_BLOCK,
+                SoundType.HONEY_BLOCK, SoundType.WET_GRASS, SoundType.GLASS, SoundType.CORAL_BLOCK
+        );
+        return waterSoundTypes.contains(state.getSoundType());
     }
+
     public  static boolean isSpecificElement(ElementType type,BlockState state){
         boolean ret;
         switch(type){
@@ -327,6 +339,7 @@ public class ElementUtils {
             list.add((Component.translatable("info.urushi.blank").append("+"+i + "% ").append(Component.translatable(s))).withStyle(chatFormatting));
         }
     }
+
     public static boolean isWoodElementMob(LivingEntity entity){
         return entity instanceof Chicken;
     }
@@ -345,6 +358,7 @@ public class ElementUtils {
     public static boolean isElementMob(LivingEntity entity){
         return isWoodElementMob(entity)||isFireElementMob(entity)||isEarthElementMob(entity)||isMetalElementMob(entity)||isWaterElementMob(entity);
     }
+
     public static final String REIRYOKU_AMOUNT="stored_reiryoku";
 
     /**霊力の最大貯蔵可能量を返す**/
@@ -451,47 +465,41 @@ public class ElementUtils {
 
 
     public static boolean isSoukokuBlock(LevelAccessor level, BlockPos pos, BlockState currentState){
-        if(currentState == null){
-            return false;
+        BlockState neighborState=level.getBlockState(pos);
+        if(currentState.getBlock()==Blocks.CYAN_CONCRETE_POWDER){
+            return neighborState.getBlock()==Blocks.YELLOW_CONCRETE_POWDER;
+        }else if(currentState.getBlock()==Blocks.RED_CONCRETE_POWDER){
+            return neighborState.getBlock()==Blocks.WHITE_CONCRETE_POWDER;
+        }else if(currentState.getBlock()==Blocks.YELLOW_CONCRETE_POWDER){
+            return neighborState.getBlock()==Blocks.PURPLE_CONCRETE_POWDER;
+        }else if(currentState.getBlock()==Blocks.WHITE_CONCRETE_POWDER){
+            return neighborState.getBlock()==Blocks.CYAN_CONCRETE_POWDER;
+        }else if(currentState.getBlock()==Blocks.PURPLE_CONCRETE_POWDER){
+            return neighborState.getBlock()==Blocks.RED_CONCRETE_POWDER;
         }
-        Block neighborStateBlock=level.getBlockState(pos).getBlock();
-        Block currentBlock = currentState.getBlock();
-        if(currentBlock == neighborStateBlock){
-            return false;
-        }
-
-        for(int i = m_soukokuBlockArray.length - 1; i >=0; i--){
-            if(currentBlock == m_soukokuBlockArray[i]){
-                return neighborStateBlock == m_soukokuBlockArray[i % m_soukokuBlockArray.length];
-            }
-        }
-
         return false;
 
     }
-
-    // soukoku: C->Y->P->R->W
-    // sojo:    C->R->Y->W->P
-    //          0->3->1->4->2
-    //          0+3=3 (3+3)%5=1 (1+3)%5=4 (4+3)%5=2
-    // ConvertSojoToSoukoku()?
     public static BlockState getSojoBlock(BlockState currentState){
         if(currentState==null){
             return null;
         }
-        Block currentBlock = currentState.getBlock();
-        for(int i = m_soukokuBlockArray.length - 1; i >=0; i--){
-            if(currentBlock == m_soukokuBlockArray[i]){
-                return m_soukokuBlockArray[(i+3) % m_soukokuBlockArray.length].defaultBlockState();
-            }
+        if(currentState.getBlock()==Blocks.RED_CONCRETE_POWDER){ //C
+            return Blocks.CYAN_CONCRETE_POWDER.defaultBlockState(); //R
+        }else if(currentState.getBlock()==Blocks.YELLOW_CONCRETE_POWDER){ //R
+            return Blocks.RED_CONCRETE_POWDER.defaultBlockState(); //Y
+        }else if(currentState.getBlock()==Blocks.WHITE_CONCRETE_POWDER){ //Y
+            return Blocks.YELLOW_CONCRETE_POWDER.defaultBlockState(); //W
+        }else if(currentState.getBlock()==Blocks.PURPLE_CONCRETE_POWDER){ //W
+            return Blocks.WHITE_CONCRETE_POWDER.defaultBlockState(); //P
+        }else if(currentState.getBlock()==Blocks.CYAN_CONCRETE_POWDER){ //P
+            return Blocks.PURPLE_CONCRETE_POWDER.defaultBlockState(); //C
         }
-
         return null;
 
     }
     public static BlockState getRandomElementBlock(LevelAccessor level){
         int random=level.getRandom().nextInt(5);
-
         if(random==0){
             return Blocks.CYAN_CONCRETE_POWDER.defaultBlockState();
         }else if(random==1){
@@ -535,21 +543,28 @@ public class ElementUtils {
     public static Component getStoredReiryokuDisplayMessage(int current,int max,ElementType elementType){
         ChatFormatting color=ChatFormatting.RESET;
         String string="error";
-        if(elementType==ElementType.WoodElement){
-            color=ChatFormatting.GREEN;
-            string="info.urushi.stored_wood_reiryoku.message";
-        }else if(elementType==ElementType.FireElement){
-            color=ChatFormatting.RED;
-            string="info.urushi.stored_fire_reiryoku.message";
-        }else if(elementType==ElementType.EarthElement){
-            color=ChatFormatting.GOLD;
-            string="info.urushi.stored_earth_reiryoku.message";
-        }else if(elementType==ElementType.MetalElement){
-            color=ChatFormatting.WHITE;
-            string="info.urushi.stored_metal_reiryoku.message";
-        }else if(elementType==ElementType.WaterElement){
-            color=ChatFormatting.LIGHT_PURPLE;
-            string="info.urushi.stored_water_reiryoku.message";
+        switch(elementType){
+            case WoodElement -> {
+                color=ChatFormatting.GREEN;
+                string="info.urushi.stored_wood_reiryoku.message";
+            }
+            case FireElement -> {
+                color=ChatFormatting.RED;
+                string="info.urushi.stored_fire_reiryoku.message";
+            }
+            case EarthElement -> {
+                color=ChatFormatting.GOLD;
+                string="info.urushi.stored_earth_reiryoku.message";
+            }
+            case MetalElement -> {
+                color=ChatFormatting.WHITE;
+                string="info.urushi.stored_metal_reiryoku.message";
+            }
+            case WaterElement -> {
+                color=ChatFormatting.LIGHT_PURPLE;
+                string="info.urushi.stored_water_reiryoku.message";
+            }
+            default -> { }
         }
         return Component.translatable(string).append(" "+current+" / "+max).withStyle(color);
     }
