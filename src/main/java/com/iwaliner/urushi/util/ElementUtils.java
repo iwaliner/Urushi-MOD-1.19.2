@@ -82,7 +82,7 @@ public class ElementUtils {
 
         // switch-case is faster than if-else when possible, because switch-case compares only once, but if-else compares many times
         // usually, when if-else is longer than 4 conditions, switch-case is much faster
-        // @debug: https://www.gregorygaines.com/blog/how-to-use-function-pointers-in-java/
+        // Map<ElementType, Function<ItemStack, Ret>> registry = new HashMap();
         switch(elementType){
             case WoodElement:
                 isElementChanger = ElementUtils.isWoodMiningSpeedChanger(item);
@@ -151,14 +151,14 @@ public class ElementUtils {
             return true;
         }
 
-        List<SoundType> woodSoundTypes = Arrays.asList(
+        List<SoundType> woodSoundTypeList = Arrays.asList(
                 SoundType.WOOD, SoundType.LADDER, SoundType.BAMBOO,
                 SoundType.BAMBOO_SAPLING, SoundType.SCAFFOLDING,
                 SoundType.AZALEA_LEAVES, SoundType.AZALEA,
                 SoundType.FLOWERING_AZALEA, SoundType.STEM
         );
         SoundType soundType = state.getSoundType();
-        return woodSoundTypes.contains(soundType);
+        return woodSoundTypeList.contains(soundType);
     }
     public static boolean isFireElement(BlockState state) {
         Block block = state.getBlock();
@@ -173,17 +173,19 @@ public class ElementUtils {
             return true;
         }
 
-        if (block instanceof TntBlock || block instanceof AbstractFurnaceBlock ||
-                block instanceof CampfireBlock || block instanceof TorchBlock) {
+        List<Class<?>> fireBlockEnableClassList = Arrays.asList(
+                TntBlock.class, AbstractFurnaceBlock.class, CampfireBlock.class, TorchBlock.class
+        );
+        if (isInstanceOfAny(block, fireBlockEnableClassList)) {
             return true;
         }
 
-        List<SoundType> fireSoundTypes = Arrays.asList(
+        List<SoundType> fireSoundTypeList = Arrays.asList(
                 SoundType.NYLIUM, SoundType.FUNGUS, SoundType.SHROOMLIGHT,
                 SoundType.WART_BLOCK, SoundType.NETHERRACK, SoundType.NETHER_BRICKS,
                 SoundType.CANDLE, SoundType.NETHER_WART, SoundType.WOOL
         );
-        return fireSoundTypes.contains(state.getSoundType());
+        return fireSoundTypeList.contains(state.getSoundType());
     }
 
     public static boolean isEarthElement(BlockState state) {
@@ -207,7 +209,7 @@ public class ElementUtils {
             return false;
         }
 
-        List<SoundType> earthSoundTypes = Arrays.asList(
+        List<SoundType> earthSoundTypeList = Arrays.asList(
                 SoundType.GRAVEL, SoundType.GRASS, SoundType.STONE, SoundType.SAND,
                 SoundType.SWEET_BERRY_BUSH, SoundType.CROP, SoundType.HARD_CROP, SoundType.VINE,
                 SoundType.ROOTS, SoundType.CALCITE, SoundType.DRIPSTONE_BLOCK, SoundType.POINTED_DRIPSTONE,
@@ -218,7 +220,7 @@ public class ElementUtils {
                 SoundType.TUFF, SoundType.LODESTONE, SoundType.NETHER_SPROUTS, SoundType.WEEPING_VINES,
                 SoundType.TWISTING_VINES
         );
-        return earthSoundTypes.contains(state.getSoundType());
+        return earthSoundTypeList.contains(state.getSoundType());
     }
 
     public static boolean isMetalElement(BlockState state) {
@@ -234,13 +236,13 @@ public class ElementUtils {
             return true;
         }
 
-        List<SoundType> metalSoundTypes = Arrays.asList(
+        List<SoundType> metalSoundTypeList = Arrays.asList(
                 SoundType.METAL, SoundType.ANVIL, SoundType.LANTERN, SoundType.NETHER_ORE,
                 SoundType.NETHER_GOLD_ORE, SoundType.CHAIN, SoundType.AMETHYST, SoundType.AMETHYST_CLUSTER,
                 SoundType.LARGE_AMETHYST_BUD, SoundType.MEDIUM_AMETHYST_BUD, SoundType.SMALL_AMETHYST_BUD,
                 SoundType.COPPER, SoundType.BONE_BLOCK, SoundType.GILDED_BLACKSTONE
         );
-        return metalSoundTypes.contains(state.getSoundType());
+        return metalSoundTypeList.contains(state.getSoundType());
     }
 
     public static boolean isWaterElement(BlockState state) {
@@ -256,40 +258,41 @@ public class ElementUtils {
             return true;
         }
 
-        if (block instanceof SpongeBlock || block instanceof WetSpongeBlock) {
+        List<Class<?>> waterBlockEnableClassList = Arrays.asList(
+                SpongeBlock.class, WetSpongeBlock.class
+        );
+        if (isInstanceOfAny(block, waterBlockEnableClassList)) {
             return true;
         }
 
-        List<SoundType> waterSoundTypes = Arrays.asList(
+        List<SoundType> waterSoundTypeList = Arrays.asList(
                 SoundType.LILY_PAD, SoundType.SNOW, SoundType.POWDER_SNOW, SoundType.SLIME_BLOCK,
                 SoundType.HONEY_BLOCK, SoundType.WET_GRASS, SoundType.GLASS, SoundType.CORAL_BLOCK
         );
-        return waterSoundTypes.contains(state.getSoundType());
+        return waterSoundTypeList.contains(state.getSoundType());
     }
 
     public  static boolean isSpecificElement(ElementType type,BlockState state){
-        boolean ret;
         switch(type){
-            case WoodElement:
-                ret = ElementUtils.isWoodElement(state);
-                break;
-            case FireElement:
-                ret = ElementUtils.isFireElement(state);
-                break;
-            case EarthElement:
-                ret = ElementUtils.isEarthElement(state);
-                break;
-            case MetalElement:
-                ret = ElementUtils.isMetalElement(state);
-                break;
-            case WaterElement:
-                ret = ElementUtils.isWaterElement(state);
-                break;
-            default:
+            case WoodElement -> {
+                return ElementUtils.isWoodElement(state);
+            }
+            case FireElement -> {
+                return ElementUtils.isFireElement(state);
+            }
+            case EarthElement -> {
+                return ElementUtils.isEarthElement(state);
+            }
+            case MetalElement -> {
+                return ElementUtils.isMetalElement(state);
+            }
+            case WaterElement -> {
+                return ElementUtils.isWaterElement(state);
+            }
+            default -> {
                 return false;
+            }
         }
-        return ret;
-
     }
 
     public static float countMiningPercentByInventory(Player player, ElementType type) {
@@ -322,7 +325,7 @@ public class ElementUtils {
                 break;
             case MetalElement:
                 s = "info.urushi.metal_element_of_block";
-                chatFormatting = ChatFormatting.GRAY;
+                // chatFormatting = ChatFormatting.GRAY;
                 break;
             case WaterElement:
                 s = "info.urushi.water_element_of_block";
@@ -416,7 +419,6 @@ public class ElementUtils {
         int pre=0;
         if(compoundtag==null) {
             stack.setTag(new CompoundTag());
-
         }else {
              pre = stack.getTag().getInt(REIRYOKU_AMOUNT);
         }
@@ -513,32 +515,51 @@ public class ElementUtils {
         }
     }
     public static ItemStack getOverflowStack(ElementType type){
-        if(type==ElementType.WoodElement){
-            return new ItemStack(ItemAndBlockRegister.wood_amber.get());
-        }else if(type==ElementType.FireElement){
-            return new ItemStack(ItemAndBlockRegister.fire_amber.get());
-        }else if(type==ElementType.EarthElement){
-            return new ItemStack(ItemAndBlockRegister.earth_amber.get());
-        }else if(type==ElementType.MetalElement){
-            return new ItemStack(ItemAndBlockRegister.metal_amber.get());
-        }else if(type==ElementType.WaterElement){
-            return new ItemStack(ItemAndBlockRegister.water_amber.get());
-        }else{
-            return ItemStack.EMPTY;
+        ItemStack overflowItem;
+        switch (type){
+            case WoodElement -> {
+                overflowItem = new ItemStack(ItemAndBlockRegister.wood_amber.get());
+            }
+            case FireElement -> {
+                overflowItem = new ItemStack(ItemAndBlockRegister.fire_amber.get());
+            }
+            case EarthElement -> {
+                overflowItem = new ItemStack(ItemAndBlockRegister.earth_amber.get());
+            }
+            case MetalElement -> {
+                overflowItem = new ItemStack(ItemAndBlockRegister.metal_amber.get());
+            }
+            case WaterElement -> {
+                overflowItem = new ItemStack(ItemAndBlockRegister.water_amber.get());
+            }
+            default -> {
+                overflowItem = ItemStack.EMPTY;
+            }
         }
+        return overflowItem;
     }
     public static ParticleOptions getMediumElementParticle(ElementType type){
-        if(type==ElementType.WoodElement){
-            return ParticleRegister.WoodElementMedium.get();
-        }else if(type==ElementType.FireElement){
-            return ParticleRegister.FireElementMedium.get();
-        }else if(type==ElementType.EarthElement){
-            return ParticleRegister.EarthElementMedium.get();
-        }else if(type==ElementType.MetalElement){
-            return ParticleRegister.MetalElementMedium.get();
-        }else{
-            return ParticleRegister.WaterElementMedium.get();
+        ParticleOptions particleOptions;
+        switch (type){
+            case WoodElement -> {
+                particleOptions = ParticleRegister.WoodElementMedium.get();
+            }
+            case FireElement -> {
+                particleOptions = ParticleRegister.FireElementMedium.get();
+            }
+            case EarthElement -> {
+                particleOptions = ParticleRegister.EarthElementMedium.get();
+            }
+            case MetalElement -> {
+                particleOptions = ParticleRegister.MetalElementMedium.get();
+            }
+            // case WaterElement ->
+            default -> {
+                particleOptions = ParticleRegister.WaterElementMedium.get();
+            }
         }
+        return particleOptions;
+
     }
     public static Component getStoredReiryokuDisplayMessage(int current,int max,ElementType elementType){
         ChatFormatting color=ChatFormatting.RESET;
