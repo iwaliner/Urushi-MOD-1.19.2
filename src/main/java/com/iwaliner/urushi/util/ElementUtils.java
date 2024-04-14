@@ -5,13 +5,13 @@ import com.iwaliner.urushi.ParticleRegister;
 import com.iwaliner.urushi.TagUrushi;
 import com.iwaliner.urushi.item.AbstractMagatamaItem;
 import com.iwaliner.urushi.util.interfaces.*;
+import com.mojang.logging.LogUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
- 
-import net.minecraft.tags.BlockTags;
+
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.Chicken;
 import net.minecraft.world.entity.animal.Cow;
@@ -21,14 +21,12 @@ import net.minecraft.world.entity.animal.horse.Horse;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.piston.PistonBaseBlock;
 import net.minecraft.world.level.block.piston.PistonHeadBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
-import net.minecraftforge.common.Tags;
+import org.slf4j.Logger;
 
 import java.util.*;
 
@@ -54,75 +52,56 @@ public class ElementUtils {
     public  static boolean isWaterElementItem(ItemStack stack){
         return stack.is(TagUrushi.WATER_ELEMENT_ITEM);
     }
+
     public  static boolean isMiningSpeedChanger(Item item){
-        return TagUrushi.woodMiningSpeedChangeItemMap.containsKey(item)
-                ||TagUrushi.fireMiningSpeedChangeItemMap.containsKey(item)
-                ||TagUrushi.earthMiningSpeedChangeItemMap.containsKey(item)
-                ||TagUrushi.metalMiningSpeedChangeItemMap.containsKey(item)
-                ||TagUrushi.waterMiningSpeedChangeItemMap.containsKey(item);
+        return TagUrushi.elementMiningSpeedChangeItemMap.containsKey(item);
     }
     public  static boolean isWoodMiningSpeedChanger(Item item){
-         return TagUrushi.woodMiningSpeedChangeItemMap.containsKey(item);
+         return isMiningSpeedChanger(item) && TagUrushi.elementMiningSpeedChangeItemMap.get(item).wood() != 0;
     }
     public  static boolean isFireMiningSpeedChanger(Item item){
-        return TagUrushi.fireMiningSpeedChangeItemMap.containsKey(item);
+        return isMiningSpeedChanger(item) && TagUrushi.elementMiningSpeedChangeItemMap.get(item).fire() != 0;
     }
     public  static boolean isEarthMiningSpeedChanger(Item item){
-        return TagUrushi.earthMiningSpeedChangeItemMap.containsKey(item);
+        return isMiningSpeedChanger(item) && TagUrushi.elementMiningSpeedChangeItemMap.get(item).earth() != 0;
     }
     public  static boolean isMetalMiningSpeedChanger(Item item){
-        return TagUrushi.metalMiningSpeedChangeItemMap.containsKey(item);
+        return isMiningSpeedChanger(item) && TagUrushi.elementMiningSpeedChangeItemMap.get(item).metal() != 0;
     }
     public  static boolean isWaterMiningSpeedChanger(Item item){
-        return TagUrushi.waterMiningSpeedChangeItemMap.containsKey(item);
+        return isMiningSpeedChanger(item) && TagUrushi.elementMiningSpeedChangeItemMap.get(item).water() != 0;
     }
+
+    // @debug, this does not work correctly now, mining speed keeps unchanged -- roseyasa 2024.4.14
     public  static int getExtraMiningPercent(Item item,ElementType elementType){
-        int ret = 0;
-        boolean isElementChanger;
-
-        // switch-case is faster than if-else when possible, because switch-case compares only once, but if-else compares many times
-        // usually, when if-else is longer than 4 conditions, switch-case is much faster
-        // Map<ElementType, Function<ItemStack, Ret>> registry = new HashMap();
-        switch(elementType){
-            case WoodElement:
-                isElementChanger = ElementUtils.isWoodMiningSpeedChanger(item);
-                if(isElementChanger){
-                    ret = TagUrushi.woodMiningSpeedChangeItemMap.get(item);
-                }
-                break;
-            case FireElement:
-                isElementChanger = ElementUtils.isFireMiningSpeedChanger(item);
-                if(isElementChanger){
-                    ret = TagUrushi.fireMiningSpeedChangeItemMap.get(item);
-                }
-                break;
-            case EarthElement:
-                isElementChanger = ElementUtils.isEarthMiningSpeedChanger(item);
-                if(isElementChanger){
-                    ret = TagUrushi.earthMiningSpeedChangeItemMap.get(item);
-                }
-                break;
-            case MetalElement:
-                isElementChanger = ElementUtils.isMetalMiningSpeedChanger(item);
-                if(isElementChanger){
-                    ret = TagUrushi.metalMiningSpeedChangeItemMap.get(item);
-                }
-                break;
-            case WaterElement:
-                isElementChanger = ElementUtils.isWaterMiningSpeedChanger(item);
-                if(isElementChanger){
-                    ret = TagUrushi.waterMiningSpeedChangeItemMap.get(item);
-                }
-                break;
-            default:
+        if(item == null){
+            return 0;
+        }
+        TagUrushi.ElementMiningSpeedModifier modifier = TagUrushi.elementMiningSpeedChangeItemMap.get(item);
+        if(modifier == null){
+            return 0;
+        }
+        switch (elementType){
+            case WoodElement -> {
+                return modifier.wood();
+            }
+            case FireElement -> {
+                return modifier.fire();
+            }
+            case EarthElement -> {
+                return modifier.earth();
+            }
+            case MetalElement -> {
+                return modifier.metal();
+            }
+            case WaterElement -> {
+                return modifier.water();
+            }
+            default -> {
                 return 0;
+            }
         }
 
-        if(isElementChanger){
-            return ret;
-        }
-
-        return 0;
     }
         public  static boolean isWoodElement(BlockState state){
         Block block = state.getBlock();
@@ -303,10 +282,9 @@ public class ElementUtils {
 
             extra+=ElementUtils.getExtraMiningPercent(stack.getItem(),type)*stack.getCount();
         }
-
         return extra/100;
-
     }
+
     public static void setBreakSpeedInfo(List<Component> list, int i,ElementType type) {
         String s = null;
         ChatFormatting chatFormatting = ChatFormatting.GRAY;
@@ -517,46 +495,24 @@ public class ElementUtils {
     public static ItemStack getOverflowStack(ElementType type){
         ItemStack overflowItem;
         switch (type){
-            case WoodElement -> {
-                overflowItem = new ItemStack(ItemAndBlockRegister.wood_amber.get());
-            }
-            case FireElement -> {
-                overflowItem = new ItemStack(ItemAndBlockRegister.fire_amber.get());
-            }
-            case EarthElement -> {
-                overflowItem = new ItemStack(ItemAndBlockRegister.earth_amber.get());
-            }
-            case MetalElement -> {
-                overflowItem = new ItemStack(ItemAndBlockRegister.metal_amber.get());
-            }
-            case WaterElement -> {
-                overflowItem = new ItemStack(ItemAndBlockRegister.water_amber.get());
-            }
-            default -> {
-                overflowItem = ItemStack.EMPTY;
-            }
+            case WoodElement -> overflowItem = new ItemStack(ItemAndBlockRegister.wood_amber.get());
+            case FireElement -> overflowItem = new ItemStack(ItemAndBlockRegister.fire_amber.get());
+            case EarthElement -> overflowItem = new ItemStack(ItemAndBlockRegister.earth_amber.get());
+            case MetalElement -> overflowItem = new ItemStack(ItemAndBlockRegister.metal_amber.get());
+            case WaterElement -> overflowItem = new ItemStack(ItemAndBlockRegister.water_amber.get());
+            default -> overflowItem = ItemStack.EMPTY;
         }
         return overflowItem;
     }
     public static ParticleOptions getMediumElementParticle(ElementType type){
         ParticleOptions particleOptions;
         switch (type){
-            case WoodElement -> {
-                particleOptions = ParticleRegister.WoodElementMedium.get();
-            }
-            case FireElement -> {
-                particleOptions = ParticleRegister.FireElementMedium.get();
-            }
-            case EarthElement -> {
-                particleOptions = ParticleRegister.EarthElementMedium.get();
-            }
-            case MetalElement -> {
-                particleOptions = ParticleRegister.MetalElementMedium.get();
-            }
+            case WoodElement -> particleOptions = ParticleRegister.WoodElementMedium.get();
+            case FireElement -> particleOptions = ParticleRegister.FireElementMedium.get();
+            case EarthElement -> particleOptions = ParticleRegister.EarthElementMedium.get();
+            case MetalElement -> particleOptions = ParticleRegister.MetalElementMedium.get();
             // case WaterElement ->
-            default -> {
-                particleOptions = ParticleRegister.WaterElementMedium.get();
-            }
+            default -> particleOptions = ParticleRegister.WaterElementMedium.get();
         }
         return particleOptions;
 

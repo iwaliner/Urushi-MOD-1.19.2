@@ -14,20 +14,14 @@ public  enum ElementType {
             this.id = id;
         }
         public static ElementType getType(int id){
-            switch (id){
-                case 0:
-                    return WoodElement;
-                case 1:
-                    return FireElement;
-                case 2:
-                    return EarthElement;
-                case 3:
-                    return MetalElement;
-                case 4:
-                    return WaterElement;
-                default:
-                    return FAIL;
-            }
+            return switch (id) {
+                case 0 -> WoodElement;
+                case 1 -> FireElement;
+                case 2 -> EarthElement;
+                case 3 -> MetalElement;
+                case 4 -> WaterElement;
+                default -> FAIL;
+            };
 
         }
         public int getID()

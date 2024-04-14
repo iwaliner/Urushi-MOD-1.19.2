@@ -328,21 +328,44 @@ public class ModCoreUrushi {
 
 
 
+        /*
         TagUrushi.earthMiningSpeedChangeItemMap.put( ItemAndBlockRegister.wood_element_magatama.get(),50);
         TagUrushi.fireMiningSpeedChangeItemMap.put( ItemAndBlockRegister.wood_element_magatama.get(),-30);
         TagUrushi.woodMiningSpeedChangeItemMap.put( ItemAndBlockRegister.wood_element_magatama.get(),-40);
+
         TagUrushi.metalMiningSpeedChangeItemMap.put( ItemAndBlockRegister.fire_element_magatama.get(),50);
         TagUrushi.earthMiningSpeedChangeItemMap.put( ItemAndBlockRegister.fire_element_magatama.get(),-30);
         TagUrushi.fireMiningSpeedChangeItemMap.put( ItemAndBlockRegister.fire_element_magatama.get(),-40);
+
         TagUrushi.waterMiningSpeedChangeItemMap.put( ItemAndBlockRegister.earth_element_magatama.get(),50);
         TagUrushi.metalMiningSpeedChangeItemMap.put( ItemAndBlockRegister.earth_element_magatama.get(),-30);
         TagUrushi.earthMiningSpeedChangeItemMap.put( ItemAndBlockRegister.earth_element_magatama.get(),-40);
+
         TagUrushi.woodMiningSpeedChangeItemMap.put( ItemAndBlockRegister.metal_element_magatama.get(),50);
         TagUrushi.waterMiningSpeedChangeItemMap.put( ItemAndBlockRegister.metal_element_magatama.get(),-30);
         TagUrushi.metalMiningSpeedChangeItemMap.put( ItemAndBlockRegister.metal_element_magatama.get(),-40);
+
         TagUrushi.fireMiningSpeedChangeItemMap.put( ItemAndBlockRegister.water_element_magatama.get(),50);
         TagUrushi.woodMiningSpeedChangeItemMap.put( ItemAndBlockRegister.water_element_magatama.get(),-30);
         TagUrushi.waterMiningSpeedChangeItemMap.put( ItemAndBlockRegister.water_element_magatama.get(),-40);
+
+         */
+
+        TagUrushi.elementMiningSpeedChangeItemMap.put(ItemAndBlockRegister.wood_element_magatama.get(),
+                new TagUrushi.ElementMiningSpeedModifier(
+                        -40,-30,50, 0, 0));
+        TagUrushi.elementMiningSpeedChangeItemMap.put(ItemAndBlockRegister.fire_element_magatama.get(),
+                new TagUrushi.ElementMiningSpeedModifier(
+                        0,-40,-30, 50, 0));
+        TagUrushi.elementMiningSpeedChangeItemMap.put(ItemAndBlockRegister.earth_element_magatama.get(),
+                new TagUrushi.ElementMiningSpeedModifier(
+                        0,0,-40, -30, 50));
+        TagUrushi.elementMiningSpeedChangeItemMap.put(ItemAndBlockRegister.metal_element_magatama.get(),
+                new TagUrushi.ElementMiningSpeedModifier(
+                        50,0,0, -40, -30));
+        TagUrushi.elementMiningSpeedChangeItemMap.put(ItemAndBlockRegister.water_element_magatama.get(),
+                new TagUrushi.ElementMiningSpeedModifier(
+                        -30,50,0, 0, -40));
 
 
         if (event.getItemStack().getItem()==ItemAndBlockRegister.bamboo_charcoal.get()) {
