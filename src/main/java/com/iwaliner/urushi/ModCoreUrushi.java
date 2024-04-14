@@ -660,21 +660,24 @@ public class ModCoreUrushi {
     /**ブロックの破壊速度を変更*/
     @SubscribeEvent
     public void BreakSpeedEvent(PlayerEvent.BreakSpeed event) {
+
+        float originalSpeed = event.getOriginalSpeed();
+        BlockState state = event.getState();
         try {
-            if(ElementUtils.isWoodElement(event.getState())){
-                event.setNewSpeed(event.getOriginalSpeed()*ElementUtils.countMiningPercentByInventory(event.getEntity(),ElementType.WoodElement));
+            if(ElementUtils.isWoodElement(state)){
+                event.setNewSpeed(originalSpeed*ElementUtils.countMiningPercentByInventory(event.getEntity(),ElementType.WoodElement));
             }
-            if(ElementUtils.isFireElement(event.getState())){
-                event.setNewSpeed(event.getOriginalSpeed()*ElementUtils.countMiningPercentByInventory(event.getEntity(),ElementType.FireElement));
+            if(ElementUtils.isFireElement(state)){
+                event.setNewSpeed(originalSpeed*ElementUtils.countMiningPercentByInventory(event.getEntity(),ElementType.FireElement));
             }
-            if(ElementUtils.isEarthElement(event.getState())){
-                event.setNewSpeed(event.getOriginalSpeed()*ElementUtils.countMiningPercentByInventory(event.getEntity(),ElementType.EarthElement));
+            if(ElementUtils.isEarthElement(state)){
+                event.setNewSpeed(originalSpeed*ElementUtils.countMiningPercentByInventory(event.getEntity(),ElementType.EarthElement));
             }
-            if(ElementUtils.isMetalElement(event.getState())){
-                event.setNewSpeed(event.getOriginalSpeed()*ElementUtils.countMiningPercentByInventory(event.getEntity(),ElementType.MetalElement));
+            if(ElementUtils.isMetalElement(state)){
+                event.setNewSpeed(originalSpeed*ElementUtils.countMiningPercentByInventory(event.getEntity(),ElementType.MetalElement));
             }
-            if(ElementUtils.isWaterElement(event.getState())){
-                event.setNewSpeed(event.getOriginalSpeed()*ElementUtils.countMiningPercentByInventory(event.getEntity(),ElementType.WaterElement));
+            if(ElementUtils.isWaterElement(state)){
+                event.setNewSpeed(originalSpeed*ElementUtils.countMiningPercentByInventory(event.getEntity(),ElementType.WaterElement));
             }
         } catch (Throwable var3) {
         }

@@ -116,17 +116,19 @@ public class ElementUtils {
             return true;
         }
 
-        List<Class<?>> woodBlockDisableClassList = Arrays.asList(
-            CampfireBlock.class, TorchBlock.class, DiodeBlock.class
-        );
-        if (isInstanceOfAny(block, woodBlockDisableClassList)) {
-            return false;
+        if(
+                block instanceof CampfireBlock ||
+                block instanceof TorchBlock ||
+                block instanceof DiodeBlock
+        ){
+           return false;
         }
 
-        List<Class<?>> woodBlockEnableClassList = Arrays.asList(
-                PistonHeadBlock.class, LeavesBlock.class, SaplingBlock.class
-        );
-        if (isInstanceOfAny(block, woodBlockEnableClassList)) {
+        if (
+                block instanceof PistonHeadBlock ||
+                block instanceof LeavesBlock ||
+                block instanceof SaplingBlock
+        ) {
             return true;
         }
 

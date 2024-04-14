@@ -133,25 +133,4 @@ public class UrushiUtils {
             return baseShape;
         }
     }
-
-    /*
-    * isInstanceOfAny() searches a block through a list of classes, to see if block
-    * is an instance of one of the classes.
-    * Returns true if exists, and false if not.
-    *
-    * @Parameter    block: Accepts a block object.
-    * @Parameter    classes: Accepts a list of classes to be searched through.
-    *
-    * @Usage        See ElementUtils.isWoodElement()
-    * luoxueyasha, 2024.4.11
-     */
-
-    public static boolean isInstanceOfAny(Block block, List<Class<?>> classes) {
-        for (Class<?> clazz : classes) {
-            if (clazz.isInstance(block)) {
-                return true;
-            }
-        }
-        return false;
-    }
 }
