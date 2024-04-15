@@ -25,6 +25,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TooltipFlag;
@@ -46,6 +47,9 @@ import net.minecraft.world.ticks.TickPriority;
 
 import java.util.List;
 import net.minecraft.util.RandomSource;
+import net.minecraftforge.registries.RegistryObject;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Set;
 
 public class ChiseledLacquerLogBlock extends HorizonalRotateBlock{
@@ -61,9 +65,9 @@ public class ChiseledLacquerLogBlock extends HorizonalRotateBlock{
         p_49915_.add(FACING,FILLED);
     }
     @Override
-    public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+    public void tick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, RandomSource random) {
        if(random.nextInt(5)==0&&state.getBlock() instanceof ChiseledLacquerLogBlock&& !state.getValue(FILLED)){
-           level.setBlockAndUpdate(pos,state.setValue(FILLED,Boolean.valueOf(true)));
+           level.setBlockAndUpdate(pos,state.setValue(FILLED, Boolean.TRUE));
            level.playSound((Player) null,(double) pos.getX()+0.5D,(double) pos.getY()+0.5D,(double) pos.getZ()+0.5D, SoundEvents.HONEY_BLOCK_BREAK, SoundSource.BLOCKS,1F,1F);
        }
        if(random.nextInt(5)==0&&state.getBlock() instanceof ChiseledLacquerLogBlock&& state.getValue(FILLED)){
@@ -94,19 +98,28 @@ public class ChiseledLacquerLogBlock extends HorizonalRotateBlock{
                    }
                }
 
-
                if(element!=null){
-                   if(element==ElementType.WoodElement){
-                       level.setBlockAndUpdate(pos,ItemAndBlockRegister.petrified_log_with_wood_amber.get().defaultBlockState().setValue(FACING,state.getValue(FACING)));
-                   }else if(element==ElementType.FireElement){
-                       level.setBlockAndUpdate(pos,ItemAndBlockRegister.petrified_log_with_fire_amber.get().defaultBlockState().setValue(FACING,state.getValue(FACING)));
-                   }else if(element==ElementType.EarthElement){
-                       level.setBlockAndUpdate(pos,ItemAndBlockRegister.petrified_log_with_earth_amber.get().defaultBlockState().setValue(FACING,state.getValue(FACING)));
-                   }else if(element==ElementType.MetalElement){
-                       level.setBlockAndUpdate(pos,ItemAndBlockRegister.petrified_log_with_metal_amber.get().defaultBlockState().setValue(FACING,state.getValue(FACING)));
-                   }else {
-                       level.setBlockAndUpdate(pos,ItemAndBlockRegister.petrified_log_with_water_amber.get().defaultBlockState().setValue(FACING,state.getValue(FACING)));
+                   RegistryObject<Block> spawnBlock;
+                   switch (element){
+                       case WoodElement ->{
+                            spawnBlock = ItemAndBlockRegister.petrified_log_with_wood_amber;
+                       }
+                       case FireElement -> {
+                           spawnBlock = ItemAndBlockRegister.petrified_log_with_fire_amber;
+                       }
+                       case EarthElement -> {
+                           spawnBlock = ItemAndBlockRegister.petrified_log_with_earth_amber;
+                       }
+                       case MetalElement -> {
+                           spawnBlock = ItemAndBlockRegister.petrified_log_with_metal_amber;
+                       }
+                       // case WaterElement -> {
+                       default -> {
+                           spawnBlock = ItemAndBlockRegister.petrified_log_with_water_amber;
+                       }
+
                    }
+                   level.setBlockAndUpdate(pos,spawnBlock.get().defaultBlockState().setValue(FACING,state.getValue(FACING)));
                }else{
                    level.setBlockAndUpdate(pos,ItemAndBlockRegister.petrified_log.get().defaultBlockState());
                }

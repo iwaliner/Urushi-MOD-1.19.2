@@ -19,6 +19,7 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.LeavesBlock;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -38,26 +39,15 @@ public class UchiwaItem extends Item implements ElementItem {
        BlockPos pos=player.blockPosition();
         ItemStack magatama= ElementUtils.getMagatamaInInventory(player, ElementType.WoodElement);
         int w=3;
-        if(magatama!=ItemStack.EMPTY&&ElementUtils.willBeInDomain(magatama,-consumeAmount)) {
-            player.swing(hand, true);
-            for (int i = -w; i <= w; i++) {
-                for (int j = -w; j <= w; j++) {
-                    for (int k = -w; k <= w; k++) {
-                        if (level.getBlockState(pos.offset(i, j, k)).getBlock() instanceof BushBlock || level.getBlockState(pos.offset(i, j, k)).getBlock() instanceof LeavesBlock || level.getBlockState(pos.offset(i, j, k)).getBlock() instanceof FallenLeavesBlock) {
-
-                            level.destroyBlock(pos.offset(i, j, k), true);
-                            ElementUtils.increaseStoredReiryokuAmount(magatama,-consumeAmount);
-                            player.getItemInHand(hand).hurtAndBreak(1, player, (x) -> {
-                                x.broadcastBreakEvent(hand);
-                            });
-                        }
-                    }
-                }
-
-            }
-            return InteractionResultHolder.consume(itemstack);
+        if(magatama == ItemStack.EMPTY){
+            return InteractionResultHolder.fail(itemstack);
         }
-        return InteractionResultHolder.fail(itemstack);
+        if(!ElementUtils.willBeInDomain(magatama, -consumeAmount)){
+            return InteractionResultHolder.fail(itemstack);
+        }
+        useUchiwaMethod(pos, level, player, hand, magatama, w);
+        return InteractionResultHolder.consume(itemstack);
+
     }
 
     @Override
@@ -67,28 +57,40 @@ public class UchiwaItem extends Item implements ElementItem {
         Level level=context.getLevel();
         Player player=context.getPlayer();
         InteractionHand hand=context.getHand();
+        assert player != null;
         ItemStack magatama= ElementUtils.getMagatamaInInventory(player, ElementType.WoodElement);
         int w=3;
-        if(magatama!=ItemStack.EMPTY&&ElementUtils.willBeInDomain(magatama,-consumeAmount)) {
-            player.swing(hand, true);
-            for (int i = -w; i <= w; i++) {
-                for (int j = -w; j <= w; j++) {
-                    for (int k = -w; k <= w; k++) {
-                        if (level.getBlockState(pos.offset(i, j, k)).getBlock() instanceof BushBlock || level.getBlockState(pos.offset(i, j, k)).getBlock() instanceof LeavesBlock || level.getBlockState(pos.offset(i, j, k)).getBlock() instanceof FallenLeavesBlock) {
+        if(magatama == ItemStack.EMPTY){
+            return InteractionResult.FAIL;
+        }
+        if(!ElementUtils.willBeInDomain(magatama, -consumeAmount)){
+            return InteractionResult.FAIL;
+        }
+        useUchiwaMethod(pos, level, player, hand, magatama, w);
+        return InteractionResult.SUCCESS;
+    }
 
-                            level.destroyBlock(pos.offset(i, j, k), true);
-                            ElementUtils.increaseStoredReiryokuAmount(magatama,-consumeAmount);
-                            player.getItemInHand(hand).hurtAndBreak(1, player, (x) -> {
-                                x.broadcastBreakEvent(hand);
-                            });
-                        }
+    private void useUchiwaMethod(BlockPos pos, Level level, @NotNull Player player, InteractionHand hand,
+                                 ItemStack magatama, int w) {
+        player.swing(hand, true);
+        for (int i = -w; i <= w; i++) {
+            for (int j = -w; j <= w; j++) {
+                for (int k = -w; k <= w; k++) {
+                    if (level.getBlockState(pos.offset(i, j, k)).getBlock() instanceof BushBlock ||
+                            level.getBlockState(pos.offset(i, j, k)).getBlock() instanceof LeavesBlock ||
+                            level.getBlockState(pos.offset(i, j, k)).getBlock() instanceof FallenLeavesBlock) {
+
+                        level.destroyBlock(pos.offset(i, j, k), true);
+                        ElementUtils.increaseStoredReiryokuAmount(magatama,-consumeAmount);
+                        player.getItemInHand(hand).hurtAndBreak(1, player, (x) -> {
+                            x.broadcastBreakEvent(hand);
+                        });
                     }
                 }
             }
-            return InteractionResult.SUCCESS;
         }
-        return InteractionResult.FAIL;
     }
+
     @Override
     public void appendHoverText(ItemStack p_41421_, @Nullable Level p_41422_, List<Component> list, TooltipFlag p_41424_) {
         UrushiUtils.setInfo(list,"uchiwa");
