@@ -105,11 +105,8 @@ public class ElementUtils {
             case WaterElement -> {
                 return modifier.water();
             }
-            default -> {
-                return 0;
-            }
         }
-
+        return 0;
     }
 
     public static boolean isWoodElement(BlockState state) {
@@ -293,7 +290,7 @@ public class ElementUtils {
     }
 
     public static void setBreakSpeedInfo(List<Component> list, int i, ElementType type) {
-        String s = null;
+        String s = "";
         ChatFormatting chatFormatting = ChatFormatting.GRAY;
         if(i < 0){
             list.add((Component.translatable("info.urushi.blank").append(i + "% ").append(Component.translatable(s))).withStyle(chatFormatting));
