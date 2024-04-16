@@ -13,9 +13,12 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
  
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Mth;
+import net.minecraft.world.Container;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TooltipFlag;
@@ -122,15 +125,17 @@ public class TankBlock extends BaseEntityBlock implements Tiered, ElementBlock {
         }
         return InteractionResult.FAIL;
     }
-
-    /*@Override
-    public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-        if(level.getBlockEntity(pos) instanceof AbstractReiryokuStorableBlockEntity){
-            AbstractReiryokuStorableBlockEntity blockEntity= (AbstractReiryokuStorableBlockEntity) level.getBlockEntity(pos);
-            if(blockEntity.canAddReiryoku(1)){
-                blockEntity.addStoredReiryoku(1);
-            }
+    public boolean hasAnalogOutputSignal(BlockState p_149740_1_) {
+        return true;
+    }
+    public int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
+        BlockEntity blockEntity=level.getBlockEntity(pos);
+        if(blockEntity instanceof TankBlockEntity){
+            TankBlockEntity tankBlockEntity= (TankBlockEntity) blockEntity;
+            int i=Mth.floor(15F*(float) tankBlockEntity.getStoredReiryoku() /(float) tankBlockEntity.getReiryokuCapacity());
+            return i>0? i : tankBlockEntity.getStoredReiryoku()==0? 0 : 1;
         }
-    }*/
+        return 0;
+    }
 
 }

@@ -256,6 +256,7 @@
     "urushi:doubled_black_stained_wooden_cabinetry",
     "urushi:senryoubako",
     "urushi:urushi_hopper",
+    "urushi:auto_crafting_table",
     "urushi:fox_hopper",
     "urushi:andon",
     "urushi:ariake_andon",
@@ -362,7 +363,6 @@
     "urushi:fire_element_crafting_table_tier1",
     "urushi:earth_element_crafting_table_tier1",
     "urushi:metal_element_crafting_table_tier1",
-    "urushi:water_element_crafting_table_tier1",
-    "urushi:liana_block"
+    "urushi:water_element_crafting_table_tier1"
   ]
 }

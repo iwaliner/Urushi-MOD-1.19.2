@@ -4,6 +4,7 @@ package com.iwaliner.urushi;
 import com.iwaliner.urushi.blockentity.renderer.HokoraRenderer;
 import com.iwaliner.urushi.blockentity.renderer.SanboRenderer;
 import com.iwaliner.urushi.blockentity.renderer.ShichirinRenderer;
+import com.iwaliner.urushi.blockentity.screen.AutoCraftingTableScreen;
 import com.iwaliner.urushi.blockentity.screen.DoubledWoodenCabinetryScreen;
 import com.iwaliner.urushi.blockentity.screen.FryerScreen;
 import com.iwaliner.urushi.blockentity.screen.UrushiHopperScreen;
@@ -21,6 +22,7 @@ import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.gui.screens.inventory.CraftingScreen;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.entity.FallingBlockRenderer;
@@ -28,12 +30,10 @@ import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.event.*;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -42,7 +42,6 @@ import net.minecraftforge.fml.loading.FMLPaths;
 
 import javax.annotation.Nullable;
 import java.io.File;
-import java.util.Map;
 
 @OnlyIn(Dist.CLIENT)
 @Mod.EventBusSubscriber(modid = ModCoreUrushi.ModID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
@@ -95,6 +94,7 @@ public class ClientSetUp {
             return new ThrownItemRenderer<>(p_174088_, 1.0F, true);
         });
         event.registerEntityRenderer(EntityRegister.JufuEffectDisplay.get(), FallingBlockRenderer::new);
+
     }
 
     /**エンティティのレイヤーを指定*/
@@ -167,6 +167,8 @@ public class ClientSetUp {
         MenuScreens.register(MenuRegister.FryerMenu.get(), FryerScreen::new);
         MenuScreens.register(MenuRegister.DoubledWoodenCabinetryMenu.get(), DoubledWoodenCabinetryScreen::new);
         MenuScreens.register(MenuRegister.UrushiHopperMenu.get(), UrushiHopperScreen::new);
+        MenuScreens.register(MenuRegister.AutoCraftingTableMenu.get(), AutoCraftingTableScreen::new);
+
 
        /**見た目が特殊なBlockEntityの見た目を登録*/
         BlockEntityRenderers.register(BlockEntityRegister.Sanbo.get(), SanboRenderer::new);

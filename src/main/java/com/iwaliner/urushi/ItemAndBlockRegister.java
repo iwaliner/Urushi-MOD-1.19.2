@@ -653,6 +653,7 @@ public class ItemAndBlockRegister {
     public static final RegistryObject<Block> doubled_black_stained_wooden_cabinetry =B("doubled_black_stained_wooden_cabinetry","a",-1,() -> {return new DoubledWoodenCabinetryBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK).sound(SoundType.WOOD).strength(1.0F, 10.0F).dynamicShape());});
     public static final RegistryObject<Block> senryoubako =B("senryoubako","a",-1,() -> {return new SenryoubakoBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).sound(SoundType.WOOD).strength(1.0F, 10.0F).dynamicShape());});
     public static final RegistryObject<Block> urushi_hopper =B("urushi_hopper","a",-1,() -> {return new UrushiHopperBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
+    public static final RegistryObject<Block> auto_crafting_table =B("auto_crafting_table","a",-1,() -> {return new AutoCraftingTableBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).sound(SoundType.WOOD).strength(0.8F, 10.0F));});
     public static final RegistryObject<Block> kitsunebiBlock =BLOCKS.register("kitsunebi",() -> {return new BarrierBlock(BlockBehaviour.Properties.of(Material.GLASS).sound(SoundType.SOUL_SAND).instabreak().noCollission().noOcclusion().lightLevel((p_235470_0_) -> {return 15;}));});
     public static final RegistryObject<Item> kitsunebiItem =ITEMS.register("kitsunebi", () -> {return new KitsunebiItem((new Item.Properties()).tab(ModCoreUrushi.UrushiMagicTab));});
     public static final RegistryObject<Block> fox_hopper =B("fox_hopper","a",-1,() -> {return new FoxHopperBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).sound(SoundType.WOOL).strength(1.0F, 10.0F));});
@@ -1034,9 +1035,10 @@ public class ItemAndBlockRegister {
     public static final RegistryObject<Item> knockback_jufu =ITEMS.register("knockback_jufu", () -> {return new JufuItem(ElementType.WoodElement,50,"knockback_jufu",(new Item.Properties()).tab(ModCoreUrushi.UrushiMagicTab));});
     public static final RegistryObject<Item> jump_jufu =ITEMS.register("jump_jufu", () -> {return new JufuItem(ElementType.WoodElement,50,"jump_jufu",(new Item.Properties()).tab(ModCoreUrushi.UrushiMagicTab));});
     public static final RegistryObject<Item> liana_jufu =ITEMS.register("liana_jufu", () -> {return new JufuItem(ElementType.WoodElement,50,"liana_jufu",(new Item.Properties()).tab(ModCoreUrushi.UrushiMagicTab));});
+    public static final RegistryObject<Item> growing_jufu =ITEMS.register("growing_jufu", () -> {return new JufuItem(ElementType.EarthElement,50,"growing_jufu",(new Item.Properties()).tab(ModCoreUrushi.UrushiMagicTab));});
+    public static final RegistryObject<Item> mountain_creation_jufu =ITEMS.register("mountain_creation_jufu", () -> {return new JufuItem(ElementType.EarthElement,50,"mountain_creation_jufu",(new Item.Properties()).tab(ModCoreUrushi.UrushiMagicTab));});
+    public static final RegistryObject<Item> fluid_erasion_jufu =ITEMS.register("fluid_erasion_jufu", () -> {return new JufuItem(ElementType.EarthElement,50,"fluid_erasion_jufu",(new Item.Properties()).tab(ModCoreUrushi.UrushiMagicTab));});
     public static final RegistryObject<Block> freezing_display =BLOCKS.register("freezing_display",() -> {return new Block(BlockBehaviour.Properties.of(Material.ICE).noOcclusion().isValidSpawn(ItemAndBlockRegister::never).isRedstoneConductor(ItemAndBlockRegister::never).isSuffocating(ItemAndBlockRegister::never).isViewBlocking(ItemAndBlockRegister::never).noLootTable());});
-
-
 
 
     private static boolean never(BlockState state, BlockGetter blockGetter, BlockPos blockPos) {
