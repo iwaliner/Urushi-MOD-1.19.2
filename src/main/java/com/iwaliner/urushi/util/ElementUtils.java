@@ -292,10 +292,7 @@ public class ElementUtils {
     public static void setBreakSpeedInfo(List<Component> list, int i, ElementType type) {
         String s = "";
         ChatFormatting chatFormatting = ChatFormatting.GRAY;
-        if(i < 0){
-            list.add((Component.translatable("info.urushi.blank").append(i + "% ").append(Component.translatable(s))).withStyle(chatFormatting));
-            return;
-        }
+
         switch (type) {
             case WoodElement:
                 s = "info.urushi.wood_element_of_block";
@@ -322,8 +319,12 @@ public class ElementUtils {
                 // throw exception?
                 return; // as no element matches, just return
         }
-        
-        list.add((Component.translatable("info.urushi.blank").append("+" + i + "% ").append(Component.translatable(s))).withStyle(chatFormatting));
+        String percentString = i + "% ";
+        if(i < 0){
+            percentString = "+" + percentString;
+        }
+        list.add((Component.translatable("info.urushi.blank").append(percentString)
+                .append(Component.translatable(s))).withStyle(chatFormatting));
     }
 
     public static boolean isWoodElementMob(LivingEntity entity) {

@@ -123,14 +123,13 @@ public class UrushiUtils {
         }
     }
     public static VoxelShape rotateSimpleBoxShapeHorizontally(VoxelShape baseShape,Direction direction){
-        if(direction==Direction.EAST){
-            return rotateSimpleBoxShapeHorizontally(baseShape,90);
-        }else if(direction==Direction.SOUTH){
-            return rotateSimpleBoxShapeHorizontally(baseShape,180);
-        }else if(direction==Direction.WEST){
-            return rotateSimpleBoxShapeHorizontally(baseShape,270);
-        }else{
-            return baseShape;
+        int angle;
+        switch (direction){
+            case EAST -> angle = 90;
+            case SOUTH -> angle = 180;
+            case WEST -> angle = 270;
+            default -> angle = 0;
         }
+        return rotateSimpleBoxShapeHorizontally(baseShape,angle);
     }
 }
