@@ -82,4 +82,5 @@ public class DoubledWoodenCabinetryMenu extends AbstractContainerMenu {
     public Container getContainer() {
         return this.container;
     }
+
 }

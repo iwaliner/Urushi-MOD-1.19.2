@@ -1,9 +1,10 @@
 package com.iwaliner.urushi.blockentity.menu;
 
-import com.iwaliner.urushi.ItemAndBlockRegister;
 import com.iwaliner.urushi.MenuRegister;
-import com.iwaliner.urushi.blockentity.slot.FryerFuelSlot;
-import com.iwaliner.urushi.recipe.FryingRecipe;
+import com.iwaliner.urushi.ModCoreUrushi;
+import com.iwaliner.urushi.blockentity.AutoCraftingTableBlockEntity;
+import com.iwaliner.urushi.blockentity.slot.*;
+import net.minecraft.util.Mth;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -12,45 +13,47 @@ import net.minecraft.world.entity.player.StackedContents;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.level.Level;
 
 public class AutoCraftingTableMenu extends RecipeBookMenu<Container> {
 
     private final Container container;
     private final Player player;
 
+
     public AutoCraftingTableMenu(int s, Inventory inventory) {
         this( s, inventory, new SimpleContainer(20));
     }
 
     public AutoCraftingTableMenu(int s, Inventory inventory,Container c) {
-        super(MenuType.CRAFTING, s);
+        super(MenuRegister.AutoCraftingTableMenu.get(), s);
         checkContainerSize(c, 20);
         this.container=c;
         this.player = inventory.player;
+
         container.startOpen(player);
-        this.addSlot(new Slot(container, 0, 146, 33));
+        this.addSlot(new AutoCraftingTableResultSlot(container, 10, 146, 40));
         for(int i = 0; i < 9; ++i) {
-            this.addSlot(new Slot(this.container, i +1, 8 + i * 18, 72));
+            this.addSlot(new AutoCraftingTableIngredientsSlot(this.container, i +11, 8 + i * 18, 79-5));
         }
-        this.addSlot(new Slot(container, 10, 124, 35-6));
+        this.addSlot(new AutoCraftingTableResultMatrixSlot(container, 0, 124, 35-6+7));
         for(int i = 0; i < 3; ++i) {
             for(int j = 0; j < 3; ++j) {
-                this.addSlot(new Slot(this.container, j + i * 3+11, 30 + j * 18, 17 + i * 18-6));
+                this.addSlot(new AutoCraftingTableIngredientsMatrixSlot(this.container, j + i * 3+1, 30 + j * 18, 17 + i * 18-6+7));
             }
         }
 
-     /*   for(int k = 0; k < 3; ++k) {
+       for(int k = 0; k < 3; ++k) {
             for(int i1 = 0; i1 < 9; ++i1) {
-                this.addSlot(new Slot(inventory, i1 + k * 9 + 9, 8 + i1 * 18, 103 + k * 18));
+                this.addSlot(new Slot(inventory, i1 + k * 9 + 9, 8 + i1 * 18, 103 + k * 18+2));
             }
         }
 
         for(int l = 0; l < 9; ++l) {
-            this.addSlot(new Slot(inventory, l, 8 + l * 18, 161));
-        }*/
+            this.addSlot(new Slot(inventory, l, 8 + l * 18, 161+2));
+        }
     }
+
+
 
     public void fillCraftSlotsStackedContents(StackedContents p_38976_) {
         if (this.container instanceof StackedContentsCompatible) {
@@ -89,78 +92,30 @@ public class AutoCraftingTableMenu extends RecipeBookMenu<Container> {
     }
 
 
-
     public boolean stillValid(Player p_38974_) {
         return this.container.stillValid(p_38974_);
     }
 
+    //プレイヤーがスロットをシフトクリックしてアイテムを瞬時に移動させるやつ
     public ItemStack quickMoveStack(Player player, int slotNumber) {
-
-    /*    ItemStack itemstack = ItemStack.EMPTY;
-        Slot slot = this.slots.get(slotNumber);
-        if (slot != null && slot.hasItem()) {
-            ItemStack itemstack1 = slot.getItem();
-            itemstack = itemstack1.copy();
-            if (slotNumber == 0) {
-               // this.access.execute((p_39378_, p_39379_) -> {
-                    itemstack1.getItem().onCraftedBy(itemstack1, player.level, player);
-              //  });
-                if (!this.moveItemStackTo(itemstack1, 10, 46, true)) {
-                    container.setChanged();
-                    return ItemStack.EMPTY;
-                }
-
-                slot.onQuickCraft(itemstack1, itemstack);
-                for (int i = 1; i < 10; i++) {
-                    container.getItem(i).shrink(1);
-                }
-            } else if (slotNumber >= 10 && slotNumber < 46) {
-                if (!this.moveItemStackTo(itemstack1, 1, 10, false)) {
-                    if (slotNumber < 37) {
-                        if (!this.moveItemStackTo(itemstack1, 37, 46, false)) {
-                            container.setChanged();
-                            return ItemStack.EMPTY;
-                        }
-                    } else if (!this.moveItemStackTo(itemstack1, 10, 37, false)) {
-                        container.setChanged();
-                        return ItemStack.EMPTY;
-                    }
-                }
-            } else if (!this.moveItemStackTo(itemstack1, 10, 46, false)) {
-                container.setChanged();
-                return ItemStack.EMPTY;
-            }
-
-            if (itemstack1.isEmpty()) {
-                slot.set(ItemStack.EMPTY);
-            } else {
-                slot.setChanged();
-            }
-
-            if (itemstack1.getCount() == itemstack.getCount()) {
-                return ItemStack.EMPTY;
-            }
-
-            slot.onTake(player, itemstack1);
-            if (slotNumber == 0) {
-                player.drop(itemstack1, false);
-            }
-        }
-        container.setChanged();
-        return itemstack;
-
-     */
         ItemStack itemstack = ItemStack.EMPTY;
         Slot slot = this.slots.get(slotNumber);
         if (slot != null && slot.hasItem()) {
             ItemStack itemstack1 = slot.getItem();
             itemstack = itemstack1.copy();
-            if (slotNumber < 20) {
-                if (!this.moveItemStackTo(itemstack1, 20, this.slots.size(), true)) {
+            int playerInvFirst=20;
+            if (slotNumber<10) {
+                //「moveItemStackTo」は、第一引数のアイテムスタックを他のスロットに移動させる。
+                // 最後の引数がfalseのとき、最初に第二引数のスロットへの移動を試行し、無理であれば隣のスロットへの移動を試行する。試行は第三引数のスロットの一個前まで行われる。
+                //最後の引数がtrueのとき、逆順で試行を行う。
+                if (!this.moveItemStackTo(itemstack1, playerInvFirst, playerInvFirst+36, true)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.moveItemStackTo(itemstack1, 0, 20, false)) {
-                return ItemStack.EMPTY;
+
+            } else  if(slotNumber>19){
+                if (!this.moveItemStackTo(itemstack1, 1, 10, false)) {
+                    return ItemStack.EMPTY;
+                }
             }
 
             if (itemstack1.isEmpty()) {
@@ -168,19 +123,22 @@ public class AutoCraftingTableMenu extends RecipeBookMenu<Container> {
             } else {
                 slot.setChanged();
             }
+            if (itemstack1.getCount() == itemstack.getCount()) {
+                return ItemStack.EMPTY;
+            }
+
+            slot.onTake(player, itemstack1);
         }
 
         return itemstack;
     }
-
-
 
     public RecipeBookType getRecipeBookType() {
         return RecipeBookType.CRAFTING;
     }
 
     public boolean shouldMoveToInventory(int s) {
-        return s != 0;
+        return true;
     }
 
     @Override

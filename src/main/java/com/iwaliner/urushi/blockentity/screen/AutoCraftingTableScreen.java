@@ -2,7 +2,10 @@ package com.iwaliner.urushi.blockentity.screen;
 
 
 import com.iwaliner.urushi.ModCoreUrushi;
+import com.iwaliner.urushi.blockentity.AutoCraftingTableBlockEntity;
+import com.iwaliner.urushi.blockentity.menu.AbstractFryerMenu;
 import com.iwaliner.urushi.blockentity.menu.AutoCraftingTableMenu;
+import com.iwaliner.urushi.blockentity.menu.DoubledWoodenCabinetryMenu;
 import com.iwaliner.urushi.blockentity.menu.UrushiHopperMenu;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -12,11 +15,16 @@ import net.minecraft.client.gui.screens.recipebook.RecipeBookComponent;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+
+import java.util.Objects;
 
 @OnlyIn(Dist.CLIENT)
 public class AutoCraftingTableScreen extends AbstractContainerScreen<AutoCraftingTableMenu>
@@ -24,36 +32,46 @@ public class AutoCraftingTableScreen extends AbstractContainerScreen<AutoCraftin
 {
 
     private static final ResourceLocation CRAFTING_TABLE_LOCATION = new ResourceLocation("urushi:textures/gui/auto_crafting_table.png");
-    private static final ResourceLocation RECIPE_BUTTON_LOCATION = new ResourceLocation("textures/gui/recipe_button.png");
+  //  private static final ResourceLocation RECIPE_BUTTON_LOCATION = new ResourceLocation("textures/gui/recipe_button.png");
     private final RecipeBookComponent recipeBookComponent = new RecipeBookComponent();
-    private boolean widthTooNarrow;
+
     public AutoCraftingTableScreen(AutoCraftingTableMenu p_i51104_1_, Inventory p_i51104_3_, Component p_i51104_4_) {
-        super(p_i51104_1_, p_i51104_3_, p_i51104_4_);
-        this.imageHeight = 114 + 4 * 18;
+        super( p_i51104_1_, p_i51104_3_, p_i51104_4_);
+        this.imageHeight =188;
+        this.inventoryLabelY = this.imageHeight - 94;
     }
 
     protected void init() {
         super.init();
-        this.widthTooNarrow = this.width < 379;
-        this.recipeBookComponent.init(this.width, this.height, this.minecraft, this.widthTooNarrow, this.menu);
+       // int yy=59;
+        //  this.recipeBookComponent.init(this.width, this.height, this.minecraft, this.widthTooNarrow, this.menu);
         this.leftPos = this.recipeBookComponent.updateScreenPosition(this.width, this.imageWidth);
-        this.addRenderableWidget(new ImageButton(this.leftPos + 5, this.height / 2 - 49, 20, 18, 0, 0, 19, RECIPE_BUTTON_LOCATION, (p_98484_) -> {
-            this.recipeBookComponent.toggleVisibility();
-            this.leftPos = this.recipeBookComponent.updateScreenPosition(this.width, this.imageWidth);
-            ((ImageButton)p_98484_).setPosition(this.leftPos + 5, this.height / 2 - 49);
-        }));
-        this.addWidget(this.recipeBookComponent);
-        this.setInitialFocus(this.recipeBookComponent);
+      //  this.addRenderableWidget(new ImageButton(this.leftPos + 5, this.height / 2 - yy, 20, 18, 0, 0, 19, RECIPE_BUTTON_LOCATION, (p_98484_) -> {
+      //      this.recipeBookComponent.toggleVisibility();
+      //      this.leftPos = this.recipeBookComponent.updateScreenPosition(this.width, this.imageWidth);
+       //     ((ImageButton)p_98484_).setPosition(this.leftPos + 5, this.height / 2 - yy);
+       // }));
+        //this.addWidget(this.recipeBookComponent);
+       // this.setInitialFocus(this.recipeBookComponent);
 
         this.titleLabelX = 29;
+        super.init();
+        this.titleLabelX = (this.imageWidth - this.font.width(this.title)) / 2;
     }
 
     public void containerTick() {
         super.containerTick();
-        this.recipeBookComponent.tick();
+     //   this.recipeBookComponent.tick();
+    }
+    public void render(PoseStack p_230430_1_, int p_230430_2_, int p_230430_3_, float p_230430_4_) {
+        this.renderBackground(p_230430_1_);
+        this.renderBg(p_230430_1_, p_230430_4_, p_230430_2_, p_230430_3_);
+        super.render(p_230430_1_, p_230430_2_, p_230430_3_, p_230430_4_);
+        this.renderTooltip(p_230430_1_, p_230430_2_, p_230430_3_);
     }
 
-    public void render(PoseStack p_98479_, int p_98480_, int p_98481_, float p_98482_) {
+   /* public void render(PoseStack p_98479_, int p_98480_, int p_98481_, float p_98482_) {
+
         this.renderBackground(p_98479_);
         if (this.recipeBookComponent.isVisible() && this.widthTooNarrow) {
             this.renderBg(p_98479_, p_98482_, p_98480_, p_98481_);
@@ -66,7 +84,7 @@ public class AutoCraftingTableScreen extends AbstractContainerScreen<AutoCraftin
 
         this.renderTooltip(p_98479_, p_98480_, p_98481_);
         this.recipeBookComponent.renderTooltip(p_98479_, this.leftPos, this.topPos, p_98480_, p_98481_);
-    }
+    }*/
 
     protected void renderBg(PoseStack poseStack, float p_98475_, int p_98476_, int p_98477_) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
@@ -74,12 +92,16 @@ public class AutoCraftingTableScreen extends AbstractContainerScreen<AutoCraftin
         RenderSystem.setShaderTexture(0, CRAFTING_TABLE_LOCATION);
         int i = this.leftPos;
         int j = (this.height - this.imageHeight) / 2;
-        this.blit(poseStack, i, j, 0, 0, this.imageWidth, 4 * 18 + 17);
-        this.blit(poseStack, i, j +4 * 18 + 17-(2*18), 0, 126-1, this.imageWidth, 96+(2*18)-2);
+
+        // blit(poseStack,表示位置のx成分,表示位置のy成分,テクスチャ位置のx成分,テクスチャ位置のy成分,imageWidth,imageHight)
+        this.blit(poseStack, i, j, 0, 0, this.imageWidth, 105);
+        this.blit(poseStack, i, j +104, 0, 105, this.imageWidth, 100);
+
+
 
     }
 
-    protected boolean isHovering(int p_98462_, int p_98463_, int p_98464_, int p_98465_, double p_98466_, double p_98467_) {
+   /* protected boolean isHovering(int p_98462_, int p_98463_, int p_98464_, int p_98465_, double p_98466_, double p_98467_) {
         return (!this.widthTooNarrow || !this.recipeBookComponent.isVisible()) && super.isHovering(p_98462_, p_98463_, p_98464_, p_98465_, p_98466_, p_98467_);
     }
 
@@ -97,10 +119,7 @@ public class AutoCraftingTableScreen extends AbstractContainerScreen<AutoCraftin
         return this.recipeBookComponent.hasClickedOutside(p_98456_, p_98457_, this.leftPos, this.topPos, this.imageWidth, this.imageHeight, p_98460_) && flag;
     }
 
-    protected void slotClicked(Slot p_98469_, int p_98470_, int p_98471_, ClickType p_98472_) {
-        super.slotClicked(p_98469_, p_98470_, p_98471_, p_98472_);
-        this.recipeBookComponent.slotClicked(p_98469_);
-    }
+
 
     public void recipesUpdated() {
         this.recipeBookComponent.recipesUpdated();
@@ -113,5 +132,7 @@ public class AutoCraftingTableScreen extends AbstractContainerScreen<AutoCraftin
 
     public RecipeBookComponent getRecipeBookComponent() {
         return this.recipeBookComponent;
-    }
+    }*/
+
+
 }
