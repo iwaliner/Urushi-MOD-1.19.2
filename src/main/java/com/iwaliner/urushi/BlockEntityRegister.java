@@ -34,7 +34,7 @@ public class BlockEntityRegister {
     public static final RegistryObject<BlockEntityType<UrushiHopperBlockEntity>> UrushiHopper=Tiles.register("urushi_hopper", () -> BlockEntityType.Builder.of(UrushiHopperBlockEntity::new, ItemAndBlockRegister.urushi_hopper.get()).build(null));
     public static final RegistryObject<BlockEntityType<HokoraBlockEntity>> Hokora=Tiles.register("hokora", () -> BlockEntityType.Builder.of(HokoraBlockEntity::new, ItemAndBlockRegister.wood_element_hokora.get(),ItemAndBlockRegister.fire_element_hokora.get(),ItemAndBlockRegister.earth_element_hokora.get(),ItemAndBlockRegister.metal_element_hokora.get(),ItemAndBlockRegister.water_element_hokora.get()).build(null));
     public static final RegistryObject<BlockEntityType<NullBlockEntity>> Null=Tiles.register("null", () -> BlockEntityType.Builder.of(NullBlockEntity::new, ItemAndBlockRegister.null_block.get()).build(null));
-    public static final RegistryObject<BlockEntityType<AutoCraftingTableBlockEntity>> AutoCraftingTable=Tiles.register("auto_crafting_table", () -> BlockEntityType.Builder.of(AutoCraftingTableBlockEntity::new, ItemAndBlockRegister.auto_crafting_table.get()).build(null));
+    public static final RegistryObject<BlockEntityType<AutoCraftingTableBlockEntity>> AutoCraftingTable=Tiles.register("auto_crafting_table", () -> BlockEntityType.Builder.of(AutoCraftingTableBlockEntity::new, ItemAndBlockRegister.auto_crafting_table.get(),ItemAndBlockRegister.advanced_auto_crafting_table.get()).build(null));
 
 
 

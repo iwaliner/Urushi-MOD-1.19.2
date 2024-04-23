@@ -64,7 +64,6 @@ public class AutoCraftingTableMenu extends RecipeBookMenu<Container> {
 
     public void clearCraftingContent() {
         this.container.clearContent();
-
     }
 
     public boolean recipeMatches(Recipe<? super Container> recipe) {

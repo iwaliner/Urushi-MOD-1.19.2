@@ -2,6 +2,7 @@ package com.iwaliner.urushi.blockentity;
 
 
 import com.iwaliner.urushi.BlockEntityRegister;
+import com.iwaliner.urushi.ItemAndBlockRegister;
 import com.iwaliner.urushi.MenuRegister;
 import com.iwaliner.urushi.ModCoreUrushi;
 import com.iwaliner.urushi.block.AutoCraftingTableBlock;
@@ -231,6 +232,20 @@ public class AutoCraftingTableBlockEntity extends BaseContainerBlockEntity imple
     public boolean isLit() {
         return this.litTime > 0;
     }
+    private void doCraft(ItemStack itemstack,AutoCraftingTableBlockEntity blockEntity){
+        for (int i = 11; i < 20; i++) {
+            blockEntity.getItem(i).shrink(1);
+        }
+        if (blockEntity.getItem(0).sameItem(blockEntity.getItem(10)) && ItemStack.tagMatches(blockEntity.getItem(0), blockEntity.getItem(10))) {
+            ItemStack newStack = itemstack.copy();
+            newStack.setCount(itemstack.getCount() + blockEntity.getItem(10).getCount());
+            blockEntity.setItem(10, newStack);
+            blockEntity.setChanged();
+        } else if (blockEntity.getItem(10).isEmpty()) {
+            blockEntity.setItem(10, itemstack);
+            blockEntity.setChanged();
+        }
+    }
     public static void tick(Level level, BlockPos pos, BlockState state, AutoCraftingTableBlockEntity blockEntity) {
 
 
@@ -267,23 +282,14 @@ public class AutoCraftingTableBlockEntity extends BaseContainerBlockEntity imple
                 }
                 if (flag&&blockEntity.getItem(10).getCount()+itemstack.getCount()<=itemstack.getMaxStackSize()) {
 
-
-                    if(blockEntity.litTime==0) {
-                        blockEntity.litTime = 60;
-                    }else if (blockEntity.litTime == 1) {
-
-                        for (int i = 11; i < 20; i++) {
-                            blockEntity.getItem(i).shrink(1);
+                    if (state.getBlock() == ItemAndBlockRegister.auto_crafting_table.get()) {
+                        if (blockEntity.litTime == 0) {
+                            blockEntity.litTime = 60;
+                        } else if (blockEntity.litTime == 1) {
+                            blockEntity.doCraft(itemstack, blockEntity);
                         }
-                        if (blockEntity.getItem(0).sameItem(blockEntity.getItem(10)) && ItemStack.tagMatches(blockEntity.getItem(0), blockEntity.getItem(10))) {
-                            ItemStack newStack = itemstack.copy();
-                            newStack.setCount(itemstack.getCount() + blockEntity.getItem(10).getCount());
-                            blockEntity.setItem(10, newStack);
-                            blockEntity.setChanged();
-                        } else if (blockEntity.getItem(10).isEmpty()) {
-                            blockEntity.setItem(10, itemstack);
-                            blockEntity.setChanged();
-                        }
+                    }else if(state.getBlock()==ItemAndBlockRegister.advanced_auto_crafting_table.get()){
+                        blockEntity.doCraft(itemstack,blockEntity);
                     }
                 }
 
@@ -344,13 +350,9 @@ public class AutoCraftingTableBlockEntity extends BaseContainerBlockEntity imple
         }
     }*/
 
-
-
     protected Component getDefaultName() {
         return Component.translatable("container.urushi_auto_crafting_table");
     }
-
-
 
 
 
@@ -362,7 +364,6 @@ public class AutoCraftingTableBlockEntity extends BaseContainerBlockEntity imple
     @Override
     public int getContainerSize() {
         return 20;
-
     }
 
     @Override
@@ -448,7 +449,6 @@ public class AutoCraftingTableBlockEntity extends BaseContainerBlockEntity imple
             ResourceLocation resourcelocation = p_193056_1_.getId();
             this.recipesUsed.addTo(resourcelocation, 1);
         }
-
     }
     @Nullable
     public Recipe<?> getRecipeUsed() {
