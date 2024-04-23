@@ -18,6 +18,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BiomeTags;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -32,6 +33,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.DispenserBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -184,10 +186,9 @@ public class ModCoreUrushi {
                         level.gameEvent(null, GameEvent.BLOCK_PLACE, blockpos);
                         if (stack.isEmpty()) {
                             return new ItemStack(ItemAndBlockRegister.raw_urushi_ball.get());
-                        } else {
-                            if (source.<DispenserBlockEntity>getEntity().addItem(new ItemStack(ItemAndBlockRegister.raw_urushi_ball.get()).copy()) < 0) {
-                                defaultDispenseItemBehavior.dispense(source, new ItemStack(ItemAndBlockRegister.raw_urushi_ball.get()).copy());
-                            }
+                        }
+                        if (source.<DispenserBlockEntity>getEntity().addItem(new ItemStack(ItemAndBlockRegister.raw_urushi_ball.get()).copy()) < 0) {
+                            defaultDispenseItemBehavior.dispense(source, new ItemStack(ItemAndBlockRegister.raw_urushi_ball.get()).copy());
                         }
                     }
                     return stack;
@@ -209,10 +210,9 @@ public class ModCoreUrushi {
                        level.gameEvent((Entity) null, GameEvent.BLOCK_PLACE, blockpos);
                         if (stack.isEmpty()) {
                             return new ItemStack(ItemAndBlockRegister.raw_rice.get(),2);
-                        } else {
-                            if (source.<DispenserBlockEntity>getEntity().addItem(new ItemStack(ItemAndBlockRegister.raw_rice.get(),2).copy()) < 0) {
-                                defaultDispenseItemBehavior.dispense(source, new ItemStack(ItemAndBlockRegister.raw_rice.get(),2).copy());
-                            }
+						}
+						if (source.<DispenserBlockEntity>getEntity().addItem(new ItemStack(ItemAndBlockRegister.raw_rice.get(),2).copy()) < 0) {
+                            defaultDispenseItemBehavior.dispense(source, new ItemStack(ItemAndBlockRegister.raw_rice.get(),2).copy());
                         }
                     return stack;
                 }
@@ -368,17 +368,18 @@ public class ModCoreUrushi {
                         -30,50,0, 0, -40));
 
 
-        if (event.getItemStack().getItem()==ItemAndBlockRegister.bamboo_charcoal.get()) {
+        Item burnItem = event.getItemStack().getItem();
+        if (burnItem==ItemAndBlockRegister.bamboo_charcoal.get()) {
             event.setBurnTime(1600);
-        }else if(event.getItemStack().getItem()==ItemAndBlockRegister.japanese_apricot_bark.get()) {
+        }else if(burnItem==ItemAndBlockRegister.japanese_apricot_bark.get()) {
             event.setBurnTime(200);
-        }else if(event.getItemStack().getItem()==ItemAndBlockRegister.sakura_bark.get()) {
+        }else if(burnItem==ItemAndBlockRegister.sakura_bark.get()) {
             event.setBurnTime(200);
-        }else if(event.getItemStack().getItem()==ItemAndBlockRegister.cypress_bark.get()) {
+        }else if(burnItem==ItemAndBlockRegister.cypress_bark.get()) {
             event.setBurnTime(200);
-        }else if(event.getItemStack().getItem()==ItemAndBlockRegister.wood_chip.get()) {
+        }else if(burnItem==ItemAndBlockRegister.wood_chip.get()) {
             event.setBurnTime(200);
-        }else if(event.getItemStack().getItem()== Item.byBlock(ItemAndBlockRegister.bamboo_charcoal_block.get())) {
+        }else if(burnItem== Item.byBlock(ItemAndBlockRegister.bamboo_charcoal_block.get())) {
             event.setBurnTime(16000);
         }
     }
@@ -483,7 +484,8 @@ public class ModCoreUrushi {
     @SubscribeEvent
     public void LeavesDamageEvent(LivingHurtEvent event) {
         if(event.getSource()== DamageSource.FALL){
-            if(event.getEntity().level.getBlockState(event.getEntity().blockPosition().below()).getBlock() instanceof LeavesBlock){
+            Entity entity = event.getEntity();
+            if(entity.level.getBlockState(entity.blockPosition().below()).getBlock() instanceof LeavesBlock){
                 event.setCanceled(true);
             }
         }
@@ -493,32 +495,44 @@ public class ModCoreUrushi {
     @SubscribeEvent
     public void SaltEvent(BlockEvent.NeighborNotifyEvent event) {
 
-        if (event.getLevel().getBiome(event.getPos()).is(BiomeTags.IS_BEACH)||event.getLevel().getBiome(event.getPos()).is(BiomeTags.IS_OCEAN)||event.getLevel().getBiome(event.getPos()).is(BiomeTags.IS_DEEP_OCEAN)) {
-            if (event.getState().getMaterial() == Material.WATER) {
-                for (int i = 0; i < 6; i++) {
-                    if (event.getLevel().getBlockState(event.getPos().relative(UrushiUtils.getDirectionFromInt(i))).getBlock() == Blocks.SAND) {
-                        event.getLevel().setBlock(event.getPos().relative(UrushiUtils.getDirectionFromInt(i)), ItemAndBlockRegister.salt_and_sand.get().defaultBlockState(), 2);
-                        event.getLevel().playSound((Player) null, event.getPos().relative(UrushiUtils.getDirectionFromInt(i)), SoundEvents.SAND_BREAK, SoundSource.BLOCKS, 1.0F, 1F);
-                    }
-                }
+        LevelAccessor level = event.getLevel();
+        BlockPos pos = event.getPos();
+        Holder<Biome> biome = level.getBiome(pos);
+        BlockState blockState = event.getState();
 
-            }
-            else if (event.getState().getBlock() == Blocks.SAND) {
-                UrushiUtils.BlockChangeNeighborMaterialSurvey((Level) event.getLevel(),event.getPos(),Material.WATER,ItemAndBlockRegister.salt_and_sand.get().defaultBlockState(), SoundEvents.SAND_BREAK);
-            }
+        if(!( biome.is(BiomeTags.IS_BEACH) || biome.is(BiomeTags.IS_OCEAN) || biome.is(BiomeTags.IS_DEEP_OCEAN) )){
+            return;
         }
 
+        if (blockState.getMaterial() == Material.WATER) {
+            Direction direction;
+            for (int i = 0; i < 6; i++) {
+                direction = UrushiUtils.getDirectionFromInt(i);
+                if (level.getBlockState(pos.relative(direction)).getBlock() == Blocks.SAND) {
+                    level.setBlock(pos.relative(direction), ItemAndBlockRegister.salt_and_sand.get().defaultBlockState(), 2);
+                    level.playSound((Player) null, pos.relative(direction), SoundEvents.SAND_BREAK, SoundSource.BLOCKS, 1.0F, 1F);
+                }
+            }
+
+        } else if (blockState.getBlock() == Blocks.SAND) {
+            UrushiUtils.BlockChangeNeighborMaterialSurvey((Level) level, pos,Material.WATER,
+                    ItemAndBlockRegister.salt_and_sand.get().defaultBlockState(), SoundEvents.SAND_BREAK);
+        }
+
+
         if(ModCoreUrushi.isDebug){
-            LevelAccessor level=event.getLevel();
-            BlockPos pos=event.getPos();
+            // LevelAccessor level=event.getLevel();
+            // BlockPos pos=event.getPos();
             BlockState currentState=level.getBlockState(pos);
 
             for (int i = 2; i < 6; i++) {
                 if (ElementUtils.isSoukokuBlock(level,pos.relative(UrushiUtils.getDirectionFromInt(i)),currentState)) {
                     level.setBlock(pos.relative(UrushiUtils.getDirectionFromInt(i)),Blocks.AIR.defaultBlockState(), 2);
-                    level.setBlock(pos.relative(UrushiUtils.getDirectionFromInt(i)).above(200),ElementUtils.getRandomElementBlock(level), 2);
+                    level.setBlock(pos.relative(UrushiUtils.getDirectionFromInt(i)).above(200),
+                            ElementUtils.getRandomElementBlock(level), 2);
 
-                    event.getLevel().playSound(null, event.getPos().relative(UrushiUtils.getDirectionFromInt(i)), SoundEvents.SAND_BREAK, SoundSource.BLOCKS, 1.0F, 1F);
+                    event.getLevel().playSound(null, event.getPos().relative(UrushiUtils.getDirectionFromInt(i)),
+                            SoundEvents.SAND_BREAK, SoundSource.BLOCKS, 1.0F, 1F);
                 }
             }
         }
@@ -538,6 +552,7 @@ public class ModCoreUrushi {
 
         ItemStack stack = event.getItemStack();
         Item item = event.getItemStack().getItem();
+        List<Component> tooltipList = event.getToolTip();
         if (item instanceof ElementItem elementItem) {
             ElementType elementType = elementItem.getElementType();
             String item_id;
@@ -572,44 +587,55 @@ public class ModCoreUrushi {
         if (Block.byItem(event.getItemStack().getItem()) instanceof Tiered tiered) {
             int tier = tiered.getTier();
             String tier_id = "info.urushi.tier" + tier;
-            event.getToolTip().add((Component.translatable(tier_id)).withStyle(ChatFormatting.GRAY));
+            tooltipList.add((Component.translatable(tier_id)).withStyle(ChatFormatting.GRAY));
         }
         if(!ConfigUrushi.disableBlockElementDisplaying.get()){
         if (Block.byItem(event.getItemStack().getItem()) != Blocks.AIR) {
             BlockState state = Block.byItem(event.getItemStack().getItem()).defaultBlockState();
             if (ElementUtils.isWoodElement(state)) {
-                event.getToolTip().add((Component.translatable("info.urushi.wood_element_block")).withStyle(ChatFormatting.DARK_GREEN));
+                tooltipList.add((Component.translatable("info.urushi.wood_element_block"))
+                        .withStyle(ChatFormatting.DARK_GREEN));
             }
             if (ElementUtils.isFireElement(state)) {
-                event.getToolTip().add((Component.translatable("info.urushi.fire_element_block")).withStyle(ChatFormatting.DARK_RED));
+                tooltipList.add((Component.translatable("info.urushi.fire_element_block"))
+                        .withStyle(ChatFormatting.DARK_RED));
             }
             if (ElementUtils.isEarthElement(state)) {
-                event.getToolTip().add((Component.translatable("info.urushi.earth_element_block")).withStyle(ChatFormatting.GOLD));
+                tooltipList.add((Component.translatable("info.urushi.earth_element_block"))
+                        .withStyle(ChatFormatting.GOLD));
             }
             if (ElementUtils.isMetalElement(state)) {
-                event.getToolTip().add((Component.translatable("info.urushi.metal_element_block")).withStyle(ChatFormatting.GRAY));
+                tooltipList.add((Component.translatable("info.urushi.metal_element_block"))
+                        .withStyle(ChatFormatting.GRAY));
             }
             if (ElementUtils.isWaterElement(state)) {
-                event.getToolTip().add((Component.translatable("info.urushi.water_element_block")).withStyle(ChatFormatting.DARK_PURPLE));
+                tooltipList.add((Component.translatable("info.urushi.water_element_block"))
+                        .withStyle(ChatFormatting.DARK_PURPLE));
             }
         }
     }
         if(ElementUtils.isMiningSpeedChanger(item)){
-            event.getToolTip().add((Component.translatable("info.urushi.miningSpeedChanger1" )).withStyle(ChatFormatting.GRAY));
+            tooltipList.add((Component.translatable("info.urushi.miningSpeedChanger1" ))
+                    .withStyle(ChatFormatting.GRAY));
             if(ElementUtils.getExtraMiningPercent(item,ElementType.WoodElement)!=0){
-                ElementUtils.setBreakSpeedInfo(event.getToolTip(),ElementUtils.getExtraMiningPercent(item,ElementType.WoodElement),ElementType.WoodElement);
+                ElementUtils.setBreakSpeedInfo(tooltipList,
+                        ElementUtils.getExtraMiningPercent(item,ElementType.WoodElement),ElementType.WoodElement);
             }
             if(ElementUtils.getExtraMiningPercent(item,ElementType.FireElement)!=0){
-                ElementUtils.setBreakSpeedInfo(event.getToolTip(),ElementUtils.getExtraMiningPercent(item,ElementType.FireElement),ElementType.FireElement);
+                ElementUtils.setBreakSpeedInfo(tooltipList,
+                        ElementUtils.getExtraMiningPercent(item,ElementType.FireElement),ElementType.FireElement);
             }
             if(ElementUtils.getExtraMiningPercent(item,ElementType.EarthElement)!=0){
-                ElementUtils.setBreakSpeedInfo(event.getToolTip(),ElementUtils.getExtraMiningPercent(item,ElementType.EarthElement),ElementType.EarthElement);
+                ElementUtils.setBreakSpeedInfo(tooltipList,
+                        ElementUtils.getExtraMiningPercent(item,ElementType.EarthElement),ElementType.EarthElement);
             }
             if(ElementUtils.getExtraMiningPercent(item,ElementType.MetalElement)!=0){
-                ElementUtils.setBreakSpeedInfo(event.getToolTip(),ElementUtils.getExtraMiningPercent(item,ElementType.MetalElement),ElementType.MetalElement);
+                ElementUtils.setBreakSpeedInfo(tooltipList,
+                        ElementUtils.getExtraMiningPercent(item,ElementType.MetalElement),ElementType.MetalElement);
             }
             if(ElementUtils.getExtraMiningPercent(item,ElementType.WaterElement)!=0){
-                ElementUtils.setBreakSpeedInfo(event.getToolTip(),ElementUtils.getExtraMiningPercent(item,ElementType.WaterElement),ElementType.WaterElement);
+                ElementUtils.setBreakSpeedInfo(tooltipList,
+                        ElementUtils.getExtraMiningPercent(item,ElementType.WaterElement),ElementType.WaterElement);
             }
         }
         if(stack.getTag()!=null){
@@ -626,11 +652,11 @@ public class ModCoreUrushi {
                     color= ChatFormatting.RED;
                 }
                 if(ShichirinBlockEntity.getCookingType(i).equals("undercooked")){
-                    event.getToolTip().add((Component.translatable("info.urushi.undercooked" ).append(" "+level)).withStyle(color));
+                    tooltipList.add((Component.translatable("info.urushi.undercooked" ).append(" "+level)).withStyle(color));
                 }else if(ShichirinBlockEntity.getCookingType(i).equals("wellcooked")){
-                    event.getToolTip().add((Component.translatable("info.urushi.wellcooked" ).append(" "+level)).withStyle(color));
+                    tooltipList.add((Component.translatable("info.urushi.wellcooked" ).append(" "+level)).withStyle(color));
                 }else{
-                    event.getToolTip().add((Component.translatable("info.urushi.overcooked" ).append(" "+level)).withStyle(color));
+                    tooltipList.add((Component.translatable("info.urushi.overcooked" ).append(" "+level)).withStyle(color));
                 }
             }
         }
@@ -645,15 +671,17 @@ public class ModCoreUrushi {
             UrushiUtils.setInfo(event.getToolTip(),"lacquer_sapling");
         }
         if(Block.byItem(item) instanceof AbstractFramedBlock||Block.byItem(item) instanceof FramedPaneBlock){
-            event.getToolTip().add((Component.translatable("info.urushi.framed_block1" )).withStyle(ChatFormatting.GRAY));
+            tooltipList.add((Component.translatable("info.urushi.framed_block1" )).withStyle(ChatFormatting.GRAY));
             String keyString=  ClientSetUp.connectionKey.getKey().getName();
             String begin=".";
             int beginIndex = keyString.indexOf(begin);
             String preExtractedKey = keyString.substring(beginIndex+1);
             int beginIndex2 = preExtractedKey.indexOf(begin);
             String extractedKey = preExtractedKey.substring(beginIndex2+1);
-            event.getToolTip().add((Component.translatable("info.urushi.framed_block2").append(" '"+extractedKey+"' ").append(Component.translatable("info.urushi.framed_block3"))).withStyle(ChatFormatting.GRAY));
-            event.getToolTip().add((Component.translatable("info.urushi.framed_block4")).withStyle(ChatFormatting.GRAY));
+            tooltipList.add((Component.translatable("info.urushi.framed_block2")
+                    .append(" '"+extractedKey+"' ").append(Component.translatable("info.urushi.framed_block3")))
+                    .withStyle(ChatFormatting.GRAY));
+            tooltipList.add((Component.translatable("info.urushi.framed_block4")).withStyle(ChatFormatting.GRAY));
 
         }
     }
@@ -663,21 +691,22 @@ public class ModCoreUrushi {
 
         float originalSpeed = event.getOriginalSpeed();
         BlockState state = event.getState();
+        Player player = event.getEntity();
         try {
             if(ElementUtils.isWoodElement(state)){
-                event.setNewSpeed(originalSpeed*ElementUtils.countMiningPercentByInventory(event.getEntity(),ElementType.WoodElement));
+                event.setNewSpeed(originalSpeed*ElementUtils.countMiningPercentByInventory(player,ElementType.WoodElement));
             }
             if(ElementUtils.isFireElement(state)){
-                event.setNewSpeed(originalSpeed*ElementUtils.countMiningPercentByInventory(event.getEntity(),ElementType.FireElement));
+                event.setNewSpeed(originalSpeed*ElementUtils.countMiningPercentByInventory(player,ElementType.FireElement));
             }
             if(ElementUtils.isEarthElement(state)){
-                event.setNewSpeed(originalSpeed*ElementUtils.countMiningPercentByInventory(event.getEntity(),ElementType.EarthElement));
+                event.setNewSpeed(originalSpeed*ElementUtils.countMiningPercentByInventory(player,ElementType.EarthElement));
             }
             if(ElementUtils.isMetalElement(state)){
-                event.setNewSpeed(originalSpeed*ElementUtils.countMiningPercentByInventory(event.getEntity(),ElementType.MetalElement));
+                event.setNewSpeed(originalSpeed*ElementUtils.countMiningPercentByInventory(player,ElementType.MetalElement));
             }
             if(ElementUtils.isWaterElement(state)){
-                event.setNewSpeed(originalSpeed*ElementUtils.countMiningPercentByInventory(event.getEntity(),ElementType.WaterElement));
+                event.setNewSpeed(originalSpeed*ElementUtils.countMiningPercentByInventory(player,ElementType.WaterElement));
             }
         } catch (Throwable var3) {
         }
@@ -690,23 +719,23 @@ public class ModCoreUrushi {
         LivingEntity livingEntity=event.getEntity();
         ItemStack stack=event.getResultStack();
         CompoundTag tag=stack.getTag();
-        if(tag==null){
+        if(tag==null || !tag.contains("cookingEnum")){
             return;
         }
-        if(tag.contains("cookingEnum")){
-            int ID=tag.getInt("cookingEnum");
-            int level=ShichirinBlockEntity.getCookingLevel(ID);
-            if(ShichirinBlockEntity.getCookingType(ID).equals("undercooked")){
-                livingEntity.addEffect(new MobEffectInstance(MobEffects.HUNGER,300+60*level,level+15));
-            }else if(ShichirinBlockEntity.getCookingType(ID).equals("wellcooked")){
-                livingEntity.addEffect(new MobEffectInstance(MobEffects.REGENERATION,40+level*10, 1));
-                if(ID==9){
-                    livingEntity.addEffect(new MobEffectInstance(MobEffects.ABSORPTION,200,0));
-                }
-            }else{
-                livingEntity.addEffect(new MobEffectInstance(MobEffects.POISON,10+10*level,1));
+
+        int ID=tag.getInt("cookingEnum");
+        int level=ShichirinBlockEntity.getCookingLevel(ID);
+        String cookingtype = ShichirinBlockEntity.getCookingType(ID);
+        if(cookingtype.equals("undercooked")){
+            livingEntity.addEffect(new MobEffectInstance(MobEffects.HUNGER,300+60*level,level+15));
+        }else if(cookingtype.equals("wellcooked")){
+            livingEntity.addEffect(new MobEffectInstance(MobEffects.REGENERATION,40+level*10, 1));
+            if(ID==9){
+                livingEntity.addEffect(new MobEffectInstance(MobEffects.ABSORPTION,200,0));
             }
-          }
+        }else{
+            livingEntity.addEffect(new MobEffectInstance(MobEffects.POISON,10+10*level,1));
+        }
 
     }
 
@@ -714,45 +743,58 @@ public class ModCoreUrushi {
     @SubscribeEvent
     public void LoottableEvent(LootTableLoadEvent event) {
         if(event.getName().equals(BuiltInLootTables.FISHING_FISH)){
-            event.getTable().addPool(LootPool.lootPool().add(LootItem.lootTableItem(ItemAndBlockRegister.sweetfish.get()).setWeight(25)).add(LootItem.lootTableItem(ItemAndBlockRegister.tsuna.get()).setWeight(25)).build());
-        }else if(event.getName().equals(BuiltInLootTables.SIMPLE_DUNGEON)||event.getName().equals(BuiltInLootTables.SPAWN_BONUS_CHEST)||event.getName().equals(BuiltInLootTables.VILLAGE_PLAINS_HOUSE)){
-            event.getTable().addPool(LootPool.lootPool().add(LootItem.lootTableItem(ItemAndBlockRegister.lacquer_sapling.get()).setWeight(30)).build());
+            event.getTable().addPool(LootPool.lootPool()
+                    .add(LootItem.lootTableItem(ItemAndBlockRegister.sweetfish.get()).setWeight(25))
+                    .add(LootItem.lootTableItem(ItemAndBlockRegister.tsuna.get()).setWeight(25)).build());
+        }else if(event.getName().equals(BuiltInLootTables.SIMPLE_DUNGEON)||
+                event.getName().equals(BuiltInLootTables.SPAWN_BONUS_CHEST)||
+                event.getName().equals(BuiltInLootTables.VILLAGE_PLAINS_HOUSE)){
+            event.getTable().addPool(LootPool.lootPool()
+                    .add(LootItem.lootTableItem(ItemAndBlockRegister.lacquer_sapling.get()).setWeight(30)).build());
         }
     }
     /**バニラのルートテーブルに内容を追加*/
     @SubscribeEvent
     public void EntityDropItemEvent(LivingDropsEvent event) {
-
-        if(event.getEntity() instanceof Squid){
-       event.getDrops().add(new ItemEntity(event.getEntity().level,event.getEntity().getX(),event.getEntity().getY(),event.getEntity().getZ(), new ItemStack(ItemAndBlockRegister.squid_sashimi.get())));
+        Entity entity = event.getEntity();
+        if(entity instanceof Squid){
+       event.getDrops().add(new ItemEntity(entity.level,entity.getX(),entity.getY(),entity.getZ(),
+               new ItemStack(ItemAndBlockRegister.squid_sashimi.get())));
         }
     }
 
     @SubscribeEvent
     public void ElementPaperCraftEvent(PlayerInteractEvent.RightClickBlock event) {
 
-        if (event.getEntity() != null) {
-            BlockState state=event.getLevel().getBlockState(event.getPos());
-            Block block=state.getBlock();
-            if(!event.getEntity().isSuppressingBounce()&&block!=ItemAndBlockRegister.sanbo_tier1.get()&&!state.hasBlockEntity()&&block!=Blocks.CRAFTING_TABLE) {
-                if (((LivingEntity) event.getEntity()).getItemInHand(event.getHand()).getItem() == ItemAndBlockRegister.shide.get()) {
-                    if (ElementUtils.isWoodElement(event.getLevel().getBlockState(event.getPos()))) {
-                        ((LivingEntity) event.getEntity()).setItemInHand(event.getHand(), new ItemStack(ItemAndBlockRegister.wood_element_paper.get(), ((LivingEntity) event.getEntity()).getItemInHand(event.getHand()).getCount()));
-                        event.getLevel().playSound((Player) null, event.getPos(), SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundSource.BLOCKS, 1F, 1F);
-                    } else if (ElementUtils.isFireElement(event.getLevel().getBlockState(event.getPos()))) {
-                        ((LivingEntity) event.getEntity()).setItemInHand(event.getHand(), new ItemStack(ItemAndBlockRegister.fire_element_paper.get(), ((LivingEntity) event.getEntity()).getItemInHand(event.getHand()).getCount()));
-                        event.getLevel().playSound((Player) null, event.getPos(), SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundSource.BLOCKS, 1F, 1F);
-                    } else if (ElementUtils.isEarthElement(event.getLevel().getBlockState(event.getPos()))) {
-                        ((LivingEntity) event.getEntity()).setItemInHand(event.getHand(), new ItemStack(ItemAndBlockRegister.earth_element_paper.get(), ((LivingEntity) event.getEntity()).getItemInHand(event.getHand()).getCount()));
-                        event.getLevel().playSound((Player) null, event.getPos(), SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundSource.BLOCKS, 1F, 1F);
-                    } else if (ElementUtils.isMetalElement(event.getLevel().getBlockState(event.getPos()))) {
-                        ((LivingEntity) event.getEntity()).setItemInHand(event.getHand(), new ItemStack(ItemAndBlockRegister.metal_element_paper.get(), ((LivingEntity) event.getEntity()).getItemInHand(event.getHand()).getCount()));
-                        event.getLevel().playSound((Player) null, event.getPos(), SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundSource.BLOCKS, 1F, 1F);
-                    } else if (ElementUtils.isWaterElement(event.getLevel().getBlockState(event.getPos()))) {
-                        ((LivingEntity) event.getEntity()).setItemInHand(event.getHand(), new ItemStack(ItemAndBlockRegister.water_element_paper.get(), ((LivingEntity) event.getEntity()).getItemInHand(event.getHand()).getCount()));
-                        event.getLevel().playSound((Player) null, event.getPos(), SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundSource.BLOCKS, 1F, 1F);
-                    }
+        if(event.getEntity() == null){
+            return;
+        }
+
+        BlockPos pos = event.getPos();
+        BlockState blockState=event.getLevel().getBlockState(pos);
+        Block block=blockState.getBlock();
+        LivingEntity livingEntity = (LivingEntity)event.getEntity();
+
+        if(!event.getEntity().isSuppressingBounce()&&block!=ItemAndBlockRegister.sanbo_tier1.get()&&!blockState.hasBlockEntity()&&block!=Blocks.CRAFTING_TABLE) {
+            InteractionHand hand = event.getHand();
+            Item itemGet = null;
+            if (livingEntity.getItemInHand(hand).getItem() == ItemAndBlockRegister.shide.get()) {
+                if (ElementUtils.isWoodElement(blockState)) {
+                    itemGet = ItemAndBlockRegister.wood_element_paper.get();
+                } else if (ElementUtils.isFireElement(blockState)) {
+                    itemGet = ItemAndBlockRegister.fire_element_paper.get();
+                } else if (ElementUtils.isEarthElement(blockState)) {
+                    itemGet = ItemAndBlockRegister.earth_element_paper.get();
+                } else if (ElementUtils.isMetalElement(blockState)) {
+                    itemGet = ItemAndBlockRegister.metal_element_paper.get();
+                } else if (ElementUtils.isWaterElement(blockState)) {
+                    itemGet = ItemAndBlockRegister.water_element_paper.get();
                 }
+                if(itemGet == null){
+                    return;
+                }
+                livingEntity.setItemInHand(hand, new ItemStack(itemGet, livingEntity.getItemInHand(hand).getCount()));
+                event.getLevel().playSound((Player) null, pos, SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundSource.BLOCKS, 1F, 1F);
             }
         }
     }
