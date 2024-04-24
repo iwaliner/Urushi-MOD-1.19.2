@@ -552,6 +552,7 @@ public class ModCoreUrushi {
 
         ItemStack stack = event.getItemStack();
         Item item = event.getItemStack().getItem();
+        Block block = Block.byItem(item);
         List<Component> tooltipList = event.getToolTip();
         if (item instanceof ElementItem elementItem) {
             ElementType elementType = elementItem.getElementType();
@@ -584,36 +585,36 @@ public class ModCoreUrushi {
             }
 
         }
-        if (Block.byItem(event.getItemStack().getItem()) instanceof Tiered tiered) {
+        if (block instanceof Tiered tiered) {
             int tier = tiered.getTier();
             String tier_id = "info.urushi.tier" + tier;
             tooltipList.add((Component.translatable(tier_id)).withStyle(ChatFormatting.GRAY));
         }
         if(!ConfigUrushi.disableBlockElementDisplaying.get()){
-        if (Block.byItem(event.getItemStack().getItem()) != Blocks.AIR) {
-            BlockState state = Block.byItem(event.getItemStack().getItem()).defaultBlockState();
-            if (ElementUtils.isWoodElement(state)) {
-                tooltipList.add((Component.translatable("info.urushi.wood_element_block"))
-                        .withStyle(ChatFormatting.DARK_GREEN));
-            }
-            if (ElementUtils.isFireElement(state)) {
-                tooltipList.add((Component.translatable("info.urushi.fire_element_block"))
-                        .withStyle(ChatFormatting.DARK_RED));
-            }
-            if (ElementUtils.isEarthElement(state)) {
-                tooltipList.add((Component.translatable("info.urushi.earth_element_block"))
-                        .withStyle(ChatFormatting.GOLD));
-            }
-            if (ElementUtils.isMetalElement(state)) {
-                tooltipList.add((Component.translatable("info.urushi.metal_element_block"))
-                        .withStyle(ChatFormatting.GRAY));
-            }
-            if (ElementUtils.isWaterElement(state)) {
-                tooltipList.add((Component.translatable("info.urushi.water_element_block"))
-                        .withStyle(ChatFormatting.DARK_PURPLE));
+            if (block != Blocks.AIR) {
+                BlockState state = block.defaultBlockState();
+                if (ElementUtils.isWoodElement(state)) {
+                    tooltipList.add((Component.translatable("info.urushi.wood_element_block"))
+                            .withStyle(ChatFormatting.DARK_GREEN));
+                }
+                if (ElementUtils.isFireElement(state)) {
+                    tooltipList.add((Component.translatable("info.urushi.fire_element_block"))
+                            .withStyle(ChatFormatting.DARK_RED));
+                }
+                if (ElementUtils.isEarthElement(state)) {
+                    tooltipList.add((Component.translatable("info.urushi.earth_element_block"))
+                            .withStyle(ChatFormatting.GOLD));
+                }
+                if (ElementUtils.isMetalElement(state)) {
+                    tooltipList.add((Component.translatable("info.urushi.metal_element_block"))
+                            .withStyle(ChatFormatting.GRAY));
+                }
+                if (ElementUtils.isWaterElement(state)) {
+                    tooltipList.add((Component.translatable("info.urushi.water_element_block"))
+                            .withStyle(ChatFormatting.DARK_PURPLE));
+                }
             }
         }
-    }
         if(ElementUtils.isMiningSpeedChanger(item)){
             tooltipList.add((Component.translatable("info.urushi.miningSpeedChanger1" ))
                     .withStyle(ChatFormatting.GRAY));
@@ -670,7 +671,7 @@ public class ModCoreUrushi {
         }else if(stack.getItem()==Item.byBlock(ItemAndBlockRegister.lacquer_sapling.get())){
             UrushiUtils.setInfo(event.getToolTip(),"lacquer_sapling");
         }
-        if(Block.byItem(item) instanceof AbstractFramedBlock||Block.byItem(item) instanceof FramedPaneBlock){
+        if(block instanceof AbstractFramedBlock||block instanceof FramedPaneBlock){
             tooltipList.add((Component.translatable("info.urushi.framed_block1" )).withStyle(ChatFormatting.GRAY));
             String keyString=  ClientSetUp.connectionKey.getKey().getName();
             String begin=".";

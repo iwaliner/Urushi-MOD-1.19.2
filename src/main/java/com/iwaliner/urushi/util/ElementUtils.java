@@ -23,6 +23,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.piston.PistonBaseBlock;
 import net.minecraft.world.level.block.piston.PistonHeadBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
@@ -196,6 +197,23 @@ public class ElementUtils {
             return false;
         }
 
+        // blacklist
+        if(
+                block instanceof LeavesBlock ||
+                        block instanceof SaplingBlock ||
+                        block instanceof DispenserBlock ||
+                        block instanceof PistonBaseBlock ||
+                        block instanceof TntBlock ||
+                        block instanceof AbstractFurnaceBlock ||
+                        block instanceof CauldronBlock ||
+                        block instanceof ShulkerBoxBlock ||
+                        block instanceof SpongeBlock ||
+                        block instanceof WetSpongeBlock ||
+                        block instanceof JukeboxBlock ||
+                        block instanceof ObserverBlock){
+            return false;
+        }
+
         Set<SoundType> earthSoundTypeSet = Set.of(
                 SoundType.GRAVEL, SoundType.GRASS, SoundType.STONE, SoundType.SAND,
                 SoundType.SWEET_BERRY_BUSH, SoundType.CROP, SoundType.HARD_CROP, SoundType.VINE,
@@ -292,6 +310,9 @@ public class ElementUtils {
     public static void setBreakSpeedInfo(List<Component> list, int i, ElementType type) {
         String s = "";
         ChatFormatting chatFormatting = ChatFormatting.GRAY;
+        if(i == 0){
+            return;
+        }
 
         switch (type) {
             case WoodElement:
@@ -320,7 +341,7 @@ public class ElementUtils {
                 return; // as no element matches, just return
         }
         String percentString = i + "% ";
-        if(i < 0){
+        if(i > 0){
             percentString = "+" + percentString;
         }
         list.add((Component.translatable("info.urushi.blank").append(percentString)

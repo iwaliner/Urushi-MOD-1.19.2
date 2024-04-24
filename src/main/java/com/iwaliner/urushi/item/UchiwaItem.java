@@ -78,6 +78,7 @@ public class UchiwaItem extends Item implements ElementItem {
         int cnt = 0;
         Block block;
         BlockPos blockPos;
+        ItemStack uchiwa = player.getItemInHand(hand);
         // use BlockPos.Mutable?
         for (int i = -w; i <= w; i++) {
             for (int j = -w; j <= w; j++) {
@@ -89,7 +90,7 @@ public class UchiwaItem extends Item implements ElementItem {
                             block instanceof FallenLeavesBlock) {
                         level.destroyBlock(blockPos, true);
                         ++cnt;
-                        player.getItemInHand(hand).hurtAndBreak(1, player, (x) -> {
+                        uchiwa.hurtAndBreak(1, player, (x) -> {
                             x.broadcastBreakEvent(hand);
                         });
                     }
