@@ -72,7 +72,6 @@ public class RecipeTypeRegister {
     public static RecipeType<MetalElementTier2CraftingRecipe> MetalElementTier2CraftingRecipe = new MetalElementTier2CraftingRecipe.MetalElementTier2CraftingRecipeType();
     public static RecipeType<WaterElementTier2CraftingRecipe> WaterElementTier2CraftingRecipe = new WaterElementTier2CraftingRecipe.WaterElementTier2CraftingRecipeType();
 
-
     public static void register(IEventBus eventBus) {
         RECIPE_SERIALIZER.register(eventBus);
     }

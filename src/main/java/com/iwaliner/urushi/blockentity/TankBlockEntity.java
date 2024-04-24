@@ -52,4 +52,5 @@ public class TankBlockEntity extends AbstractReiryokuStorableBlockEntity impleme
     public ElementType getImportElementType() {
         return this.getStoredElementType();
     }
+
 }

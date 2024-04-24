@@ -8,19 +8,22 @@ import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.protocol.Packet;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
+import net.minecraft.world.item.BoneMealItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.*;
 import net.minecraftforge.network.NetworkHooks;
@@ -41,6 +44,7 @@ public class JufuEntity extends ThrowableItemProjectile  {
         super(EntityRegister.Jufu.get(), player,level);
         this.setNoGravity(true);
         this.life=0;
+
     }
 
     /**これがないと完全無色透明なエンティティになってしまう。このメソッドを書いた後はClientSetup.classでrenderを登録。*/
@@ -89,12 +93,69 @@ public class JufuEntity extends ThrowableItemProjectile  {
                     }
                 }
             }
+        }else if(this.getItemRaw().getItem()==ItemAndBlockRegister.growing_jufu.get()){
+            for(int i=-5;i<=5;i++){
+                for(int j=-5;j<=5;j++){
+                    for(int k=-5;k<=5;k++){
+                        BlockState state=level.getBlockState(pos.offset(i,j,k));
+                        if(state.getBlock() instanceof GrassBlock){
+                            continue;
+                        }
+                        if(state.getBlock() instanceof BonemealableBlock){
+                            BonemealableBlock bonemealableblock = (BonemealableBlock)state.getBlock();
+                            if (bonemealableblock.isValidBonemealTarget(level, pos.offset(i,j,k), state, level.isClientSide)) {
+                                if (level instanceof ServerLevel) {
+                                  //  if (bonemealableblock.isBonemealSuccess(level, level.random, pos.offset(i, j, k), state)) {
+                                    bonemealableblock.performBonemeal((ServerLevel) level, level.random, pos.offset(i, j, k), state);
+                                        if (!level.isClientSide) {
+                                            level.levelEvent(1505, pos.offset(i, j, k), 0);
+                                  //      }
+                                    }
+                                }
+                            }
+                            }
+                    }
+                }
+            }
+        }else if(this.getItemRaw().getItem()==ItemAndBlockRegister.mountain_creation_jufu.get()){
+            for(int i=-5;i<=5;i++){
+                for(int j=-5;j<=5;j++) {
+                    for (int k = -5; k <= 5; k++) {
+                        BlockPos offsetPos=pos.offset(i,j,k);
+                        float distance=Mth.sqrt(Mth.square(pos.getX()-offsetPos.getX())+Mth.square(pos.getY()-offsetPos.getY())+Mth.square(pos.getZ()-offsetPos.getZ()));
+                        if(distance<5f&&level.getBlockState(offsetPos.above(3)).getMaterial()==Material.AIR){
+                          FallingBlockEntity fallingblockentity = FallingBlockEntity.fall(level, offsetPos.above(3), Blocks.GRASS_BLOCK.defaultBlockState());
+                            fallingblockentity.dropItem=false;
+                        }
+                    }
+                }
+            }
+        }else if(this.getItemRaw().getItem()==ItemAndBlockRegister.fluid_erasion_jufu.get()){
+          loop:  for(int j=-5;j<=50;j++) {
+                for(int i=-5;i<=5;i++){
+                    for (int k = -5; k <= 5; k++) {
+                        BlockPos offsetPos=pos.offset(i,j,k);
+                     /*   if(j>5&&!level.getFluidState(pos.above(j+1)).isSource()){
+                            level.setBlock(offsetPos,Blocks.AIR.defaultBlockState(),18);
+                            break loop;
+                        }*/
+                        if(!level.getFluidState(offsetPos).isEmpty()) {
+                            if (level.getBlockState(offsetPos).getBlock() instanceof SimpleWaterloggedBlock && level.getBlockState(offsetPos).getValue(BlockStateProperties.WATERLOGGED)) {
+                                level.setBlock(offsetPos, level.getBlockState(offsetPos).setValue(BlockStateProperties.WATERLOGGED, false), 18);
 
+                            } else {
+                                level.setBlock(offsetPos, Blocks.AIR.defaultBlockState(), 18);
+                            }
+                        }
+                    }
+                }
+            }
         }else if(!this.level.isClientSide){
             this.level.broadcastEntityEvent(this, (byte)102);
             this.discard();
             this.markHurt();
             this.spawnAtLocation(this.getItemRaw());
+
         }
     }
     public void handleEntityEvent(byte b) {
@@ -175,10 +236,15 @@ public class JufuEntity extends ThrowableItemProjectile  {
         
     }
 
+
     @Override
     public void tick() {
         super.tick();
         ++this.life;
+        if(this.isInFluidType()){
+            this.setNoGravity(false);
+        }
+
         if(this.life>200){
             if(!this.level.isClientSide){
                 this.level.broadcastEntityEvent(this, (byte)102);

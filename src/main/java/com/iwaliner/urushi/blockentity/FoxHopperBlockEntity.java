@@ -2,6 +2,7 @@ package com.iwaliner.urushi.blockentity;
 
 import com.iwaliner.urushi.BlockEntityRegister;
 import com.iwaliner.urushi.block.FoxHopperBlock;
+import com.iwaliner.urushi.block.UrushiHopperBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
@@ -28,9 +29,14 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemHandlerHelper;
+import net.minecraftforge.items.VanillaInventoryCodeHooks;
+import org.apache.commons.lang3.tuple.Pair;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.BooleanSupplier;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -135,8 +141,128 @@ public class FoxHopperBlockEntity extends RandomizableContainerBlockEntity imple
         return true;
     }
 
-    private static boolean ejectItems(Level p_155563_, BlockPos p_155564_, BlockState p_155565_, FoxHopperBlockEntity p_155566_) {
+    private static Optional<Pair<IItemHandler, Object>> getItemHandler(Level level, Hopper hopper, Direction hopperFacing)
+    {
+        double x = hopper.getLevelX() + (double) hopperFacing.getStepX();
+        double y = hopper.getLevelY() + (double) hopperFacing.getStepY();
+        double z = hopper.getLevelZ() + (double) hopperFacing.getStepZ();
+        return VanillaInventoryCodeHooks.getItemHandler(level, x, y, z, hopperFacing.getOpposite());
+    }
+    private static boolean isFull(IItemHandler itemHandler)
+    {
+        for (int slot = 0; slot < itemHandler.getSlots(); slot++)
+        {
+            ItemStack stackInSlot = itemHandler.getStackInSlot(slot);
+            if (stackInSlot.isEmpty() || stackInSlot.getCount() < itemHandler.getSlotLimit(slot))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    private static ItemStack putStackInInventoryAllSlots(BlockEntity source, Object destination, IItemHandler destInventory, ItemStack stack)
+    {
+        for (int slot = 0; slot < destInventory.getSlots() && !stack.isEmpty(); slot++)
+        {
+            stack = insertStack(source, destination, destInventory, stack, slot);
+        }
+        return stack;
+    }
+    private static boolean isEmpty(IItemHandler itemHandler)
+    {
+        for (int slot = 0; slot < itemHandler.getSlots(); slot++)
+        {
+            ItemStack stackInSlot = itemHandler.getStackInSlot(slot);
+            if (stackInSlot.getCount() > 0)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    private static ItemStack insertStack(BlockEntity source, Object destination, IItemHandler destInventory, ItemStack stack, int slot)
+    {
+        ItemStack itemstack = destInventory.getStackInSlot(slot);
 
+        if (destInventory.insertItem(slot, stack, true).isEmpty())
+        {
+            boolean insertedItem = false;
+            boolean inventoryWasEmpty = isEmpty(destInventory);
+
+            if (itemstack.isEmpty())
+            {
+                destInventory.insertItem(slot, stack, false);
+                stack = ItemStack.EMPTY;
+                insertedItem = true;
+            }
+            else if (ItemHandlerHelper.canItemStacksStack(itemstack, stack))
+            {
+                int originalSize = stack.getCount();
+                stack = destInventory.insertItem(slot, stack, false);
+                insertedItem = originalSize < stack.getCount();
+            }
+
+            if (insertedItem)
+            {
+                if (inventoryWasEmpty && destination instanceof FoxHopperBlockEntity)
+                {
+                    FoxHopperBlockEntity destinationHopper = (FoxHopperBlockEntity)destination;
+
+                    if (!destinationHopper.isOnCustomCooldown())
+                    {
+                        int k = 0;
+                        if (source instanceof FoxHopperBlockEntity)
+                        {
+                            if (destinationHopper.getLastUpdateTime() >= ((FoxHopperBlockEntity) source).getLastUpdateTime())
+                            {
+                                k = 1;
+                            }
+                        }
+                        destinationHopper.setCooldown(8 - k);
+                    }
+                }
+            }
+        }
+
+        return stack;
+    }
+    public static boolean insertHook(FoxHopperBlockEntity hopper)
+    {
+        Direction hopperFacing = hopper.getBlockState().getValue(FoxHopperBlock.FACING);
+        return getItemHandler(hopper.getLevel(), hopper, hopperFacing)
+                .map(destinationResult -> {
+                    IItemHandler itemHandler = destinationResult.getKey();
+                    Object destination = destinationResult.getValue();
+                    if (isFull(itemHandler))
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        for (int i = 0; i < hopper.getContainerSize(); ++i)
+                        {
+                            if (!hopper.getItem(i).isEmpty())
+                            {
+                                ItemStack originalSlotContents = hopper.getItem(i).copy();
+                                ItemStack insertStack = hopper.removeItem(i, 1);
+                                ItemStack remainder = putStackInInventoryAllSlots(hopper, destination, itemHandler, insertStack);
+
+                                if (remainder.isEmpty())
+                                {
+                                    return true;
+                                }
+
+                                hopper.setItem(i, originalSlotContents);
+                            }
+                        }
+
+                        return false;
+                    }
+                })
+                .orElse(false);
+    }
+    private static boolean ejectItems(Level p_155563_, BlockPos p_155564_, BlockState p_155565_, FoxHopperBlockEntity p_155566_) {
+        if (insertHook(p_155566_)) return true;
         Container container = getAttachedContainer(p_155563_, p_155564_, p_155565_);
         if (container == null) {
             return false;
@@ -181,7 +307,7 @@ public class FoxHopperBlockEntity extends RandomizableContainerBlockEntity imple
     }
 
     public static boolean suckInItems(Level p_155553_, IFoxHopper p_155554_) {
-
+        Boolean ret = net.minecraftforge.items.VanillaInventoryCodeHooks.extractHook(p_155553_, p_155554_);
         Container container = getSourceContainer(p_155553_, p_155554_);
         if (container != null) {
             Direction direction = Direction.DOWN;

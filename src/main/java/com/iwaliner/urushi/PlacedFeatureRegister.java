@@ -250,7 +250,7 @@ public class PlacedFeatureRegister {
 
     public static final RegistryObject<PlacedFeature> KAKURIYO_YOMI_VINES = PlacedFeatures.register("kakuriyo_yomi_vines",
             () -> new PlacedFeature(ConfiguredFeatureRegister.YOMI_VINES_SPAWN.getHolder().get(),
-                    fullRangeSquaredWithCount(20)));
+                    fullRangeSquaredWithCount(50)));
 
     public static final RegistryObject<PlacedFeature> KAKURIYO_HOT_SPRING = PlacedFeatures.register("kakuriyo_hot_spring",
             () -> new PlacedFeature(ConfiguredFeatureRegister.HOT_SPRING_SPAWN.getHolder().get(),
