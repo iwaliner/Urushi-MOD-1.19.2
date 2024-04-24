@@ -1,6 +1,5 @@
 package com.iwaliner.urushi;
 
-import com.iwaliner.urushi.util.ElementType;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
@@ -8,17 +7,27 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Supplier;
+import java.util.*;
 
 public class TagUrushi {
     public static Map< BlockState, BlockState> fileMap = new HashMap<>();
-    public static Map< Item, Integer> woodMiningSpeedChangeItemMap = new HashMap<>();
-    public static Map< Item, Integer> fireMiningSpeedChangeItemMap = new HashMap<>();
-    public static Map< Item, Integer> earthMiningSpeedChangeItemMap = new HashMap<>();
-    public static Map< Item, Integer> metalMiningSpeedChangeItemMap = new HashMap<>();
-    public static Map< Item, Integer> waterMiningSpeedChangeItemMap = new HashMap<>();
+
+    // this record stores items' mining speed change modifiers.
+    public record ElementMiningSpeedModifier(
+            int wood,
+            int fire,
+            int earth,
+            int metal,
+            int water
+    ){};
+
+    // store value example:
+    // TagUrushi.elementMiningSpeedChangeItemMap.put(ItemAndBlockRegister.wood_element_magatama.get(),
+    //                new TagUrushi.ElementMiningSpeedModifier(-40,-30,50, 0, 0));
+    // 0 means no speed change
+    public static Map<Item, ElementMiningSpeedModifier> elementMiningSpeedChangeItemMap = new HashMap<>();
+
+
     public static final TagKey<Block> YOMI_STONE =TagKey.create(Registry.BLOCK_REGISTRY, new ResourceLocation(ModCoreUrushi.ModID,"yomi_stone"));
     public static final TagKey<Block> QUARTZ_CLUSTER_PLACEABLE =TagKey.create(Registry.BLOCK_REGISTRY, new ResourceLocation(ModCoreUrushi.ModID,"quartz_cluster_placeable"));
     public static final TagKey<Block> SHIITAKE_GROW_BLOCK =TagKey.create(Registry.BLOCK_REGISTRY, new ResourceLocation(ModCoreUrushi.ModID,"shiitake_placeable"));
