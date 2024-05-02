@@ -1,0 +1,7 @@
+{
+	"parent": "urushi:block/vertical_slab_base",
+	"textures": {
+		"1": "urushi:block/plaster",
+		"particle": "urushi:block/plaster"
+	}
+}
