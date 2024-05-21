@@ -84,6 +84,7 @@ public class ClientSetUp {
         event.registerEntityRenderer(EntityRegister.SquidSushiFoodEntity.get(), SquidSushiFoodRenderer::new);
         event.registerEntityRenderer(EntityRegister.EggSushiFoodEntity.get(), EggSushiFoodRenderer::new);
         event.registerEntityRenderer(EntityRegister.SalmonRoeSushiFoodEntity.get(), SalmonRoeSushiFoodRenderer::new);
+        event.registerEntityRenderer(EntityRegister.GravelSushiFoodEntity.get(), GravelSushiFoodRenderer::new);
         event.registerEntityRenderer(EntityRegister.InariFoodEntity.get(), InariFoodRenderer::new);
         event.registerEntityRenderer(EntityRegister.KitsunebiEntity.get(),  (p_174088_) -> {
             return new ThrownItemRenderer<>(p_174088_, 1.0F, true);

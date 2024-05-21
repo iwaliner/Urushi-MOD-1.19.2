@@ -2,6 +2,7 @@ package com.iwaliner.urushi;
 
 import com.iwaliner.urushi.block.*;
 import com.iwaliner.urushi.blockentity.ShichirinBlockEntity;
+import com.iwaliner.urushi.datagen.UrushiLootTableProvider;
 import com.iwaliner.urushi.entiity.JufuEntity;
 import com.iwaliner.urushi.util.ElementType;
 import com.iwaliner.urushi.util.ElementUtils;
@@ -12,6 +13,8 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.*;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.OptionalDispenseItemBehavior;
+import net.minecraft.data.DataGenerator;
+import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -43,6 +46,8 @@ import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.EntityMountEvent;
@@ -60,6 +65,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
+import net.minecraftforge.registries.RegistryObject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -75,6 +81,7 @@ public class ModCoreUrushi {
     public static File assetsInBuildDirectory;
 
     public static List<String> pickaxeList=new ArrayList<>();
+    public static List<RegistryObject<Block>> blockSelfDropList=new ArrayList<>();
     public static List<String> axeList=new ArrayList<>();
     public static List<String> shovelList=new ArrayList<>();
     public static List<String> hoeList=new ArrayList<>();
@@ -89,6 +96,7 @@ public class ModCoreUrushi {
     public static boolean isDebug=FMLPaths.GAMEDIR.get().toString().contains("イワライナー")&&FMLPaths.GAMEDIR.get().toString().contains("run");
     public static Logger logger = LogManager.getLogger("urushi");
     public static final CreativeModeTab UrushiTab = new CreativeModeTab("urushi") {
+
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(ItemAndBlockRegister.kasuga_lantern.get());
@@ -113,6 +121,36 @@ public class ModCoreUrushi {
         }
     };
     public static final CreativeModeTab UrushiMagicTab = new CreativeModeTab("urushi_magic") {
+        @Override
+        public void fillItemList(NonNullList<ItemStack> list) {
+
+            ItemStack itemStack1=new ItemStack(ItemAndBlockRegister.wood_element_magatama.get());
+            itemStack1.setTag(new CompoundTag());
+            itemStack1.getTag().putInt(ElementUtils.REIRYOKU_AMOUNT,ConfigUrushi.reiryokuCapacityOfMagatama.get());
+            list.add(itemStack1);
+
+            ItemStack itemStack2=new ItemStack(ItemAndBlockRegister.fire_element_magatama.get());
+            itemStack2.setTag(new CompoundTag());
+            itemStack2.getTag().putInt(ElementUtils.REIRYOKU_AMOUNT,ConfigUrushi.reiryokuCapacityOfMagatama.get());
+            list.add(itemStack2);
+
+            ItemStack itemStack3=new ItemStack(ItemAndBlockRegister.earth_element_magatama.get());
+            itemStack3.setTag(new CompoundTag());
+            itemStack3.getTag().putInt(ElementUtils.REIRYOKU_AMOUNT,ConfigUrushi.reiryokuCapacityOfMagatama.get());
+            list.add(itemStack3);
+
+            ItemStack itemStack4=new ItemStack(ItemAndBlockRegister.metal_element_magatama.get());
+            itemStack4.setTag(new CompoundTag());
+            itemStack4.getTag().putInt(ElementUtils.REIRYOKU_AMOUNT,ConfigUrushi.reiryokuCapacityOfMagatama.get());
+            list.add(itemStack4);
+
+            ItemStack itemStack5=new ItemStack(ItemAndBlockRegister.water_element_magatama.get());
+            itemStack5.setTag(new CompoundTag());
+            itemStack5.getTag().putInt(ElementUtils.REIRYOKU_AMOUNT,ConfigUrushi.reiryokuCapacityOfMagatama.get());
+            list.add(itemStack5);
+
+            super.fillItemList(list);
+        }
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(ItemAndBlockRegister.earth_element_magatama.get());
@@ -165,7 +203,6 @@ public class ModCoreUrushi {
         MinecraftForge.EVENT_BUS.register(this);
 
     }
-
 
     /**燃料を登録*/
     @SubscribeEvent

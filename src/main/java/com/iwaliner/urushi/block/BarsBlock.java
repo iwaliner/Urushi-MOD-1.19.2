@@ -60,12 +60,12 @@ public class BarsBlock extends HorizonalRotateBlock implements SimpleWaterlogged
 
     @Override
     public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-        return state.getBlock()!= ItemAndBlockRegister.sikkui_bars.get();
+        return state.getMaterial()==Material.WOOD;
     }
 
     @Override
     public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-        return state.getBlock()!= ItemAndBlockRegister.sikkui_bars.get()?60:0;
+        return state.getMaterial()==Material.WOOD?60:0;
     }
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_49915_) {
@@ -74,31 +74,42 @@ public class BarsBlock extends HorizonalRotateBlock implements SimpleWaterlogged
     public boolean connectsToByFacing(BlockState thisState, Direction direction, LevelAccessor world, BlockPos pos) {
 
         BlockState nextState=world.getBlockState(pos.relative(direction));
-        boolean flag1 = nextState.getBlock() instanceof FenceGateBlock && FenceGateBlock.connectsToDirection(nextState, direction);
 
-       return nextState.getMaterial()!= Material.WATER&&nextState.getMaterial()!= Material.AIR&&(nextState.getBlock() instanceof BarsBlock||flag1||!FenceBlock.isExceptionForConnection(nextState));
+        return nextState.getBlock() instanceof BarsBlock;
     }
     @Override
     public BlockState updateShape(BlockState state1, Direction facing, BlockState state2, LevelAccessor world, BlockPos pos1, BlockPos pos2) {
 
-        return super.updateShape(state1, facing, state2, world, pos1, pos2).setValue(NORTH, this.connectsToByFacing(state1, Direction.NORTH, world, pos1))
-                .setValue(EAST, this.connectsToByFacing(state1, Direction.EAST, world, pos1))
-                .setValue(SOUTH, this.connectsToByFacing(state1, Direction.SOUTH, world, pos1))
-                .setValue(WEST, this.connectsToByFacing(state1, Direction.WEST, world, pos1));
+
+        return super.updateShape(state1, facing, state2, world, pos1, pos2).setValue(NORTH,(world.getBlockState(pos1.north()).getMaterial() != Material.AIR && world.getBlockState(pos1.north()).getMaterial() != Material.WATER && state1.getValue(NORTH))|| this.connectsToByFacing(state1, Direction.NORTH, world, pos1))
+                .setValue(EAST,(world.getBlockState(pos1.east()).getMaterial() != Material.AIR && world.getBlockState(pos1.east()).getMaterial() != Material.WATER && state1.getValue(EAST))|| this.connectsToByFacing(state1, Direction.EAST, world, pos1))
+                .setValue(SOUTH, (world.getBlockState(pos1.south()).getMaterial() != Material.AIR && world.getBlockState(pos1.south()).getMaterial() != Material.WATER && state1.getValue(SOUTH)) ||this.connectsToByFacing(state1, Direction.SOUTH, world, pos1))
+                .setValue(WEST, (world.getBlockState(pos1.west()).getMaterial() != Material.AIR && world.getBlockState(pos1.west()).getMaterial() != Material.WATER && state1.getValue(WEST)) ||this.connectsToByFacing(state1, Direction.WEST, world, pos1));
 
     }
+
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         Level iblockreader = context.getLevel();
         BlockPos blockpos = context.getClickedPos();
-        BlockState thisState = iblockreader.getBlockState(blockpos);
+        BlockState state = iblockreader.getBlockState(blockpos);
+        FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
 
 
-        return this.defaultBlockState().setValue(NORTH, this.connectsToByFacing(thisState, Direction.NORTH, iblockreader, blockpos))
-                .setValue(SOUTH, this.connectsToByFacing(thisState, Direction.SOUTH, iblockreader, blockpos))
-                .setValue(WEST, this.connectsToByFacing(thisState, Direction.WEST, iblockreader, blockpos))
-                .setValue(EAST, this.connectsToByFacing(thisState, Direction.EAST, iblockreader, blockpos))
-                ;
+        Direction facing=context.getClickedFace().getOpposite();
+        BooleanProperty d1=NORTH;
+        switch (facing){
+            case NORTH : d1=NORTH; break;
+            case EAST : d1=EAST; break;
+            case SOUTH: d1=SOUTH; break;
+            case WEST: d1=WEST;break;
+
+        }
+        boolean flag=facing!=Direction.UP&&facing!=Direction.DOWN;
+        return this.defaultBlockState().setValue(WATERLOGGED, Boolean.valueOf(fluidstate.getType() == Fluids.WATER)).setValue(NORTH, this.connectsToByFacing(state, Direction.NORTH, iblockreader, blockpos))
+                .setValue(SOUTH, this.connectsToByFacing(state, Direction.SOUTH, iblockreader, blockpos))
+                .setValue(WEST, this.connectsToByFacing(state, Direction.WEST, iblockreader, blockpos))
+                .setValue(EAST, this.connectsToByFacing(state, Direction.EAST, iblockreader, blockpos)).setValue(d1,flag);
 
     }
     public BlockState rotate(BlockState p_52341_, Rotation p_52342_) {

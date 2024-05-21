@@ -21,7 +21,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class VerticalSlabBlock extends HorizonalRotateBlock {
     private static final VoxelShape NORTH_BOX = Block.box(0D, 0D, 8D, 16D, 16D, 16D);
     private static final VoxelShape SOUTH_BOX = Block.box(0D, 0.0D, 0D, 16D, 16D, 8D);
-    private static final VoxelShape EAST_BOX = Block.box(0D, 0.0D, 0D, 8D, 14D, 16D);
+    private static final VoxelShape EAST_BOX = Block.box(0D, 0.0D, 0D, 8D, 16D, 16D);
     private static final VoxelShape WEST_BOX = Block.box(8D, 0.0D, 0D, 16D, 16D, 16D);
     public VerticalSlabBlock(Properties p_i48377_1_) {
 

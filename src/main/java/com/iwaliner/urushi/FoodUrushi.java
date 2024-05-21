@@ -7,6 +7,7 @@ public class FoodUrushi {
     public static final FoodProperties TKG = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.8F).build();
     public static final FoodProperties Sekihan = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.8F).build();
     public static final FoodProperties Gyudon = (new FoodProperties.Builder()).nutrition(9).saturationMod(1.2F).build();
+    public static final FoodProperties OtherGyudon = (new FoodProperties.Builder()).nutrition(10).saturationMod(1.2F).build();
     public static final FoodProperties Butadon = (new FoodProperties.Builder()).nutrition(9).saturationMod(1.2F).build();
     public static final FoodProperties KitsuneUdon = (new FoodProperties.Builder()).nutrition(9).saturationMod(1.2F).build();
     public static final FoodProperties Karaage = (new FoodProperties.Builder()).nutrition(7).saturationMod(0.8F).build();

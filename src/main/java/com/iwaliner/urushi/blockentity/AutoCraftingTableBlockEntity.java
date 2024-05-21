@@ -6,6 +6,7 @@ import com.iwaliner.urushi.ItemAndBlockRegister;
 import com.iwaliner.urushi.MenuRegister;
 import com.iwaliner.urushi.ModCoreUrushi;
 import com.iwaliner.urushi.block.AutoCraftingTableBlock;
+import com.iwaliner.urushi.block.FoxHopperBlock;
 import com.iwaliner.urushi.blockentity.menu.AutoCraftingTableMenu;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.core.BlockPos;
@@ -16,9 +17,11 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.WorldlyContainer;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.StackedContents;
@@ -29,8 +32,10 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
@@ -38,7 +43,10 @@ import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.function.BooleanSupplier;
+import java.util.stream.IntStream;
 
 public class AutoCraftingTableBlockEntity extends BaseContainerBlockEntity implements WorldlyContainer, StackedContentsCompatible, RecipeHolder, MenuProvider {
     public int litTime;
@@ -232,22 +240,207 @@ public class AutoCraftingTableBlockEntity extends BaseContainerBlockEntity imple
     public boolean isLit() {
         return this.litTime > 0;
     }
-    private void doCraft(ItemStack itemstack,AutoCraftingTableBlockEntity blockEntity){
+    private void doCraft(Level level,ItemStack itemstack,AutoCraftingTableBlockEntity blockEntity){
         for (int i = 11; i < 20; i++) {
-            blockEntity.getItem(i).shrink(1);
+            ItemStack slotStack=blockEntity.getItem(i);
+            if(slotStack.hasCraftingRemainingItem()){
+               /* if(level.getBlockState(blockEntity.getBlockPos()).getBlock() instanceof AutoCraftingTableBlock){
+                    BlockState state=level.getBlockState(blockEntity.getBlockPos());
+                    Vec3 vec3= Vec3.atCenterOf(blockEntity.getBlockPos()).relative(state.getValue(AutoCraftingTableBlock.FACING),0.7D);
+                    ItemEntity itemEntity=new ItemEntity(level,vec3.x,vec3.y,vec3.z,slotStack.getCraftingRemainingItem());
+                    if(!level.isClientSide) {
+                        level.addFreshEntity(itemEntity);
+                    }
+                }*/
+                blockEntity.setItem(i,slotStack.getCraftingRemainingItem());
+              }else {
+                slotStack.shrink(1);
+            }
         }
         if (blockEntity.getItem(0).sameItem(blockEntity.getItem(10)) && ItemStack.tagMatches(blockEntity.getItem(0), blockEntity.getItem(10))) {
             ItemStack newStack = itemstack.copy();
             newStack.setCount(itemstack.getCount() + blockEntity.getItem(10).getCount());
-            blockEntity.setItem(10, newStack);
+            Direction facing=level.getBlockState(blockEntity.getBlockPos()).getValue(AutoCraftingTableBlock.FACING);
+            BlockPos pos2=blockEntity.getBlockPos().relative(facing);
+            if(level.getBlockState(blockEntity.getBlockPos()).getBlock() instanceof AutoCraftingTableBlock&&level.getBlockEntity(pos2) instanceof BaseContainerBlockEntity){
+               BaseContainerBlockEntity baseContainerBlockEntity= (BaseContainerBlockEntity) level.getBlockEntity(blockEntity.getBlockPos().relative(level.getBlockState(blockEntity.getBlockPos()).getValue(AutoCraftingTableBlock.FACING)));
+              //  if(!isExportable(blockEntity,baseContainerBlockEntity,newStack,facing.getOpposite())){
+                    blockEntity.setItem(10, newStack);
+            //    }else {
+           //         addItem(blockEntity,baseContainerBlockEntity,newStack,facing.getOpposite());
+           //     }
+            }else{
+                ItemEntity itemEntity=new ItemEntity(level,(double) pos2.getX()+0.5D,(double) pos2.getY()+0.5D,pos2.getZ()+0.5D,newStack);
+           if(!level.isClientSide){
+               level.addFreshEntity(itemEntity);
+           }
+            }
+            //blockEntity.setItem(10, newStack);
             blockEntity.setChanged();
+
         } else if (blockEntity.getItem(10).isEmpty()) {
-            blockEntity.setItem(10, itemstack);
-            blockEntity.setChanged();
+            Direction facing=level.getBlockState(blockEntity.getBlockPos()).getValue(AutoCraftingTableBlock.FACING);
+            BlockPos pos2=blockEntity.getBlockPos().relative(facing);
+            if(level.getBlockState(blockEntity.getBlockPos()).getBlock() instanceof AutoCraftingTableBlock&&level.getBlockEntity(pos2) instanceof BaseContainerBlockEntity){
+                BaseContainerBlockEntity baseContainerBlockEntity= (BaseContainerBlockEntity) level.getBlockEntity(blockEntity.getBlockPos().relative(level.getBlockState(blockEntity.getBlockPos()).getValue(AutoCraftingTableBlock.FACING)));
+              //  if(!isExportable(blockEntity,baseContainerBlockEntity,itemstack,facing.getOpposite())){
+                    blockEntity.setItem(10, itemstack);
+              //  }else {
+             //       addItem(blockEntity,baseContainerBlockEntity,itemstack,facing.getOpposite());
+             //  }
+            }else{
+                ItemEntity itemEntity=new ItemEntity(level,(double) pos2.getX()+0.5D,(double) pos2.getY()+0.5D,pos2.getZ()+0.5D,itemstack);
+                if(!level.isClientSide){
+                    level.addFreshEntity(itemEntity);
+                }
+            }
+
+
+          //  blockEntity.setItem(10, itemstack);
+           blockEntity.setChanged();
         }
     }
-    public static void tick(Level level, BlockPos pos, BlockState state, AutoCraftingTableBlockEntity blockEntity) {
+    @Nullable
+    private static Container getAttachedContainer(Level p_155593_, BlockPos p_155594_, BlockState p_155595_) {
+        Direction direction = p_155595_.getValue(AutoCraftingTableBlock.FACING);
+        return FoxHopperBlockEntity.getContainerAt(p_155593_, p_155594_.relative(direction));
+    }
+    private static boolean ejectItems(Level p_155563_, BlockPos p_155564_, BlockState p_155565_, AutoCraftingTableBlockEntity p_155566_) {
 
+        Container container = getAttachedContainer(p_155563_, p_155564_, p_155565_);
+        if (container == null) {
+            return false;
+        } else {
+            Direction direction = p_155565_.getValue(AutoCraftingTableBlock.FACING).getOpposite();
+            if (isFullContainer(container, direction)) {
+                return false;
+            } else {
+
+                    if (!p_155566_.getItem(10).isEmpty()) {
+                        ItemStack itemstack = p_155566_.getItem(10).copy();
+                        ItemStack itemstack1 = addItem(p_155566_, container, p_155566_.removeItem(10, 1), direction);
+                        if (itemstack1.isEmpty()) {
+                            container.setChanged();
+                            return true;
+                        }
+
+                        p_155566_.setItem(10, itemstack);
+                    }
+
+
+                return false;
+            }
+        }
+    }
+    private static ItemStack tryMoveInItem(@Nullable Container p_59321_, Container p_59322_, ItemStack p_59323_, int p_59324_, @Nullable Direction p_59325_) {
+        ItemStack itemstack = p_59322_.getItem(p_59324_);
+        if (FoxHopperBlockEntity.canPlaceItemInContainer(p_59322_, p_59323_, p_59324_, p_59325_)) {
+            boolean flag = false;
+            boolean flag1 = p_59322_.isEmpty();
+            if (itemstack.isEmpty()) {
+                p_59322_.setItem(p_59324_, p_59323_);
+                p_59323_ = ItemStack.EMPTY;
+                flag = true;
+            } else if (FoxHopperBlockEntity.canMergeItems(itemstack, p_59323_)) {
+                int i = p_59323_.getMaxStackSize() - itemstack.getCount();
+                int j = Math.min(p_59323_.getCount(), i);
+                p_59323_.shrink(j);
+                itemstack.grow(j);
+                flag = j > 0;
+            }
+
+            if (flag) {
+                p_59322_.setChanged();
+            }
+        }
+
+        return p_59323_;
+    }
+    public static ItemStack addItem(@Nullable Container p_59327_, Container p_59328_, ItemStack p_59329_, @Nullable Direction p_59330_) {
+        if (p_59328_ instanceof WorldlyContainer && p_59330_ != null) {
+            WorldlyContainer worldlycontainer = (WorldlyContainer)p_59328_;
+            int[] aint = worldlycontainer.getSlotsForFace(p_59330_);
+
+            for(int k = 0; k < aint.length && !p_59329_.isEmpty(); ++k) {
+                p_59329_ = tryMoveInItem(p_59327_, p_59328_, p_59329_, aint[k], p_59330_);
+            }
+        } else {
+            int i = p_59328_.getContainerSize();
+
+            for(int j = 0; j < i && !p_59329_.isEmpty(); ++j) {
+                p_59329_ = tryMoveInItem(p_59327_, p_59328_, p_59329_, j, p_59330_);
+            }
+        }
+
+        return p_59329_;
+    }
+    private static IntStream getSlots(Container p_59340_, Direction p_59341_) {
+        return p_59340_ instanceof WorldlyContainer ? IntStream.of(((WorldlyContainer)p_59340_).getSlotsForFace(p_59341_)) : IntStream.range(0, p_59340_.getContainerSize());
+    }
+
+    public static boolean isFullContainer(Container p_59386_, Direction p_59387_) {
+        return getSlots(p_59386_, p_59387_).allMatch((p_59379_) -> {
+            ItemStack itemstack = p_59386_.getItem(p_59379_);
+            return itemstack.getCount() >= itemstack.getMaxStackSize();
+        });
+    }
+    public static boolean isExportable(AutoCraftingTableBlockEntity autoCratingTable,BaseContainerBlockEntity baseContainer,ItemStack craftResultStack,Direction direction) {
+        boolean flag=false;
+        if (baseContainer instanceof WorldlyContainer && direction != null) {
+            WorldlyContainer worldlycontainer = (WorldlyContainer)baseContainer;
+            int[] aint = worldlycontainer.getSlotsForFace(direction);
+            for(int k = 0; k < aint.length; ++k) {
+                ItemStack itemstack = worldlycontainer.getItem(aint[k]);
+                if (FoxHopperBlockEntity.canPlaceItemInContainer(worldlycontainer, craftResultStack, aint[k], direction)) {
+
+                    if (itemstack.isEmpty()) {
+                        flag = true;
+                    } else if (FoxHopperBlockEntity.canMergeItems(itemstack, craftResultStack)) {
+                       if(itemstack.getMaxStackSize()-itemstack.getCount()>=craftResultStack.getCount()){
+                           flag=true;
+                       }
+                    }
+
+
+                }
+            }
+        } else {
+            int i = baseContainer.getContainerSize();
+
+            for(int j = 0; j < i ; ++j) {
+                ItemStack itemstack = baseContainer.getItem(j);
+                if (FoxHopperBlockEntity.canPlaceItemInContainer(baseContainer, craftResultStack, j, direction)) {
+
+                    if (itemstack.isEmpty()) {
+                        flag = true;
+                    } else if (FoxHopperBlockEntity.canMergeItems(itemstack, craftResultStack)) {
+                        if(itemstack.getMaxStackSize()-itemstack.getCount()>=craftResultStack.getCount()){
+                            flag=true;
+                        }
+                    }
+
+
+                }
+            }
+        }
+        return flag;
+    }
+    private static boolean canTakeItemFromContainer(Container p_59381_, ItemStack p_59382_, int p_59383_, Direction p_59384_) {
+        return !(p_59381_ instanceof WorldlyContainer) || ((WorldlyContainer)p_59381_).canTakeItemThroughFace(p_59383_, p_59382_, p_59384_);
+    }
+    public static void tick(Level level, BlockPos pos, BlockState state, AutoCraftingTableBlockEntity blockEntity) {
+    //ejectItems(level,pos,state,blockEntity);
+        Direction facing=level.getBlockState(pos).getValue(AutoCraftingTableBlock.FACING);
+        BlockPos pos2=pos.relative(facing);
+        if(level.getBlockState(blockEntity.getBlockPos()).getBlock() instanceof AutoCraftingTableBlock&&level.getBlockEntity(pos2) instanceof BaseContainerBlockEntity){
+            BaseContainerBlockEntity baseContainerBlockEntity= (BaseContainerBlockEntity) level.getBlockEntity(blockEntity.getBlockPos().relative(level.getBlockState(blockEntity.getBlockPos()).getValue(AutoCraftingTableBlock.FACING)));
+            ItemStack itemStack=blockEntity.getItem(10).copy();
+            itemStack.setCount(1);
+            if(isExportable(blockEntity,baseContainerBlockEntity,itemStack,facing.getOpposite())){
+                addItem(blockEntity,baseContainerBlockEntity,itemStack,facing.getOpposite());
+                blockEntity.getItem(10).shrink(1);
+            }
+        }
 
         if (!level.isClientSide) {
             CraftingContainer craftingcontainer = new CraftingContainer(new AbstractContainerMenu((MenuType) MenuRegister.AutoCraftingTableMenu.get(), -1) {
@@ -286,10 +479,10 @@ public class AutoCraftingTableBlockEntity extends BaseContainerBlockEntity imple
                         if (blockEntity.litTime == 0) {
                             blockEntity.litTime = 60;
                         } else if (blockEntity.litTime == 1) {
-                            blockEntity.doCraft(itemstack, blockEntity);
+                            blockEntity.doCraft(level,itemstack, blockEntity);
                         }
                     }else if(state.getBlock()==ItemAndBlockRegister.advanced_auto_crafting_table.get()){
-                        blockEntity.doCraft(itemstack,blockEntity);
+                        blockEntity.doCraft(level,itemstack,blockEntity);
                     }
                 }
 
@@ -299,56 +492,7 @@ public class AutoCraftingTableBlockEntity extends BaseContainerBlockEntity imple
             --blockEntity.litTime;
         }
     }
-    /*public static void tick(Level level, BlockPos pos, BlockState state, AutoCraftingTableBlockEntity blockEntity) {
-        if (!level.isClientSide) {
-            CraftingContainer craftingcontainer = new CraftingContainer(new AbstractContainerMenu((MenuType) MenuRegister.AutoCraftingTableMenu.get(), -1) {
-                public ItemStack quickMoveStack(Player p_218264_, int p_218265_) {
-                    return ItemStack.EMPTY;
-                }
 
-                public boolean stillValid(Player p_29888_) {
-                    return false;
-                }
-            }, 3, 3);
-        for (int i = 0; i < 9; i++) {
-                craftingcontainer.setItem(i, blockEntity.ingredientsSample.getStackInSlot(i));
-             }
-            Optional<CraftingRecipe> optional = level.getRecipeManager().getRecipeFor(RecipeType.CRAFTING, craftingcontainer, level);
-              ItemStack itemstack = ItemStack.EMPTY;
-            if (optional.isPresent()) {
-                CraftingRecipe craftingrecipe = optional.get();
-                itemstack = craftingrecipe.assemble(craftingcontainer);
-
-            }
-            blockEntity.setItem(0, itemstack);
-
-            if (!itemstack.isEmpty()) {
-
-                boolean flag = true;
-                for (int i = 1; i < 10; i++) {
-                 if (!blockEntity.getItem(i).getItem().equals(blockEntity.getItem(i + 10).getItem())) {
-                        flag = false;
-                    }
-
-                }
-                if (flag&&blockEntity.getItem(10).getCount()+itemstack.getCount()<=itemstack.getMaxStackSize()) {
-                    for (int i = 11; i < 20; i++) {
-                        blockEntity.getItem(i).shrink(1);
-                    }
-                    if (blockEntity.getItem(0).sameItem(blockEntity.getItem(10)) && ItemStack.tagMatches(blockEntity.getItem(0), blockEntity.getItem(10))) {
-                        ItemStack newStack = itemstack.copy();
-                        newStack.setCount(itemstack.getCount() + blockEntity.getItem(10).getCount());
-                        blockEntity.setItem(10, newStack);
-                        blockEntity.setChanged();
-                    } else if (blockEntity.getItem(10).isEmpty()) {
-                        blockEntity.setItem(10, itemstack);
-                        blockEntity.setChanged();
-                    }
-                }
-
-            }
-        }
-    }*/
 
     protected Component getDefaultName() {
         return Component.translatable("container.urushi_auto_crafting_table");
@@ -520,6 +664,5 @@ public class AutoCraftingTableBlockEntity extends BaseContainerBlockEntity imple
     public ClientboundBlockEntityDataPacket getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);
     }
-
 
 }

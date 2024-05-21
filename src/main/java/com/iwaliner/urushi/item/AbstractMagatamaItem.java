@@ -14,16 +14,14 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 import net.minecraft.util.StringUtil;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.WritableBookItem;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
 import javax.annotation.Nullable;
+import java.util.Collection;
 import java.util.List;
 
 public abstract class AbstractMagatamaItem extends Item implements HasReiryokuItem {
@@ -35,6 +33,9 @@ public abstract class AbstractMagatamaItem extends Item implements HasReiryokuIt
     public int getReiryokuCapacity(){
         return ConfigUrushi.reiryokuCapacityOfMagatama.get();
     }
+
+    @Override
+
 
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag flag) {
         list.add((Component.translatable("info.urushi.magatama1")).withStyle(ChatFormatting.GRAY));

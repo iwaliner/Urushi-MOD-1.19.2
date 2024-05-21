@@ -293,7 +293,7 @@ public class FoxHopperBlockEntity extends RandomizableContainerBlockEntity imple
         return p_59340_ instanceof WorldlyContainer ? IntStream.of(((WorldlyContainer)p_59340_).getSlotsForFace(p_59341_)) : IntStream.range(0, p_59340_.getContainerSize());
     }
 
-    private static boolean isFullContainer(Container p_59386_, Direction p_59387_) {
+    public static boolean isFullContainer(Container p_59386_, Direction p_59387_) {
         return getSlots(p_59386_, p_59387_).allMatch((p_59379_) -> {
             ItemStack itemstack = p_59386_.getItem(p_59379_);
             return itemstack.getCount() >= itemstack.getMaxStackSize();
@@ -374,7 +374,7 @@ public class FoxHopperBlockEntity extends RandomizableContainerBlockEntity imple
         return p_59329_;
     }
 
-    private static boolean canPlaceItemInContainer(Container p_59335_, ItemStack p_59336_, int p_59337_, @Nullable Direction p_59338_) {
+    static boolean canPlaceItemInContainer(Container p_59335_, ItemStack p_59336_, int p_59337_, @Nullable Direction p_59338_) {
         if (!p_59335_.canPlaceItem(p_59337_, p_59336_)) {
             return false;
         } else {
@@ -476,7 +476,7 @@ public class FoxHopperBlockEntity extends RandomizableContainerBlockEntity imple
         return container;
     }
 
-    private static boolean canMergeItems(ItemStack p_59345_, ItemStack p_59346_) {
+    static boolean canMergeItems(ItemStack p_59345_, ItemStack p_59346_) {
         if (!p_59345_.is(p_59346_.getItem())) {
             return false;
         } else if (p_59345_.getDamageValue() != p_59346_.getDamageValue()) {
