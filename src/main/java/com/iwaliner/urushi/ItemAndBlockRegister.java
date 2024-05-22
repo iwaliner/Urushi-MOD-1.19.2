@@ -917,6 +917,13 @@ public class ItemAndBlockRegister {
     public static final RegistryObject<Block> salt_and_sand =BF("salt_and_sand","s",-1,() -> {return new SaltAndSandBlock(BlockBehaviour.Properties.of(Material.SAND, MaterialColor.SAND).strength(1F, 10F).sound(SoundType.SAND));});
     public static final RegistryObject<Item> salt =ITEMS.register("salt", () -> {return new ToolchipItem("salt",(new Item.Properties()).tab(ModCoreUrushi.UrushiFoodTab));});
     public static final RegistryObject<Item> kanten_powder =IF("kanten_powder");
+    public static final RegistryObject<Item> kansui_powder =IF("kansui_powder");
+    public static final RegistryObject<Block> alkaline_dough =BF("alkaline_dough","n",-1,() -> {return new TwoDirectionShapedBlock(3.0D, 0.0D, 0D, 13.0D, 2.0D, 16.0D,BlockBehaviour.Properties.of(Material.CLAY, MaterialColor.TERRACOTTA_YELLOW).instabreak().sound(SoundType.WOOD));});
+    public static final RegistryObject<Block> alkaline_noodles =BF("alkaline_noodles","n",-1,() -> {return new TwoDirectionShapedBlock(2.0D, 0.0D, 0D, 14.0D, 2.0D, 16.0D,BlockBehaviour.Properties.of(Material.CLAY, MaterialColor.TERRACOTTA_YELLOW).instabreak().sound(SoundType.WOOD));});
+    public static final RegistryObject<Item> soy_source_ramen =ITEMS.register("soy_source_ramen", () -> {return new Item((new Item.Properties()).food(FoodUrushi.Ramen).tab(ModCoreUrushi.UrushiFoodTab));});
+    public static final RegistryObject<Item> miso_ramen =ITEMS.register("miso_ramen", () -> {return new Item((new Item.Properties()).food(FoodUrushi.Ramen).tab(ModCoreUrushi.UrushiFoodTab));});
+    public static final RegistryObject<Item> tonkotsu_ramen =ITEMS.register("tonkotsu_ramen", () -> {return new Item((new Item.Properties()).food(FoodUrushi.Ramen).tab(ModCoreUrushi.UrushiFoodTab));});
+    public static final RegistryObject<Item> salt_ramen =ITEMS.register("salt_ramen", () -> {return new Item((new Item.Properties()).food(FoodUrushi.Ramen).tab(ModCoreUrushi.UrushiFoodTab));});
     public static final RegistryObject<Item> syari =ITEMS.register("syari", () -> {return new Item((new Item.Properties()).food(FoodUrushi.RawFish).tab(ModCoreUrushi.UrushiFoodTab));});
     public static final RegistryObject<Item> tsuna =ITEMS.register("tsuna", () -> {return new Item((new Item.Properties()).food(FoodUrushi.RawFish).tab(ModCoreUrushi.UrushiFoodTab));});
     public static final RegistryObject<Item> sweetfish =ITEMS.register("sweetfish", () -> {return new Item((new Item.Properties()).food(FoodUrushi.RawFish).tab(ModCoreUrushi.UrushiFoodTab));});

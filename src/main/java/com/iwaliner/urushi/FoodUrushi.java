@@ -7,7 +7,7 @@ public class FoodUrushi {
     public static final FoodProperties TKG = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.8F).build();
     public static final FoodProperties Sekihan = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.8F).build();
     public static final FoodProperties Gyudon = (new FoodProperties.Builder()).nutrition(9).saturationMod(1.2F).build();
-    public static final FoodProperties OtherGyudon = (new FoodProperties.Builder()).nutrition(10).saturationMod(1.2F).build();
+    public static final FoodProperties OtherGyudon = (new FoodProperties.Builder()).nutrition(10).saturationMod(1.4F).build();
     public static final FoodProperties Butadon = (new FoodProperties.Builder()).nutrition(9).saturationMod(1.2F).build();
     public static final FoodProperties KitsuneUdon = (new FoodProperties.Builder()).nutrition(9).saturationMod(1.2F).build();
     public static final FoodProperties Karaage = (new FoodProperties.Builder()).nutrition(7).saturationMod(0.8F).build();
@@ -35,5 +35,5 @@ public class FoodUrushi {
     public static final FoodProperties CookedFishWithSalt = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.7F).build();
     public static final FoodProperties Shiitake = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.3F).build();
     public static final FoodProperties So = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).build();
-
+    public static final FoodProperties Ramen = (new FoodProperties.Builder()).nutrition(10).saturationMod(1.4F).build();
 }
