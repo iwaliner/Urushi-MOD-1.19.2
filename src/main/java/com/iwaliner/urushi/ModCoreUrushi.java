@@ -2,8 +2,7 @@ package com.iwaliner.urushi;
 
 import com.iwaliner.urushi.block.*;
 import com.iwaliner.urushi.blockentity.ShichirinBlockEntity;
-import com.iwaliner.urushi.datagen.UrushiLootTableProvider;
-import com.iwaliner.urushi.entiity.JufuEntity;
+
 import com.iwaliner.urushi.util.ElementType;
 import com.iwaliner.urushi.util.ElementUtils;
 import com.iwaliner.urushi.util.UrushiUtils;

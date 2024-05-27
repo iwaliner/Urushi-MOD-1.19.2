@@ -1,12 +1,20 @@
 package com.iwaliner.urushi.block;
 
+import com.iwaliner.urushi.ItemAndBlockRegister;
+import com.iwaliner.urushi.util.UrushiUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+
+import java.util.List;
 
 public class TwoDirectionShapedBlock extends HorizonalRotateBlock{
     private static  VoxelShape SHAPEA;
@@ -23,5 +31,14 @@ public class TwoDirectionShapedBlock extends HorizonalRotateBlock{
         }else{
             return SHAPEA;
         }
+    }
+    @Override
+    public void appendHoverText(ItemStack stack, @org.jetbrains.annotations.Nullable BlockGetter getter, List<Component> list, TooltipFlag flag) {
+        if(stack.getItem().equals(Item.byBlock(ItemAndBlockRegister.udon.get()))){
+            UrushiUtils.setInfo(list, "udon");
+        }else  if(stack.getItem().equals(Item.byBlock(ItemAndBlockRegister.alkaline_noodles.get()))){
+            UrushiUtils.setInfo(list, "alkaline_noodles");
+        }
+
     }
 }

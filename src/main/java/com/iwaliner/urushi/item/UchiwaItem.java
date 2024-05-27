@@ -7,6 +7,7 @@ import com.iwaliner.urushi.util.UrushiUtils;
 import com.iwaliner.urushi.util.interfaces.ElementItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -97,7 +98,7 @@ public class UchiwaItem extends Item implements ElementItem {
                 }
             }
         }
-        ElementUtils.increaseStoredReiryokuAmount(magatama,-cnt);
+        ElementUtils.increaseStoredReiryokuAmount(magatama,-Mth.floor((float) cnt/10));
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.iwaliner.urushi.blockentity;
 
 import com.iwaliner.urushi.BlockEntityRegister;
 import com.iwaliner.urushi.ParticleRegister;
+import com.iwaliner.urushi.block.EmitterBlock;
 import com.iwaliner.urushi.block.MirrorBlock;
 import com.iwaliner.urushi.util.ComplexDirection;
 import com.iwaliner.urushi.util.ElementType;
@@ -917,9 +918,23 @@ public class MirrorBlockEntity extends AbstractReiryokuStorableBlockEntity  impl
 
         return reflect;
     }
+    private int getTier(){
+        if(getBlockState().getBlock() instanceof MirrorBlock){
+            return ((MirrorBlock) getBlockState().getBlock()).getTier();
+        }
+        return 0;
+    }
+    private double getParticleSpeed(){
+        if(this.getTier()==1){
+            return 0.2D;
+        }else if(this.getTier()==2){
+            return 0.3D;
+        }
+        return 0.2D;
+    }
 
     private double[] getParticleVelocity(ComplexDirection reflectedDirection){
-        double speed=EmitterBlockEntity.particleSpeed;
+        double speed=getParticleSpeed();
         double vectorComponent45Degrees=speed/(Math.sqrt(2));
         if(reflectedDirection==ComplexDirection.N){
             return new double[]{0D, 0D, -speed};
@@ -1054,7 +1069,7 @@ public class MirrorBlockEntity extends AbstractReiryokuStorableBlockEntity  impl
     }
     /**一度に送信する霊力の量*/
     private int getSendAmount(){
-        int i=1;
+        int i=getTier()==2? 5 : 1;
         if(this.getStoredReiryoku()-i<0){
             return getStoredReiryoku();
         }else{
@@ -1123,7 +1138,7 @@ public class MirrorBlockEntity extends AbstractReiryokuStorableBlockEntity  impl
     }
     private BlockPos findImportableBlock(Level level,BlockPos mirrorPos,ComplexDirection incidentDirection){
         boolean b1=incidentDirection==ComplexDirection.N||incidentDirection==ComplexDirection.S||incidentDirection==ComplexDirection.E||incidentDirection==ComplexDirection.W;
-        int range= b1? Mth.floor(EmitterBlockEntity.particleSpeed*80+0.6D) : Mth.floor((EmitterBlockEntity.particleSpeed*80+0.6D)/Math.sqrt(2));
+        int range= b1? Mth.floor(getParticleSpeed()*80+0.6D) : Mth.floor((getParticleSpeed()*80+0.6D)/Math.sqrt(2));
         MirrorBlockEntity mirrorBlockEntity= (MirrorBlockEntity) level.getBlockEntity(mirrorPos);
 
             int t1=0;
@@ -1175,7 +1190,7 @@ public class MirrorBlockEntity extends AbstractReiryokuStorableBlockEntity  impl
         ReiryokuStorable goalBlockEntity= (ReiryokuStorable) level.getBlockEntity(goalPos);
         int distance=Mth.floor( Math.sqrt( (Math.abs(mirrorPos.getX()-goalPos.getX()))^2+(Math.abs(mirrorPos.getY()-goalPos.getY()))^2+(Math.abs(mirrorPos.getZ()-goalPos.getZ()))^2));
 
-        int arriveTick= Mth.floor ((distance-1)/EmitterBlockEntity.particleSpeed)<=0? 1:Mth.floor ((distance-1)/EmitterBlockEntity.particleSpeed);
+        int arriveTick= Mth.floor ((distance-1)/getParticleSpeed())<=0? 1:Mth.floor ((distance-1)/getParticleSpeed());
 
         if(mirrorBlockEntity!=null&&goalBlockEntity!=null&&goalBlockEntity.isIdle()&&mirrorBlockEntity.canDecreaseReiryoku(mirrorBlockEntity.getSendAmount())&&goalBlockEntity.canAddReiryoku(mirrorBlockEntity.getSendAmount())){
             if(goalBlockEntity instanceof ReiryokuImportable){

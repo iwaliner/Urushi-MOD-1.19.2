@@ -1,6 +1,7 @@
 package com.iwaliner.urushi.block;
 
 import com.iwaliner.urushi.BlockEntityRegister;
+import com.iwaliner.urushi.ItemAndBlockRegister;
 import com.iwaliner.urushi.blockentity.AbstractFryerBlockEntity;
 import com.iwaliner.urushi.blockentity.AutoCraftingTableBlockEntity;
 import com.iwaliner.urushi.blockentity.ElementCraftingTableBlockEntity;
@@ -50,7 +51,7 @@ public class AutoCraftingTableBlock extends BaseEntityBlock {
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.DOWN));
        }
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return this.defaultBlockState().setValue(FACING, context.getClickedFace().getOpposite());
+        return this.defaultBlockState().setValue(FACING, context.getClickedFace());
     }
     public BlockState rotate(BlockState p_52716_, Rotation p_52717_) {
         return p_52716_.setValue(FACING, p_52717_.rotate(p_52716_.getValue(FACING)));
@@ -108,5 +109,14 @@ public class AutoCraftingTableBlock extends BaseEntityBlock {
 
             super.onRemove(state, level, pos, state2, flag);
         }
+    }
+    @Override
+    public void appendHoverText(ItemStack stack, @org.jetbrains.annotations.Nullable BlockGetter getter, List<Component> list, TooltipFlag flag) {
+        if(stack.getItem().equals(ItemAndBlockRegister.advanced_auto_crafting_table.get())){
+            UrushiUtils.setInfo(list, "advanced_auto_crafting_table");
+        }
+        UrushiUtils.setInfo(list, "auto_crafting_table");
+        UrushiUtils.setInfo(list, "auto_crafting_table2");
+
     }
 }

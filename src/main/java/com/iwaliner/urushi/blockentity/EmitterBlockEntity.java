@@ -27,11 +27,25 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.ticks.TickPriority;
 
 public class EmitterBlockEntity extends AbstractReiryokuStorableBlockEntity implements ReiryokuExportable {
-   public static   final double particleSpeed=0.2D;
+
     public EmitterBlockEntity(BlockPos p_155550_, BlockState p_155551_) {
         super(BlockEntityRegister.Emitter.get(),100, p_155550_, p_155551_);
     }
-
+    private int getTier(){
+        if(getBlockState().getBlock() instanceof EmitterBlock){
+            return ((EmitterBlock) getBlockState().getBlock()).getTier();
+        }
+        return 0;
+    }
+    public static   final double particleSpeed=0.2D;
+    private double getParticleSpeed(){
+        if(this.getTier()==1){
+            return 0.2D;
+        }else if(this.getTier()==2){
+            return 0.3D;
+        }
+        return 0.2D;
+    }
 
     @Override
     public CompoundTag getUpdateTag() {
@@ -42,7 +56,7 @@ public class EmitterBlockEntity extends AbstractReiryokuStorableBlockEntity impl
 
     /**一度に送信する霊力の量*/
     private int getSendAmount(){
-        int i=1;
+        int i=getTier()==2? 5 : 1;
         if(this.getStoredReiryoku()-i<0){
             return getStoredReiryoku();
         }else{
@@ -60,7 +74,7 @@ public class EmitterBlockEntity extends AbstractReiryokuStorableBlockEntity impl
         if(state.getBlock() instanceof EmitterBlock) {
 
             /**後ろにあるブロックから霊力を吸いだす処理　開始*/
-            int i = 1;
+            int i= emitterBlockEntity.getTier()==2? 5 : 1;
             BlockPos importPos = pos.relative(state.getValue(SacredRockBlock.FACING).getOpposite());
             BlockState importState = level.getBlockState(importPos);
             BlockEntity importBlockEntity = level.getBlockEntity(importPos);
@@ -80,7 +94,8 @@ public class EmitterBlockEntity extends AbstractReiryokuStorableBlockEntity impl
             if (!state.getValue(EmitterBlock.POWERED)) {
                 if (emitterBlockEntity.sendDistance(level, pos) != 0 && emitterBlockEntity.getStoredReiryoku() > 0) {
                     double vX = 0D, vY = 0D, vZ = 0D;
-                    double v0 = emitterBlockEntity.particleSpeed;
+                    double v0 = emitterBlockEntity.getParticleSpeed();
+
                     Direction direction = state.getValue(EmitterBlock.FACING);
                     double dx = 0D, dy = 0D, dz = 0D;
                     if (direction == Direction.UP) {
@@ -117,7 +132,7 @@ public class EmitterBlockEntity extends AbstractReiryokuStorableBlockEntity impl
         if (emitterState.getBlock() instanceof EmitterBlock) {
             Direction direction = emitterState.getValue(EmitterBlock.FACING);
             EmitterBlockEntity emitterBlockEntity = (EmitterBlockEntity) level.getBlockEntity(emitterPos);
-            int range = Mth.floor(this.particleSpeed * 80 - 0.25D);
+            int range = Mth.floor(this.getParticleSpeed() * 80 - 0.25D);
             for (int i = 1; i < range; i++) {
                 BlockEntity blockEntity = level.getBlockEntity(emitterPos.relative(direction, i));
                 BlockState state = level.getBlockState(emitterPos.relative(direction, i));
@@ -160,7 +175,7 @@ public class EmitterBlockEntity extends AbstractReiryokuStorableBlockEntity impl
         BlockPos goalPos=emitterPos.relative(direction,distance);
         EmitterBlockEntity emitterBlockEnitity= (EmitterBlockEntity) level.getBlockEntity(emitterPos);
         ReiryokuStorable goalBlockEntity= (ReiryokuStorable) level.getBlockEntity(goalPos);
-        int arriveTick= Mth.floor ((distance-1)/particleSpeed)<=0? 1:Mth.floor ((distance-1)/particleSpeed);
+        int arriveTick= Mth.floor ((distance-1)/getParticleSpeed())<=0? 1:Mth.floor ((distance-1)/getParticleSpeed());
         if(emitterBlockEnitity!=null&&goalBlockEntity!=null&&emitterBlockEnitity.canDecreaseReiryoku(emitterBlockEnitity.getSendAmount())&&goalBlockEntity.canAddReiryoku(emitterBlockEnitity.getSendAmount())) {
             int receiveWaitingTime = goalBlockEntity.getReceiveWaitingTime();
             int receiveAmount=goalBlockEntity.getReceiveAmount();
