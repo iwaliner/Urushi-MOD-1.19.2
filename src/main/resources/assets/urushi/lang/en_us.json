@@ -2426,5 +2426,6 @@
    "block.urushi.fire_element_emitter_tier2": "Jedeite Fire Element Emitter",
    "block.urushi.earth_element_emitter_tier2": "Jedeite Earth Element Emitter",
    "block.urushi.metal_element_emitter_tier2": "Jedeite Metal Element Emitter",
-   "block.urushi.water_element_emitter_tier2": "Jedeite Water Element Emitter"
+   "block.urushi.water_element_emitter_tier2": "Jedeite Water Element Emitter",
+   "container.urushi_auto_crafting_table": "Auto Crafting Table"
 }

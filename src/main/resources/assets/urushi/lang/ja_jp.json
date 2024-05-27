@@ -2423,6 +2423,7 @@
    "block.urushi.fire_element_emitter_tier2": "翡翠の火気の伝達口",
    "block.urushi.earth_element_emitter_tier2": "翡翠の土気の伝達口",
    "block.urushi.metal_element_emitter_tier2": "翡翠の金気の伝達口",
-   "block.urushi.water_element_emitter_tier2": "翡翠の水気の伝達口"
+   "block.urushi.water_element_emitter_tier2": "翡翠の水気の伝達口",
+   "container.urushi_auto_crafting_table": "自動作業台"
    
 }
