@@ -736,8 +736,6 @@
 
    "info.urushi.saltandsand": "海や海岸系のバイオームで、水に接した砂はこれに変化",
 
-   "info.urushi.udon": "麵切り包丁を麺生地に使うことで入手",
-
    "block.urushi.dirt_furnace": "土かまど",
 
    "block.urushi.rice_cauldron": "釜",
@@ -2232,13 +2230,13 @@
     "entity.urushi.salmon_roe_sushi_food": "イクラの寿司",
     "entity.urushi.inari_food": "おいなりさん",
     "block.urushi.urushi_hopper": "漆のホッパー",
-	"container.urushihopper": "漆のホッパー",
-	"info.urushi.urushi_hopper": "搬送速度が遅く鉄を消費しない廉価版ホッパー",
-	"item.urushi.yakitori": "ねぎま",
-	"item.urushi.hiyayakko": "冷奴",
-	"item.urushi.matured_japanese_apricot_fruit": "完熟した梅の実",
-	"item.urushi.pickled_japanese_apricot": "梅干し",
-    "block.urushi.green_onion_crop": "ネギ",
+   "container.urushihopper": "漆のホッパー",
+   "info.urushi.urushi_hopper": "搬送速度が遅く鉄を消費しない廉価版ホッパー",
+   "item.urushi.yakitori": "ねぎま",
+   "item.urushi.hiyayakko": "冷奴",
+   "item.urushi.matured_japanese_apricot_fruit": "完熟した梅の実",
+   "item.urushi.pickled_japanese_apricot": "梅干し",
+   "block.urushi.green_onion_crop": "ネギ",
     "item.urushi.wood_enhanced_jadeite": "木気で活性化された翡翠",
     "item.urushi.fire_enhanced_jadeite": "火気で活性化された翡翠",
     "item.urushi.earth_enhanced_jadeite": "土気で活性化された翡翠",
