@@ -54,7 +54,9 @@ public class HokoraBlock extends BaseEntityBlock implements Tiered, ElementBlock
         string=s;
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
-
+    public boolean useShapeForLightOcclusion(BlockState p_220074_1_) {
+        return true;
+    }
     @Nullable
     @Override
     public int getTier() {

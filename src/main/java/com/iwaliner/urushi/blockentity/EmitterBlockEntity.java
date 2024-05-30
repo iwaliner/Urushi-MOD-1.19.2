@@ -75,7 +75,7 @@ public class EmitterBlockEntity extends AbstractReiryokuStorableBlockEntity impl
 
             /**後ろにあるブロックから霊力を吸いだす処理　開始*/
             int i= emitterBlockEntity.getTier()==2? 5 : 1;
-            BlockPos importPos = pos.relative(state.getValue(SacredRockBlock.FACING).getOpposite());
+            BlockPos importPos = pos.relative(state.getValue(EmitterBlock.FACING).getOpposite());
             BlockState importState = level.getBlockState(importPos);
             BlockEntity importBlockEntity = level.getBlockEntity(importPos);
             if (importBlockEntity instanceof ReiryokuStorable) {
@@ -170,6 +170,7 @@ public class EmitterBlockEntity extends AbstractReiryokuStorableBlockEntity impl
     /**霊力を輸送*/
     private void send(Level level,BlockPos emitterPos, double dX, double dY, double dZ,double vX,double vY,double vZ){
         BlockState emitterState=level.getBlockState(emitterPos);
+        if(emitterState.getBlock() instanceof EmitterBlock){
         Direction direction=emitterState.getValue(EmitterBlock.FACING);
         int distance=sendDistance(level,emitterPos);
         BlockPos goalPos=emitterPos.relative(direction,distance);
@@ -178,23 +179,23 @@ public class EmitterBlockEntity extends AbstractReiryokuStorableBlockEntity impl
         int arriveTick= Mth.floor ((distance-1)/getParticleSpeed())<=0? 1:Mth.floor ((distance-1)/getParticleSpeed());
         if(emitterBlockEnitity!=null&&goalBlockEntity!=null&&emitterBlockEnitity.canDecreaseReiryoku(emitterBlockEnitity.getSendAmount())&&goalBlockEntity.canAddReiryoku(emitterBlockEnitity.getSendAmount())) {
             int receiveWaitingTime = goalBlockEntity.getReceiveWaitingTime();
-            int receiveAmount=goalBlockEntity.getReceiveAmount();
-            ElementType receiveElementType=goalBlockEntity.getReceiveElementType();
-              if(goalBlockEntity.isIdle()){
-                  goalBlockEntity.setReceiveWaitingTime(arriveTick);
-                  goalBlockEntity.setReceiveAmount(emitterBlockEnitity.getSendAmount());
-                  goalBlockEntity.setReceiveElementType(emitterBlockEnitity.getExportElementType());
-                  if(goalBlockEntity instanceof Mirror) {
-                      Mirror mirror= (Mirror) goalBlockEntity;
-                      mirror.setIncidentDirection(direction.getOpposite());
-                  }
-                    goalBlockEntity.markUpdated();
-                  emitterBlockEnitity.decreaseStoredReiryoku(emitterBlockEnitity.getSendAmount());
-                  emitterBlockEnitity.markUpdated();
-                  level.addParticle(ElementUtils.getMediumElementParticle(this.getExportElementType()), dX, dY, dZ, vX, vY, vZ);
+            int receiveAmount = goalBlockEntity.getReceiveAmount();
+            ElementType receiveElementType = goalBlockEntity.getReceiveElementType();
+            if (goalBlockEntity.isIdle()) {
+                goalBlockEntity.setReceiveWaitingTime(arriveTick);
+                goalBlockEntity.setReceiveAmount(emitterBlockEnitity.getSendAmount());
+                goalBlockEntity.setReceiveElementType(emitterBlockEnitity.getExportElementType());
+                if (goalBlockEntity instanceof Mirror) {
+                    Mirror mirror = (Mirror) goalBlockEntity;
+                    mirror.setIncidentDirection(direction.getOpposite());
+                }
+                goalBlockEntity.markUpdated();
+                emitterBlockEnitity.decreaseStoredReiryoku(emitterBlockEnitity.getSendAmount());
+                emitterBlockEnitity.markUpdated();
+                level.addParticle(ElementUtils.getMediumElementParticle(this.getExportElementType()), dX, dY, dZ, vX, vY, vZ);
 
-              }
-
+            }
+        }
         }
     }
 

@@ -74,7 +74,7 @@ public class ElementCraftingTableBlockEntity extends AbstractReiryokuStorableBlo
         return ClientboundBlockEntityDataPacket.create(this);
     }
     public RecipeType<? extends AbstractElementCraftingRecipe> getRecipeType(){
-        Block block= (ElementCraftingTableBlock)this.getBlockState().getBlock();
+        Block block= this.getBlockState().getBlock();
        if(block instanceof ElementCraftingTableBlock){
            ElementCraftingTableBlock elementCraftingTableBlock= (ElementCraftingTableBlock) block;
            return elementCraftingTableBlock.getRecipeType();

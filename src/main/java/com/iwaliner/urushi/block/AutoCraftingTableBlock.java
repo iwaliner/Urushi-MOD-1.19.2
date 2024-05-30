@@ -17,8 +17,10 @@ import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.stats.Stats;
+import net.minecraft.util.Mth;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.CraftingMenu;
 import net.minecraft.world.item.ItemStack;
@@ -118,5 +120,33 @@ public class AutoCraftingTableBlock extends BaseEntityBlock {
         UrushiUtils.setInfo(list, "auto_crafting_table");
         UrushiUtils.setInfo(list, "auto_crafting_table2");
 
+    }
+    @Override
+    public int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
+        return getRedstoneSignalFromContainer((Container) level.getBlockEntity(pos));
+    }
+
+    public boolean hasAnalogOutputSignal(BlockState p_149740_1_) {
+        return true;
+    }
+
+
+    public static int getRedstoneSignalFromContainer(@javax.annotation.Nullable Container container) {
+        if (container == null) {
+            return 0;
+        } else {
+            int i = 0;
+            float f = 0.0F;
+
+
+                ItemStack itemstack = container.getItem(10);
+                if (!itemstack.isEmpty()) {
+                    f += (float)itemstack.getCount() / (float)itemstack.getMaxStackSize();
+                    ++i;
+            }
+
+
+            return Mth.floor(f * 14.0F) + (i > 0 ? 1 : 0);
+        }
     }
 }

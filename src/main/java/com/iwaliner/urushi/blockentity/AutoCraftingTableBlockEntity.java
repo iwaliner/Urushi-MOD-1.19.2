@@ -107,6 +107,10 @@ public class AutoCraftingTableBlockEntity extends BaseContainerBlockEntity imple
             super.onContentsChanged(slot);
             setChanged();
         }
+        @Override
+        public boolean isItemValid(int slot, @NotNull ItemStack stack) {
+            return false;
+        }
 
 
     };
@@ -116,6 +120,10 @@ public class AutoCraftingTableBlockEntity extends BaseContainerBlockEntity imple
             super.onContentsChanged(slot);
             setChanged();
         }
+        @Override
+        public boolean isItemValid(int slot, @NotNull ItemStack stack) {
+            return false;
+        }
     };
     private final ItemStackHandler resultSample = new ItemStackHandler(1) {
         @Override
@@ -123,7 +131,10 @@ public class AutoCraftingTableBlockEntity extends BaseContainerBlockEntity imple
             super.onContentsChanged(slot);
             setChanged();
         }
-
+        @Override
+        public boolean isItemValid(int slot, @NotNull ItemStack stack) {
+            return false;
+        }
 
     };
     private LazyOptional<ItemStackHandler> resultOptional = LazyOptional.empty();
@@ -570,6 +581,7 @@ public class AutoCraftingTableBlockEntity extends BaseContainerBlockEntity imple
     }
 
     public void setChanged() {
+        level.blockUpdated(this.worldPosition,this.getBlockState().getBlock());
     }
 
     public boolean stillValid(Player p_70300_1_) {
