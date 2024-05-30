@@ -736,8 +736,6 @@
 
     "info.urushi.saltandsand": "In Ocean or Beach biomes, Sand in contact with water transforms into this.",
 
-   "info.urushi.udon": "To obtain, use Noodle Knife to Noodle Dough.",
-
    "block.urushi.dirt_furnace": "Dirt Furnace",
 
    "block.urushi.rice_cauldron": "Rice Cauldron",
@@ -2280,8 +2278,6 @@
    "patchouli.urushi.urushi_book.name": "About Urushi",
    "patchouli.urushi.urushi_book.subtitle": "Japanese Blocks!",
    "patchouli.urushi.urushi_book.landing_text": "Urushi adds many Japanese blocks. Also, urushi has magic contents.",
-   "item.urushi.yakitori": "Yakitori",
-    "item.urushi.hiyayakko": "Hiyayakko",
    "fluid_type.urushi.hot_spring_fluid": "Hot Spring Water",
    "block.urushi.fermentation_barrel": "Fermentation Barrel",
    "block.urushi.fermentation_barrel_with_rice": "Fermentation Barrel with Rice",
