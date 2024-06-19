@@ -1,7 +1,6 @@
 package com.iwaliner.urushi.util;
 
 import com.iwaliner.urushi.ModCoreUrushi;
-import com.iwaliner.urushi.packet.ClientKeyPressPacket;
 import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.network.FriendlyByteBuf;

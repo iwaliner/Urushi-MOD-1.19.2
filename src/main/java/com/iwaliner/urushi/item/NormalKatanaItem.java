@@ -18,8 +18,10 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.TieredItem;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -31,13 +33,13 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.List;
 
-public class NormalKatanaItem extends TieredItem {
+public class NormalKatanaItem extends SwordItem {
     private final float attackDamage;
 
     private final Multimap<Attribute, AttributeModifier> defaultModifiers;
 
     public NormalKatanaItem(Tier tier,int i,float f, Properties properties) {
-        super(tier,  properties);
+        super(tier,i,f,  properties);
         this.attackDamage = (float)i + tier.getAttackDamageBonus();
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
         builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", (double)this.attackDamage, AttributeModifier.Operation.ADDITION));
@@ -112,7 +114,7 @@ public class NormalKatanaItem extends TieredItem {
             for (LivingEntity entity : list) {
                 if(entity instanceof Player) {
                 }else{
-                    entity.hurt(DamageSource.GENERIC, getDamage()/2);
+                    entity.hurt(DamageSource.GENERIC, (getDamage()+EnchantmentHelper.getDamageBonus(player.getItemInHand(hand),entity.getMobType()))*0.5F);
                     player.level.playSound((Player) null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.PLAYER_ATTACK_KNOCKBACK, SoundSource.PLAYERS, 1.5F, 1F);
                 }
             }
@@ -124,7 +126,7 @@ public class NormalKatanaItem extends TieredItem {
 
     @Override
     public InteractionResult interactLivingEntity(ItemStack itemStack, Player player, LivingEntity living, InteractionHand hand) {
-            living.hurt(DamageSource.GENERIC,getDamage()/2);
+            living.hurt(DamageSource.GENERIC,(getDamage()+ EnchantmentHelper.getDamageBonus(player.getItemInHand(hand),living.getMobType()))*0.5F);
             this.use(player.level,player,hand);
             player.level.playSound((Player) null, living.getX(), living.getY(), living.getZ(), SoundEvents.PLAYER_ATTACK_KNOCKBACK, SoundSource.PLAYERS, 1.5F, 1F);
             return InteractionResult.sidedSuccess(player.level.isClientSide);
