@@ -273,8 +273,9 @@ public class AutoCraftingTableBlockEntity extends BaseContainerBlockEntity imple
             newStack.setCount(itemstack.getCount() + blockEntity.getItem(10).getCount());
             Direction facing=level.getBlockState(blockEntity.getBlockPos()).getValue(AutoCraftingTableBlock.FACING);
             BlockPos pos2=blockEntity.getBlockPos().relative(facing);
-            if(level.getBlockState(blockEntity.getBlockPos()).getBlock() instanceof AutoCraftingTableBlock&&level.getBlockEntity(pos2) instanceof BaseContainerBlockEntity){
-               BaseContainerBlockEntity baseContainerBlockEntity= (BaseContainerBlockEntity) level.getBlockEntity(blockEntity.getBlockPos().relative(level.getBlockState(blockEntity.getBlockPos()).getValue(AutoCraftingTableBlock.FACING)));
+           // if(level.getBlockState(blockEntity.getBlockPos()).getBlock() instanceof AutoCraftingTableBlock&&level.getBlockEntity(pos2) instanceof BaseContainerBlockEntity){
+            if(level.getBlockState(blockEntity.getBlockPos()).getBlock() instanceof AutoCraftingTableBlock&&!level.isEmptyBlock(pos2)){
+                BaseContainerBlockEntity baseContainerBlockEntity= (BaseContainerBlockEntity) level.getBlockEntity(blockEntity.getBlockPos().relative(level.getBlockState(blockEntity.getBlockPos()).getValue(AutoCraftingTableBlock.FACING)));
               //  if(!isExportable(blockEntity,baseContainerBlockEntity,newStack,facing.getOpposite())){
                     blockEntity.setItem(10, newStack);
             //    }else {
@@ -292,7 +293,8 @@ public class AutoCraftingTableBlockEntity extends BaseContainerBlockEntity imple
         } else if (blockEntity.getItem(10).isEmpty()) {
             Direction facing=level.getBlockState(blockEntity.getBlockPos()).getValue(AutoCraftingTableBlock.FACING);
             BlockPos pos2=blockEntity.getBlockPos().relative(facing);
-            if(level.getBlockState(blockEntity.getBlockPos()).getBlock() instanceof AutoCraftingTableBlock&&level.getBlockEntity(pos2) instanceof BaseContainerBlockEntity){
+           // if(level.getBlockState(blockEntity.getBlockPos()).getBlock() instanceof AutoCraftingTableBlock&&level.getBlockEntity(pos2) instanceof BaseContainerBlockEntity){
+            if(level.getBlockState(blockEntity.getBlockPos()).getBlock() instanceof AutoCraftingTableBlock&&!level.isEmptyBlock(pos2)){
                 BaseContainerBlockEntity baseContainerBlockEntity= (BaseContainerBlockEntity) level.getBlockEntity(blockEntity.getBlockPos().relative(level.getBlockState(blockEntity.getBlockPos()).getValue(AutoCraftingTableBlock.FACING)));
               //  if(!isExportable(blockEntity,baseContainerBlockEntity,itemstack,facing.getOpposite())){
                     blockEntity.setItem(10, itemstack);

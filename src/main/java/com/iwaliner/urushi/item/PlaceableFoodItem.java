@@ -1,6 +1,7 @@
 package com.iwaliner.urushi.item;
 
 
+import com.iwaliner.urushi.ItemAndBlockRegister;
 import com.iwaliner.urushi.util.UrushiUtils;
 import com.iwaliner.urushi.entiity.food.FoodEntity;
 import net.minecraft.nbt.CompoundTag;
@@ -18,6 +19,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
@@ -46,8 +48,13 @@ private java.util.function.Supplier<? extends EntityType<?>> entityType;
            Vec3 vector3d = Vec3.atBottomCenterOf(context.getClickedPos());
            AABB axisalignedbb = entity.getDimensions().makeBoundingBox(vector3d.x(), vector3d.y(), vector3d.z());
            if (context.getLevel().getEntities((Entity) null, axisalignedbb).isEmpty()) {
+               BlockState state=context.getLevel().getBlockState(context.getClickedPos());
                FoodEntity foodEntity = (FoodEntity) entity.create((ServerLevel) context.getLevel(), (CompoundTag) null,(Component) null,  context.getPlayer(), context.getClickedPos(), MobSpawnType.SPAWN_EGG, true, true);
-              foodEntity.moveTo(context.getClickLocation().x, context.getClickLocation().y, context.getClickLocation().z, context.getRotation(), 0.0F);
+              if(state.getBlock()== ItemAndBlockRegister.sushi_conveyor.get()){
+                  foodEntity.moveTo((double)context.getClickedPos().getX()+0.5D, (double)context.getClickedPos().getY()+1.001D, (double)context.getClickedPos().getZ()+0.5D, context.getRotation(), 0.0F);
+              }else {
+                  foodEntity.moveTo(context.getClickLocation().x, context.getClickLocation().y, context.getClickLocation().z, context.getRotation(), 0.0F);
+              }
               context.getLevel().addFreshEntity(foodEntity);
                context.getItemInHand().shrink(1);
                context.getLevel().playSound((Player) null, context.getClickedPos(), SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 1.0F, 1F);

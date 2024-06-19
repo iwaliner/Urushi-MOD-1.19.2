@@ -3,6 +3,8 @@ package com.iwaliner.urushi.block;
 import com.google.common.collect.Maps;
 import com.iwaliner.urushi.ClientSetUp;
 import com.iwaliner.urushi.ConfigUrushi;
+import com.iwaliner.urushi.ModCoreUrushi;
+import com.iwaliner.urushi.network.FramedBlockTextureConnectionProvider;
 import com.iwaliner.urushi.util.ElementUtils;
 import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.ChatFormatting;
@@ -11,7 +13,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
- 
+
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -33,6 +36,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 
 public class FramedPaneBlock extends HorizonalRotateBlock{
@@ -155,12 +160,19 @@ public class FramedPaneBlock extends HorizonalRotateBlock{
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_49915_) {
         p_49915_.add(NORTH, EAST, WEST, SOUTH,UP,DOWN,VARIANT,FACING);
     }
+    private boolean textureConnection(Player player){
+        AtomicBoolean b = new AtomicBoolean(false);
+        player.getCapability(FramedBlockTextureConnectionProvider.FRAMED_BLOCK_TEXTURE_CONNECTION).ifPresent(data -> {
+            b.set(data.isPressed());
 
+        });
+        return b.get();
+    }
     @Override
-    public BlockState getStateForPlacement(BlockPlaceContext p_196258_1_) {
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
 
-        LevelAccessor iblockreader = p_196258_1_.getLevel();
-        BlockPos blockpos = p_196258_1_.getClickedPos();
+        LevelAccessor iblockreader = context.getLevel();
+        BlockPos blockpos = context.getClickedPos();
         BlockState thisState = iblockreader.getBlockState(blockpos);
         BlockPos blockpos1 = blockpos.north();
         BlockPos blockpos2 = blockpos.east();
@@ -175,15 +187,15 @@ public class FramedPaneBlock extends HorizonalRotateBlock{
         BlockState aState = iblockreader.getBlockState(blockpos5);
         BlockState bState = iblockreader.getBlockState(blockpos6);
 
-    /*    return super.getStateForPlacement(p_196258_1_).setValue(NORTH, Boolean.valueOf(this.connectsTo(thisState, nState)))
+    /*    return super.getStateForPlacement(context).setValue(NORTH, Boolean.valueOf(this.connectsTo(thisState, nState)))
                 .setValue(SOUTH, Boolean.valueOf(this.connectsTo(thisState, sState)))
                 .setValue(WEST, Boolean.valueOf(this.connectsTo(thisState, wState)))
                 .setValue(EAST, Boolean.valueOf(this.connectsTo(thisState, eState)))
                 .setValue(UP, Boolean.valueOf(this.connectsTo(thisState, aState)))
                 .setValue(DOWN, Boolean.valueOf(this.connectsTo(thisState, bState)))
-                .setValue(VARIANT,p_196258_1_.getLevel().getServer()==null? p_196258_1_.getPlayer().isSuppressingBounce() : p_196258_1_.getLevel().getServer().isSingleplayer() ?
+                .setValue(VARIANT,context.getLevel().getServer()==null? context.getPlayer().isSuppressingBounce() : context.getLevel().getServer().isSingleplayer() ?
                         ClientSetUp.connectionKey.isDown() :
-                        p_196258_1_.getPlayer().isSuppressingBounce());
+                        context.getPlayer().isSuppressingBounce());
 
 */
         try {
@@ -193,9 +205,8 @@ public class FramedPaneBlock extends HorizonalRotateBlock{
                     .setValue(EAST, Boolean.valueOf(this.connectsTo(thisState, eState)))
                     .setValue(UP, Boolean.valueOf(this.connectsTo(thisState, aState)))
                     .setValue(DOWN, Boolean.valueOf(this.connectsTo(thisState, bState)))
-                    .setValue(FACING, p_196258_1_.getHorizontalDirection().getOpposite())
-                    .setValue(VARIANT,
-                            ClientSetUp.connectionKey.isDown() )
+                    .setValue(FACING, context.getHorizontalDirection().getOpposite())
+                    .setValue(VARIANT, textureConnection(Objects.requireNonNull(context.getPlayer())) )
                     ;
 
             return newState;
@@ -206,8 +217,8 @@ public class FramedPaneBlock extends HorizonalRotateBlock{
                     .setValue(EAST, Boolean.valueOf(this.connectsTo(thisState, eState)))
                     .setValue(UP, Boolean.valueOf(this.connectsTo(thisState, aState)))
                     .setValue(DOWN, Boolean.valueOf(this.connectsTo(thisState, bState)))
-                    .setValue(FACING, p_196258_1_.getHorizontalDirection().getOpposite())
-                    .setValue(VARIANT, p_196258_1_.getPlayer().isSuppressingBounce())
+                    .setValue(FACING, context.getHorizontalDirection().getOpposite())
+                    .setValue(VARIANT, context.getPlayer().isSuppressingBounce())
                     ;
 
             return newState;

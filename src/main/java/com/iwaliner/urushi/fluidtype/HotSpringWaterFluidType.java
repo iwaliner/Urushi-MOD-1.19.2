@@ -18,8 +18,6 @@ public class HotSpringWaterFluidType extends FluidType {
         super(properties);
     }
 
-
-
     @Override
     public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
         consumer.accept(new IClientFluidTypeExtensions() {
@@ -38,7 +36,7 @@ public class HotSpringWaterFluidType extends FluidType {
             }
 
             @Override
-            public @Nullable ResourceLocation getRenderOverlayTexture(Minecraft mc) {
+            public  ResourceLocation getRenderOverlayTexture(Minecraft mc) {
                 return HotSpringOverrayTex;
             }
 

@@ -656,12 +656,10 @@
 
     "info.urushi.framed_block1": "The textures are connected with each other by default.",
 
-    "info.urushi.framed_block2": "On singleplayer, toggle switching with key",
+    "info.urushi.framed_block2": "Toggle switching with key",
 
     "info.urushi.framed_block3": "to place blocks that aren't connected to blocks in default mode.",
-
-    "info.urushi.framed_block4": "On multiplayer, blocks placed while sneaking aren't connected to ones in default mode. ",
-
+    
     "info.urushi.iron_ingot": "Place it on a block and use Hammer to smash it.",
 
     "info.urushi.roof_45": "Place it on any kind of Stairs.",
@@ -2423,5 +2421,7 @@
    "block.urushi.earth_element_emitter_tier2": "Jedeite Earth Element Emitter",
    "block.urushi.metal_element_emitter_tier2": "Jedeite Metal Element Emitter",
    "block.urushi.water_element_emitter_tier2": "Jedeite Water Element Emitter",
-   "container.urushi_auto_crafting_table": "Auto Crafting Table"
+   "container.urushi_auto_crafting_table": "Auto Crafting Table",
+   "key.urushi.category": "Urushi",
+   "key.urushi.connectionKey": "Switch Texture Connections for Framed Blocks"
 }

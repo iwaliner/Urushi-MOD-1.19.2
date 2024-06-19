@@ -46,7 +46,6 @@ public class KakuriyoTeleporter implements ITeleporter {
     @Override
     public PortalInfo getPortalInfo(Entity entity, ServerLevel level, Function<ServerLevel, PortalInfo> defaultPortalInfo) {
         BlockPos pos=entity.blockPosition();
-        ModCoreUrushi.logger.warn("Error 12");
         BlockPos center=pos.offset(0,0,1);
 
             entity.teleportTo(center.getX()+0.5D,center.getY()+0.5D,center.getZ()-2.5D);

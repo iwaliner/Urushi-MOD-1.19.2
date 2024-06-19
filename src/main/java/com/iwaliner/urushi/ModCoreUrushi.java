@@ -3,12 +3,20 @@ package com.iwaliner.urushi;
 import com.iwaliner.urushi.block.*;
 import com.iwaliner.urushi.blockentity.ShichirinBlockEntity;
 
+import com.iwaliner.urushi.network.FramedBlockTextureConnectionData;
+import com.iwaliner.urushi.network.FramedBlockTextureConnectionPacket;
+import com.iwaliner.urushi.network.FramedBlockTextureConnectionProvider;
+import com.iwaliner.urushi.network.NetworkAccess;
 import com.iwaliner.urushi.util.ElementType;
 import com.iwaliner.urushi.util.ElementUtils;
+import com.iwaliner.urushi.util.ToggleKeyMappingPlus;
 import com.iwaliner.urushi.util.UrushiUtils;
 import com.iwaliner.urushi.util.interfaces.ElementItem;
 import com.iwaliner.urushi.util.interfaces.Tiered;
+import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.KeyMapping;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.*;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.OptionalDispenseItemBehavior;
@@ -16,7 +24,9 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BiomeTags;
@@ -44,11 +54,18 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraftforge.client.event.InputEvent;
+import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
+import net.minecraftforge.client.settings.KeyConflictContext;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
+import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.LootTableLoadEvent;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityEvent;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.EntityMountEvent;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
@@ -59,6 +76,7 @@ import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -67,6 +85,7 @@ import net.minecraftforge.fml.loading.FMLPaths;
 import net.minecraftforge.registries.RegistryObject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.lwjgl.glfw.GLFW;
 
 import java.io.File;
 import java.util.*;
@@ -74,6 +93,7 @@ import java.util.*;
 @Mod("urushi")
 public class ModCoreUrushi {
     public static final String ModID = "urushi";
+
     public static File dataDirectory;
     public static File dataInBuildDirectory;
     public static File assetsDirectory;
@@ -709,7 +729,7 @@ public class ModCoreUrushi {
         }
         if(block instanceof AbstractFramedBlock||block instanceof FramedPaneBlock){
             tooltipList.add((Component.translatable("info.urushi.framed_block1" )).withStyle(ChatFormatting.GRAY));
-            String keyString=  ClientSetUp.connectionKey.getKey().getName();
+            String keyString= ClientSetUp. connectionKey.getKey().getName();
             String begin=".";
             int beginIndex = keyString.indexOf(begin);
             String preExtractedKey = keyString.substring(beginIndex+1);
@@ -718,10 +738,10 @@ public class ModCoreUrushi {
             tooltipList.add((Component.translatable("info.urushi.framed_block2")
                     .append(" '"+extractedKey+"' ").append(Component.translatable("info.urushi.framed_block3")))
                     .withStyle(ChatFormatting.GRAY));
-            tooltipList.add((Component.translatable("info.urushi.framed_block4")).withStyle(ChatFormatting.GRAY));
 
         }
     }
+
     /**ブロックの破壊速度を変更*/
     @SubscribeEvent
     public void BreakSpeedEvent(PlayerEvent.BreakSpeed event) {
@@ -843,6 +863,19 @@ public class ModCoreUrushi {
             }
         }
     }
+    @SubscribeEvent
+    public void AttachCapabilitiesPlayer(AttachCapabilitiesEvent<Entity> event) {
+        if(event.getObject() instanceof Player) {
+            if(!event.getObject().getCapability(FramedBlockTextureConnectionProvider.FRAMED_BLOCK_TEXTURE_CONNECTION).isPresent()) {
+               event.addCapability(new ResourceLocation(ModID, "properties"), new FramedBlockTextureConnectionProvider());
+            }
+        }
+    }
+    @SubscribeEvent
+    public void RegisterCapabilities(RegisterCapabilitiesEvent event) {
+        event.register(FramedBlockTextureConnectionData.class);
+    }
+
 
 
 }

@@ -23,7 +23,6 @@ public class HotSpringSourceBlock extends DirectionalBlock {
     public HotSpringSourceBlock(Properties p_52591_) {
         super(p_52591_);
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.SOUTH).setValue(POWERED, Boolean.valueOf(false)));
-
     }
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_55125_) {
         p_55125_.add(FACING,POWERED);

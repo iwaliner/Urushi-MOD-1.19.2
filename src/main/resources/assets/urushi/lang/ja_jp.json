@@ -658,9 +658,7 @@
 
    "info.urushi.framed_block2": "通常ブロックと枠が接続しないブロックが",
 
-   "info.urushi.framed_block3": "キーのトグル切り替えで設置できる。(シングルプレイ)",
-
-   "info.urushi.framed_block4": "シフト時に通常ブロックと枠が接続しないブロックが設置される。(マルチプレイ)",
+   "info.urushi.framed_block3": "キーのトグル切り替えで設置できる。",
 
    "info.urushi.iron_ingot": "設置して金槌で叩こう",
 
@@ -2422,6 +2420,8 @@
    "block.urushi.earth_element_emitter_tier2": "翡翠の土気の伝達口",
    "block.urushi.metal_element_emitter_tier2": "翡翠の金気の伝達口",
    "block.urushi.water_element_emitter_tier2": "翡翠の水気の伝達口",
-   "container.urushi_auto_crafting_table": "自動作業台"
+   "container.urushi_auto_crafting_table": "自動作業台",
+   "key.urushi.category": "漆MOD",
+   "key.urushi.connectionKey": "枠付きブロックの接続切り替え"
    
 }
