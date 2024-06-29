@@ -65,8 +65,9 @@ public class SenbakokiRecipeCategory implements IRecipeCategory<SenbakokiRecipe>
         builder.addSlot(INPUT, 1, 5)
                 .addIngredients(recipe.getIngredients().get(0));
 
-        builder.addSlot(OUTPUT, 61, 5)
+        var slot = builder.addSlot(OUTPUT, 61, 5)
                 .addItemStack(recipe.getResultItem());
+        recipe.getSubResultItems().forEach(r -> slot.addItemStack(r));
     }
 
     @Override
