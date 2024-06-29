@@ -6,6 +6,7 @@ import com.iwaliner.urushi.recipe.SenbakokiRecipe;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.NonNullList;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -22,6 +23,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import java.util.Iterator;
 import java.util.Optional;
 
 public class SenbakokiBlock extends HorizonalRotateBlock{
@@ -45,9 +47,15 @@ public class SenbakokiBlock extends HorizonalRotateBlock{
                 .flatMap(manager -> manager.getRecipeFor(RecipeTypeRegister.SenbakokiRecipe, new SimpleContainer(stack), level));
         if (recipe.isPresent()) {
             if (!player.isCreative()) stack.shrink(1);
-            ItemStack threshed = recipe.get().getResultItem();
-            if (stack.isEmpty()) player.setItemInHand(hand, threshed);
-            else if (!player.getInventory().add(threshed)) player.drop(threshed, false);
+            NonNullList<ItemStack> thresheds = NonNullList.create();
+            thresheds.add(recipe.get().getResultItem());
+            thresheds.addAll(recipe.get().getSubResultItems());
+            Iterator<ItemStack> iterator = thresheds.iterator();
+            if (stack.isEmpty()) player.setItemInHand(hand, iterator.next());
+            while (iterator.hasNext()) {
+                ItemStack itemStack = iterator.next();
+                if (!player.getInventory().add(itemStack)) player.drop(itemStack, false);
+            }
             level.playSound((Player) null, (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, SoundEvents.WOOD_PLACE, SoundSource.BLOCKS, 1.5F, 1F);
             return InteractionResult.SUCCESS;
         }
