@@ -19,7 +19,7 @@ plugins {
 apply plugin: 'org.spongepowered.mixin'
 //apply plugin: 'com.diffplug.eclipse.apt' // if you are using Eclipse, add this line
 
-version = "1.19.2-5.3.1"
+version = "1.19.2-5.3.3-preRelease1"
 group = 'com.iwaliner.${mod_id}' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = mod_id
 

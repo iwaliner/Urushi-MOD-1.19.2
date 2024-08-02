@@ -76,6 +76,7 @@ public class CushionEntity extends Entity {
         return 0.0F;
     }
 
+
     public double getPassengersRidingOffset() {
         return -0.05D;
     }
@@ -167,11 +168,10 @@ public class CushionEntity extends Entity {
         return InteractionResult.FAIL;
     }
 
-
     @Override
     public void tick() {
         this.setDeltaMovement(this.getDeltaMovement().add(0.0D, -0.04D, 0.0D));
-        this.move(MoverType.SELF, this.getDeltaMovement()); //移動(落下)
+            this.move(MoverType.SELF, this.getDeltaMovement()); //移動(落下)
 
 
 

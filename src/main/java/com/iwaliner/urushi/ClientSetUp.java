@@ -1,9 +1,7 @@
 package com.iwaliner.urushi;
 
 
-import com.iwaliner.urushi.blockentity.renderer.HokoraRenderer;
-import com.iwaliner.urushi.blockentity.renderer.SanboRenderer;
-import com.iwaliner.urushi.blockentity.renderer.ShichirinRenderer;
+import com.iwaliner.urushi.blockentity.renderer.*;
 import com.iwaliner.urushi.blockentity.screen.AutoCraftingTableScreen;
 import com.iwaliner.urushi.blockentity.screen.DoubledWoodenCabinetryScreen;
 import com.iwaliner.urushi.blockentity.screen.FryerScreen;
@@ -30,6 +28,7 @@ import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
+import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
@@ -182,6 +181,8 @@ public class ClientSetUp {
         BlockEntityRenderers.register(BlockEntityRegister.Sanbo.get(), SanboRenderer::new);
         BlockEntityRenderers.register(BlockEntityRegister.Shichirin.get(), ShichirinRenderer::new);
         BlockEntityRenderers.register(BlockEntityRegister.Hokora.get(), HokoraRenderer::new);
+        BlockEntityRenderers.register(BlockEntityRegister.Plate.get(), PlateRenderer::new);
+        BlockEntityRenderers.register(BlockEntityRegister.MobCage.get(), MobCageRenderer::new);
 
 
 

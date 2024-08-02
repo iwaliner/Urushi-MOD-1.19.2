@@ -455,7 +455,7 @@ public class AutoCraftingTableBlockEntity extends BaseContainerBlockEntity imple
             }
         }
 
-        if (!level.isClientSide) {
+        if (!level.isClientSide&&!blockEntity.isEmpty()&&blockEntity.litTime == 0) {
             CraftingContainer craftingcontainer = new CraftingContainer(new AbstractContainerMenu((MenuType) MenuRegister.AutoCraftingTableMenu.get(), -1) {
                 public ItemStack quickMoveStack(Player p_218264_, int p_218265_) {
                     return ItemStack.EMPTY;
@@ -468,10 +468,9 @@ public class AutoCraftingTableBlockEntity extends BaseContainerBlockEntity imple
             for (int i = 0; i < 9; i++) {
                 craftingcontainer.setItem(i, blockEntity.ingredientsSample.getStackInSlot(i));
             }
-            Optional<CraftingRecipe> optional = level.getRecipeManager().getRecipeFor(RecipeType.CRAFTING, craftingcontainer, level);
+            CraftingRecipe craftingrecipe = level.getRecipeManager().getRecipeFor(RecipeType.CRAFTING, craftingcontainer, level).orElse(null);
             ItemStack itemstack = ItemStack.EMPTY;
-            if (optional.isPresent()) {
-                CraftingRecipe craftingrecipe = optional.get();
+            if (craftingrecipe!=null) {
                 itemstack = craftingrecipe.assemble(craftingcontainer);
 
             }
@@ -489,19 +488,23 @@ public class AutoCraftingTableBlockEntity extends BaseContainerBlockEntity imple
                 if (flag&&blockEntity.getItem(10).getCount()+itemstack.getCount()<=itemstack.getMaxStackSize()) {
 
                     if (state.getBlock() == ItemAndBlockRegister.auto_crafting_table.get()) {
+                       // if (blockEntity.litTime == 0) {
+                       //     blockEntity.litTime = 60;
+                    //    }
+                  //  else
                         if (blockEntity.litTime == 0) {
-                            blockEntity.litTime = 60;
-                        } else if (blockEntity.litTime == 1) {
                             blockEntity.doCraft(level,itemstack, blockEntity);
+                            blockEntity.litTime = 60;
                         }
                     }else if(state.getBlock()==ItemAndBlockRegister.advanced_auto_crafting_table.get()){
                         blockEntity.doCraft(level,itemstack,blockEntity);
+                        blockEntity.litTime = 0;
                     }
                 }
 
             }
         }
-        if (blockEntity.isLit()) {
+        if (blockEntity.isLit()&&state.getBlock() == ItemAndBlockRegister.auto_crafting_table.get()) {
             --blockEntity.litTime;
         }
     }
@@ -533,6 +536,7 @@ public class AutoCraftingTableBlockEntity extends BaseContainerBlockEntity imple
 
         return this.result.getStackInSlot(0).isEmpty();
     }
+
 
     public ItemStack getItem(int slot) {
         if(slot==0){

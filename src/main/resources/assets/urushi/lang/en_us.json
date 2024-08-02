@@ -2423,5 +2423,6 @@
    "block.urushi.water_element_emitter_tier2": "Jedeite Water Element Emitter",
    "container.urushi_auto_crafting_table": "Auto Crafting Table",
    "key.urushi.category": "Urushi",
-   "key.urushi.connectionKey": "Switch Texture Connections for Framed Blocks"
+   "key.urushi.connectionKey": "Switch Texture Connections for Framed Blocks",
+    "block.urushi.landscape_fusuma": "Landscape Fusuma"
 }

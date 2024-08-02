@@ -2422,6 +2422,7 @@
   "block.urushi.water_element_emitter_tier2": "翡翠水气喷口",
   "container.urushi_auto_crafting_table": "自动工作台",
    "key.urushi.category": "Urushi",
-   "key.urushi.connectionKey": "Switch Texture Connections for Framed Blocks"
+   "key.urushi.connectionKey": "Switch Texture Connections for Framed Blocks",
+    "block.urushi.landscape_fusuma": "Landscape Fusuma"
 
 }

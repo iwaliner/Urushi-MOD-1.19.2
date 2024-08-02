@@ -30,23 +30,30 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BiomeTags;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.Fox;
 import net.minecraft.world.entity.animal.Squid;
 import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.BeehiveBlockEntity;
 import net.minecraft.world.level.block.entity.DispenserBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
@@ -64,9 +71,8 @@ import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.*;
 import net.minecraftforge.event.entity.EntityEvent;
-import net.minecraftforge.event.entity.EntityJoinLevelEvent;
-import net.minecraftforge.event.entity.EntityMountEvent;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -227,6 +233,37 @@ public class ModCoreUrushi {
     @SubscribeEvent
     public void FuelEvent(FurnaceFuelBurnTimeEvent event) {
 
+
+        DispenserBlock.registerBehavior(ItemAndBlockRegister.empty_bamboo_cup.get().asItem(), new OptionalDispenseItemBehavior() {
+            private final DefaultDispenseItemBehavior defaultDispenseItemBehavior = new DefaultDispenseItemBehavior();
+
+            private ItemStack takeLiquid(BlockSource p_123447_, ItemStack p_123448_, ItemStack p_123449_) {
+                p_123448_.shrink(1);
+                if (p_123448_.isEmpty()) {
+                    p_123447_.getLevel().gameEvent((Entity)null, GameEvent.FLUID_PICKUP, p_123447_.getPos());
+                    return p_123449_.copy();
+                } else {
+                    if (p_123447_.<DispenserBlockEntity>getEntity().addItem(p_123449_.copy()) < 0) {
+                        this.defaultDispenseItemBehavior.dispense(p_123447_, p_123449_.copy());
+                    }
+
+                    return p_123448_;
+                }
+            }
+
+            public ItemStack execute(BlockSource p_123444_, ItemStack p_123445_) {
+                this.setSuccess(false);
+                ServerLevel serverlevel = p_123444_.getLevel();
+                BlockPos blockpos = p_123444_.getPos().relative(p_123444_.getBlockState().getValue(DispenserBlock.FACING));
+                BlockState blockstate = serverlevel.getBlockState(blockpos);
+                if (serverlevel.getFluidState(blockpos).is(FluidTags.WATER)) {
+                    this.setSuccess(true);
+                    return this.takeLiquid(p_123444_, p_123445_,new ItemStack(ItemAndBlockRegister.water_bamboo_cup.get()));
+                } else {
+                    return super.execute(p_123444_, p_123445_);
+                }
+            }
+        });
         DefaultDispenseItemBehavior defaultDispenseItemBehavior = new DefaultDispenseItemBehavior();
         DispenserBlock.registerBehavior(Items.BOWL, new OptionalDispenseItemBehavior() {
             protected ItemStack execute(BlockSource source, ItemStack stack) {
@@ -561,19 +598,25 @@ public class ModCoreUrushi {
         }
 
         if (blockState.getMaterial() == Material.WATER) {
-            Direction direction;
+           /* Direction direction;
             for (int i = 0; i < 6; i++) {
                 direction = UrushiUtils.getDirectionFromInt(i);
                 if (level.getBlockState(pos.relative(direction)).getBlock() == Blocks.SAND) {
                     level.setBlock(pos.relative(direction), ItemAndBlockRegister.salt_and_sand.get().defaultBlockState(), 2);
                     level.playSound((Player) null, pos.relative(direction), SoundEvents.SAND_BREAK, SoundSource.BLOCKS, 1.0F, 1F);
                 }
+            }*/
+            if(pos.getY()>62&&level.getBlockState(pos.below()).getBlock() == Blocks.SAND){
+                level.setBlock(pos.below(), ItemAndBlockRegister.salt_and_sand.get().defaultBlockState(), 2);
+                level.playSound((Player) null, pos.below(), SoundEvents.SAND_BREAK, SoundSource.BLOCKS, 1.0F, 1F);
+
             }
 
-        } else if (blockState.getBlock() == Blocks.SAND) {
+        }
+      /*  else if (blockState.getBlock() == Blocks.SAND) {
             UrushiUtils.BlockChangeNeighborMaterialSurvey((Level) level, pos,Material.WATER,
                     ItemAndBlockRegister.salt_and_sand.get().defaultBlockState(), SoundEvents.SAND_BREAK);
-        }
+        }*/
 
 
         if(ModCoreUrushi.isDebug){
