@@ -27,7 +27,7 @@ import java.util.Iterator;
 import java.util.Optional;
 
 public class SenbakokiBlock extends HorizonalRotateBlock{
-    protected static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2D, 14.0D, 13.0D, 14.0D);
+    protected static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2D, 14.0D, 9.0D, 14.0D);
     private final DefaultDispenseItemBehavior defaultDispenseItemBehavior = new DefaultDispenseItemBehavior();
 
     public SenbakokiBlock(Properties p_i48377_1_) {

@@ -182,7 +182,7 @@ public class ClientSetUp {
         BlockEntityRenderers.register(BlockEntityRegister.Shichirin.get(), ShichirinRenderer::new);
         BlockEntityRenderers.register(BlockEntityRegister.Hokora.get(), HokoraRenderer::new);
         BlockEntityRenderers.register(BlockEntityRegister.Plate.get(), PlateRenderer::new);
-        BlockEntityRenderers.register(BlockEntityRegister.MobCage.get(), MobCageRenderer::new);
+        BlockEntityRenderers.register(BlockEntityRegister.BambooBasket.get(), BambooBasketRenderer::new);
 
 
 

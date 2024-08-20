@@ -7,6 +7,7 @@ import com.iwaliner.urushi.network.FramedBlockTextureConnectionData;
 import com.iwaliner.urushi.network.FramedBlockTextureConnectionPacket;
 import com.iwaliner.urushi.network.FramedBlockTextureConnectionProvider;
 import com.iwaliner.urushi.network.NetworkAccess;
+import com.iwaliner.urushi.recipe.SenbakokiRecipe;
 import com.iwaliner.urushi.util.ElementType;
 import com.iwaliner.urushi.util.ElementUtils;
 import com.iwaliner.urushi.util.ToggleKeyMappingPlus;
@@ -33,6 +34,8 @@ import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -277,12 +280,8 @@ public class ModCoreUrushi {
                         stack.shrink(1);
                         level.setBlockAndUpdate(blockpos, ItemAndBlockRegister.chiseled_lacquer_log.get().defaultBlockState().setValue(ChiseledLacquerLogBlock.FILLED, Boolean.valueOf(false)).setValue(ChiseledLacquerLogBlock.FACING, blockstate.getValue(ChiseledLacquerLogBlock.FACING)));
                         level.gameEvent(null, GameEvent.BLOCK_PLACE, blockpos);
-                        if (stack.isEmpty()) {
-                            return new ItemStack(ItemAndBlockRegister.raw_urushi_ball.get());
-                        }
-                        if (source.<DispenserBlockEntity>getEntity().addItem(new ItemStack(ItemAndBlockRegister.raw_urushi_ball.get()).copy()) < 0) {
-                            defaultDispenseItemBehavior.dispense(source, new ItemStack(ItemAndBlockRegister.raw_urushi_ball.get()).copy());
-                        }
+                          defaultDispenseItemBehavior.dispense(source, new ItemStack(ItemAndBlockRegister.raw_urushi_ball.get()).copy());
+
                     }
                     return stack;
                 }
@@ -298,16 +297,24 @@ public class ModCoreUrushi {
                 BlockPos blockpos = source.getPos().relative(direction);
                 BlockState blockstate = level.getBlockState(blockpos);
                 if (blockstate.getBlock() instanceof SenbakokiBlock) {
-                    this.setSuccess(true);
-                       stack.shrink(1);
-                       level.gameEvent((Entity) null, GameEvent.BLOCK_PLACE, blockpos);
-                        if (stack.isEmpty()) {
-                            return new ItemStack(ItemAndBlockRegister.raw_rice.get(),2);
-						}
-						if (source.<DispenserBlockEntity>getEntity().addItem(new ItemStack(ItemAndBlockRegister.raw_rice.get(),2).copy()) < 0) {
-                            defaultDispenseItemBehavior.dispense(source, new ItemStack(ItemAndBlockRegister.raw_rice.get(),2).copy());
+                    Optional<SenbakokiRecipe> recipe = Optional.of(Minecraft.getInstance().level != null ? Minecraft.getInstance().level.getRecipeManager() : null)
+                            .flatMap(manager -> manager.getRecipeFor(RecipeTypeRegister.SenbakokiRecipe, new SimpleContainer(stack), level));
+                    if (recipe.isPresent()) {
+                        this.setSuccess(true);
+                         stack.shrink(1);
+                        NonNullList<ItemStack> thresheds = NonNullList.create();
+                        thresheds.add(recipe.get().getResultItem());
+                        thresheds.addAll(recipe.get().getSubResultItems());
+                        Iterator<ItemStack> iterator = thresheds.iterator();
+                       for(int i=0;i<thresheds.size();i++) {
+                            ItemStack itemStack = iterator.next();
+                              defaultDispenseItemBehavior.dispense(source, thresheds.get(i).copy());
+
                         }
-                    return stack;
+                        return stack;
+                    }
+
+
                 }
                 return super.execute(source, stack);
             }
@@ -443,6 +450,51 @@ public class ModCoreUrushi {
         TagUrushi.waterMiningSpeedChangeItemMap.put( ItemAndBlockRegister.water_element_magatama.get(),-40);
 
          */
+
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.japanese_timber_bamboo.get().asItem(),0.5F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.straw.get().asItem(),0.65F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.rice_crop.get().asItem(),0.65F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.azuki_crop.get().asItem(),0.65F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.soy_crop.get().asItem(),0.65F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.green_onion_crop.get().asItem(),0.65F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.lycoris.get().asItem(),0.65F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.lantern_plant.get().asItem(),0.5F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.shiitake_item.get().asItem(),0.65F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.matured_japanese_apricot_fruit.get().asItem(),0.65F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.eulalia.get().asItem(),0.5F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.lacquer_leaves.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.japanese_apricot_leaves.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.glowing_japanese_apricot_leaves.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.sakura_leaves.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.glowing_japanese_apricot_leaves.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.cypress_leaves.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.japanese_cedar_leaves.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.red_leaves.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.orange_leaves.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.yellow_leaves.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.lacquer_sapling.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.japanese_apricot_sapling.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.sakura_sapling.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.glowing_japanese_apricot_sapling.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.big_sakura_sapling.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.glowing_sakura_sapling.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.glowing_big_sakura_sapling.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.cypress_sapling.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.japanese_cedar_sapling.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.red_sapling.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.orange_sapling.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.yellow_sapling.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.raw_rice.get().asItem(),0.7F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.ajisai.get().asItem(),0.65F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.yomotsuhegui_fruit.get().asItem(),0.65F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.fallen_japanese_apricot_leaves.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.fallen_sakura_leaves.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.fallen_red_leaves.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.fallen_orange_leaves.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.fallen_yellow_leaves.get().asItem(),0.3F);
+
+
+
 
         TagUrushi.elementMiningSpeedChangeItemMap.put(ItemAndBlockRegister.wood_element_magatama.get(),
                 new TagUrushi.ElementMiningSpeedModifier(
@@ -848,7 +900,19 @@ public class ModCoreUrushi {
                     .add(LootItem.lootTableItem(ItemAndBlockRegister.tsuna.get()).setWeight(25)).build());
         }else if(event.getName().equals(BuiltInLootTables.SIMPLE_DUNGEON)||
                 event.getName().equals(BuiltInLootTables.SPAWN_BONUS_CHEST)||
-                event.getName().equals(BuiltInLootTables.VILLAGE_PLAINS_HOUSE)){
+                event.getName().equals(BuiltInLootTables.VILLAGE_PLAINS_HOUSE)
+               /* ||
+                event.getName().equals(BuiltInLootTables.ABANDONED_MINESHAFT)||
+                        event.getName().equals(BuiltInLootTables.DESERT_PYRAMID)||
+                event.getName().equals(BuiltInLootTables.END_CITY_TREASURE)||
+                        event.getName().equals(BuiltInLootTables.IGLOO_CHEST)||
+                        event.getName().equals(BuiltInLootTables.JUNGLE_TEMPLE)||
+                event.getName().equals(BuiltInLootTables.RUINED_PORTAL)||
+                event.getName().equals(BuiltInLootTables.SHIPWRECK_SUPPLY)||
+                event.getName().equals(BuiltInLootTables.UNDERWATER_RUIN_BIG)||
+                event.getName().equals(BuiltInLootTables.UNDERWATER_RUIN_SMALL)||
+                event.getName().equals(BuiltInLootTables.WOODLAND_MANSION)*/
+                ){
             event.getTable().addPool(LootPool.lootPool()
                     .add(LootItem.lootTableItem(ItemAndBlockRegister.lacquer_sapling.get()).setWeight(30)).build());
         }
@@ -918,6 +982,8 @@ public class ModCoreUrushi {
     public void RegisterCapabilities(RegisterCapabilitiesEvent event) {
         event.register(FramedBlockTextureConnectionData.class);
     }
+
+
 
 
 

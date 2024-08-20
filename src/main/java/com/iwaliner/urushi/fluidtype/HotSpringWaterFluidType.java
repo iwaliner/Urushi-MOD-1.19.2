@@ -1,11 +1,13 @@
 package com.iwaliner.urushi.fluidtype;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.ScreenEffectRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.minecraftforge.fluids.FluidType;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nullable;
 import java.util.function.Consumer;
 
 public class HotSpringWaterFluidType extends FluidType {
@@ -23,7 +25,7 @@ public class HotSpringWaterFluidType extends FluidType {
         consumer.accept(new IClientFluidTypeExtensions() {
             private static final ResourceLocation HotSpringStillTex = new ResourceLocation("block/water_still");
             private static final ResourceLocation HotSpringFlowingTex = new ResourceLocation("block/water_flow");
-            private static final ResourceLocation HotSpringOverrayTex = new ResourceLocation("block/water_overlay");
+            private static final ResourceLocation HotSpringOverrayTex = new ResourceLocation("minecraft:textures/block/water_overlay.png");
 
             @Override
             public ResourceLocation getStillTexture() {
@@ -35,10 +37,7 @@ public class HotSpringWaterFluidType extends FluidType {
                 return HotSpringFlowingTex;
             }
 
-            @Override
-            public  ResourceLocation getRenderOverlayTexture(Minecraft mc) {
-                return HotSpringOverrayTex;
-            }
+
 
             @Override
             public int getTintColor() {
