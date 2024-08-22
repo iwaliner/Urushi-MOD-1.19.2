@@ -2464,6 +2464,17 @@
    "info.urushi.katana2": "Rushing attacks deal half the normal attack damage to all nearby mobs.",
    "info.urushi.parapet": "The model becomes the proper look even when placing on a half block.",
    "info.urushi.plate": "Right-click to put a item.",
-   "info.urushi.bamboo_basket": "Right-click to put items."
+   "info.urushi.bamboo_basket": "Right-click to put items.",
+   "info.urushi.invisible_redstone_inputs": "Visible only when you hold this block in your hand.",
+    "item.urushi.blue_kawara": "Blue Kawara",
+   "block.urushi.blue_kawara_block": "Blue Kawara Block",
+
+   "block.urushi.blue_kawara_slab": "Blue Kawara Slab",
+
+   "block.urushi.blue_kawara_stairs": "Blue Kawara Stairs",
+   "block.urushi.blue_kawara_roof_45": "Blue Kawara Roof for Stairs",
+
+   "block.urushi.blue_kawara_roof_225": "Blue Kawara Roof for Slab",
+   "block.urushi.blue_kawara_wall": "Blue Kawara Wall"
 
 }

@@ -2464,7 +2464,19 @@
    "info.urushi.katana2": "突進攻撃では通常の攻撃力の半分のダメージを近くにいるすべてのモブに与える",
    "info.urushi.parapet": "ハーフブロックの上に置くと半ブロック分モデルが移動し適切な見た目になる",
    "info.urushi.plate": "右クリックでアイテムを入れて飾ることができる",
-   "info.urushi.bamboo_basket": "右クリックでアイテムを入れて飾ることができる"
+   "info.urushi.bamboo_basket": "右クリックでアイテムを入れて飾ることができる",
+   "info.urushi.invisible_redstone_inputs": "これを手に持っているときのみ視認できる",
+    "item.urushi.blue_kawara": "青緑瓦",
+   "block.urushi.blue_kawara_block": "青緑瓦のブロック",
+
+   "block.urushi.blue_kawara_slab": "青緑瓦のハーフブロック",
+
+   "block.urushi.blue_kawara_stairs": "青緑瓦の階段",
+   "block.urushi.blue_kawara_roof_45": "青緑瓦の屋根(45°)",
+
+   "block.urushi.blue_kawara_roof_225": "青緑瓦の屋根(22.5°)",
+   "block.urushi.blue_kawara_wall": "青緑瓦の塀"
+   
    
    
 }
