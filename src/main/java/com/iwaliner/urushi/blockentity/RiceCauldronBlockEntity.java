@@ -144,7 +144,7 @@ public  class RiceCauldronBlockEntity extends BaseContainerBlockEntity implement
         ItemStack slot1Stack=blockEntity.items.get(1);
         Item slot1Item=slot1Stack.getItem();
         BlockState state=level.getBlockState(pos);
-
+        if(state.getBlock() instanceof RiceCauldronBlock){
         //スロットに入ってるアイテムに対応した見た目のブロックにする
         if(blockEntity.processingTime==0&&!level.isClientSide()){
             if(slot0Stack.getCount()>0){
@@ -155,20 +155,21 @@ public  class RiceCauldronBlockEntity extends BaseContainerBlockEntity implement
         }
 
         //アイテム変化
-        if(level.getBlockState(pos.below()).getBlock()== ItemAndBlockRegister.dirt_furnace.get()&&level.getBlockState(pos.below()).getValue(DirtFurnaceBlock.LIT)){
-            if(slot0Stack.getCount()>0&&slot1Stack.isEmpty()){
-                if(blockEntity.processingTime<100){
+        if(level.getBlockState(pos.below()).getBlock()== ItemAndBlockRegister.dirt_furnace.get()&&level.getBlockState(pos.below()).getValue(DirtFurnaceBlock.LIT)) {
+            if (slot0Stack.getCount() > 0 && slot1Stack.isEmpty()) {
+                if (blockEntity.processingTime < 100) {
                     blockEntity.processingTime++;
-                }else{
-                    blockEntity.setItem(1, new ItemStack(ItemAndBlockRegister.rice.get(),slot0Stack.getCount()));
+                } else {
+                    blockEntity.setItem(1, new ItemStack(ItemAndBlockRegister.rice.get(), slot0Stack.getCount()));
                     blockEntity.setItem(0, ItemStack.EMPTY);
                     blockEntity.processingTime = 0;
-                    if(!level.isClientSide()) {
+                    if (!level.isClientSide()) {
                         level.setBlock(pos, state.setValue(RiceCauldronBlock.VARIANT, Integer.valueOf(3)), 2);
                     }
                 }
 
             }
+        }
 
         }
     }

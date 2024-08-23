@@ -459,6 +459,19 @@
     "urushi:fire_element_hokora",
     "urushi:earth_element_hokora",
     "urushi:metal_element_hokora",
-    "urushi:water_element_hokora"
+    "urushi:water_element_hokora",
+    "urushi:potted_red_sapling",
+    "urushi:potted_orange_sapling",
+    "urushi:potted_yellow_sapling",
+    "urushi:potted_japanese_apricot_sapling",
+    "urushi:potted_glowing_japanese_apricot_sapling",
+    "urushi:potted_sakura_sapling",
+    "urushi:potted_big_sakura_sapling",
+    "urushi:potted_glowing_sakura_sapling",
+    "urushi:potted_glowing_big_sakura_sapling",
+    "urushi:potted_cypress_sapling",
+    "urushi:potted_japanese_cedar_sapling",
+    "urushi:potted_lycoris",
+    "urushi:potted_lacquer_sapling"
   ]
 }

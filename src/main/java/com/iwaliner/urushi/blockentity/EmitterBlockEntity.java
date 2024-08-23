@@ -72,7 +72,6 @@ public class EmitterBlockEntity extends AbstractReiryokuStorableBlockEntity impl
         /**送られた霊力を受け取る処理*/
         emitterBlockEntity.recieveReiryoku(level,pos);
         if(state.getBlock() instanceof EmitterBlock) {
-
             /**後ろにあるブロックから霊力を吸いだす処理　開始*/
             int i= emitterBlockEntity.getTier()==2? 5 : 1;
             BlockPos importPos = pos.relative(state.getValue(EmitterBlock.FACING).getOpposite());
