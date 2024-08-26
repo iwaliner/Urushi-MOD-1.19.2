@@ -43,19 +43,30 @@ public class SenbakokiBlock extends HorizonalRotateBlock{
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
         ItemStack stack = player.getItemInHand(hand);
 
-        Optional<SenbakokiRecipe> recipe = Optional.ofNullable(Minecraft.getInstance().level.getRecipeManager())
+        Optional<SenbakokiRecipe> recipe = Optional.ofNullable(level.getRecipeManager())
                 .flatMap(manager -> manager.getRecipeFor(RecipeTypeRegister.SenbakokiRecipe, new SimpleContainer(stack), level));
         if (recipe.isPresent()) {
-            if (!player.isCreative()) stack.shrink(1);
-            NonNullList<ItemStack> thresheds = NonNullList.create();
-            thresheds.add(recipe.get().getResultItem());
-            thresheds.addAll(recipe.get().getSubResultItems());
-            Iterator<ItemStack> iterator = thresheds.iterator();
-            if (stack.isEmpty()) player.setItemInHand(hand, iterator.next());
-            while (iterator.hasNext()) {
-                ItemStack itemStack = iterator.next();
-                if (!player.getInventory().add(itemStack)) player.drop(itemStack, false);
+             stack.shrink(1);
+
+
+            if (stack.isEmpty()){
+                player.setItemInHand(hand, recipe.get().getResultItem().copy());
+                for(int i=0;i<recipe.get().getSubResultItems().size();i++) {
+                    if (!player.getInventory().add(recipe.get().getSubResultItems().get(i).copy())) {
+                        player.drop(recipe.get().getSubResultItems().get(i).copy(), false);
+                    }
+                }
+            }else{
+                if (!player.getInventory().add(recipe.get().getResultItem().copy())) {
+                    player.drop(recipe.get().getResultItem().copy(), false);
+                }
+                for(int i=0;i<recipe.get().getSubResultItems().size();i++) {
+                    if (!player.getInventory().add(recipe.get().getSubResultItems().get(i).copy())) {
+                        player.drop(recipe.get().getSubResultItems().get(i).copy(), false);
+                    }
+                }
             }
+
             level.playSound((Player) null, (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, SoundEvents.WOOD_PLACE, SoundSource.BLOCKS, 1.5F, 1F);
             return InteractionResult.SUCCESS;
         }

@@ -1,6 +1,7 @@
 package com.iwaliner.urushi.blockentity;
 
 
+
 import com.iwaliner.urushi.BlockEntityRegister;
 import com.iwaliner.urushi.ItemAndBlockRegister;
 import com.iwaliner.urushi.MenuRegister;
@@ -50,6 +51,7 @@ import java.util.stream.IntStream;
 
 public class AutoCraftingTableBlockEntity extends BaseContainerBlockEntity implements WorldlyContainer, StackedContentsCompatible, RecipeHolder, MenuProvider {
     public int litTime;
+    public String savedRecipe;
 
     protected final ContainerData dataAccess = new ContainerData() {
         public int get(int p_58431_) {
@@ -191,7 +193,7 @@ public class AutoCraftingTableBlockEntity extends BaseContainerBlockEntity imple
             return false;
         }else{
 
-                 if(this.getItem(slot-10).sameItem(stack) && ItemStack.tagMatches(this.getItem(slot-10), stack)){
+            if(this.getItem(slot-10).sameItem(stack) && ItemStack.tagMatches(this.getItem(slot-10), stack)){
 
                 return this.getItem(slot).isEmpty();
 
@@ -229,7 +231,7 @@ public class AutoCraftingTableBlockEntity extends BaseContainerBlockEntity imple
         for(String s : compoundtag.getAllKeys()) {
             this.recipesUsed.put(new ResourceLocation(s), compoundtag.getInt(s));
         }
-
+        this.savedRecipe=tag.getString("savedRecipe");
     }
 
     protected void saveAdditional(CompoundTag p_187452_) {
@@ -247,6 +249,9 @@ public class AutoCraftingTableBlockEntity extends BaseContainerBlockEntity imple
             compoundtag.putInt(p_187449_.toString(), p_187450_);
         });
         p_187452_.put("RecipesUsed", compoundtag);
+        if(savedRecipe!=null) {
+            p_187452_.putString("savedRecipe", this.savedRecipe);
+        }
     }
     public boolean isLit() {
         return this.litTime > 0;
@@ -264,7 +269,7 @@ public class AutoCraftingTableBlockEntity extends BaseContainerBlockEntity imple
                     }
                 }*/
                 blockEntity.setItem(i,slotStack.getCraftingRemainingItem());
-              }else {
+            }else {
                 slotStack.shrink(1);
             }
         }
@@ -273,19 +278,19 @@ public class AutoCraftingTableBlockEntity extends BaseContainerBlockEntity imple
             newStack.setCount(itemstack.getCount() + blockEntity.getItem(10).getCount());
             Direction facing=level.getBlockState(blockEntity.getBlockPos()).getValue(AutoCraftingTableBlock.FACING);
             BlockPos pos2=blockEntity.getBlockPos().relative(facing);
-           // if(level.getBlockState(blockEntity.getBlockPos()).getBlock() instanceof AutoCraftingTableBlock&&level.getBlockEntity(pos2) instanceof BaseContainerBlockEntity){
+            // if(level.getBlockState(blockEntity.getBlockPos()).getBlock() instanceof AutoCraftingTableBlock&&level.getBlockEntity(pos2) instanceof BaseContainerBlockEntity){
             if(level.getBlockState(blockEntity.getBlockPos()).getBlock() instanceof AutoCraftingTableBlock&&!level.isEmptyBlock(pos2)){
-                BaseContainerBlockEntity baseContainerBlockEntity= (BaseContainerBlockEntity) level.getBlockEntity(blockEntity.getBlockPos().relative(level.getBlockState(blockEntity.getBlockPos()).getValue(AutoCraftingTableBlock.FACING)));
-              //  if(!isExportable(blockEntity,baseContainerBlockEntity,newStack,facing.getOpposite())){
-                    blockEntity.setItem(10, newStack);
-            //    }else {
-           //         addItem(blockEntity,baseContainerBlockEntity,newStack,facing.getOpposite());
-           //     }
+            //    BaseContainerBlockEntity baseContainerBlockEntity= (BaseContainerBlockEntity) level.getBlockEntity(blockEntity.getBlockPos().relative(level.getBlockState(blockEntity.getBlockPos()).getValue(AutoCraftingTableBlock.FACING)));
+                //  if(!isExportable(blockEntity,baseContainerBlockEntity,newStack,facing.getOpposite())){
+                blockEntity.setItem(10, newStack);
+                //    }else {
+                //         addItem(blockEntity,baseContainerBlockEntity,newStack,facing.getOpposite());
+                //     }
             }else{
                 ItemEntity itemEntity=new ItemEntity(level,(double) pos2.getX()+0.5D,(double) pos2.getY()+0.5D,pos2.getZ()+0.5D,newStack);
-           if(!level.isClientSide){
-               level.addFreshEntity(itemEntity);
-           }
+                if(!level.isClientSide){
+                    level.addFreshEntity(itemEntity);
+                }
             }
             //blockEntity.setItem(10, newStack);
             blockEntity.setChanged();
@@ -293,14 +298,14 @@ public class AutoCraftingTableBlockEntity extends BaseContainerBlockEntity imple
         } else if (blockEntity.getItem(10).isEmpty()) {
             Direction facing=level.getBlockState(blockEntity.getBlockPos()).getValue(AutoCraftingTableBlock.FACING);
             BlockPos pos2=blockEntity.getBlockPos().relative(facing);
-           // if(level.getBlockState(blockEntity.getBlockPos()).getBlock() instanceof AutoCraftingTableBlock&&level.getBlockEntity(pos2) instanceof BaseContainerBlockEntity){
+            // if(level.getBlockState(blockEntity.getBlockPos()).getBlock() instanceof AutoCraftingTableBlock&&level.getBlockEntity(pos2) instanceof BaseContainerBlockEntity){
             if(level.getBlockState(blockEntity.getBlockPos()).getBlock() instanceof AutoCraftingTableBlock&&!level.isEmptyBlock(pos2)){
-                BaseContainerBlockEntity baseContainerBlockEntity= (BaseContainerBlockEntity) level.getBlockEntity(blockEntity.getBlockPos().relative(level.getBlockState(blockEntity.getBlockPos()).getValue(AutoCraftingTableBlock.FACING)));
-              //  if(!isExportable(blockEntity,baseContainerBlockEntity,itemstack,facing.getOpposite())){
-                    blockEntity.setItem(10, itemstack);
-              //  }else {
-             //       addItem(blockEntity,baseContainerBlockEntity,itemstack,facing.getOpposite());
-             //  }
+           //     BaseContainerBlockEntity baseContainerBlockEntity= (BaseContainerBlockEntity) level.getBlockEntity(blockEntity.getBlockPos().relative(level.getBlockState(blockEntity.getBlockPos()).getValue(AutoCraftingTableBlock.FACING)));
+                //  if(!isExportable(blockEntity,baseContainerBlockEntity,itemstack,facing.getOpposite())){
+                blockEntity.setItem(10, itemstack);
+                //  }else {
+                //       addItem(blockEntity,baseContainerBlockEntity,itemstack,facing.getOpposite());
+                //  }
             }else{
                 ItemEntity itemEntity=new ItemEntity(level,(double) pos2.getX()+0.5D,(double) pos2.getY()+0.5D,pos2.getZ()+0.5D,itemstack);
                 if(!level.isClientSide){
@@ -309,8 +314,8 @@ public class AutoCraftingTableBlockEntity extends BaseContainerBlockEntity imple
             }
 
 
-          //  blockEntity.setItem(10, itemstack);
-           blockEntity.setChanged();
+            //  blockEntity.setItem(10, itemstack);
+            blockEntity.setChanged();
         }
     }
     @Nullable
@@ -329,16 +334,16 @@ public class AutoCraftingTableBlockEntity extends BaseContainerBlockEntity imple
                 return false;
             } else {
 
-                    if (!p_155566_.getItem(10).isEmpty()) {
-                        ItemStack itemstack = p_155566_.getItem(10).copy();
-                        ItemStack itemstack1 = addItem(p_155566_, container, p_155566_.removeItem(10, 1), direction);
-                        if (itemstack1.isEmpty()) {
-                            container.setChanged();
-                            return true;
-                        }
-
-                        p_155566_.setItem(10, itemstack);
+                if (!p_155566_.getItem(10).isEmpty()) {
+                    ItemStack itemstack = p_155566_.getItem(10).copy();
+                    ItemStack itemstack1 = addItem(p_155566_, container, p_155566_.removeItem(10, 1), direction);
+                    if (itemstack1.isEmpty()) {
+                        container.setChanged();
+                        return true;
                     }
+
+                    p_155566_.setItem(10, itemstack);
+                }
 
 
                 return false;
@@ -409,9 +414,9 @@ public class AutoCraftingTableBlockEntity extends BaseContainerBlockEntity imple
                     if (itemstack.isEmpty()) {
                         flag = true;
                     } else if (FoxHopperBlockEntity.canMergeItems(itemstack, craftResultStack)) {
-                       if(itemstack.getMaxStackSize()-itemstack.getCount()>=craftResultStack.getCount()){
-                           flag=true;
-                       }
+                        if(itemstack.getMaxStackSize()-itemstack.getCount()>=craftResultStack.getCount()){
+                            flag=true;
+                        }
                     }
 
 
@@ -455,8 +460,7 @@ public class AutoCraftingTableBlockEntity extends BaseContainerBlockEntity imple
                     blockEntity.getItem(10).shrink(1);
                 }
             }
-
-            if (!level.isClientSide && !blockEntity.isEmpty() && blockEntity.litTime == 0) {
+            if(!blockEntity.isMatrixEmpty()) {
                 CraftingContainer craftingcontainer = new CraftingContainer(new AbstractContainerMenu((MenuType) MenuRegister.AutoCraftingTableMenu.get(), -1) {
                     public ItemStack quickMoveStack(Player p_218264_, int p_218265_) {
                         return ItemStack.EMPTY;
@@ -469,44 +473,73 @@ public class AutoCraftingTableBlockEntity extends BaseContainerBlockEntity imple
                 for (int i = 0; i < 9; i++) {
                     craftingcontainer.setItem(i, blockEntity.ingredientsSample.getStackInSlot(i));
                 }
-                CraftingRecipe craftingrecipe = level.getRecipeManager().getRecipeFor(RecipeType.CRAFTING, craftingcontainer, level).orElse(null);
+                CraftingRecipe craftingrecipe;
                 ItemStack itemstack = ItemStack.EMPTY;
+                if (blockEntity.savedRecipe==null) {
+                    craftingrecipe = level.getRecipeManager().getRecipeFor(RecipeType.CRAFTING, craftingcontainer, level).orElse(null);
+                    if (craftingrecipe != null) {
+                        blockEntity.savedRecipe = craftingrecipe.getId().toString();
+                    }
+                } else {
+                    Optional<? extends Recipe<?>> r = level.getRecipeManager().byKey(Objects.requireNonNull(ResourceLocation.tryParse(blockEntity.savedRecipe)));
+                    if (r.isPresent()) {
+                        CraftingRecipe cr = (CraftingRecipe) r.get();
+                        if (cr.matches(craftingcontainer, level)) {
+                            craftingrecipe = cr;
+
+                        } else {
+                            craftingrecipe = level.getRecipeManager().getRecipeFor(RecipeType.CRAFTING, craftingcontainer, level).orElse(null);
+                            if (craftingrecipe != null) {
+                                blockEntity.savedRecipe = craftingrecipe.getId().toString();
+                            }
+                        }
+                    } else {
+                        craftingrecipe = level.getRecipeManager().getRecipeFor(RecipeType.CRAFTING, craftingcontainer, level).orElse(null);
+                        if (craftingrecipe != null) {
+                            blockEntity.savedRecipe = craftingrecipe.getId().toString();
+                        }
+                    }
+                }
+
                 if (craftingrecipe != null) {
                     itemstack = craftingrecipe.assemble(craftingcontainer);
 
                 }
                 blockEntity.setItem(0, itemstack);
+                if (!level.isClientSide && !blockEntity.isEmpty() && blockEntity.litTime == 0) {
 
-                if (!itemstack.isEmpty()) {
 
-                    boolean flag = true;
-                    for (int i = 1; i < 10; i++) {
-                        if (!blockEntity.getItem(i).getItem().equals(blockEntity.getItem(i + 10).getItem())) {
-                            flag = false;
-                        }
+                    if (!itemstack.isEmpty()) {
 
-                    }
-                    if (flag && blockEntity.getItem(10).getCount() + itemstack.getCount() <= itemstack.getMaxStackSize()) {
-
-                        if (state.getBlock() == ItemAndBlockRegister.auto_crafting_table.get()) {
-                            // if (blockEntity.litTime == 0) {
-                            //     blockEntity.litTime = 60;
-                            //    }
-                            //  else
-                            if (blockEntity.litTime == 0) {
-                                blockEntity.doCraft(level, itemstack, blockEntity);
-                                blockEntity.litTime = 60;
+                        boolean flag = true;
+                        for (int i = 1; i < 10; i++) {
+                            if (!blockEntity.getItem(i).getItem().equals(blockEntity.getItem(i + 10).getItem())) {
+                                flag = false;
                             }
-                        } else if (state.getBlock() == ItemAndBlockRegister.advanced_auto_crafting_table.get()) {
-                            blockEntity.doCraft(level, itemstack, blockEntity);
-                            blockEntity.litTime = 0;
-                        }
-                    }
 
+                        }
+                        if (flag && blockEntity.getItem(10).getCount() + itemstack.getCount() <= itemstack.getMaxStackSize()) {
+
+                            if (state.getBlock() == ItemAndBlockRegister.auto_crafting_table.get()) {
+                                // if (blockEntity.litTime == 0) {
+                                //     blockEntity.litTime = 60;
+                                //    }
+                                //  else
+                                if (blockEntity.litTime == 0 && blockEntity.getItem(10).isEmpty()) {
+                                    blockEntity.doCraft(level, itemstack, blockEntity);
+                                    blockEntity.litTime = 60;
+                                }
+                            } else if (state.getBlock() == ItemAndBlockRegister.advanced_auto_crafting_table.get() && blockEntity.getItem(10).isEmpty()) {
+                                blockEntity.doCraft(level, itemstack, blockEntity);
+                                blockEntity.litTime = 0;
+                            }
+                        }
+
+                    }
                 }
-            }
-            if (blockEntity.isLit() && state.getBlock() == ItemAndBlockRegister.auto_crafting_table.get()) {
-                --blockEntity.litTime;
+                if (blockEntity.isLit() && state.getBlock() == ItemAndBlockRegister.auto_crafting_table.get()) {
+                    --blockEntity.litTime;
+                }
             }
         }
     }
@@ -539,6 +572,15 @@ public class AutoCraftingTableBlockEntity extends BaseContainerBlockEntity imple
         return this.result.getStackInSlot(0).isEmpty();
     }
 
+    public boolean isMatrixEmpty() {
+        for(int i=0;i<9;i++) {
+            if (!this.ingredientsSample.getStackInSlot(i).isEmpty()) {
+                return false;
+            }
+        }
+
+        return this.resultSample.getStackInSlot(0).isEmpty();
+    }
 
     public ItemStack getItem(int slot) {
         if(slot==0){
@@ -565,26 +607,26 @@ public class AutoCraftingTableBlockEntity extends BaseContainerBlockEntity imple
 
     public void setItem(int slot, ItemStack stack) {
 
-            ItemStack itemstack = this.getItem(slot);
-            boolean flag = !stack.isEmpty() && stack.sameItem(itemstack) && ItemStack.tagMatches(stack, itemstack);
-            if(slot==0){
-                this.resultSample.setStackInSlot(0,stack.copy());
-            }else if(slot<10){
-                this.ingredientsSample.setStackInSlot(slot-1,stack.copy());
-            }else if(slot==10){
-                this.result.setStackInSlot(0,stack);
-            }else{
+        ItemStack itemstack = this.getItem(slot);
+        boolean flag = !stack.isEmpty() && stack.sameItem(itemstack) && ItemStack.tagMatches(stack, itemstack);
+        if(slot==0){
+            this.resultSample.setStackInSlot(0,stack.copy());
+        }else if(slot<10){
+            this.ingredientsSample.setStackInSlot(slot-1,stack.copy());
+        }else if(slot==10){
+            this.result.setStackInSlot(0,stack);
+        }else{
 
-                this.ingredients.setStackInSlot(slot-11,stack);
-                
-            }
-            if (stack.getCount() > this.getMaxStackSize()) {
-                stack.setCount(this.getMaxStackSize());
-            }
+            this.ingredients.setStackInSlot(slot-11,stack);
 
-            if (slot != 0 && !flag) {
-                this.setChanged();
-            }
+        }
+        if (stack.getCount() > this.getMaxStackSize()) {
+            stack.setCount(this.getMaxStackSize());
+        }
+
+        if (slot != 0 && !flag) {
+            this.setChanged();
+        }
 
     }
 
@@ -635,7 +677,7 @@ public class AutoCraftingTableBlockEntity extends BaseContainerBlockEntity imple
 
     private Direction getExportFacing(){
         if(this.getBlockState().getBlock() instanceof AutoCraftingTableBlock){
-           return this.getBlockState().getValue(BlockStateProperties.FACING);
+            return this.getBlockState().getValue(BlockStateProperties.FACING);
         }
         return Direction.DOWN;
     }
@@ -671,7 +713,7 @@ public class AutoCraftingTableBlockEntity extends BaseContainerBlockEntity imple
 
     @Override
     public boolean canPlaceItemThroughFace(int slot, ItemStack stack, @org.jetbrains.annotations.Nullable Direction direction) {
-      return this.canPlaceItem(slot, stack);
+        return this.canPlaceItem(slot, stack);
     }
 
     @Override

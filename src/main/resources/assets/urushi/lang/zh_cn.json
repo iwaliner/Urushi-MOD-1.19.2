@@ -2475,6 +2475,19 @@
    "block.urushi.blue_kawara_roof_45": "蓝瓦陡峭屋顶",
 
    "block.urushi.blue_kawara_roof_225": "蓝瓦平缓屋顶",
-   "block.urushi.blue_kawara_wall": "蓝瓦墙"
+   "block.urushi.blue_kawara_wall": "蓝瓦墙",
+   "entity.urushi.miso_soup_food": "味噌汤",
+   "entity.urushi.cheese_gyudon_food": "芝士牛肉盖浇饭",
+   "entity.urushi.cheese_gyudon_with_onsen_egg_food": "芝士牛肉温泉蛋盖浇饭",
+   "entity.urushi.green_onion_and_raw_egg_gyudon_food": "青葱生蛋牛肉盖浇饭",
+   "entity.urushi.mustard_leaf_and_cod_caviar_gyudon_food": "雪菜明太子蛋黄酱牛肉盖浇饭",
+   "entity.urushi.sakura_mochi_food": "樱饼",
+   "entity.urushi.ohagi_food": "萩饼",
+   "entity.urushi.kusa_mochi_food": "草年糕",
+   "entity.urushi.soy_source_ramen_food": "酱油拉面",
+   "entity.urushi.salt_ramen_food": "盐味拉面",
+   "entity.urushi.miso_ramen_food": "味噌拉面",
+   "entity.urushi.tonkotsu_ramen_food": "豚骨拉面",
+   "entity.urushi.minced_tuna_bowl_food": "金枪鱼泥盖饭"
 
 }

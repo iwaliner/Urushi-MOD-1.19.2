@@ -3,6 +3,7 @@ package com.iwaliner.urushi.block;
 
 import com.iwaliner.urushi.BlockEntityRegister;
 import com.iwaliner.urushi.ItemAndBlockRegister;
+import com.iwaliner.urushi.TagUrushi;
 import com.iwaliner.urushi.util.UrushiUtils;
 import com.iwaliner.urushi.blockentity.RiceCauldronBlockEntity;
 import net.minecraft.core.BlockPos;
@@ -78,7 +79,7 @@ public class RiceCauldronBlock extends BaseEntityBlock {
                 world.playSound((Player) null,pos, SoundEvents.BARREL_CLOSE, SoundSource.BLOCKS,1F,1F);
                 return InteractionResult.SUCCESS;
             }else if(state.getValue(VARIANT)==1){
-                if(player.getItemInHand(hand).getItem()== ItemAndBlockRegister.raw_rice.get()){
+                if(player.getItemInHand(hand).is(TagUrushi.RICE)){
                     tileEntity.setItem(0, new ItemStack(ItemAndBlockRegister.rice.get(),player.getItemInHand(hand).getCount()));
                     player.setItemInHand(hand,ItemStack.EMPTY);
                     world.playSound((Player) null,pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS,1F,1F);

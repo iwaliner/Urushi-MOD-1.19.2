@@ -80,6 +80,7 @@ public abstract class FoodEntity extends Entity {
         this.setDeltaMovement(new Vec3(this.getDeltaMovement().x*0.99D,this.getDeltaMovement().y-0.04D,this.getDeltaMovement().z*0.99D));
         this.move(MoverType.SELF, this.getDeltaMovement()); //自由落下
 
+
         if(UrushiUtils.isAprilFoolsDay()) {
             long gametime = level.getGameTime() % 10;
             if (gametime == 0) {

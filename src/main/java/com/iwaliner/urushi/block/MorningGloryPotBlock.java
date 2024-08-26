@@ -20,8 +20,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
 
-public class MorningGloryPotBlock extends Block{
-    public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
+public class MorningGloryPotBlock extends AbstractHighBlock{
 
     public MorningGloryPotBlock( Properties p_49795_) {
         super( p_49795_);

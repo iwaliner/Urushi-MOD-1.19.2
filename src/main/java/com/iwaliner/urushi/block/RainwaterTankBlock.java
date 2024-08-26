@@ -34,8 +34,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
 
-public class RainwaterTankBlock extends HorizonalRotateBlock{
-    public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
+public class RainwaterTankBlock extends AbstractHorizontalRotateHighBlock{
     public static final BooleanProperty FILLED = BooleanProperty.create("filled");
 
     public RainwaterTankBlock(Properties p_49795_) {
@@ -88,41 +87,43 @@ public class RainwaterTankBlock extends HorizonalRotateBlock{
         if(state.getValue(HALF)==DoubleBlockHalf.LOWER){
             BlockState upperState=level.getBlockState(pos.above());
             ItemStack stack=player.getItemInHand(hand);
-            if(state.getValue(FILLED)){
-                if(stack.getItem()== Items.BUCKET){
-                    stack.shrink(1);
-                    if (stack.isEmpty()) {
-                        player.setItemInHand(hand, new ItemStack(Items.WATER_BUCKET));
-                    } else if (!player.getInventory().add(new ItemStack(Items.WATER_BUCKET))) {
-                        player.drop(new ItemStack(Items.WATER_BUCKET), false);
-                    }
-                    level.setBlockAndUpdate(pos,state.setValue(FILLED,Boolean.FALSE));
-                    level.setBlockAndUpdate(pos.above(),upperState.setValue(FILLED,Boolean.FALSE));
-                    level.playSound((Player) null,(double) pos.getX()+0.5D,(double) pos.getY()+0.5D,(double) pos.getZ()+0.5D, SoundEvents.BUCKET_FILL, SoundSource.BLOCKS,1F,1F);
-                    return InteractionResult.SUCCESS;
+            if(upperState.getBlock() instanceof RainwaterTankBlock) {
+                if (state.getValue(FILLED)) {
+                    if (stack.getItem() == Items.BUCKET) {
+                        stack.shrink(1);
+                        if (stack.isEmpty()) {
+                            player.setItemInHand(hand, new ItemStack(Items.WATER_BUCKET));
+                        } else if (!player.getInventory().add(new ItemStack(Items.WATER_BUCKET))) {
+                            player.drop(new ItemStack(Items.WATER_BUCKET), false);
+                        }
+                        level.setBlockAndUpdate(pos, state.setValue(FILLED, Boolean.FALSE));
+                        level.setBlockAndUpdate(pos.above(), upperState.setValue(FILLED, Boolean.FALSE));
+                        level.playSound((Player) null, (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, SoundEvents.BUCKET_FILL, SoundSource.BLOCKS, 1F, 1F);
+                        return InteractionResult.SUCCESS;
 
-                }else if(stack.getItem()==Items.GLASS_BOTTLE){
-                    stack.shrink(1);
-                    if (stack.isEmpty()) {
-                        player.setItemInHand(hand, PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.WATER));
-                    } else if (!player.getInventory().add(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.WATER))) {
-                        player.drop(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.WATER), false);
+                    } else if (stack.getItem() == Items.GLASS_BOTTLE) {
+                        stack.shrink(1);
+                        if (stack.isEmpty()) {
+                            player.setItemInHand(hand, PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.WATER));
+                        } else if (!player.getInventory().add(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.WATER))) {
+                            player.drop(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.WATER), false);
+                        }
+                        level.playSound((Player) null, (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, SoundEvents.BOTTLE_FILL, SoundSource.BLOCKS, 1F, 1F);
+                        return InteractionResult.SUCCESS;
                     }
-                    level.playSound((Player) null,(double) pos.getX()+0.5D,(double) pos.getY()+0.5D,(double) pos.getZ()+0.5D, SoundEvents.BOTTLE_FILL, SoundSource.BLOCKS,1F,1F);
-                    return InteractionResult.SUCCESS;
-                }
-            }else{
-                if(stack.getItem()== Items.WATER_BUCKET){
-                    stack.shrink(1);
-                    if (stack.isEmpty()) {
-                        player.setItemInHand(hand, new ItemStack(Items.BUCKET));
-                    } else if (!player.getInventory().add(new ItemStack(Items.BUCKET))) {
-                        player.drop(new ItemStack(Items.BUCKET), false);
+                } else {
+                    if (stack.getItem() == Items.WATER_BUCKET) {
+                        stack.shrink(1);
+                        if (stack.isEmpty()) {
+                            player.setItemInHand(hand, new ItemStack(Items.BUCKET));
+                        } else if (!player.getInventory().add(new ItemStack(Items.BUCKET))) {
+                            player.drop(new ItemStack(Items.BUCKET), false);
+                        }
+                        level.setBlockAndUpdate(pos, state.setValue(FILLED, Boolean.TRUE));
+                        level.setBlockAndUpdate(pos.above(), upperState.setValue(FILLED, Boolean.TRUE));
+                        level.playSound((Player) null, (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, SoundEvents.BUCKET_EMPTY, SoundSource.BLOCKS, 1F, 1F);
+                        return InteractionResult.SUCCESS;
                     }
-                    level.setBlockAndUpdate(pos,state.setValue(FILLED,Boolean.TRUE));
-                    level.setBlockAndUpdate(pos.above(),upperState.setValue(FILLED,Boolean.TRUE));
-                    level.playSound((Player) null,(double) pos.getX()+0.5D,(double) pos.getY()+0.5D,(double) pos.getZ()+0.5D, SoundEvents.BUCKET_EMPTY, SoundSource.BLOCKS,1F,1F);
-                    return InteractionResult.SUCCESS;
                 }
             }
         }

@@ -4,6 +4,7 @@ package com.iwaliner.urushi.blockentity;
 
 import com.iwaliner.urushi.BlockEntityRegister;
 import com.iwaliner.urushi.ItemAndBlockRegister;
+import com.iwaliner.urushi.TagUrushi;
 import com.iwaliner.urushi.block.DirtFurnaceBlock;
 import com.iwaliner.urushi.block.RiceCauldronBlock;
 import net.minecraft.core.BlockPos;
@@ -179,7 +180,7 @@ public  class RiceCauldronBlockEntity extends BaseContainerBlockEntity implement
         if (i == 1) {
             return false;
         }  else {
-            return this.items.get(0).getCount()==0&&this.items.get(1).getCount()==0&&stack.getItem()== ItemAndBlockRegister.raw_rice.get();
+            return this.items.get(0).getCount()==0&&this.items.get(1).getCount()==0&&stack.is(TagUrushi.RICE);
         }
     }
 

@@ -2476,6 +2476,19 @@
    "block.urushi.blue_kawara_roof_45": "Blue Kawara Roof for Stairs",
 
    "block.urushi.blue_kawara_roof_225": "Blue Kawara Roof for Slab",
-   "block.urushi.blue_kawara_wall": "Blue Kawara Wall"
+   "block.urushi.blue_kawara_wall": "Blue Kawara Wall",
+   "entity.urushi.miso_soup_food": "Miso Soup",
+   "entity.urushi.cheese_gyudon_food": "Cheese Gyudon",
+   "entity.urushi.cheese_gyudon_with_onsen_egg_food": "Cheese Gyudon with Hot Spring Egg",
+   "entity.urushi.green_onion_and_raw_egg_gyudon_food": "Gyudon with Green Onion and Raw Egg",
+   "entity.urushi.mustard_leaf_and_cod_caviar_gyudon_food": "Gyudon with Mustard Leaf, Cod Caviar and Mayonnaise",
+   "entity.urushi.sakura_mochi_food": "Sakura Mochi",
+   "entity.urushi.ohagi_food": "Ohagi",
+   "entity.urushi.kusa_mochi_food": "Kusa Mochi",
+   "entity.urushi.soy_source_ramen_food": "Soy Source Ramen",
+   "entity.urushi.salt_ramen_food": "Salt Ramen",
+   "entity.urushi.miso_ramen_food": "Miso Ramen",
+   "entity.urushi.tonkotsu_ramen_food": "Tonkotsu Ramen",
+   "entity.urushi.minced_tuna_bowl_food": "Minced Tuna Bowl"
     
 }

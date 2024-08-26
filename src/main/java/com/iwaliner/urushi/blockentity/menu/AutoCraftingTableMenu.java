@@ -12,7 +12,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.StackedContents;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeType;
 
 public class AutoCraftingTableMenu extends RecipeBookMenu<Container> {
 
@@ -70,6 +72,13 @@ public class AutoCraftingTableMenu extends RecipeBookMenu<Container> {
         CraftingContainer craftingcontainer = new CraftingContainer(this,3,3);
         for (int i = 0; i < 9; i++) {
             craftingcontainer.setItem(i, container.getItem(i+1));
+        }
+        if(this.container instanceof AutoCraftingTableBlockEntity){
+            AutoCraftingTableBlockEntity autoCraftingTableBlockEntity= (AutoCraftingTableBlockEntity) container;
+            CraftingRecipe craftingrecipe=autoCraftingTableBlockEntity.getLevel().getRecipeManager().getRecipeFor(RecipeType.CRAFTING, craftingcontainer, autoCraftingTableBlockEntity.getLevel()).orElse(null);
+            if(craftingrecipe!=null){
+                autoCraftingTableBlockEntity.savedRecipe=craftingrecipe.getId().toString();
+            }
         }
         return recipe.matches(craftingcontainer, this.player.level);
     }

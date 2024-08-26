@@ -118,8 +118,12 @@ public class NormalKatanaItem extends SwordItem {
             for (LivingEntity entity : list) {
                 if(entity instanceof Player) {
                 }else{
-                    entity.hurt(DamageSource.GENERIC, (getDamage()+EnchantmentHelper.getDamageBonus(player.getItemInHand(hand),entity.getMobType()))*0.5F);
+                    entity.hurt(DamageSource.GENERIC, (EnchantmentHelper.getDamageBonus(player.getItemInHand(hand),entity.getMobType())+(float) player.getAttributeValue(Attributes.ATTACK_DAMAGE))*0.5F);
                     player.level.playSound((Player) null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.PLAYER_ATTACK_KNOCKBACK, SoundSource.PLAYERS, 1.5F, 1F);
+                    int i = EnchantmentHelper.getFireAspect(player);
+                    if (i > 0) {
+                        entity.setSecondsOnFire(i * 4);
+                    }
                 }
             }
         }
@@ -130,8 +134,8 @@ public class NormalKatanaItem extends SwordItem {
 
     @Override
     public InteractionResult interactLivingEntity(ItemStack itemStack, Player player, LivingEntity living, InteractionHand hand) {
-            living.hurt(DamageSource.GENERIC,(getDamage()+ EnchantmentHelper.getDamageBonus(player.getItemInHand(hand),living.getMobType()))*0.5F);
-            this.use(player.level,player,hand);
+        living.hurt(DamageSource.GENERIC, (EnchantmentHelper.getDamageBonus(player.getItemInHand(hand),living.getMobType())+(float) player.getAttributeValue(Attributes.ATTACK_DAMAGE))*0.5F);
+        this.use(player.level,player,hand);
             player.level.playSound((Player) null, living.getX(), living.getY(), living.getZ(), SoundEvents.PLAYER_ATTACK_KNOCKBACK, SoundSource.PLAYERS, 1.5F, 1F);
             return InteractionResult.sidedSuccess(player.level.isClientSide);
         }

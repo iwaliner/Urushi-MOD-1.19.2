@@ -3,8 +3,8 @@ package com.iwaliner.urushi.entiity.food.renderer;
 
 import com.iwaliner.urushi.ClientSetUp;
 import com.iwaliner.urushi.entiity.food.FoodEntity;
-import com.iwaliner.urushi.entiity.food.RiceFoodEntity;
 import com.iwaliner.urushi.entiity.food.TKGFoodEntity;
+import com.iwaliner.urushi.entiity.food.model.MisoSoupFoodModel;
 import com.iwaliner.urushi.entiity.food.model.RiceFoodModel;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;

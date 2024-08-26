@@ -20,7 +20,6 @@ import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraft.client.gui.screens.inventory.CraftingScreen;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.entity.FallingBlockRenderer;
@@ -28,11 +27,9 @@ import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.*;
 import net.minecraftforge.client.settings.KeyConflictContext;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -58,9 +55,10 @@ public class ClientSetUp {
     public static final ModelLayerLocation SUSHI = new ModelLayerLocation(new ResourceLocation(ModCoreUrushi.ModID, "sushi_food"), "sushi_food");
     public static final ModelLayerLocation SALMON_ROE_SUSHI = new ModelLayerLocation(new ResourceLocation(ModCoreUrushi.ModID, "salmon_roe_sushi_food"), "salmon_roe_sushi_food");
     public static final ModelLayerLocation INARI = new ModelLayerLocation(new ResourceLocation(ModCoreUrushi.ModID, "inari_food"), "inari_food");
+    public static final ModelLayerLocation RAMEN = new ModelLayerLocation(new ResourceLocation(ModCoreUrushi.ModID, "ramen_food"), "ramen_food");
+    public static final ModelLayerLocation MISO_SOUP = new ModelLayerLocation(new ResourceLocation(ModCoreUrushi.ModID, "miso_soup_food"), "miso_soup_food");
 
 
-   // public static final KeyMapping connectionKey = new ToggleKeyMappingPlus("Apart Block Connections (single play only)", InputConstants.KEY_C, "Urushi");
    public static KeyMapping connectionKey = new ToggleKeyMappingPlus("key.urushi.connectionKey", KeyConflictContext.IN_GAME, InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_C, "key.urushi.category");
 
     @SubscribeEvent
@@ -101,6 +99,19 @@ public class ClientSetUp {
             return new ThrownItemRenderer<>(p_174088_, 1.0F, true);
         });*/
         event.registerEntityRenderer(EntityRegister.JufuEffectDisplay.get(), FallingBlockRenderer::new);
+        event.registerEntityRenderer(EntityRegister.MisoSoupFoodEntity.get(), MisoSoupFoodRenderer::new);
+        event.registerEntityRenderer(EntityRegister.CheeseGyudonFoodEntity.get(), CheeseGyudonFoodRenderer::new);
+        event.registerEntityRenderer(EntityRegister.CheeseGyudonWithOnsenEggFoodEntity.get(), CheeseGyudonWithOnsenEggFoodRenderer::new);
+        event.registerEntityRenderer(EntityRegister.GreenOnionAndRawEggGyudonFoodEntity.get(), GreenOnionAndRawEggGyudonFoodRenderer::new);
+        event.registerEntityRenderer(EntityRegister.MustardLeafAndCodCaviarGyudonFoodEntity.get(), MustardLeafAndCodCaviarGyudonFoodRenderer::new);
+        event.registerEntityRenderer(EntityRegister.SakuraMochiFoodEntity.get(), SakuraMochiFoodRenderer::new);
+        event.registerEntityRenderer(EntityRegister.OhagiFoodEntity.get(), OhagiFoodRenderer::new);
+        event.registerEntityRenderer(EntityRegister.KusaMochiFoodEntity.get(), KusaMochiFoodRenderer::new);
+        event.registerEntityRenderer(EntityRegister.SoySourceRamenFoodEntity.get(), SoySourceRamenFoodRenderer::new);
+        event.registerEntityRenderer(EntityRegister.SaltRamenFoodEntity.get(), SaltRamenFoodRenderer::new);
+        event.registerEntityRenderer(EntityRegister.MisoRamenFoodEntity.get(), MisoRamenFoodRenderer::new);
+        event.registerEntityRenderer(EntityRegister.TonkotsuRamenFoodEntity.get(), TonkotsuRamenFoodRenderer::new);
+        event.registerEntityRenderer(EntityRegister.MincedTunaBowlFoodEntity.get(), MincedTunaBowlFoodRenderer::new);
 
     }
 
@@ -118,8 +129,8 @@ public class ClientSetUp {
         event.registerLayerDefinition(SUSHI, SushiFoodModel::createBodyLayer);
         event.registerLayerDefinition(SALMON_ROE_SUSHI, SalmonRoeSushiFoodModel::createBodyLayer);
         event.registerLayerDefinition(INARI, InariFoodModel::createBodyLayer);
-
-
+        event.registerLayerDefinition(RAMEN, RamenFoodModel::createBodyLayer);
+        event.registerLayerDefinition(MISO_SOUP, MisoSoupFoodModel::createBodyLayer);
 
     }
 

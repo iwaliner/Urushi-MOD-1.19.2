@@ -24,6 +24,7 @@ public class AutoCraftingTableIngredientsMatrixSlot extends Slot {
                 this.set(ItemStack.EMPTY);
             }
 
+
             return stack;
         } else {
             return stack;
