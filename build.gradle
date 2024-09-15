@@ -19,7 +19,7 @@ plugins {
 apply plugin: 'org.spongepowered.mixin'
 //apply plugin: 'com.diffplug.eclipse.apt' // if you are using Eclipse, add this line
 
-version = "1.19.2-5.4.0"
+version = "1.19.2-5.4.1"
 group = 'com.iwaliner.${mod_id}' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = mod_id
 
@@ -62,7 +62,7 @@ minecraft {
             // You can set various levels here.
             // Please read: https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels
             property 'forge.logging.console.level', 'debug'
-
+            arg "-mixin.config=urushi.mixins.json"
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
             property 'forge.enabledGameTestNamespaces', mod_id
 
@@ -86,7 +86,8 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             property 'forge.enabledGameTestNamespaces', mod_id
-
+            property "mixin.env.remapRefMap", "true"
+            arg "-mixin.config=urushi.mixins.json"
             mods {
                 "${mod_id}" {
                     source sourceSets.main
@@ -193,10 +194,10 @@ dependencies {
 mixin {
     //MixinGradle Settings
     add sourceSets.main, "${mod_id}.refmap.json"
-    config "${mod_id}.mixins.json"
+   // config "${mod_id}.mixins.json"
 
-    debug.verbose = true
-    debug.export = true
+    //debug.verbose = true
+    //debug.export = true
 }
 
 // Example for how to get properties into the manifest for reading at runtime.
@@ -210,9 +211,11 @@ jar {
                 "Implementation-Title"    : project.name,
                 "Implementation-Version"  : project.jar.archiveVersion,
                 "Implementation-Vendor"   : author_name,
-                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+                "MixinConfigs"            : "urushi.mixins.json"
         ])
     }
+
 }
 
 // Example configuration to allow publishing using the maven-publish plugin

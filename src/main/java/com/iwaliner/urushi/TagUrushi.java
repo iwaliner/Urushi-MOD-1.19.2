@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import java.util.*;
 
 public class TagUrushi {
-    public static Map< BlockState, BlockState> fileMap = new HashMap<>();
+
 
     // this record stores items' mining speed change modifiers.
     public record ElementMiningSpeedModifier(

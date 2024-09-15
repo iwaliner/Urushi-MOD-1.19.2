@@ -19,7 +19,7 @@ public class WaterCraftingItem extends BlockItem {
         this.result=result;
     }
 
-    @Override
+  /*  @Override
     public boolean onEntityItemUpdate(ItemStack stack, ItemEntity entity) {
         if(entity.isInWater()){
             entity.setItem(new ItemStack(result.get(),stack.getCount()));
@@ -27,7 +27,7 @@ public class WaterCraftingItem extends BlockItem {
             return true;
         }
         return false;
-    }
+    }*/
 
 
 }
